@@ -1,6 +1,6 @@
 ﻿namespace adminPanel
 {
-    partial class Form1
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -98,7 +98,7 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Innlogging for VMS";
             // 
-            // Form1
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,7 +110,7 @@
             this.Controls.Add(this.brukernavnText);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "LoginForm";
             this.Text = "Innlogging for VMS";
             this.ResumeLayout(false);
             this.PerformLayout();
