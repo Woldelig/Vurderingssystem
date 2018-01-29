@@ -27,21 +27,23 @@ namespace adminPanel
             }
             else
             {
-
-
                 String connString = "server=localhost;user=root;database=test;"; //databasen på min pc heter test, bytt ettersom hva deres heter. Evt finner vi nytt navn
                 MySqlConnection conn = new MySqlConnection(connString);         //OBS OBS denne skal egentlig være egen klasse!
 
                 try
                 {
-                    conn.Open();
-                    String sql = "SELECT * FROM formlogin WHERE brukernavn = @Brukernavn AND passord = @Passord;"; //har får vi ut 3 verdier brukernavn, passord og brukertype. Brukertype er INT
-                    MySqlCommand cb = new MySqlCommand(sql, conn);
-                    MySqlDataReader dbdr = cb.ExecuteReader();
-
                     String brukernavn = brukernavnText.Text;
                     String passord = passordText.Text;
+                    conn.Open();
+                    String sql = "SELECT * FROM formlogin WHERE brukernavn = @Brukernavn AND passord = @Passord;"; //har får vi ut 3 verdier brukernavn, passord og brukertype. Brukertype er INT
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@Brukernavn", brukernavn);
+                    cmd.Parameters.AddWithValue("@Passord", passord);
 
+                    MySqlDataReader dbdr = cmd.ExecuteReader();
+
+
+                    conn.Close();
                 }
                 catch (Exception ex)
                 {
