@@ -39,7 +39,12 @@ namespace adminPanel
 
         private void hjelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Legg til metode når form er laget
+            MessageBox.Show
+                ("Dette er en"+ Environment.NewLine
+                + "hjelp meny");
+            //Dette er en mulig måte og lage hjelp meny på
+            //linjeskift kan man få ved å bruke
+            //Environment.NewLine
         }
     }
 }
