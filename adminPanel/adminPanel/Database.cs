@@ -72,6 +72,7 @@ namespace adminPanel
             {
                 Console.WriteLine("Feilmelding: ", DBexception);
             }
+            return false;
         }
 
     }

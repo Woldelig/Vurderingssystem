@@ -38,6 +38,7 @@ namespace adminPanel
                     if (db.Test(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
                     {
                         VelkomstForm vf = new VelkomstForm();//Sender deg videre til velkomstskjermen ved gyldig pålogging
+                        vf.Show();
                     }
                     else
                     {
