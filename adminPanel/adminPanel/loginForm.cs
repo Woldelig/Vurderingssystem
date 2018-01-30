@@ -23,27 +23,27 @@ namespace adminPanel
         {
             if (brukernavnText.Text == string.Empty || passordText.Text == string.Empty)
             {
-                feilmelding.Text = "Brukernavn og passord må fylles ut";
+                feilmelding.Text = "Brukernavn og passord må fylles ut!";
+                feilmelding.ForeColor = System.Drawing.Color.Red;
             }
             else
             {
-                String connString = "server=localhost;user=root;database=test;"; //databasen på min pc heter test, bytt ettersom hva deres heter. Evt finner vi nytt navn
-                MySqlConnection conn = new MySqlConnection(connString);         //OBS OBS denne skal egentlig være egen klasse!
-
                 try
                 {
+                    feilmelding.Text = "";
+                    Database db = new Database();//Oppretter database-objekt
+                    db.DBConnect();//Kjører DBConnect-metoden som ligger i Databaseklassen
                     String brukernavn = brukernavnText.Text;
                     String passord = passordText.Text;
-                    conn.Open();
-                    String sql = "SELECT * FROM formlogin WHERE brukernavn = @Brukernavn AND passord = @Passord;"; //har får vi ut 3 verdier brukernavn, passord og brukertype. Brukertype er INT
-                    MySqlCommand cmd = new MySqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@Brukernavn", brukernavn);
-                    cmd.Parameters.AddWithValue("@Passord", passord);
-
-                    MySqlDataReader dbdr = cmd.ExecuteReader();
-
-
-                    conn.Close();
+                    if (db.Test(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
+                    {
+                        VelkomstForm vf = new VelkomstForm();//Sender deg videre til velkomstskjermen ved gyldig pålogging
+                    }
+                    else
+                    {
+                        feilmelding.Text = "Brukeren eller passordet er feil!";
+                    }
+                    db.DBClose();//Stenger databasetilgangen
                 }
                 catch (Exception ex)
                 {
