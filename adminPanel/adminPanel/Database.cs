@@ -43,12 +43,10 @@ namespace adminPanel
         {
             try
             {
-                
-
                 String sql = "SELECT * FROM formlogin WHERE bruker = @Brukernavn AND passord = @Passord;"; //har får vi ut 3 verdier brukernavn, passord og brukertype. Brukertype er INT
                 MySqlCommand cmd = new MySqlCommand(sql, dbConn); //Bruker MySqlCommand-objektet til å utføre databaseoperasjoner
 
-                cmd.Parameters.AddWithValue("@Brukernavn", username);
+                cmd.Parameters.AddWithValue("@Brukernavn", username);//Hindrer SQLinjection
                 cmd.Parameters.AddWithValue("@Passord", password);
                 MySqlDataReader reader = cmd.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
                 if (reader.HasRows) //Sjekker om det finnes rader
@@ -64,9 +62,7 @@ namespace adminPanel
                 {
                     Console.WriteLine("Fant ingen rader");
                 }
-
                 reader.Close();//Stenger MySqlDataReader-objektet
-
             }
             catch (MySqlException DBexception)
             {
