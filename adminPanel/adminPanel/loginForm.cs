@@ -35,7 +35,14 @@ namespace adminPanel
                     db.DBConnect();//Kjører DBConnect-metoden som ligger i Databaseklassen
                     String brukernavn = brukernavnText.Text;
                     String passord = passordText.Text;
-                    db.Test(brukernavn, passord);//Sender brukernavn og passord til dummymetoden
+                    if (db.Test(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
+                    {
+                        VelkomstForm vf = new VelkomstForm();//Sender deg videre til velkomstskjermen ved gyldig pålogging
+                    }
+                    else
+                    {
+                        feilmelding.Text = "Brukeren eller passordet er feil!";
+                    }
                     db.DBClose();//Stenger databasetilgangen
                 }
                 catch (Exception ex)

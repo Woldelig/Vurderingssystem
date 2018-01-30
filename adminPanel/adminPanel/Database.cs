@@ -39,7 +39,7 @@ namespace adminPanel
             }
         }
 
-        public void Test(String username, String password) // Tester om DBConnect og DBClose funker med en SELECT-spørring
+        public bool Test(String username, String password) // Tester om DBConnect og DBClose funker med en SELECT-spørring
         {
             try
             {
@@ -56,13 +56,17 @@ namespace adminPanel
                         Console.WriteLine(reader.GetString("bruker"));//Skriver ut brukernavnet
                         Console.WriteLine(reader.GetString("passord"));//Skriver ut passordet
                         Console.WriteLine(reader.GetString("brukertype"));//Skriver ut brukertypen
+
                     }
+                    reader.Close();//Stenger MySqlDataReader-objektet
+                    return true;//Brukeren finnes
                 }
                 else
                 {
                     Console.WriteLine("Fant ingen rader");
+                    reader.Close();//Stenger MySqlDataReader-objektet
+                    return false;//Brukeren finnes ikke
                 }
-                reader.Close();//Stenger MySqlDataReader-objektet
             }
             catch (MySqlException DBexception)
             {
