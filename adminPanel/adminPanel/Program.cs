@@ -16,7 +16,16 @@ namespace adminPanel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            LoginForm lf = new LoginForm();
+            if(lf.ShowDialog() == DialogResult.OK) //Sjekker om innlogging var vellykket
+            {
+                Application.Run(new VelkomstForm());//Starter velkomstformen
+            }
+            else
+            {
+                Application.Exit();
+            }
+
         }
     }
 }

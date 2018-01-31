@@ -30,14 +30,16 @@
         {
             this.verktøyLinje = new System.Windows.Forms.MenuStrip();
             this.filToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lagreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skrivUtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.avsluttToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lagreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hjelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.verktøyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sQLEditorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statistikkOgDiagrammerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vurderingsskjemaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hjelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loggOutBtnVelkomst = new System.Windows.Forms.Button();
+            this.UserLbl = new System.Windows.Forms.Label();
             this.verktøyLinje.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,31 +65,24 @@
             this.filToolStripMenuItem.Size = new System.Drawing.Size(31, 20);
             this.filToolStripMenuItem.Text = "Fil";
             // 
+            // lagreToolStripMenuItem
+            // 
+            this.lagreToolStripMenuItem.Name = "lagreToolStripMenuItem";
+            this.lagreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.lagreToolStripMenuItem.Text = "Lagre";
+            // 
             // skrivUtToolStripMenuItem
             // 
             this.skrivUtToolStripMenuItem.Name = "skrivUtToolStripMenuItem";
-            this.skrivUtToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.skrivUtToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.skrivUtToolStripMenuItem.Text = "Skriv ut";
             // 
             // avsluttToolStripMenuItem
             // 
             this.avsluttToolStripMenuItem.Name = "avsluttToolStripMenuItem";
-            this.avsluttToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.avsluttToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.avsluttToolStripMenuItem.Text = "Avslutt";
             this.avsluttToolStripMenuItem.Click += new System.EventHandler(this.avsluttToolStripMenuItem_Click);
-            // 
-            // lagreToolStripMenuItem
-            // 
-            this.lagreToolStripMenuItem.Name = "lagreToolStripMenuItem";
-            this.lagreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.lagreToolStripMenuItem.Text = "Lagre";
-            // 
-            // hjelpToolStripMenuItem
-            // 
-            this.hjelpToolStripMenuItem.Name = "hjelpToolStripMenuItem";
-            this.hjelpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.hjelpToolStripMenuItem.Text = "Hjelp";
-            this.hjelpToolStripMenuItem.Click += new System.EventHandler(this.hjelpToolStripMenuItem_Click);
             // 
             // verktøyToolStripMenuItem
             // 
@@ -120,11 +115,42 @@
             this.vurderingsskjemaerToolStripMenuItem.Text = "Vurderingsskjemaer";
             this.vurderingsskjemaerToolStripMenuItem.Click += new System.EventHandler(this.vurderingsskjemaerToolStripMenuItem_Click);
             // 
+            // hjelpToolStripMenuItem
+            // 
+            this.hjelpToolStripMenuItem.Name = "hjelpToolStripMenuItem";
+            this.hjelpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.hjelpToolStripMenuItem.Text = "Hjelp";
+            this.hjelpToolStripMenuItem.Click += new System.EventHandler(this.hjelpToolStripMenuItem_Click);
+            // 
+            // loggOutBtnVelkomst
+            // 
+            this.loggOutBtnVelkomst.Location = new System.Drawing.Point(1083, 38);
+            this.loggOutBtnVelkomst.Name = "loggOutBtnVelkomst";
+            this.loggOutBtnVelkomst.Size = new System.Drawing.Size(89, 32);
+            this.loggOutBtnVelkomst.TabIndex = 1;
+            this.loggOutBtnVelkomst.Text = "Logg ut";
+            this.loggOutBtnVelkomst.UseVisualStyleBackColor = true;
+            this.loggOutBtnVelkomst.Click += new System.EventHandler(this.loggOutBtnVelkomst_Click);
+            // 
+            // UserLbl
+            // 
+            this.UserLbl.AutoSize = true;
+            this.UserLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserLbl.Location = new System.Drawing.Point(983, 43);
+            this.UserLbl.Name = "UserLbl";
+            this.UserLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.UserLbl.Size = new System.Drawing.Size(83, 20);
+            this.UserLbl.TabIndex = 2;
+            this.UserLbl.Text = "Username";
+            this.UserLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // MalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 761);
+            this.Controls.Add(this.UserLbl);
+            this.Controls.Add(this.loggOutBtnVelkomst);
             this.Controls.Add(this.verktøyLinje);
             this.MainMenuStrip = this.verktøyLinje;
             this.Name = "MalForm";
@@ -148,5 +174,7 @@
         private System.Windows.Forms.ToolStripMenuItem statistikkOgDiagrammerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vurderingsskjemaerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hjelpToolStripMenuItem;
+        private System.Windows.Forms.Button loggOutBtnVelkomst;
+        private System.Windows.Forms.Label UserLbl;
     }
 }

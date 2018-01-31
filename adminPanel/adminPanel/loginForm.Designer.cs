@@ -33,8 +33,9 @@
             this.brukernavnText = new System.Windows.Forms.TextBox();
             this.passordText = new System.Windows.Forms.TextBox();
             this.loginBtn = new System.Windows.Forms.Button();
-            this.feilmelding = new System.Windows.Forms.Label();
+            this.feilmeldingLbl = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.shutdownBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -80,13 +81,13 @@
             this.loginBtn.UseVisualStyleBackColor = true;
             this.loginBtn.Click += new System.EventHandler(this.loginBtn_Click);
             // 
-            // feilmelding
+            // feilmeldingLbl
             // 
-            this.feilmelding.AutoSize = true;
-            this.feilmelding.Location = new System.Drawing.Point(302, 317);
-            this.feilmelding.Name = "feilmelding";
-            this.feilmelding.Size = new System.Drawing.Size(0, 13);
-            this.feilmelding.TabIndex = 5;
+            this.feilmeldingLbl.AutoSize = true;
+            this.feilmeldingLbl.Location = new System.Drawing.Point(299, 354);
+            this.feilmeldingLbl.Name = "feilmeldingLbl";
+            this.feilmeldingLbl.Size = new System.Drawing.Size(0, 13);
+            this.feilmeldingLbl.TabIndex = 5;
             // 
             // label3
             // 
@@ -98,13 +99,24 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Innlogging for VMS";
             // 
+            // shutdownBtn
+            // 
+            this.shutdownBtn.Location = new System.Drawing.Point(302, 320);
+            this.shutdownBtn.Name = "shutdownBtn";
+            this.shutdownBtn.Size = new System.Drawing.Size(100, 28);
+            this.shutdownBtn.TabIndex = 7;
+            this.shutdownBtn.Text = "Avslutt";
+            this.shutdownBtn.UseVisualStyleBackColor = true;
+            this.shutdownBtn.Click += new System.EventHandler(this.shutdownBtn_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.shutdownBtn);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.feilmelding);
+            this.Controls.Add(this.feilmeldingLbl);
             this.Controls.Add(this.loginBtn);
             this.Controls.Add(this.passordText);
             this.Controls.Add(this.brukernavnText);
@@ -124,8 +136,9 @@
         private System.Windows.Forms.TextBox brukernavnText;
         private System.Windows.Forms.TextBox passordText;
         private System.Windows.Forms.Button loginBtn;
-        private System.Windows.Forms.Label feilmelding;
+        private System.Windows.Forms.Label feilmeldingLbl;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button shutdownBtn;
     }
 }
 
