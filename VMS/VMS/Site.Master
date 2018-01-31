@@ -55,6 +55,16 @@
                         <li><a runat="server" href="~/MineVurderinger">Mine vurderinger</a></li>
                         <li><a runat="server" href="~/Hjelp">Hjelp</a></li>
                     </ul>
+                    <div class="navbar-form navbar-left">
+                        <div class="input-group">
+                            <input class="form-control" id="Text1" type="text">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" id="Button1" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,5 +78,7 @@
         </div>
 
     </form>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
