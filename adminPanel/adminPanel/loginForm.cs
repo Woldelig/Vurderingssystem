@@ -17,32 +17,32 @@ namespace adminPanel
         public LoginForm()
         {
             InitializeComponent();
+            feilmeldingLbl.ForeColor = System.Drawing.Color.Red; // Setter feilmeldingene på loginForm til rød
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
             if (brukernavnText.Text == string.Empty || passordText.Text == string.Empty)
             {
-                feilmelding.Text = "Brukernavn og passord må fylles ut!";
-                feilmelding.ForeColor = System.Drawing.Color.Red;
+                feilmeldingLbl.Text = "Brukernavn og passord må fylles ut!";
             }
             else
             {
                 try
                 {
-                    feilmelding.Text = "";
                     Database db = new Database();//Oppretter database-objekt
                     db.DBConnect();//Kjører DBConnect-metoden som ligger i Databaseklassen
                     String brukernavn = brukernavnText.Text;
                     String passord = passordText.Text;
                     if (db.Test(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
                     {
-                        VelkomstForm vf = new VelkomstForm();//Sender deg videre til velkomstskjermen ved gyldig pålogging
-                        vf.Show();
+                        UserInfo.Username = brukernavn;
+                        this.Dispose();//Stenger loginForm /avslutter når innloggin er vellykket
+                        DialogResult = DialogResult.OK;//Setter innlogging status til 'OK'
                     }
                     else
                     {
-                        feilmelding.Text = "Brukeren eller passordet er feil!";
+                        feilmeldingLbl.Text = "Brukeren eller passordet er feil!";
                     }
                     db.DBClose();//Stenger databasetilgangen
                 }
@@ -53,6 +53,11 @@ namespace adminPanel
                     //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
                 }
             }
+        }
+
+        private void shutdownBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

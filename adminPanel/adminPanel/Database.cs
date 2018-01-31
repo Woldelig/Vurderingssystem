@@ -56,7 +56,6 @@ namespace adminPanel
                         Console.WriteLine(reader.GetString("bruker"));//Skriver ut brukernavnet
                         Console.WriteLine(reader.GetString("passord"));//Skriver ut passordet
                         Console.WriteLine(reader.GetString("brukertype"));//Skriver ut brukertypen
-
                     }
                     reader.Close();//Stenger MySqlDataReader-objektet
                     return true;//Brukeren finnes

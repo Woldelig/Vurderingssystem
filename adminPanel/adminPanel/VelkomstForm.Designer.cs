@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.HeaderLbl = new System.Windows.Forms.Label();
             this.mineFagBtn = new System.Windows.Forms.Button();
             this.sqlBtn = new System.Windows.Forms.Button();
             this.diagramBtn = new System.Windows.Forms.Button();
             this.vurderingsBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // HeaderLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(411, 74);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(386, 55);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Velg en oppgave";
+            this.HeaderLbl.AutoSize = true;
+            this.HeaderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HeaderLbl.Location = new System.Drawing.Point(411, 74);
+            this.HeaderLbl.Name = "HeaderLbl";
+            this.HeaderLbl.Size = new System.Drawing.Size(386, 55);
+            this.HeaderLbl.TabIndex = 1;
+            this.HeaderLbl.Text = "Velg en oppgave";
             // 
             // mineFagBtn
             // 
@@ -97,10 +97,10 @@
             this.Controls.Add(this.diagramBtn);
             this.Controls.Add(this.sqlBtn);
             this.Controls.Add(this.mineFagBtn);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.HeaderLbl);
             this.Name = "VelkomstForm";
             this.Text = "VMS Kontrollpanel";
-            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.HeaderLbl, 0);
             this.Controls.SetChildIndex(this.mineFagBtn, 0);
             this.Controls.SetChildIndex(this.sqlBtn, 0);
             this.Controls.SetChildIndex(this.diagramBtn, 0);
@@ -112,7 +112,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label HeaderLbl;
         private System.Windows.Forms.Button mineFagBtn;
         private System.Windows.Forms.Button sqlBtn;
         private System.Windows.Forms.Button diagramBtn;

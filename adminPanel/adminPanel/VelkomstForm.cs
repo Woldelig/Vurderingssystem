@@ -10,6 +10,7 @@ namespace adminPanel
 {
     public partial class VelkomstForm : adminPanel.MalForm
     {
+
         public VelkomstForm()
         {
             InitializeComponent();

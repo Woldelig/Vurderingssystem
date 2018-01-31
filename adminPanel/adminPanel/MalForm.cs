@@ -15,6 +15,7 @@ namespace adminPanel
         public MalForm()
         {
             InitializeComponent();
+            UserLbl.Text = "Hei, " + UserInfo.Username; //Setter brukernavnet til brukeren i labelen UserLbl
         }
 
         private void avsluttToolStripMenuItem_Click(object sender, EventArgs e)
@@ -45,6 +46,11 @@ namespace adminPanel
             //Dette er en mulig måte og lage hjelp meny på
             //linjeskift kan man få ved å bruke
             //Environment.NewLine
+        }
+
+        private void loggOutBtnVelkomst_Click(object sender, EventArgs e)
+        {
+            Application.Restart(); //Bruker denne så lenge. Er vist ikke best-practice!!
         }
     }
 }
