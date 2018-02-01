@@ -21,7 +21,7 @@ namespace adminPanel
             InitializeComponent();
         }
 
-        private void TrulsForm_Load(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
             HomeBtn.PerformClick();
         }

@@ -39,7 +39,7 @@ namespace adminPanel
             }
         }
 
-        public bool Test(String username, String password) // Tester om DBConnect og DBClose funker med en SELECT-spørring
+        public bool Login(String username, String password) // Tester om DBConnect og DBClose funker med en SELECT-spørring
         {
             try
             {
