@@ -52,5 +52,10 @@ namespace adminPanel
         {
             Application.Restart(); //Bruker denne så lenge. Er vist ikke best-practice!!
         }
+
+        private void MalForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
