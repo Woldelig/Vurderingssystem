@@ -26,7 +26,7 @@ namespace adminPanel
             String sql = sqlTxt.Text;
             String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--" }; //Ord som vi ikke vil ha i spørringen
        
-            foreach (string ord in fyOrd)
+            foreach (string ord in fyOrd)  //Her foreacher vi alle ordene i fyOrd for å se om sql spørringen inneholder ulovlige kommandoer
             {
                 if (sql.ToUpperInvariant().Contains(ord.ToString()))
                 {
