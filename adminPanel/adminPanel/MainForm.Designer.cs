@@ -219,6 +219,7 @@
             this.MinimizeBtn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimizeBtn.Location = new System.Drawing.Point(1097, 0);
             this.MinimizeBtn.Name = "MinimizeBtn";
+            this.MinimizeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.MinimizeBtn.Size = new System.Drawing.Size(51, 48);
             this.MinimizeBtn.TabIndex = 2;
             this.MinimizeBtn.Text = "_";

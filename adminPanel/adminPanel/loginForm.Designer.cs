@@ -65,6 +65,7 @@
             this.MinimizeBtn.ForeColor = System.Drawing.SystemColors.Window;
             this.MinimizeBtn.Location = new System.Drawing.Point(277, 0);
             this.MinimizeBtn.Name = "MinimizeBtn";
+            this.MinimizeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.MinimizeBtn.Size = new System.Drawing.Size(41, 42);
             this.MinimizeBtn.TabIndex = 10;
             this.MinimizeBtn.Text = "_";
