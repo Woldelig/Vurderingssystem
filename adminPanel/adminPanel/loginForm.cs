@@ -139,5 +139,25 @@ namespace adminPanel
         {
             this.WindowState = FormWindowState.Minimized;//Minimerer vinduet
         }
+
+        private void LoginBtn_MouseEnter(object sender, EventArgs e)
+        {
+            LoginBtn.ForeColor = Color.SteelBlue;
+        }
+
+        private void LoginBtn_MouseLeave(object sender, EventArgs e)
+        {
+            LoginBtn.ForeColor = Color.Black;
+        }
+
+        private void ShutdownBtn_MouseEnter(object sender, EventArgs e)
+        {
+            ShutdownBtn.ForeColor = Color.SteelBlue;
+        }
+
+        private void ShutdownBtn_MouseLeave(object sender, EventArgs e)
+        {
+            ShutdownBtn.ForeColor = Color.Black;
+        }
     }
 }

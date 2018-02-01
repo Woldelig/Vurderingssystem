@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.LoginBoarder = new System.Windows.Forms.Panel();
+            this.MinimizeBtn = new System.Windows.Forms.Button();
             this.ExitBtn = new System.Windows.Forms.Button();
             this.LoginBtn = new System.Windows.Forms.Button();
             this.ShutdownBtn = new System.Windows.Forms.Button();
@@ -38,7 +39,7 @@
             this.LoginHeader = new System.Windows.Forms.Label();
             this.UsernameLbl = new System.Windows.Forms.Label();
             this.PasswordLbl = new System.Windows.Forms.Label();
-            this.MinimizeBtn = new System.Windows.Forms.Button();
+            this.BoarderDivider = new System.Windows.Forms.Panel();
             this.LoginBoarder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,21 @@
             this.LoginBoarder.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LoginBoarder_MouseDown);
             this.LoginBoarder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginBoarder_MouseMove);
             this.LoginBoarder.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LoginBoarder_MouseUp);
+            // 
+            // MinimizeBtn
+            // 
+            this.MinimizeBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.MinimizeBtn.FlatAppearance.BorderSize = 0;
+            this.MinimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeBtn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinimizeBtn.ForeColor = System.Drawing.SystemColors.Window;
+            this.MinimizeBtn.Location = new System.Drawing.Point(277, 0);
+            this.MinimizeBtn.Name = "MinimizeBtn";
+            this.MinimizeBtn.Size = new System.Drawing.Size(41, 42);
+            this.MinimizeBtn.TabIndex = 10;
+            this.MinimizeBtn.Text = "_";
+            this.MinimizeBtn.UseVisualStyleBackColor = true;
+            this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
             // 
             // ExitBtn
             // 
@@ -74,8 +90,8 @@
             // 
             this.LoginBtn.BackColor = System.Drawing.Color.SteelBlue;
             this.LoginBtn.FlatAppearance.BorderSize = 0;
-            this.LoginBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SteelBlue;
-            this.LoginBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.SteelBlue;
+            this.LoginBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(56)))), ((int)(((byte)(77)))));
+            this.LoginBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(56)))), ((int)(((byte)(77)))));
             this.LoginBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LoginBtn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LoginBtn.Location = new System.Drawing.Point(77, 358);
@@ -85,11 +101,15 @@
             this.LoginBtn.Text = "Logg in";
             this.LoginBtn.UseVisualStyleBackColor = false;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
+            this.LoginBtn.MouseEnter += new System.EventHandler(this.LoginBtn_MouseEnter);
+            this.LoginBtn.MouseLeave += new System.EventHandler(this.LoginBtn_MouseLeave);
             // 
             // ShutdownBtn
             // 
             this.ShutdownBtn.BackColor = System.Drawing.Color.SteelBlue;
             this.ShutdownBtn.FlatAppearance.BorderSize = 0;
+            this.ShutdownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(56)))), ((int)(((byte)(77)))));
+            this.ShutdownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(56)))), ((int)(((byte)(77)))));
             this.ShutdownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShutdownBtn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShutdownBtn.Location = new System.Drawing.Point(77, 400);
@@ -99,6 +119,8 @@
             this.ShutdownBtn.Text = "Avslutt";
             this.ShutdownBtn.UseVisualStyleBackColor = false;
             this.ShutdownBtn.Click += new System.EventHandler(this.ShutdownBtn_Click);
+            this.ShutdownBtn.MouseEnter += new System.EventHandler(this.ShutdownBtn_MouseEnter);
+            this.ShutdownBtn.MouseLeave += new System.EventHandler(this.ShutdownBtn_MouseLeave);
             // 
             // Username
             // 
@@ -166,20 +188,14 @@
             this.PasswordLbl.TabIndex = 8;
             this.PasswordLbl.Text = "Passord";
             // 
-            // MinimizeBtn
+            // BoarderDivider
             // 
-            this.MinimizeBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.MinimizeBtn.FlatAppearance.BorderSize = 0;
-            this.MinimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeBtn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MinimizeBtn.ForeColor = System.Drawing.SystemColors.Window;
-            this.MinimizeBtn.Location = new System.Drawing.Point(277, 0);
-            this.MinimizeBtn.Name = "MinimizeBtn";
-            this.MinimizeBtn.Size = new System.Drawing.Size(41, 42);
-            this.MinimizeBtn.TabIndex = 10;
-            this.MinimizeBtn.Text = "_";
-            this.MinimizeBtn.UseVisualStyleBackColor = true;
-            this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
+            this.BoarderDivider.BackColor = System.Drawing.Color.SteelBlue;
+            this.BoarderDivider.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BoarderDivider.Location = new System.Drawing.Point(0, 42);
+            this.BoarderDivider.Name = "BoarderDivider";
+            this.BoarderDivider.Size = new System.Drawing.Size(359, 1);
+            this.BoarderDivider.TabIndex = 9;
             // 
             // LoginForm
             // 
@@ -187,6 +203,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(19)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(359, 478);
+            this.Controls.Add(this.BoarderDivider);
             this.Controls.Add(this.PasswordLbl);
             this.Controls.Add(this.UsernameLbl);
             this.Controls.Add(this.LoginHeader);
@@ -219,6 +236,7 @@
         private System.Windows.Forms.Label PasswordLbl;
         private System.Windows.Forms.Button ExitBtn;
         private System.Windows.Forms.Button MinimizeBtn;
+        private System.Windows.Forms.Panel BoarderDivider;
     }
 }
 
