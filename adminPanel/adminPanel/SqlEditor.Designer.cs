@@ -68,9 +68,10 @@
             // feilmeldingTxt
             // 
             this.feilmeldingTxt.AutoSize = true;
+            this.feilmeldingTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.feilmeldingTxt.Location = new System.Drawing.Point(105, 574);
             this.feilmeldingTxt.Name = "feilmeldingTxt";
-            this.feilmeldingTxt.Size = new System.Drawing.Size(0, 13);
+            this.feilmeldingTxt.Size = new System.Drawing.Size(0, 25);
             this.feilmeldingTxt.TabIndex = 3;
             // 
             // SqlEditor
