@@ -155,6 +155,7 @@
             this.MainMenuStrip = this.verktøyLinje;
             this.Name = "MalForm";
             this.Text = "MalForm";
+            this.Load += new System.EventHandler(this.MalForm_Load);
             this.verktøyLinje.ResumeLayout(false);
             this.verktøyLinje.PerformLayout();
             this.ResumeLayout(false);

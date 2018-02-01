@@ -19,13 +19,12 @@ namespace adminPanel
             LoginForm lf = new LoginForm();
             if(lf.ShowDialog() == DialogResult.OK) //Sjekker om innlogging var vellykket
             {
-                Application.Run(new VelkomstForm());//Starter velkomstformen
+                Application.Run(new MainForm());//Starter MainForm
             }
             else
             {
                 Application.Exit();
             }
-
         }
     }
 }
