@@ -17,14 +17,14 @@ namespace adminPanel
         public LoginForm()
         {
             InitializeComponent();
-            feilmeldingLbl.ForeColor = System.Drawing.Color.Red; // Setter feilmeldingene på loginForm til rød
+            HelpText.ForeColor = System.Drawing.Color.Red; // Setter feilmeldingene på loginForm til rød
         }
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            if (brukernavnText.Text == string.Empty || passordText.Text == string.Empty)
+            if (Username.Text == string.Empty || Password.Text == string.Empty)
             {
-                feilmeldingLbl.Text = "Brukernavn og passord må fylles ut!";
+                HelpText.Text = "Brukernavn og passord må fylles ut!";
             }
             else
             {
@@ -32,8 +32,8 @@ namespace adminPanel
                 {
                     Database db = new Database();//Oppretter database-objekt
                     db.DBConnect();//Kjører DBConnect-metoden som ligger i Databaseklassen
-                    String brukernavn = brukernavnText.Text;
-                    String passord = passordText.Text;
+                    String brukernavn = Username.Text;
+                    String passord = Password.Text;
                     if (db.Test(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
                     {
                         UserInfo.Username = brukernavn;
@@ -42,7 +42,7 @@ namespace adminPanel
                     }
                     else
                     {
-                        feilmeldingLbl.Text = "Brukeren eller passordet er feil!";
+                        HelpText.Text = "Brukeren eller passordet er feil!";
                     }
                     db.DBClose();//Stenger databasetilgangen
                 }
