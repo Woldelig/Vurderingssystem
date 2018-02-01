@@ -102,11 +102,11 @@
     <Compile Include="Stats.Designer.cs">
       <DependentUpon>Stats.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrulsForm.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrulsForm.Designer.cs">
-      <DependentUpon>TrulsForm.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs" />
     <Compile Include="VelkomstForm.cs">
@@ -145,8 +145,8 @@
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrulsForm.resx">
-      <DependentUpon>TrulsForm.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VelkomstForm.resx">
       <DependentUpon>VelkomstForm.cs</DependentUpon>
