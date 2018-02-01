@@ -17,6 +17,7 @@ namespace adminPanel
         public SqlEditor()
         {
             InitializeComponent();
+            feilmeldingTxt.ForeColor = Color.Red;
         }
 
         private void sqlBtn_Click(object sender, EventArgs e)
@@ -30,20 +31,29 @@ namespace adminPanel
             {
                 if (sql.ToUpperInvariant().Contains(ord.ToString()))
                 {
-                    feilmeldingTxt.ForeColor = Color.Red;
-                    feilmeldingTxt.Text = "SQL spørring er ikke godkjent";
+                    feilmeldingTxt.Text = "SQL spørringen inneholder ulovlige ord.";
                     return;
                 }
             }
-            dbConn.Open();
 
-            MySqlDataAdapter da = new MySqlDataAdapter(sql, dbConn);
-            MySqlCommandBuilder sqlBygger = new MySqlCommandBuilder(da);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlDatagrid.DataSource = ds.Tables[0];
+            try
+            {
+                dbConn.Open();
 
-            dbConn.Close();
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, dbConn);
+                MySqlCommandBuilder sqlBygger = new MySqlCommandBuilder(da);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                sqlDatagrid.DataSource = ds.Tables[0];
+
+                dbConn.Close();
+            }
+            catch (Exception ex)
+            {
+                feilmeldingTxt.Text = "Spørring feilet, pass på at du har skrevet korrekt syntaks";
+                Console.WriteLine(ex);
+            }
+           
 
 
         }
