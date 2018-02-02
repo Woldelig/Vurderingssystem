@@ -25,7 +25,7 @@ namespace adminPanel
             String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
             MySqlConnection dbConn = new MySqlConnection(connString);
             String sql = sqlTxt.Text;
-            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--" }; //Ord som vi ikke vil ha i spørringen
+            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "formlogin" }; //Ord som vi ikke vil ha i spørringen
 
             foreach (string ord in fyOrd)  //Her foreacher vi alle ordene i fyOrd for å se om sql spørringen inneholder ulovlige kommandoer
             {
