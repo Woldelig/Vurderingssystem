@@ -114,6 +114,20 @@ namespace adminPanel
             chart1.Series.Add(seriesname);
 
             chart1.Series[seriesname].ChartType = SeriesChartType.Bar; //Her velger man diagramtype. Og fy faen det er mange!
+            /*
+             vi kan legge linjen over inn i en switch case, da kan vi legge inn utrolige mange flere diagramtyper
+             og vi kommer til å ha ekstremt lite gjenbruk av kode kontra slik som jeg planla nå.
+             
+
+
+            Jeg legger inn i switch case når jeg får til SQL delen
+
+            TODO
+
+            1. Fiks prosedyren så jeg får 5 verdier
+            2. Hent disse verdiene ut og legg inn i diagramet
+            3. Lag switch case med 100 diagramtyper
+             */
 
             chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
             chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
