@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace adminPanel
 {
@@ -19,7 +20,6 @@ namespace adminPanel
         }
         private static String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
         MySqlConnection dbConn = new MySqlConnection(connString);
-
 
         private void Stats_Load(object sender, EventArgs e)
         {
@@ -41,6 +41,7 @@ namespace adminPanel
 
             spmListeboks.Hide();    //Gjemmer listeboksene til vi har data i de
             diagramListeboks.Hide();
+            chart1.Hide();
         }
 
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,13 +78,82 @@ namespace adminPanel
 
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (diagramListeboks)
+            switch (diagramListeboks.SelectedItem.ToString())
             {
+                case "Kakediagram":
+                    DrawPieChart(1, 2, 3, 5, 5);
+
+                    //tegnKakediagram();
+                    break;
+
+                case "Stolpediagram":
+                    tegnStolpediagram();
+                    break;
+
                 default:
                     break;
             }
 
             //bruke switch case for å sjekke valg i listeboksen. Som starter metode for å tegne diagrammet!
+        }
+
+        private void tegnStolpediagram()
+        {
+
+            int verdi1 = 0, verdi2 = 0, verdi3 = 0, verdi4 = 0, verdi5 = 0; //Denne er her bare for å fjerne rødlinjer. men skal represntere svar i spm 1-5
+            //Må brukes så applikasjonen ikke krasjer!
+            chart1.Series.Clear();
+
+            //Lager sånn boks på bunnen som forklarer hva fargene betyr
+            chart1.Legends.Add("Legende");
+            chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
+            chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
+            chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
+
+            string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
+            chart1.Series.Add(seriesname);
+
+            chart1.Series[seriesname].ChartType = SeriesChartType.Bar; //Her velger man diagramtype. Og fy faen det er mange!
+
+            chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
+            chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
+            chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
+            chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
+            chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
+            chart1.Show();
+
+
+            throw new NotImplementedException();
+        }
+
+        private void tegnKakediagram()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DrawPieChart(int verdi1, int verdi2, int verdi3, int verdi4, int verdi5)
+        {
+            //litt usikker på hva den gjør men uten den stopper applikasjonen.
+            // må lese meg opp på den virker som at den reseter chart1 så jeg får puttet inn info?
+            chart1.Series.Clear();
+            
+
+            //Lager sånn boks på bunnen som forklarer hva fargene betyr
+            chart1.Legends.Add("Legende");
+            chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
+            chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
+            chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
+
+            string seriesname = "MySeriesName";
+            chart1.Series.Add(seriesname);
+            chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut; //Her velger man diagramtype. Og fy faen det er mange!
+
+            chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
+            chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
+            chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
+            chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
+            chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
+            chart1.Show();
         }
     }
 }
