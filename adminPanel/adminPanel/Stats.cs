@@ -126,7 +126,7 @@ namespace adminPanel
 
             1. Fiks prosedyren så jeg får 5 verdier
             2. Hent disse verdiene ut og legg inn i diagramet
-            3. Lag switch case med 100 diagramtyper
+            3. Lag switch case med 100 diagramtyper -- Legg i SelectIndexChange? husk å legg til chart1.Series.Clear og Show() på alle casene!
              */
 
             chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
