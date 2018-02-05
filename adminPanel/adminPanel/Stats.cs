@@ -37,7 +37,7 @@ namespace adminPanel
             {
                 fagkodeListeboks.Items.Add(dr["Fagkode"].ToString());
             }
-            dbConn.Close(); //lukke. Burde de åpnes/lukkes for vær gang? Spørr lasse https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
+            dbConn.Close(); //https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
 
             spmListeboks.Hide();    //Gjemmer listeboksene til vi har data i de
             diagramListeboks.Hide();
@@ -85,9 +85,22 @@ namespace adminPanel
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             int verdi1 = 20000, verdi2 = 10000, verdi3 = 40000, verdi4 = 20000, verdi5 = 40000; //Denne er her bare for å fjerne rødlinjer. men skal represntere svar i spm 1-5
+            //String valgtSpm = spmListeboks.SelectedIndex.ToString();
+
+            MySqlCommand cmd = new MySqlCommand("hent_svar_antall",dbConn);
+            dbConn.Open();
+            //cmd.CommandText = "prosedyrenavn";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@spmnr", spmListeboks.SelectedIndex.ToString());
+
+            cmd.ExecuteNonQuery();
+            MySqlDataReader dr = cmd.ExecuteReader();
+            Console.WriteLine(dr);
+
+
 
             chart1.Series.Clear();
-
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
             try
             {
