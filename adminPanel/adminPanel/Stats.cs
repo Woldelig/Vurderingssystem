@@ -48,6 +48,7 @@ namespace adminPanel
 
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            spmListeboks.Items.Clear();//Fjerner elementer i listeboks. Må gjøres hvis klassekode byttes
             dbConn.Open();
             MySqlCommand cmd = new MySqlCommand("SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingshistorikk;", dbConn);
             MySqlDataAdapter da = new MySqlDataAdapter();
@@ -70,9 +71,10 @@ namespace adminPanel
 
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            diagramListeboks.Items.Clear(); //Fjerner elementer i listeboksen
             diagramListeboks.Show();
             diagramLbl.Show();
-            String[] diagramTyper = {"Kakediagram", "Stolpediagram" }; //Legg til flere diagrammer her når vi er i gang
+            String[] diagramTyper = { "Kakediagram", "Stolpediagram" }; //Legg til flere diagrammer her når vi er i gang
 
             foreach (String diagram in diagramTyper)
             {
@@ -82,96 +84,58 @@ namespace adminPanel
 
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int verdi1 = 20000, verdi2 = 10000, verdi3 = 40000, verdi4 = 20000, verdi5 = 40000; //Denne er her bare for å fjerne rødlinjer. men skal represntere svar i spm 1-5
+
+            chart1.Series.Clear();
+
+            string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
+
             switch (diagramListeboks.SelectedItem.ToString())
             {
                 case "Kakediagram":
-                    DrawPieChart(1, 2, 3, 5, 5);
-
-                    //tegnKakediagram();
+                    //De to første linjene "tømmer" chart1 sin Series og Legends,
+                    //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
+                    chart1.Series.Clear();
+                    chart1.Legends.Clear();
+                    chart1.Series.Add(seriesname);
+                    chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
+                    chart1.Legends.Add("Legende");
+                    chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
+                    chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
+                    chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
                     break;
 
                 case "Stolpediagram":
-                    tegnStolpediagram();
+                    chart1.Series.Clear();
+                    chart1.Legends.Clear();
+                    chart1.Series.Add(seriesname);
+                    chart1.Series[seriesname].ChartType = SeriesChartType.Bar;
+                    break;
+
+                case null:
                     break;
 
                 default:
                     break;
             }
 
-            //bruke switch case for å sjekke valg i listeboksen. Som starter metode for å tegne diagrammet!
+            chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
+            chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
+            chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
+            chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
+            chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
+            chart1.Show();
         }
-
-        private void tegnStolpediagram()
-        {
-
-            int verdi1 = 0, verdi2 = 0, verdi3 = 0, verdi4 = 0, verdi5 = 0; //Denne er her bare for å fjerne rødlinjer. men skal represntere svar i spm 1-5
-            //Må brukes så applikasjonen ikke krasjer!
-            chart1.Series.Clear();
-
-            //Lager sånn boks på bunnen som forklarer hva fargene betyr
-            chart1.Legends.Add("Legende");
-            chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
-            chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
-            chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
-
-            string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
-            chart1.Series.Add(seriesname);
-
-            chart1.Series[seriesname].ChartType = SeriesChartType.Bar; //Her velger man diagramtype. Og fy faen det er mange!
-            /*
+        /*
              vi kan legge linjen over inn i en switch case, da kan vi legge inn utrolige mange flere diagramtyper
              og vi kommer til å ha ekstremt lite gjenbruk av kode kontra slik som jeg planla nå.
              
-
-
-            Jeg legger inn i switch case når jeg får til SQL delen
-
             TODO
 
             1. Fiks prosedyren så jeg får 5 verdier
             2. Hent disse verdiene ut og legg inn i diagramet
-            3. Lag switch case med 100 diagramtyper -- Legg i SelectIndexChange? husk å legg til chart1.Series.Clear og Show() på alle casene!
-             */
+            3. Lag switch case med 100 diagramtyper - Check
+            */
 
-            chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
-            chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
-            chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
-            chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
-            chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
-            chart1.Show();
-
-
-            throw new NotImplementedException();
-        }
-
-        private void tegnKakediagram()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void DrawPieChart(int verdi1, int verdi2, int verdi3, int verdi4, int verdi5)
-        {
-            //litt usikker på hva den gjør men uten den stopper applikasjonen.
-            // må lese meg opp på den virker som at den reseter chart1 så jeg får puttet inn info?
-            chart1.Series.Clear();
-            
-
-            //Lager sånn boks på bunnen som forklarer hva fargene betyr
-            chart1.Legends.Add("Legende");
-            chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
-            chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
-            chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
-
-            string seriesname = "MySeriesName";
-            chart1.Series.Add(seriesname);
-            chart1.Series[seriesname].ChartType = SeriesChartType.Doughnut; //Her velger man diagramtype. Og fy faen det er mange!
-
-            chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
-            chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
-            chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
-            chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
-            chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
-            chart1.Show();
-        }
     }
 }
