@@ -3,7 +3,7 @@ CREATE TABLE studier(
     grad VARCHAR(45),
     fakultet VARCHAR(45) NOT NULL
 );
-   
+
 CREATE TABLE foreleser(
     foreleserid INT(4) PRIMARY KEY,
     fornavn VARCHAR(64),
@@ -12,7 +12,7 @@ CREATE TABLE foreleser(
 
 CREATE TABLE fag(
     fagkode VARCHAR(8) PRIMARY KEY,
-    fagnavn VARCHAR(128) NOT NULL, 
+    fagnavn VARCHAR(128) NOT NULL,
     foreleserid INT(4),
     studieretning VARCHAR (128),
     FOREIGN KEY (foreleserid) REFERENCES foreleser(foreleserid),
@@ -66,11 +66,16 @@ CREATE TABLE formlogin(
     brukertype INT(1)
 );
 
+CREATE TABLE innloggingshistorikk(
+  bruker VARCHAR(64) PRIMARY KEY,
+  tidsstempel DATETIME,
+  FOREIGN KEY (bruker) REFERENCES formlogin (bruker)
+);
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
- 
+
 INSERT INTO studier(studieretning, grad, fakultet) VALUES ('It og Informasjonssystemer', 'Bachelor', 'Handelshøyskolen'), ('Dataingeniør', 'Bachelor','Ingeniørhøyskolen'),
 ('Regnskapsfører', 'Master', 'Handelshøyskolen');
 
@@ -80,7 +85,7 @@ INSERT INTO foreleser(foreleserid, fornavn, etternavn) VALUES (313, 'Ola', 'Nord
 INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning) VALUES ('DAT1000', 'Database', 313, 'It og Informasjonssystemer'), ('OBJ2100', 'Objective C', 666, 'Dataingeniør'), ('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører'),
 ('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer');
 
-INSERT INTO student(studentid, studieretning) VALUES (001, 'It og Informasjonssystemer'), (002, 'It og Informasjonssystemer'), 
+INSERT INTO student(studentid, studieretning) VALUES (001, 'It og Informasjonssystemer'), (002, 'It og Informasjonssystemer'),
 (003, 'Regnskapsfører'), (004, 'Regnskapsfører'), (005, 'Dataingeniør'),
 (006, 'Dataingeniør');
 
@@ -90,6 +95,9 @@ INSERT INTO vurderingsskjema(skjemaid, beskrivelse, spm1, spm2, spm3, spm4, spm5
 INSERT INTO vurderingshistorikk (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (2, 006, 'OBJ2100', 1, 4, 3, 4, 3, 5, 1, 2, 1, 4), (2, 005, 'OBJ2100', 3, 5, 1, 2, 4, 2, 3, 4, 5, 4);
 
 INSERT INTO formlogin(bruker, passord, brukertype) VALUES ('admin', 'admin', 1), ('bruker', 'bruker', 2);
+
+INSERT INTO innloggingshistorikk(bruker, tidsstempel) VALUES
+('admin', '2018-02-05 13:45:37');
 
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -101,3 +109,4 @@ DROP TABLE student;
 DROP TABLE vurderingsskjema;
 DROP TABLE vurderingshistorikk;
 DROP TABLE formlogin;
+DROP TABLE innloggingshistorikk;
