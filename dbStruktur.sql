@@ -20,7 +20,7 @@ CREATE TABLE fag(
 );
 
 CREATE TABLE student(
-    studentid INT(10),
+    studentid INT(10) PRIMARY KEY,
     studieretning VARCHAR(128),
     FOREIGN KEY (studieretning) REFERENCES studier(studieretning)
 );

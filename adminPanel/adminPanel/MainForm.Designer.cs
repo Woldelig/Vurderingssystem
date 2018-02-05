@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.ControllPanel = new System.Windows.Forms.Panel();
+            this.ShutdownBtn = new System.Windows.Forms.Button();
             this.SqlBtn = new System.Windows.Forms.Button();
+            this.LogOutBtn = new System.Windows.Forms.Button();
             this.StatsBtn = new System.Windows.Forms.Button();
             this.SchemaBtn = new System.Windows.Forms.Button();
             this.CoursesBtn = new System.Windows.Forms.Button();
@@ -39,8 +41,6 @@
             this.ExitBtn = new System.Windows.Forms.Button();
             this.LogoLbl = new System.Windows.Forms.Label();
             this.ContainerPanel = new System.Windows.Forms.Panel();
-            this.ShutdownBtn = new System.Windows.Forms.Button();
-            this.LogOutBtn = new System.Windows.Forms.Button();
             this.ControllPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,25 @@
             this.ControllPanel.Name = "ControllPanel";
             this.ControllPanel.Size = new System.Drawing.Size(191, 627);
             this.ControllPanel.TabIndex = 0;
+            // 
+            // ShutdownBtn
+            // 
+            this.ShutdownBtn.FlatAppearance.BorderSize = 0;
+            this.ShutdownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.ShutdownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.ShutdownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShutdownBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.ShutdownBtn.Location = new System.Drawing.Point(0, 575);
+            this.ShutdownBtn.Name = "ShutdownBtn";
+            this.ShutdownBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.ShutdownBtn.Size = new System.Drawing.Size(191, 52);
+            this.ShutdownBtn.TabIndex = 1;
+            this.ShutdownBtn.Text = "Avslutt";
+            this.ShutdownBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ShutdownBtn.UseVisualStyleBackColor = true;
+            this.ShutdownBtn.Click += new System.EventHandler(this.ShutdownBtn_Click);
+            this.ShutdownBtn.MouseEnter += new System.EventHandler(this.ShutdownBtn_MouseEnter);
+            this.ShutdownBtn.MouseLeave += new System.EventHandler(this.ShutdownBtn_MouseLeave);
             // 
             // SqlBtn
             // 
@@ -79,6 +98,25 @@
             this.SqlBtn.Click += new System.EventHandler(this.SqlBtn_Click);
             this.SqlBtn.MouseEnter += new System.EventHandler(this.SqlBtn_MouseEnter);
             this.SqlBtn.MouseLeave += new System.EventHandler(this.SqlBtn_MouseLeave);
+            // 
+            // LogOutBtn
+            // 
+            this.LogOutBtn.FlatAppearance.BorderSize = 0;
+            this.LogOutBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.LogOutBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LogOutBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.LogOutBtn.Location = new System.Drawing.Point(0, 525);
+            this.LogOutBtn.Name = "LogOutBtn";
+            this.LogOutBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.LogOutBtn.Size = new System.Drawing.Size(191, 52);
+            this.LogOutBtn.TabIndex = 0;
+            this.LogOutBtn.Text = "Logg Ut";
+            this.LogOutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.LogOutBtn.UseVisualStyleBackColor = true;
+            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
+            this.LogOutBtn.MouseEnter += new System.EventHandler(this.LogOutBtn_MouseEnter);
+            this.LogOutBtn.MouseLeave += new System.EventHandler(this.LogOutBtn_MouseLeave);
             // 
             // StatsBtn
             // 
@@ -181,9 +219,10 @@
             this.MinimizeBtn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimizeBtn.Location = new System.Drawing.Point(1097, 0);
             this.MinimizeBtn.Name = "MinimizeBtn";
+            this.MinimizeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.MinimizeBtn.Size = new System.Drawing.Size(51, 48);
             this.MinimizeBtn.TabIndex = 2;
-            this.MinimizeBtn.Text = "-";
+            this.MinimizeBtn.Text = "_";
             this.MinimizeBtn.UseVisualStyleBackColor = true;
             this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
             // 
@@ -223,45 +262,7 @@
             this.ContainerPanel.Size = new System.Drawing.Size(1008, 627);
             this.ContainerPanel.TabIndex = 2;
             // 
-            // ShutdownBtn
-            // 
-            this.ShutdownBtn.FlatAppearance.BorderSize = 0;
-            this.ShutdownBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.ShutdownBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.ShutdownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ShutdownBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.ShutdownBtn.Location = new System.Drawing.Point(0, 575);
-            this.ShutdownBtn.Name = "ShutdownBtn";
-            this.ShutdownBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.ShutdownBtn.Size = new System.Drawing.Size(191, 52);
-            this.ShutdownBtn.TabIndex = 1;
-            this.ShutdownBtn.Text = "Avslutt";
-            this.ShutdownBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ShutdownBtn.UseVisualStyleBackColor = true;
-            this.ShutdownBtn.Click += new System.EventHandler(this.ShutdownBtn_Click);
-            this.ShutdownBtn.MouseEnter += new System.EventHandler(this.ShutdownBtn_MouseEnter);
-            this.ShutdownBtn.MouseLeave += new System.EventHandler(this.ShutdownBtn_MouseLeave);
-            // 
-            // LogOutBtn
-            // 
-            this.LogOutBtn.FlatAppearance.BorderSize = 0;
-            this.LogOutBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.LogOutBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LogOutBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.LogOutBtn.Location = new System.Drawing.Point(0, 525);
-            this.LogOutBtn.Name = "LogOutBtn";
-            this.LogOutBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.LogOutBtn.Size = new System.Drawing.Size(191, 52);
-            this.LogOutBtn.TabIndex = 0;
-            this.LogOutBtn.Text = "Logg Ut";
-            this.LogOutBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.LogOutBtn.UseVisualStyleBackColor = true;
-            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
-            this.LogOutBtn.MouseEnter += new System.EventHandler(this.LogOutBtn_MouseEnter);
-            this.LogOutBtn.MouseLeave += new System.EventHandler(this.LogOutBtn_MouseLeave);
-            // 
-            // TrulsForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -271,10 +272,10 @@
             this.Controls.Add(this.LogoPanel);
             this.Controls.Add(this.ControllPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "TrulsForm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TrulsForm";
-            this.Load += new System.EventHandler(this.TrulsForm_Load);
+            this.Text = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ControllPanel.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();

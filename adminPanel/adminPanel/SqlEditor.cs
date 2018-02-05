@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace adminPanel
 {
@@ -15,6 +16,43 @@ namespace adminPanel
         public SqlEditor()
         {
             InitializeComponent();
+            feilmeldingTxt.ForeColor = Color.Red;
+        }
+
+        private void sqlBtn_Click(object sender, EventArgs e)
+        {
+            String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
+            MySqlConnection dbConn = new MySqlConnection(connString);
+            String sql = sqlTxt.Text;
+            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE" };
+            //Ord som vi ikke vil ha i spørringen, store bokstaver siden vi bruker toUpper
+
+            foreach (string ord in fyOrd)  //Her foreacher vi alle ordene i fyOrd for å se om sql spørringen inneholder ulovlige kommandoer
+            {
+                if (sql.ToUpperInvariant().Contains(ord.ToString()))
+                {
+                    feilmeldingTxt.Text = "SQL spørringen inneholder ulovlige ord.";
+                    return;
+                }
+            }
+
+            try
+            {
+                dbConn.Open();
+
+                MySqlDataAdapter da = new MySqlDataAdapter(sql, dbConn);
+                MySqlCommandBuilder sqlBygger = new MySqlCommandBuilder(da);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                sqlDatagrid.DataSource = ds.Tables[0];
+
+                dbConn.Close();
+            }
+            catch (Exception ex)
+            {
+                feilmeldingTxt.Text = "Spørring feilet, pass på at du har skrevet korrekt syntaks";
+                Console.WriteLine(ex); //cw for debugging
+            }
         }
     }
 }
