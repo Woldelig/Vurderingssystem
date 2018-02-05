@@ -57,11 +57,14 @@
                     </ul>
                     <div class="navbar-form navbar-left">
                         <div class="input-group">
-                            <input class="form-control" id="Text1" type="text">
+                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+                            <!-- <input class="form-control" id="Text1" type="text"> -->
                             <div class="input-group-btn">
-                                <button class="btn btn-default" id="Button1" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
+                                <asp:LinkButton ID="searchBtn" runat="server" Text="Button" CssClass="btn btn-default">
+                                <!-- <button class="btn btn-default" id="Button1" type="submit"> -->
+                                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                                </asp:LinkButton>
+                                <!-- </button> -->
                             </div>
                         </div>
                     </div>
