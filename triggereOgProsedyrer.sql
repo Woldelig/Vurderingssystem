@@ -1,4 +1,5 @@
 -- 1.0 Henter ut antall svar per spørsmål
+DROP PROCEDURE IF EXISTS hentSvarAntall;
 DELIMITER $$
 CREATE PROCEDURE hentSvarAntall
 (
