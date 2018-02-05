@@ -35,36 +35,42 @@
             this.spmListeboks = new System.Windows.Forms.ListBox();
             this.diagramListeboks = new System.Windows.Forms.ListBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.fagkodeLbl = new System.Windows.Forms.Label();
+            this.spmLbl = new System.Windows.Forms.Label();
+            this.diagramLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // fagkodeListeboks
             // 
             this.fagkodeListeboks.FormattingEnabled = true;
-            this.fagkodeListeboks.Location = new System.Drawing.Point(67, 55);
+            this.fagkodeListeboks.ItemHeight = 16;
+            this.fagkodeListeboks.Location = new System.Drawing.Point(89, 68);
+            this.fagkodeListeboks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fagkodeListeboks.Name = "fagkodeListeboks";
-            this.fagkodeListeboks.Size = new System.Drawing.Size(120, 108);
+            this.fagkodeListeboks.Size = new System.Drawing.Size(159, 132);
             this.fagkodeListeboks.TabIndex = 0;
             this.fagkodeListeboks.SelectedIndexChanged += new System.EventHandler(this.fagkodeListeboks_SelectedIndexChanged);
             // 
             // spmListeboks
             // 
             this.spmListeboks.FormattingEnabled = true;
-            this.spmListeboks.Location = new System.Drawing.Point(247, 55);
+            this.spmListeboks.ItemHeight = 16;
+            this.spmListeboks.Location = new System.Drawing.Point(329, 68);
+            this.spmListeboks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.spmListeboks.Name = "spmListeboks";
-            this.spmListeboks.Size = new System.Drawing.Size(120, 108);
+            this.spmListeboks.Size = new System.Drawing.Size(159, 132);
             this.spmListeboks.TabIndex = 1;
             this.spmListeboks.SelectedIndexChanged += new System.EventHandler(this.spmListeboks_SelectedIndexChanged);
             // 
             // diagramListeboks
             // 
             this.diagramListeboks.FormattingEnabled = true;
-            this.diagramListeboks.Location = new System.Drawing.Point(427, 55);
+            this.diagramListeboks.ItemHeight = 16;
+            this.diagramListeboks.Location = new System.Drawing.Point(569, 68);
+            this.diagramListeboks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.diagramListeboks.Name = "diagramListeboks";
-            this.diagramListeboks.Size = new System.Drawing.Size(120, 108);
+            this.diagramListeboks.Size = new System.Drawing.Size(159, 132);
             this.diagramListeboks.TabIndex = 2;
             this.diagramListeboks.SelectedIndexChanged += new System.EventHandler(this.diagramListeboks_SelectedIndexChanged);
             // 
@@ -74,56 +80,61 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(67, 192);
+            this.chart1.Location = new System.Drawing.Point(89, 236);
+            this.chart1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(852, 378);
+            this.chart1.Size = new System.Drawing.Size(1136, 465);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
             // 
-            // label1
+            // fagkodeLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Velg fagkode:";
+            this.fagkodeLbl.AutoSize = true;
+            this.fagkodeLbl.Location = new System.Drawing.Point(85, 48);
+            this.fagkodeLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.fagkodeLbl.Name = "fagkodeLbl";
+            this.fagkodeLbl.Size = new System.Drawing.Size(95, 17);
+            this.fagkodeLbl.TabIndex = 4;
+            this.fagkodeLbl.Text = "Velg fagkode:";
             // 
-            // label2
+            // spmLbl
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(244, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Velg spørsmål:";
+            this.spmLbl.AutoSize = true;
+            this.spmLbl.Location = new System.Drawing.Point(325, 48);
+            this.spmLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.spmLbl.Name = "spmLbl";
+            this.spmLbl.Size = new System.Drawing.Size(101, 17);
+            this.spmLbl.TabIndex = 5;
+            this.spmLbl.Text = "Velg spørsmål:";
             // 
-            // label3
+            // diagramLbl
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(424, 39);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Velg diagramtype:";
+            this.diagramLbl.AutoSize = true;
+            this.diagramLbl.Location = new System.Drawing.Point(565, 48);
+            this.diagramLbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.diagramLbl.Name = "diagramLbl";
+            this.diagramLbl.Size = new System.Drawing.Size(122, 17);
+            this.diagramLbl.TabIndex = 6;
+            this.diagramLbl.Text = "Velg diagramtype:";
             // 
             // Stats
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.diagramLbl);
+            this.Controls.Add(this.spmLbl);
+            this.Controls.Add(this.fagkodeLbl);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.diagramListeboks);
             this.Controls.Add(this.spmListeboks);
             this.Controls.Add(this.fagkodeListeboks);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Stats";
-            this.Size = new System.Drawing.Size(1008, 627);
+            this.Size = new System.Drawing.Size(1344, 772);
             this.Load += new System.EventHandler(this.Stats_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
@@ -137,8 +148,8 @@
         private System.Windows.Forms.ListBox spmListeboks;
         private System.Windows.Forms.ListBox diagramListeboks;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label fagkodeLbl;
+        private System.Windows.Forms.Label spmLbl;
+        private System.Windows.Forms.Label diagramLbl;
     }
 }

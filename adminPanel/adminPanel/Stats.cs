@@ -42,6 +42,8 @@ namespace adminPanel
             spmListeboks.Hide();    //Gjemmer listeboksene til vi har data i de
             diagramListeboks.Hide();
             chart1.Hide();
+            spmLbl.Hide();
+            diagramLbl.Hide();
         }
 
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
@@ -61,6 +63,7 @@ namespace adminPanel
                 Console.WriteLine(dc);
             }
             spmListeboks.Show();
+            spmLbl.Show();
             dbConn.Close();
 
         }
@@ -68,6 +71,7 @@ namespace adminPanel
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             diagramListeboks.Show();
+            diagramLbl.Show();
             String[] diagramTyper = {"Kakediagram", "Stolpediagram" }; //Legg til flere diagrammer her når vi er i gang
 
             foreach (String diagram in diagramTyper)
