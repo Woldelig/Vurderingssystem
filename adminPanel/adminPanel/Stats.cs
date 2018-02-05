@@ -89,42 +89,47 @@ namespace adminPanel
             chart1.Series.Clear();
 
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
-
-            switch (diagramListeboks.SelectedItem.ToString())
+            try
             {
-                case "Kakediagram":
-                    //De to første linjene "tømmer" chart1 sin Series og Legends,
-                    //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
-                    chart1.Series.Clear();
-                    chart1.Legends.Clear();
-                    chart1.Series.Add(seriesname);
-                    chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
-                    chart1.Legends.Add("Legende");
-                    chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
-                    chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
-                    chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
-                    break;
+                switch (diagramListeboks.SelectedItem.ToString())
+                {
+                    case "Kakediagram":
+                        //De to første linjene "tømmer" chart1 sin Series og Legends,
+                        //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
+                        chart1.Series.Clear();
+                        chart1.Legends.Clear();
+                        chart1.Series.Add(seriesname);
+                        chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
+                        chart1.Legends.Add("Legende");
+                        chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
+                        chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
+                        chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
+                        break;
 
-                case "Stolpediagram":
-                    chart1.Series.Clear();
-                    chart1.Legends.Clear();
-                    chart1.Series.Add(seriesname);
-                    chart1.Series[seriesname].ChartType = SeriesChartType.Bar;
-                    break;
+                    case "Stolpediagram":
+                        chart1.Series.Clear();
+                        chart1.Legends.Clear();
+                        chart1.Series.Add(seriesname);
+                        chart1.Series[seriesname].ChartType = SeriesChartType.Bar;
+                        break;
 
-                case null:
-                    break;
+                    default:
+                        break;
+                }
 
-                default:
-                    break;
+                chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
+                chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
+                chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
+                chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
+                chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
+                chart1.Show();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
-            chart1.Series[seriesname].Points.AddXY("1 Stjerne", verdi1);
-            chart1.Series[seriesname].Points.AddXY("2 Stjerner", verdi2);
-            chart1.Series[seriesname].Points.AddXY("3 Stjerner", verdi3);
-            chart1.Series[seriesname].Points.AddXY("4 Stjerner", verdi4);
-            chart1.Series[seriesname].Points.AddXY("5 Stjerner", verdi5);
-            chart1.Show();
+         
         }
         /*
              vi kan legge linjen over inn i en switch case, da kan vi legge inn utrolige mange flere diagramtyper
