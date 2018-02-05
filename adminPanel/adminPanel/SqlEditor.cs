@@ -13,7 +13,6 @@ namespace adminPanel
 {
     public partial class SqlEditor : UserControl
     {
-        Database db = new Database();
         public SqlEditor()
         {
             InitializeComponent();
@@ -25,7 +24,8 @@ namespace adminPanel
             String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
             MySqlConnection dbConn = new MySqlConnection(connString);
             String sql = sqlTxt.Text;
-            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "formlogin" }; //Ord som vi ikke vil ha i spørringen
+            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE" };
+            //Ord som vi ikke vil ha i spørringen, store bokstaver siden vi bruker toUpper
 
             foreach (string ord in fyOrd)  //Her foreacher vi alle ordene i fyOrd for å se om sql spørringen inneholder ulovlige kommandoer
             {
