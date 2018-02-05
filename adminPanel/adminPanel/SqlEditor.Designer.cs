@@ -28,25 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.sqlTxt = new System.Windows.Forms.TextBox();
+            this.sqlBtn = new System.Windows.Forms.Button();
+            this.sqlDatagrid = new System.Windows.Forms.DataGridView();
+            this.feilmeldingTxt = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.sqlDatagrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // sqlTxt
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(439, 261);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "SQL - Editor";
+            this.sqlTxt.Location = new System.Drawing.Point(108, 466);
+            this.sqlTxt.Multiline = true;
+            this.sqlTxt.Name = "sqlTxt";
+            this.sqlTxt.Size = new System.Drawing.Size(535, 89);
+            this.sqlTxt.TabIndex = 0;
+            // 
+            // sqlBtn
+            // 
+            this.sqlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sqlBtn.Location = new System.Drawing.Point(649, 466);
+            this.sqlBtn.Name = "sqlBtn";
+            this.sqlBtn.Size = new System.Drawing.Size(176, 90);
+            this.sqlBtn.TabIndex = 1;
+            this.sqlBtn.Text = "Kjør SQL";
+            this.sqlBtn.UseVisualStyleBackColor = true;
+            this.sqlBtn.Click += new System.EventHandler(this.sqlBtn_Click);
+            // 
+            // sqlDatagrid
+            // 
+            this.sqlDatagrid.AllowUserToAddRows = false;
+            this.sqlDatagrid.AllowUserToDeleteRows = false;
+            this.sqlDatagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.sqlDatagrid.Location = new System.Drawing.Point(108, 63);
+            this.sqlDatagrid.Name = "sqlDatagrid";
+            this.sqlDatagrid.ReadOnly = true;
+            this.sqlDatagrid.Size = new System.Drawing.Size(717, 372);
+            this.sqlDatagrid.TabIndex = 2;
+            // 
+            // feilmeldingTxt
+            // 
+            this.feilmeldingTxt.AutoSize = true;
+            this.feilmeldingTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.feilmeldingTxt.Location = new System.Drawing.Point(105, 574);
+            this.feilmeldingTxt.Name = "feilmeldingTxt";
+            this.feilmeldingTxt.Size = new System.Drawing.Size(0, 25);
+            this.feilmeldingTxt.TabIndex = 3;
             // 
             // SqlEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.feilmeldingTxt);
+            this.Controls.Add(this.sqlDatagrid);
+            this.Controls.Add(this.sqlBtn);
+            this.Controls.Add(this.sqlTxt);
             this.Name = "SqlEditor";
             this.Size = new System.Drawing.Size(1008, 627);
+            ((System.ComponentModel.ISupportInitialize)(this.sqlDatagrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -54,6 +92,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox sqlTxt;
+        private System.Windows.Forms.Button sqlBtn;
+        private System.Windows.Forms.DataGridView sqlDatagrid;
+        private System.Windows.Forms.Label feilmeldingTxt;
     }
 }
