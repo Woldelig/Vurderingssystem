@@ -11,7 +11,7 @@ namespace adminPanel
 {
     class Database
     {
-        MySqlConnection dbConn;
+       MySqlConnection dbConn;
 
         public void DBConnect()//Metoden er satt til public, mulig vi kan sette den til private. Kalle vil da se slikt ut: Database.DBOppkobling()
         {

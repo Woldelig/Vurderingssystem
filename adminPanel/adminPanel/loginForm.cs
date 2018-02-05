@@ -29,7 +29,8 @@ namespace adminPanel
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (Username.Text == string.Empty || Password.Text == "Passord")
+            //IF-setningen ser har litt ekstra i scopet nå fordi watermark er lagt til. Mulig vi finner en bedre løsning på det
+            if (Username.Text == "Brukernavn" || Password.Text == "Passord" || Username.Text == String.Empty || Password.Text == String.Empty)
             {
                 HelpText.Text = "Brukernavn og passord må fylles ut!";
             }
@@ -67,7 +68,7 @@ namespace adminPanel
             Application.Exit();
         }
 
-        //Watermark
+        //Watermark - Cue banner
         private void Username_Enter(object sender, EventArgs e)
         {
             if(Username.Text == "Brukernavn")
@@ -77,7 +78,7 @@ namespace adminPanel
             }
         }
 
-        //Watermark
+        //Watermark - Cue banner
         private void Username_Leave(object sender, EventArgs e)
         {
             if (Username.Text.Length == 0)
@@ -87,7 +88,7 @@ namespace adminPanel
             }
         }
 
-        //Watermark
+        //Watermark - Cue banner
         private void Password_Enter(object sender, EventArgs e)
         {
             if(Password.Text == "Passord")
@@ -98,7 +99,7 @@ namespace adminPanel
             }
         }
 
-        //Watermark
+        //Watermark - Cue banner
         private void Password_Leave(object sender, EventArgs e)
         {
             if (Password.Text.Length == 0)
@@ -112,11 +113,12 @@ namespace adminPanel
         private void LoginBoarder_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            lastLocation = e.Location;
+            lastLocation = e.Location; //Setter koordinatene til lastLocation i det brukeren holder museknappen nede
         }
 
         private void LoginBoarder_MouseMove(object sender, MouseEventArgs e)
         {
+            //Så lenge museknappen er nede skal man kunne flytte på vinduet
             if (mouseDown)
             {
                 //Kunne flytte på vinduet ved å klikke og dra i LoginBoarder

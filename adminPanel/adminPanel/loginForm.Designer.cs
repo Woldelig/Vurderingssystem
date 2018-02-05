@@ -67,7 +67,7 @@
             this.MinimizeBtn.Name = "MinimizeBtn";
             this.MinimizeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.MinimizeBtn.Size = new System.Drawing.Size(41, 42);
-            this.MinimizeBtn.TabIndex = 10;
+            this.MinimizeBtn.TabIndex = 4;
             this.MinimizeBtn.Text = "_";
             this.MinimizeBtn.UseVisualStyleBackColor = true;
             this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
@@ -82,7 +82,7 @@
             this.ExitBtn.Location = new System.Drawing.Point(318, 0);
             this.ExitBtn.Name = "ExitBtn";
             this.ExitBtn.Size = new System.Drawing.Size(41, 42);
-            this.ExitBtn.TabIndex = 9;
+            this.ExitBtn.TabIndex = 5;
             this.ExitBtn.Text = "X";
             this.ExitBtn.UseVisualStyleBackColor = true;
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
@@ -98,7 +98,7 @@
             this.LoginBtn.Location = new System.Drawing.Point(77, 358);
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(202, 36);
-            this.LoginBtn.TabIndex = 1;
+            this.LoginBtn.TabIndex = 2;
             this.LoginBtn.Text = "Logg in";
             this.LoginBtn.UseVisualStyleBackColor = false;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
@@ -116,7 +116,7 @@
             this.ShutdownBtn.Location = new System.Drawing.Point(77, 400);
             this.ShutdownBtn.Name = "ShutdownBtn";
             this.ShutdownBtn.Size = new System.Drawing.Size(202, 36);
-            this.ShutdownBtn.TabIndex = 2;
+            this.ShutdownBtn.TabIndex = 3;
             this.ShutdownBtn.Text = "Avslutt";
             this.ShutdownBtn.UseVisualStyleBackColor = false;
             this.ShutdownBtn.Click += new System.EventHandler(this.ShutdownBtn_Click);
@@ -131,7 +131,7 @@
             this.Username.Location = new System.Drawing.Point(77, 192);
             this.Username.Name = "Username";
             this.Username.Size = new System.Drawing.Size(202, 29);
-            this.Username.TabIndex = 3;
+            this.Username.TabIndex = 0;
             this.Username.Enter += new System.EventHandler(this.Username_Enter);
             this.Username.Leave += new System.EventHandler(this.Username_Leave);
             // 
@@ -143,7 +143,7 @@
             this.Password.Location = new System.Drawing.Point(77, 253);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(202, 29);
-            this.Password.TabIndex = 4;
+            this.Password.TabIndex = 1;
             this.Password.Enter += new System.EventHandler(this.Password_Enter);
             this.Password.Leave += new System.EventHandler(this.Password_Leave);
             // 
