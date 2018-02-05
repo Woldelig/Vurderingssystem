@@ -14,17 +14,25 @@ namespace adminPanel
 {
     public partial class LoginForm : Form
     {
+        private bool mouseDown;
+        private Point lastLocation;
+
         public LoginForm()
         {
             InitializeComponent();
-            feilmeldingLbl.ForeColor = System.Drawing.Color.Red; // Setter feilmeldingene på loginForm til rød
+            HelpText.ForeColor = System.Drawing.Color.Red; // Setter feilmeldingene på loginForm til rød
+            Username.Text = "Brukernavn";
+            Password.Text = "Passord";
+            Username.ForeColor = Color.FromArgb(52, 52, 52);
+            Password.ForeColor = Color.FromArgb(52, 52, 52);
         }
 
-        private void loginBtn_Click(object sender, EventArgs e)
+        private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if (brukernavnText.Text == string.Empty || passordText.Text == string.Empty)
+            //IF-setningen ser har litt ekstra i scopet nå fordi watermark er lagt til. Mulig vi finner en bedre løsning på det
+            if (Username.Text == "Brukernavn" || Password.Text == "Passord" || Username.Text == String.Empty || Password.Text == String.Empty)
             {
-                feilmeldingLbl.Text = "Brukernavn og passord må fylles ut!";
+                HelpText.Text = "Brukernavn og passord må fylles ut!";
             }
             else
             {
@@ -32,9 +40,9 @@ namespace adminPanel
                 {
                     Database db = new Database();//Oppretter database-objekt
                     db.DBConnect();//Kjører DBConnect-metoden som ligger i Databaseklassen
-                    String brukernavn = brukernavnText.Text;
-                    String passord = passordText.Text;
-                    if (db.Test(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
+                    String brukernavn = Username.Text;
+                    String passord = Password.Text;
+                    if (db.Login(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
                     {
                         UserInfo.Username = brukernavn;
                         this.Dispose();//Stenger loginForm /avslutter når innloggin er vellykket
@@ -42,7 +50,7 @@ namespace adminPanel
                     }
                     else
                     {
-                        feilmeldingLbl.Text = "Brukeren eller passordet er feil!";
+                        HelpText.Text = "Brukernavnet eller passordet er feil!";
                     }
                     db.DBClose();//Stenger databasetilgangen
                 }
@@ -55,9 +63,103 @@ namespace adminPanel
             }
         }
 
-        private void shutdownBtn_Click(object sender, EventArgs e)
+        private void ShutdownBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        //Watermark - Cue banner
+        private void Username_Enter(object sender, EventArgs e)
+        {
+            if(Username.Text == "Brukernavn")
+            {
+                Username.Text = "";
+                Username.ForeColor = SystemColors.Window;
+            }
+        }
+
+        //Watermark - Cue banner
+        private void Username_Leave(object sender, EventArgs e)
+        {
+            if (Username.Text.Length == 0)
+            {
+                Username.Text = "Brukernavn";
+                Username.ForeColor = Color.FromArgb(52, 52, 52);
+            }
+        }
+
+        //Watermark - Cue banner
+        private void Password_Enter(object sender, EventArgs e)
+        {
+            if(Password.Text == "Passord")
+            {
+                Password.Text = "";
+                Password.ForeColor = SystemColors.Window;
+                Password.PasswordChar = '*';//Setter egenskapen til PasswordChar til å maskere passordet med *
+            }
+        }
+
+        //Watermark - Cue banner
+        private void Password_Leave(object sender, EventArgs e)
+        {
+            if (Password.Text.Length == 0)
+            {
+                Password.Text = "Passord";
+                Password.ForeColor = Color.FromArgb(52, 52, 52);
+                Password.PasswordChar = '\0';//Skrur av maskering av passord for å kunne vise watermark
+            }
+        }
+
+        private void LoginBoarder_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location; //Setter koordinatene til lastLocation i det brukeren holder museknappen nede
+        }
+
+        private void LoginBoarder_MouseMove(object sender, MouseEventArgs e)
+        {
+            //Så lenge museknappen er nede skal man kunne flytte på vinduet
+            if (mouseDown)
+            {
+                //Kunne flytte på vinduet ved å klikke og dra i LoginBoarder
+                this.Location = new Point((this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+                this.Update();
+            }
+        }
+
+        private void LoginBoarder_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void ExitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();//Avslutter applikasjonen
+        }
+
+        private void MinimizeBtn_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;//Minimerer vinduet
+        }
+
+        private void LoginBtn_MouseEnter(object sender, EventArgs e)
+        {
+            LoginBtn.ForeColor = Color.SteelBlue;
+        }
+
+        private void LoginBtn_MouseLeave(object sender, EventArgs e)
+        {
+            LoginBtn.ForeColor = Color.Black;
+        }
+
+        private void ShutdownBtn_MouseEnter(object sender, EventArgs e)
+        {
+            ShutdownBtn.ForeColor = Color.SteelBlue;
+        }
+
+        private void ShutdownBtn_MouseLeave(object sender, EventArgs e)
+        {
+            ShutdownBtn.ForeColor = Color.Black;
         }
     }
 }
