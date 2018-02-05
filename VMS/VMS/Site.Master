@@ -55,6 +55,19 @@
                         <li><a runat="server" href="~/MineVurderinger">Mine vurderinger</a></li>
                         <li><a runat="server" href="~/Hjelp">Hjelp</a></li>
                     </ul>
+                    <div class="navbar-form navbar-left">
+                        <div class="input-group">
+                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+                            <!-- <input class="form-control" id="Text1" type="text"> -->
+                            <div class="input-group-btn">
+                                <asp:LinkButton ID="searchBtn" runat="server" Text="Button" CssClass="btn btn-default">
+                                <!-- <button class="btn btn-default" id="Button1" type="submit"> -->
+                                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
+                                </asp:LinkButton>
+                                <!-- </button> -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,5 +81,7 @@
         </div>
 
     </form>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
