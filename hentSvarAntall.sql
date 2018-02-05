@@ -1,0 +1,2 @@
+DELIMITER $$
+CREATE PROCEDURE hentSvarAntall
