@@ -38,7 +38,6 @@ namespace adminPanel
                     while (reader.Read())
                     {
                         LastLogin.Text = reader.GetString("tidsstempel");
-                        Console.WriteLine(reader.GetString("tidsstempel"));
                     }
                 }
                 else
@@ -65,7 +64,7 @@ namespace adminPanel
                 {
                     while (reader.Read())
                     {
-                        if(reader.GetString("brukertype") == "1")
+                        if(reader.GetString("brukertype") == "1")//Hvis brukertypen er 1 så er brukeren admin
                         {
                             UsertypeLbl.Text = "Admin";
                             NameLbl.Text = UserInfo.Username;
