@@ -49,24 +49,13 @@ namespace adminPanel
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             spmListeboks.Items.Clear();//Fjerner elementer i listeboks. Må gjøres hvis klassekode byttes
-            dbConn.Open();
-            MySqlCommand cmd = new MySqlCommand("SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingshistorikk;", dbConn);
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            da.Fill(ds);
-            dt = ds.Tables[0]; //plassering 0 fordi den kun henter ut en rad. i foreachen blir den splittet opp per rad og lagt inn en og en i listeboksen
-
-            foreach (DataColumn dc in dt.Columns)  //her bruker vi dataColumn fordi vi skal ha ut kolonner
+            for (int i = 1; i < 11; i++)//Populerer listeboksen. Øk loopen for flere spørsmål
             {
-                spmListeboks.Items.Add(dc.ToString());
-                Console.WriteLine(dc);
+                spmListeboks.Items.Add("Spørsmål "+i);
             }
             spmListeboks.Show();
             spmLbl.Show();
             dbConn.Close();
-
         }
 
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
@@ -85,8 +74,55 @@ namespace adminPanel
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             int verdi1 = 20000, verdi2 = 10000, verdi3 = 40000, verdi4 = 20000, verdi5 = 40000; //Denne er her bare for å fjerne rødlinjer. men skal represntere svar i spm 1-5
-            //String valgtSpm = spmListeboks.SelectedIndex.ToString();
 
+            switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
+            {
+                case 0:
+                    Console.WriteLine("spørsmål 1");
+                    break;
+
+                case 1:
+                    Console.WriteLine("spørsmål 2");
+                    break;
+
+                case 2:
+                    Console.WriteLine("spørsmål 3");
+                    break;
+
+                case 3:
+                    Console.WriteLine("spørsmål 4");
+                    break;
+
+                case 4:
+                    Console.WriteLine("spørsmål 5");
+                    break;
+
+                case 5:
+                    Console.WriteLine("spørsmål 6");
+                    break;
+
+                case 6:
+                    Console.WriteLine("spørsmål 7");
+                    break;
+
+                case 7:
+                    Console.WriteLine("spørsmål 8");
+                    break;
+
+                case 8:
+                    Console.WriteLine("spørsmål 9");
+                    break;
+
+                case 9:
+                    Console.WriteLine("spørsmål 10");
+                    break;
+
+                default:
+                    break;
+            }
+
+            // Ikke slett det under FØR vi greier å kalle en prosedyre
+            /*
             MySqlCommand cmd = new MySqlCommand("hent_svar_antall",dbConn);
             dbConn.Open();
             //cmd.CommandText = "prosedyrenavn";
@@ -96,8 +132,7 @@ namespace adminPanel
 
             cmd.ExecuteNonQuery();
             MySqlDataReader dr = cmd.ExecuteReader();
-            Console.WriteLine(dr);
-
+            Console.WriteLine(dr);*/
 
 
             chart1.Series.Clear();
