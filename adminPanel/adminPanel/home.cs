@@ -56,7 +56,7 @@ namespace adminPanel
             try
             {
                 dbConn.Open();
-                String sql = "SELECT brukertype FROM formlogin WHERE bruker = @Brukernavn;";
+                String sql = "SELECT brukertype, fornavn, etternavn FROM formlogin WHERE bruker = @Brukernavn;";
                 MySqlCommand cmd = new MySqlCommand(sql, dbConn);
                 cmd.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -67,12 +67,12 @@ namespace adminPanel
                         if(reader.GetString("brukertype") == "1")//Hvis brukertypen er 1 så er brukeren admin
                         {
                             UsertypeLbl.Text = "Admin";
-                            NameLbl.Text = UserInfo.Username;
+                            NameLbl.Text = reader.GetString("fornavn") + " " + reader.GetString("etternavn");
                         }
                         else
                         {
                             UsertypeLbl.Text = "Bruker";
-                            NameLbl.Text = UserInfo.Username;
+                            NameLbl.Text = reader.GetString("fornavn") + " " + reader.GetString("etternavn");
                         }
                     }
                 }

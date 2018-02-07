@@ -20,7 +20,7 @@ CREATE TABLE fag(
 );
 
 CREATE TABLE student(
-    studentid INT(10),
+    studentid INT(10) PRIMARY KEY,
     studieretning VARCHAR(128),
     FOREIGN KEY (studieretning) REFERENCES studier(studieretning)
 );
@@ -63,6 +63,8 @@ CREATE TABLE vurderingshistorikk(
 CREATE TABLE formlogin(
     bruker VARCHAR(64) PRIMARY KEY,
     passord VARCHAR(64),
+    fornavn VARCHAR(64),
+    etternavn VARCHAR(64),
     brukertype INT(1)
 );
 
@@ -94,7 +96,7 @@ INSERT INTO vurderingsskjema(skjemaid, beskrivelse, spm1, spm2, spm3, spm4, spm5
 
 INSERT INTO vurderingshistorikk (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (2, 006, 'OBJ2100', 1, 4, 3, 4, 3, 5, 1, 2, 1, 4), (2, 005, 'OBJ2100', 3, 5, 1, 2, 4, 2, 3, 4, 5, 4);
 
-INSERT INTO formlogin(bruker, passord, brukertype) VALUES ('admin', 'admin', 1), ('bruker', 'bruker', 2);
+INSERT INTO formlogin(bruker, passord, fornavn, etternavn,  brukertype) VALUES ('admin', 'admin', 'Elon', 'Musk', 1), ('bruker', 'bruker', 'Ronald', 'McDonald', 2);
 
 INSERT INTO innloggingshistorikk(bruker, tidsstempel) VALUES
 ('admin', '2018-02-05 13:45:37');

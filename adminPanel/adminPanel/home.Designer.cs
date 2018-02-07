@@ -39,8 +39,11 @@
             this.UsertypeLbl = new System.Windows.Forms.Label();
             this.AvatarPanel = new System.Windows.Forms.Panel();
             this.AvatarImage = new System.Windows.Forms.ImageList(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.LastLoginPanel.SuspendLayout();
             this.UserInfoPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // HomeHeaderLbl
@@ -66,13 +69,15 @@
             // 
             // LastLogin
             // 
-            this.LastLogin.AutoSize = true;
+            this.LastLogin.BackColor = System.Drawing.Color.RoyalBlue;
+            this.LastLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.LastLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LastLogin.Location = new System.Drawing.Point(23, 46);
+            this.LastLogin.Location = new System.Drawing.Point(0, 37);
             this.LastLogin.Name = "LastLogin";
-            this.LastLogin.Size = new System.Drawing.Size(52, 19);
+            this.LastLogin.Size = new System.Drawing.Size(200, 47);
             this.LastLogin.TabIndex = 2;
             this.LastLogin.Text = "DATO";
+            this.LastLogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LastLoginHeader
             // 
@@ -89,32 +94,31 @@
             this.UserInfoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(173)))), ((int)(((byte)(220)))));
             this.UserInfoPanel.Controls.Add(this.NameLbl);
             this.UserInfoPanel.Controls.Add(this.UsertypeLbl);
-            this.UserInfoPanel.Location = new System.Drawing.Point(169, 172);
+            this.UserInfoPanel.Location = new System.Drawing.Point(274, 172);
             this.UserInfoPanel.Name = "UserInfoPanel";
-            this.UserInfoPanel.Size = new System.Drawing.Size(453, 84);
+            this.UserInfoPanel.Size = new System.Drawing.Size(348, 84);
             this.UserInfoPanel.TabIndex = 2;
             // 
             // NameLbl
             // 
-            this.NameLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.NameLbl.AutoSize = true;
+            this.NameLbl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.NameLbl.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NameLbl.Location = new System.Drawing.Point(246, 44);
+            this.NameLbl.Location = new System.Drawing.Point(0, 50);
             this.NameLbl.Name = "NameLbl";
             this.NameLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.NameLbl.Size = new System.Drawing.Size(53, 21);
+            this.NameLbl.Size = new System.Drawing.Size(348, 34);
             this.NameLbl.TabIndex = 5;
             this.NameLbl.Text = "Navn";
-            this.NameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.NameLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // UsertypeLbl
             // 
-            this.UsertypeLbl.AutoSize = true;
+            this.UsertypeLbl.Dock = System.Windows.Forms.DockStyle.Top;
             this.UsertypeLbl.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsertypeLbl.Location = new System.Drawing.Point(231, 12);
+            this.UsertypeLbl.Location = new System.Drawing.Point(0, 0);
             this.UsertypeLbl.Name = "UsertypeLbl";
             this.UsertypeLbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.UsertypeLbl.Size = new System.Drawing.Size(121, 25);
+            this.UsertypeLbl.Size = new System.Drawing.Size(348, 50);
             this.UsertypeLbl.TabIndex = 4;
             this.UsertypeLbl.Text = "Brukertype";
             this.UsertypeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -134,10 +138,32 @@
             this.AvatarImage.ImageSize = new System.Drawing.Size(16, 16);
             this.AvatarImage.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(78)))), ((int)(((byte)(203)))));
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(169, 273);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(658, 325);
+            this.panel1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(658, 325);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Aner ikke hva jeg skal skrive her eller hva som skal legges til. Bare å komme med" +
+    " ideer!";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.AvatarPanel);
             this.Controls.Add(this.UserInfoPanel);
             this.Controls.Add(this.LastLoginPanel);
@@ -148,7 +174,7 @@
             this.LastLoginPanel.ResumeLayout(false);
             this.LastLoginPanel.PerformLayout();
             this.UserInfoPanel.ResumeLayout(false);
-            this.UserInfoPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +191,7 @@
         private System.Windows.Forms.ImageList AvatarImage;
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Label UsertypeLbl;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label1;
     }
 }
