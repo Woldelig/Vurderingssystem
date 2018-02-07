@@ -180,6 +180,7 @@ namespace adminPanel
 
         private void LogOutBtn_Click(object sender, EventArgs e)
         {
+            //Her må timestampen i databasen oppdateres
             Application.Restart();
         }
 
