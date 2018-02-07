@@ -78,52 +78,42 @@ namespace adminPanel
             {
                 case 0:
                     cmd.CommandText = "hent_spm1_verdier";
-                    Console.WriteLine("spørsmål 1");
                     break;
 
                 case 1:
                     cmd.CommandText = "hent_spm2_verdier";
-                    Console.WriteLine("spørsmål 2");
                     break;
 
                 case 2:
                     cmd.CommandText = "hent_spm3_verdier";
-                    Console.WriteLine("spørsmål 3");
                     break;
 
                 case 3:
                     cmd.CommandText = "hent_spm4_verdier";
-                    Console.WriteLine("spørsmål 4");
                     break;
 
                 case 4:
                     cmd.CommandText = "hent_spm5_verdier";
-                    Console.WriteLine("spørsmål 5");
                     break;
 
                 case 5:
-                    cmd.CommandText = "hent_spm16_verdier";
-                    Console.WriteLine("spørsmål 6");
+                    cmd.CommandText = "hent_spm6_verdier";
                     break;
 
                 case 6:
                     cmd.CommandText = "hent_spm7_verdier";
-                    Console.WriteLine("spørsmål 7");
                     break;
 
                 case 7:
                     cmd.CommandText = "hent_spm8_verdier";
-                    Console.WriteLine("spørsmål 8");
                     break;
 
                 case 8:
                     cmd.CommandText = "hent_spm9_verdier";
-                    Console.WriteLine("spørsmål 9");
                     break;
 
                 case 9:
                     cmd.CommandText = "hent_spm10_verdier";
-                    Console.WriteLine("spørsmål 10");
                     break;
 
                 default:
@@ -133,45 +123,23 @@ namespace adminPanel
 
             cmd.Connection = dbConn;
             cmd.CommandType = CommandType.StoredProcedure;
-            string fagkode = fagkodeListeboks.SelectedItem.ToString();
-            Console.WriteLine(fagkode);
+            String fagkode = fagkodeListeboks.SelectedItem.ToString(); //Valgt fagkode blir hentet ut og plassert som inn parameter
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
-            //cmd.Parameters["@in_fagkode"].Direction = ParameterDirection.Input;
-            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-            //cmd.Parameters["@out_verdi1"].Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output; 
             cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             cmd.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             cmd.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-
-            Console.WriteLine(cmd.CommandText);
-
-
-
-            Console.WriteLine("Verdi 1 " + cmd.Parameters["@out_verdi1"]);
-            Console.WriteLine("Verdi 1 " + cmd.Parameters[0]);
-            Console.WriteLine("Verdi 1 " + cmd.Parameters["@out_verdi2"]);
-            Console.WriteLine("Verdi 2 " + cmd.Parameters[1]);
-            Console.WriteLine("Verdi 1 " + cmd.Parameters["@out_verdi3"]);
-            Console.WriteLine("Verdi 3 " + cmd.Parameters[2]);
-            Console.WriteLine("Verdi 1 " + cmd.Parameters["@out_verdi4"]);
-            Console.WriteLine("Verdi 4 " + cmd.Parameters[3]);
-            Console.WriteLine("Verdi 5 " + cmd.Parameters["@out_verdi5"]);
-            Console.WriteLine("Verdi 1 " + cmd.Parameters[4]);
-
+            //På linjene over blir inn og ut parametere definert. Ut parametere får datatype (int). Og deretter blir parameter retning definert
+            //dette kan også gjøres på 2 linjer.
+            
             dbConn.Open();
-            //int stjerne1 = Convert.ToInt32(cmd.Parameters["@out_verdi1"].Value);
+            cmd.ExecuteNonQuery();
             int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
             int stjerne2 = (int)cmd.Parameters["@out_verdi2"].Value;
             int stjerne3 = (int)cmd.Parameters["@out_verdi3"].Value;
             int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
             int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
-            Console.WriteLine("Verdi 1: " + stjerne1.ToString());
-            Console.WriteLine("Verdi 2: " + stjerne2.ToString());
-            Console.WriteLine("Verdi 3: " + stjerne3.ToString());
-            Console.WriteLine("Verdi 4: " + stjerne4.ToString());
-            Console.WriteLine("Verdi 5: " + stjerne5.ToString());
-            cmd.ExecuteNonQuery();
             dbConn.Close();
 
             chart1.Series.Clear();
@@ -218,15 +186,3 @@ namespace adminPanel
         }
     }
 }
-
-/*
-           cmd.Parameters.Add(new MySqlParameter("?out_verdi1", MySqlDbType.Int16));
-           cmd.Parameters["?out_verdi1"].Direction = ParameterDirection.Output;
-           cmd.Parameters.Add(new MySqlParameter("?out_verdi2", MySqlDbType.Int16));
-           cmd.Parameters["?out_verdi2"].Direction = ParameterDirection.Output;
-           cmd.Parameters.Add(new MySqlParameter("?out_verdi3", MySqlDbType.Int16));
-           cmd.Parameters["?out_verdi3"].Direction = ParameterDirection.Output;
-           cmd.Parameters.Add(new MySqlParameter("?out_verdi4", MySqlDbType.Int16));
-           cmd.Parameters["?out_verdi4"].Direction = ParameterDirection.Output;
-           cmd.Parameters.Add(new MySqlParameter("?out_verdi5", MySqlDbType.Int16));
-           cmd.Parameters["?out_verdi5"].Direction = ParameterDirection.Output;*/

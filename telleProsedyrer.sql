@@ -4,11 +4,11 @@ DELIMITER $$
 CREATE PROCEDURE hent_spm1_verdier
 (
     IN in_fagkode VARCHAR(10),
-    OUT out_verdi1 SMALLINT,
-    OUT out_verdi2 SMALLINT,
-    OUT out_verdi3 SMALLINT,
-    OUT out_verdi4 SMALLINT,
-    OUT out_verdi5 SMALLINT
+    OUT out_verdi1 INT,
+    OUT out_verdi2 INT,
+    OUT out_verdi3 INT,
+    OUT out_verdi4 INT,
+    OUT out_verdi5 INT
 )
 BEGIN
     SELECT COUNT(spm1) INTO out_verdi1 FROM vurderingshistorikk WHERE spm1 = 1 AND fagkode = in_fagkode;
