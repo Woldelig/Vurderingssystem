@@ -3,12 +3,12 @@ DROP PROCEDURE IF EXISTS hent_spm1_verdier;
 DELIMITER $$
 CREATE PROCEDURE hent_spm1_verdier
 (
-    IN in_fagkode VARCHAR(8),
-    OUT out_verdi1 INT,
-    OUT out_verdi2 INT,
-    OUT out_verdi3 INT,
-    OUT out_verdi4 INT,
-    OUT out_verdi5 INT
+    IN in_fagkode VARCHAR(10),
+    OUT out_verdi1 SMALLINT,
+    OUT out_verdi2 SMALLINT,
+    OUT out_verdi3 SMALLINT,
+    OUT out_verdi4 SMALLINT,
+    OUT out_verdi5 SMALLINT
 )
 BEGIN
     SELECT COUNT(spm1) INTO out_verdi1 FROM vurderingshistorikk WHERE spm1 = 1 AND fagkode = in_fagkode;
@@ -21,7 +21,7 @@ END$$
 DELIMITER ;
 
 
-call hent_spm1_verdier(@out_value1,@out_value2,@out_value3,@out_value4,@out_value5);
+call hent_spm1_verdier("OBJ2100",@out_value1,@out_value2,@out_value3,@out_value4,@out_value5);
 SELECT @out_value1,@out_value2,@out_value3,@out_value4,@out_value5
 
 
