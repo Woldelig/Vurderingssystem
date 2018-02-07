@@ -11,69 +11,66 @@ namespace adminPanel
 {
     class Database
     {
-       MySqlConnection dbConn;
 
-        public void DBConnect()//Metoden er satt til public, mulig vi kan sette den til private. Kalle vil da se slikt ut: Database.DBOppkobling()
+        private MySqlConnection mySqlConnection;
+
+        //Lokale konstanter som blir brukt så lenge overload ikke blir brukt
+        //under deklarering av nytt objekt.
+        private const string Server = "localhost";
+        private const string UserID = "root";
+        private const string DatabaseName = "vurderingssystem";
+        private const string Password = "";
+        
+        //Dette er en konstruktør med en overload slik at vi kan gjøre det mulig
+        //å koble til flere ulike databaser ved deklarering av databaseobjektet
+        public Database(string server, string userID, string password, string database)
         {
-            String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
-            dbConn = new MySqlConnection(connString);
+            //DBConnection returnerer MySqlConnection-objektet som caster connectionString og
+            //setter det over i det lokale objektet(mySqlConnection)
+            mySqlConnection = DBConnection(server, userID, password, database);
+        }
+
+        //Dette er konstruktøren for klassen og bruker de lokale konstantene
+        public Database() : this(Server, UserID, Password, DatabaseName)
+        {
+
+        }
+        
+        //Metoden oppretter et MySqlConnection-objekt med databaseinfoen for oppkobling
+        private MySqlConnection DBConnection(string server, string userID, string password, string database)
+        {
+            //Bruker String.Format som gjør koden "renere", letter å lese og vedlikeholde
+            var connectionString = String.Format("server={0};user={1};password={2};database={3}", server, userID, password, database);
+            return new MySqlConnection(connectionString);
+        }
+
+        //Metoden bygger et MySqlCommand-objekt tilkoblingen og en spørring.
+        //Spørringen er et argument i metoden som gjør det mulig å bruke metoden
+        //i andre klasser. Metoden returnerer "Spørringsobjektet" slik at det kan brukes
+        //der den ble kalt på.
+        public MySqlCommand SqlCommand(string query)
+        {
+            var mySqlCommand = new MySqlCommand(query, mySqlConnection);
+            return mySqlCommand;
+        }
+
+        //Metoden åpner tilkoblingen til databasen
+        public void OpenConnection()
+        {
             try
             {
-                dbConn.Open();
+                mySqlConnection.Open();
             }
-            catch (MySqlException DBexception)
+            catch (MySqlException mySqlException)
             {
-                Console.WriteLine("Feilmelding: ", DBexception); //Viser foreløpig bare i debugging
-            }
-         }
-
-        public void DBClose()
-        {
-            try
-            {
-                dbConn.Close();
-            }
-            catch (MySqlException DBexception)
-            {
-                Console.WriteLine("Feilmelding: ", DBexception); //Viser foreløpig bare i debugging
+                Console.WriteLine("Feilmelding: Kunne ikke koble til databasen!", mySqlException);   
             }
         }
 
-        public bool Login(String username, String password) // Tester om DBConnect og DBClose funker med en SELECT-spørring
+        //Metoden steger tilkoblingen til databasen
+        public void CloseConnection()
         {
-            try
-            {
-                String sql = "SELECT * FROM formlogin WHERE bruker = @Brukernavn AND passord = @Passord;"; //har får vi ut 3 verdier brukernavn, passord og brukertype. Brukertype er INT
-                MySqlCommand cmd = new MySqlCommand(sql, dbConn); //Bruker MySqlCommand-objektet til å utføre databaseoperasjoner
-
-                cmd.Parameters.AddWithValue("@Brukernavn", username);//Hindrer SQLinjection
-                cmd.Parameters.AddWithValue("@Passord", password);
-                MySqlDataReader reader = cmd.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
-                if (reader.HasRows) //Sjekker om det finnes rader
-                {
-                    while (reader.Read())//Så lenge det er rader igjen så printer vi ut innholdet
-                    {
-                        Console.WriteLine(reader.GetString("bruker"));//Skriver ut brukernavnet
-                        Console.WriteLine(reader.GetString("passord"));//Skriver ut passordet
-                        Console.WriteLine(reader.GetString("brukertype"));//Skriver ut brukertypen
-                        UserInfo.Username = reader.GetString("bruker");//Setter brukernavet
-                    }
-                    reader.Close();//Stenger MySqlDataReader-objektet
-                    return true;//Brukeren finnes
-                }
-                else
-                {
-                    Console.WriteLine("Fant ingen rader");
-                    reader.Close();//Stenger MySqlDataReader-objektet
-                    return false;//Brukeren finnes ikke
-                }
-            }
-            catch (MySqlException DBexception)
-            {
-                Console.WriteLine("Feilmelding: ", DBexception);
-            }
-            return false;
+            mySqlConnection.Close();
         }
-
     }
 }
