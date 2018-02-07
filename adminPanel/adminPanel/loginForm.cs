@@ -29,9 +29,10 @@ namespace adminPanel
 
         private void Login()
         {
+            Database db = new Database();//Oppretter database-objekt
             try
             {
-                Database db = new Database();//Oppretter database-objekt
+
                 db.OpenConnection();
                 string query = "SELECT * FROM formlogin WHERE bruker = @Brukernavn;";
 
@@ -51,9 +52,9 @@ namespace adminPanel
                         //Det er her vi må sjekke det hasha passordet
                         if (reader.GetString("passord") == Password.Text)
                         {
+                            UserInfo.Username = reader.GetString("bruker");
                             DialogResult = DialogResult.OK;
                             this.Dispose();
-                            reader.Close();//Stenger MySqlDataReader-objektet
                         }
                         else
                         {
@@ -61,11 +62,12 @@ namespace adminPanel
                         }
                     }
                 }
+                reader.Close();//Stenger MySqlDataReader-objektet
                 db.CloseConnection();//Stenger databasetilgangen
             }
-            catch (Exception ex)
+            catch (MySqlException DBException)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(DBException.ToString());
                 //Under testing og debugging skriver vi til konsollen.
                 //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
             }

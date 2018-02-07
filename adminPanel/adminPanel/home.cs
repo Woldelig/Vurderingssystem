@@ -20,19 +20,19 @@ namespace adminPanel
 
         private void home_Load(object sender, EventArgs e)
         {
-            
-            String connString = "server=localhost;user=root;database=vurderingssystem;";
-            MySqlConnection dbConn = new MySqlConnection(connString);//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
+            Database db = new Database();
 
             //Henter ut tidsstempel fra databasen og setter den inn i LasLogin-panelet
             //slik at brukeren kan se sist innlogging
             try
             {
-                dbConn.Open();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
+                
+                db.OpenConnection();
+
                 String sql = "SELECT tidsstempel FROM innloggingshistorikk WHERE bruker = @Brukernavn;";
-                MySqlCommand cmd = new MySqlCommand(sql, dbConn);
-                cmd.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                var mySqlCommand = db.SqlCommand(sql);
+                mySqlCommand.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -44,22 +44,24 @@ namespace adminPanel
                 {
                     Console.WriteLine("Fant ingen brukere");
                 }
+                reader.Close();
+                db.CloseConnection();
             }
             catch (MySqlException DBexception)
             {
                 Console.WriteLine("Feilmelding: ", DBexception);
             }
-            dbConn.Close();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
+            
 
             //Henter ut brukertype og navnet på brukeren som logget inn for så å
             //vise det i hjempanelet.
             try
             {
-                dbConn.Open();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
+                db.OpenConnection();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
                 String sql = "SELECT brukertype, fornavn, etternavn FROM formlogin WHERE bruker = @Brukernavn;";
-                MySqlCommand cmd = new MySqlCommand(sql, dbConn);
-                cmd.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
-                MySqlDataReader reader = cmd.ExecuteReader();
+                var mySqlCommand = db.SqlCommand(sql);
+                mySqlCommand.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
                 if (reader.HasRows)
                 {
                     while (reader.Read())
@@ -80,12 +82,13 @@ namespace adminPanel
                 {
                     Console.WriteLine("Fant ingen rader");
                 }
+                reader.Close();
+                db.CloseConnection();
             }
             catch (MySqlException DBexception)
             {
                 Console.WriteLine("Feilmelding: ", DBexception);
             }
-            dbConn.Close();
         }
     }
 }
