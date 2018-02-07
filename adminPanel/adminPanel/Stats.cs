@@ -160,8 +160,8 @@ namespace adminPanel
             Console.WriteLine("Verdi 1 " + cmd.Parameters[4]);
 
             dbConn.Open();
-            int stjerne1 = Convert.ToInt32(cmd.Parameters["@out_verdi1"].Value);
-            //int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
+            //int stjerne1 = Convert.ToInt32(cmd.Parameters["@out_verdi1"].Value);
+            int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
             int stjerne2 = (int)cmd.Parameters["@out_verdi2"].Value;
             int stjerne3 = (int)cmd.Parameters["@out_verdi3"].Value;
             int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
