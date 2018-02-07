@@ -22,13 +22,13 @@ namespace adminPanel
         {
             
             String connString = "server=localhost;user=root;database=vurderingssystem;";
-            MySqlConnection dbConn = new MySqlConnection(connString);
+            MySqlConnection dbConn = new MySqlConnection(connString);//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
 
             //Henter ut tidsstempel fra databasen og setter den inn i LasLogin-panelet
             //slik at brukeren kan se sist innlogging
             try
             {
-                dbConn.Open();
+                dbConn.Open();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
                 String sql = "SELECT tidsstempel FROM innloggingshistorikk WHERE bruker = @Brukernavn;";
                 MySqlCommand cmd = new MySqlCommand(sql, dbConn);
                 cmd.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
@@ -49,13 +49,13 @@ namespace adminPanel
             {
                 Console.WriteLine("Feilmelding: ", DBexception);
             }
-            dbConn.Close();
+            dbConn.Close();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
 
             //Henter ut brukertype og navnet på brukeren som logget inn for så å
             //vise det i hjempanelet.
             try
             {
-                dbConn.Open();
+                dbConn.Open();//OBS OBS HER MÅ DET ERSTATTES MED DEN NYE DBKLASSEN
                 String sql = "SELECT brukertype, fornavn, etternavn FROM formlogin WHERE bruker = @Brukernavn;";
                 MySqlCommand cmd = new MySqlCommand(sql, dbConn);
                 cmd.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
