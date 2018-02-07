@@ -124,10 +124,10 @@ namespace adminPanel
 
             
 
-            MySqlCommand cmd = new MySqlCommand("hent_spm1_verdier", dbConn);
+            MySqlCommand cmd = new MySqlCommand("hent_spm2_verdier", dbConn);
             //cmd.CommandText = "prosedyrenavn";
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new MySqlParameter("?out_verdi1", MySqlDbType.Int16));
+            cmd.Parameters.Add(new MySqlParameter("?out_verdi1", MySqlDbType.VarChar));
             cmd.Parameters["?out_verdi1"].Direction = ParameterDirection.Output;
             cmd.Parameters.Add(new MySqlParameter("?out_verdi2", MySqlDbType.Int16));
             cmd.Parameters["?out_verdi2"].Direction = ParameterDirection.Output;
@@ -139,15 +139,16 @@ namespace adminPanel
             cmd.Parameters["?out_verdi5"].Direction = ParameterDirection.Output;
 
             dbConn.Open();
-            int stjerne1 = (int)cmd.Parameters["?out_verdi1"].Value;
+            string stjerne1 = (string)cmd.Parameters["?out_verdi1"].Value;/*
             int stjerne2 = (int)cmd.Parameters["?out_verdi2"].Value;
             int stjerne3 = (int)cmd.Parameters["?out_verdi3"].Value;
             int stjerne4 = (int)cmd.Parameters["?out_verdi4"].Value;
-            int stjerne5 = (int)cmd.Parameters["?out_verdi5"].Value;
+            int stjerne5 = (int)cmd.Parameters["?out_verdi5"].Value;*/
             cmd.ExecuteNonQuery();
+            dbConn.Close();
 
             
-            Console.WriteLine(stjerne1.ToString(), stjerne2.ToString(), stjerne3.ToString(), stjerne4.ToString(), stjerne5.ToString());
+            Console.WriteLine(stjerne1/*.ToString(), stjerne2.ToString(), stjerne3.ToString(), stjerne4.ToString(), stjerne5.ToString()*/);
 
             chart1.Series.Clear();
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
