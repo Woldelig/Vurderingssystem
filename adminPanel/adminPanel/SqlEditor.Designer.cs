@@ -37,6 +37,7 @@
             // 
             // sqlTxt
             // 
+            this.sqlTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sqlTxt.Location = new System.Drawing.Point(108, 466);
             this.sqlTxt.Multiline = true;
             this.sqlTxt.Name = "sqlTxt";
@@ -45,13 +46,16 @@
             // 
             // sqlBtn
             // 
+            this.sqlBtn.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.sqlBtn.FlatAppearance.BorderSize = 0;
+            this.sqlBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sqlBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sqlBtn.Location = new System.Drawing.Point(649, 466);
             this.sqlBtn.Name = "sqlBtn";
             this.sqlBtn.Size = new System.Drawing.Size(176, 90);
             this.sqlBtn.TabIndex = 1;
             this.sqlBtn.Text = "Kjør SQL";
-            this.sqlBtn.UseVisualStyleBackColor = true;
+            this.sqlBtn.UseVisualStyleBackColor = false;
             this.sqlBtn.Click += new System.EventHandler(this.sqlBtn_Click);
             // 
             // sqlDatagrid
