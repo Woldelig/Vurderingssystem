@@ -121,19 +121,33 @@ namespace adminPanel
                     break;
             }
 
-            // Ikke slett det under FØR vi greier å kalle en prosedyre
-            /*
-            MySqlCommand cmd = new MySqlCommand("hent_svar_antall",dbConn);
-            dbConn.Open();
+
+            
+
+            MySqlCommand cmd = new MySqlCommand("hent_spm1_verdier", dbConn);
             //cmd.CommandText = "prosedyrenavn";
             cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new MySqlParameter("?out_verdi1", MySqlDbType.Int16));
+            cmd.Parameters["?out_verdi1"].Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new MySqlParameter("?out_verdi2", MySqlDbType.Int16));
+            cmd.Parameters["?out_verdi2"].Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new MySqlParameter("?out_verdi3", MySqlDbType.Int16));
+            cmd.Parameters["?out_verdi3"].Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new MySqlParameter("?out_verdi4", MySqlDbType.Int16));
+            cmd.Parameters["?out_verdi4"].Direction = ParameterDirection.Output;
+            cmd.Parameters.Add(new MySqlParameter("?out_verdi5", MySqlDbType.Int16));
+            cmd.Parameters["?out_verdi5"].Direction = ParameterDirection.Output;
 
-            cmd.Parameters.AddWithValue("@spmnr", spmListeboks.SelectedIndex.ToString());
-
+            dbConn.Open();
+            int stjerne1 = (int)cmd.Parameters["?out_verdi1"].Value;
+            int stjerne2 = (int)cmd.Parameters["?out_verdi2"].Value;
+            int stjerne3 = (int)cmd.Parameters["?out_verdi3"].Value;
+            int stjerne4 = (int)cmd.Parameters["?out_verdi4"].Value;
+            int stjerne5 = (int)cmd.Parameters["?out_verdi5"].Value;
             cmd.ExecuteNonQuery();
-            MySqlDataReader dr = cmd.ExecuteReader();
-            Console.WriteLine(dr);*/
 
+            
+            Console.WriteLine(stjerne1.ToString(), stjerne2.ToString(), stjerne3.ToString(), stjerne4.ToString(), stjerne5.ToString());
 
             chart1.Series.Clear();
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
@@ -176,19 +190,6 @@ namespace adminPanel
             {
                 Console.WriteLine(ex);
             }
-
-         
         }
-        /*
-             vi kan legge linjen over inn i en switch case, da kan vi legge inn utrolige mange flere diagramtyper
-             og vi kommer til å ha ekstremt lite gjenbruk av kode kontra slik som jeg planla nå.
-             
-            TODO
-
-            1. Fiks prosedyren så jeg får 5 verdier
-            2. Hent disse verdiene ut og legg inn i diagramet
-            3. Lag switch case med 100 diagramtyper - Check
-            */
-
     }
 }
