@@ -54,9 +54,17 @@ namespace adminPanel
             return mySqlCommand;
         }
 
+        public MySqlDataAdapter DataAdapter(String query)
+        {
+            var dataAdapter = new MySqlDataAdapter(query, mySqlConnection);
+            return dataAdapter;
+        }
+        
+
         //Metoden åpner tilkoblingen til databasen
         public void OpenConnection()
         {
+            mySqlConnection.Close();
             try
             {
                 mySqlConnection.Open();
