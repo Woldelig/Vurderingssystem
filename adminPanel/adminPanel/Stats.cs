@@ -18,13 +18,17 @@ namespace adminPanel
         {
             InitializeComponent();
         }
-        private static String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
-        MySqlConnection dbConn = new MySqlConnection(connString);
+        //private static String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
+        //MySqlConnection dbConn = new MySqlConnection(connString);
+        Database db = new Database();
 
         private void Stats_Load(object sender, EventArgs e)
         {
-            MySqlCommand cmd = new MySqlCommand("SELECT fagkode FROM fag;", dbConn);
-            dbConn.Open(); //åpne
+            //MySqlCommand cmd = new MySqlCommand("SELECT fagkode FROM fag;", dbConn);
+            //dbConn.Open(); //åpne
+            String query = "SELECT fagkode FROM fag;";
+            var cmd = db.SqlCommand(query);
+            db.OpenConnection();
 
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
@@ -37,7 +41,8 @@ namespace adminPanel
             {
                 fagkodeListeboks.Items.Add(dr["Fagkode"].ToString());
             }
-            dbConn.Close(); //https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
+            //dbConn.Close(); //https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
+            db.CloseConnection();
 
             spmListeboks.Hide();    //Gjemmer listeboksene til vi har data i de
             diagramListeboks.Hide();
@@ -58,7 +63,6 @@ namespace adminPanel
             }
             spmListeboks.Show();
             spmLbl.Show();
-            dbConn.Close();
         }
 
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,8 +83,9 @@ namespace adminPanel
             clearListeboxBtn.Show();
             printBtn.Show();
             lagreChartBtn.Show();
-
             MySqlCommand cmd = new MySqlCommand();
+
+
             switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
             {
                 case 0:
@@ -139,15 +144,17 @@ namespace adminPanel
             cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             //På linjene over blir inn og ut parametere definert. Ut parametere får datatype (int). Og deretter blir parameter retning definert
             //dette kan også gjøres på 2 linjer.
-            
-            dbConn.Open();
+
+            //dbConn.Open();
+            db.OpenConnection();
             cmd.ExecuteNonQuery();
             int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
             int stjerne2 = (int)cmd.Parameters["@out_verdi2"].Value;
             int stjerne3 = (int)cmd.Parameters["@out_verdi3"].Value;
             int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
             int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
-            dbConn.Close();
+            db.CloseConnection();
+            //dbConn.Close();
 
             chart1.Series.Clear();
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
@@ -200,7 +207,8 @@ namespace adminPanel
 
         private void printBtn_Click(object sender, EventArgs e)
         {
-            
+            this.chart1.Printing.PrintPreview();
+            //Åpner en dialog som lar deg printe ut diagrammet med en liten forhåndsvisning
         }
 
         private void lagreChartBtn_Click(object sender, EventArgs e)
