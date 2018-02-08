@@ -18,14 +18,11 @@ namespace adminPanel
         {
             InitializeComponent();
         }
-        //private static String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
-        //MySqlConnection dbConn = new MySqlConnection(connString);
+
         Database db = new Database();
 
         private void Stats_Load(object sender, EventArgs e)
         {
-            //MySqlCommand cmd = new MySqlCommand("SELECT fagkode FROM fag;", dbConn);
-            //dbConn.Open(); //åpne
             String query = "SELECT fagkode FROM fag;";
             var cmd = db.SqlCommand(query);
             db.OpenConnection();
@@ -41,10 +38,10 @@ namespace adminPanel
             {
                 fagkodeListeboks.Items.Add(dr["Fagkode"].ToString());
             }
-            //dbConn.Close(); //https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
+            //https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
             db.CloseConnection();
 
-            spmListeboks.Hide();    //Gjemmer listeboksene til vi har data i de
+            spmListeboks.Hide();    //Gjemmer listeboksene og knapper til de har et bruksområde
             diagramListeboks.Hide();
             chart1.Hide();
             spmLbl.Hide();
@@ -83,13 +80,13 @@ namespace adminPanel
             clearListeboxBtn.Show();
             printBtn.Show();
             lagreChartBtn.Show();
-            MySqlCommand cmd = new MySqlCommand();
 
-
+            var cmd = db.SqlCommand(""); //Lager cmd objektet, sender tomstreng så vi får laget objektet
+            
             switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
             {
                 case 0:
-                    cmd.CommandText = "hent_spm1_verdier";
+                    cmd.CommandText = "hent_spm1_verdier"; //Legger til commandtext i cmd objektet
                     break;
 
                 case 1:
@@ -132,9 +129,7 @@ namespace adminPanel
                     break;
             }
 
-
-            cmd.Connection = dbConn;
-            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
             String fagkode = fagkodeListeboks.SelectedItem.ToString(); //Valgt fagkode blir hentet ut og plassert som inn parameter
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output; 
@@ -144,8 +139,7 @@ namespace adminPanel
             cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             //På linjene over blir inn og ut parametere definert. Ut parametere får datatype (int). Og deretter blir parameter retning definert
             //dette kan også gjøres på 2 linjer.
-
-            //dbConn.Open();
+            
             db.OpenConnection();
             cmd.ExecuteNonQuery();
             int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
@@ -154,7 +148,6 @@ namespace adminPanel
             int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
             int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
             db.CloseConnection();
-            //dbConn.Close();
 
             chart1.Series.Clear();
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
