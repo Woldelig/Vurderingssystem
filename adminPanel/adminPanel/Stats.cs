@@ -44,6 +44,9 @@ namespace adminPanel
             chart1.Hide();
             spmLbl.Hide();
             diagramLbl.Hide();
+            clearListeboxBtn.Hide();
+            printBtn.Hide();
+            lagreChartBtn.Hide();
         }
 
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,6 +76,10 @@ namespace adminPanel
 
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            clearListeboxBtn.Show();
+            printBtn.Show();
+            lagreChartBtn.Show();
+
             MySqlCommand cmd = new MySqlCommand();
             switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
             {
@@ -182,6 +189,54 @@ namespace adminPanel
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+        }
+
+        private void clearListeboxBtn_Click(object sender, EventArgs e)
+        {
+            diagramListeboks.ClearSelected();
+            spmListeboks.ClearSelected();
+        }
+
+        private void printBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void lagreChartBtn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog lagreFilDialog = new SaveFileDialog();
+            lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
+            lagreFilDialog.Title = "Lagre diagram som bilde fil";       
+            lagreFilDialog.FileName = "diagram.png";                    //filnavnet blir diagram.png
+
+            DialogResult dialogResultat = lagreFilDialog.ShowDialog(); 
+            lagreFilDialog.RestoreDirectory = true;
+
+            if (dialogResultat == DialogResult.OK && lagreFilDialog.FileName != "") //Sjekker at dialogen er godkjent og at det er navn på filen
+            {
+                try
+                {
+                    if (lagreFilDialog.CheckPathExists) //Denne kan byttes om til switch hvis vi ønsker flere filtyper
+                    {
+                        if (lagreFilDialog.FilterIndex == 1)    //Indexen starter på 1
+                        {
+                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
+                        }
+                        else if (lagreFilDialog.FilterIndex == 2)
+                        {
+                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Filsti finnes ikke.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
         }
     }
