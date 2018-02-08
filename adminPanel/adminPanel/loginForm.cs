@@ -27,6 +27,52 @@ namespace adminPanel
             Password.ForeColor = Color.FromArgb(52, 52, 52);
         }
 
+        private void Login()
+        {
+            Database db = new Database();//Oppretter database-objekt
+            try
+            {
+
+                db.OpenConnection();
+                string query = "SELECT * FROM formlogin WHERE bruker = @Brukernavn;";
+
+                var mySqlCommand = db.SqlCommand(query);
+
+                mySqlCommand.Parameters.AddWithValue("@Brukernavn", Username.Text);//Hindrer SQLinjection
+
+                MySqlDataReader reader = mySqlCommand.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
+                if (reader.HasRows) //Sjekker om det finnes rader
+                {
+                    while (reader.Read())//Så lenge det er rader igjen så printer vi ut innholdet
+                    {
+                        Console.WriteLine(reader.GetString("bruker"));//Skriver ut brukernavnet
+                        Console.WriteLine(reader.GetString("passord"));//Skriver ut passordet
+                        Console.WriteLine(reader.GetString("brukertype"));//Skriver ut brukertypen
+
+                        //Det er her vi må sjekke det hasha passordet
+                        if (reader.GetString("passord") == Password.Text)
+                        {
+                            UserInfo.Username = reader.GetString("bruker");
+                            DialogResult = DialogResult.OK;
+                            this.Dispose();
+                        }
+                        else
+                        {
+                            HelpText.Text = "Brukernavnet eller passordet er feil!";
+                        }
+                    }
+                }
+                reader.Close();//Stenger MySqlDataReader-objektet
+                db.CloseConnection();//Stenger databasetilgangen
+            }
+            catch (MySqlException DBException)
+            {
+                Console.WriteLine(DBException.ToString());
+                //Under testing og debugging skriver vi til konsollen.
+                //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
+            }
+        }
+
         private void LoginBtn_Click(object sender, EventArgs e)
         {
             //IF-setningen ser har litt ekstra i scopet nå fordi watermark er lagt til. Mulig vi finner en bedre løsning på det
@@ -36,30 +82,7 @@ namespace adminPanel
             }
             else
             {
-                try
-                {
-                    Database db = new Database();//Oppretter database-objekt
-                    db.DBConnect();//Kjører DBConnect-metoden som ligger i Databaseklassen
-                    String brukernavn = Username.Text;
-                    String passord = Password.Text;
-                    if (db.Login(brukernavn, passord))//Sender brukernavn og passord til dummymetoden
-                    {
-                        UserInfo.Username = brukernavn;
-                        this.Dispose();//Stenger loginForm /avslutter når innloggin er vellykket
-                        DialogResult = DialogResult.OK;//Setter innlogging status til 'OK'
-                    }
-                    else
-                    {
-                        HelpText.Text = "Brukernavnet eller passordet er feil!";
-                    }
-                    db.DBClose();//Stenger databasetilgangen
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    //Under testing og debugging skriver vi til konsollen.
-                    //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
-                }
+                Login();
             }
         }
 

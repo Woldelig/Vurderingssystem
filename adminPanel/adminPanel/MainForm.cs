@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,6 +50,7 @@ namespace adminPanel
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
+            UpdateLastLogin();
             Application.Exit();//Avslutter
         }
 
@@ -175,11 +177,13 @@ namespace adminPanel
 
         private void ShutdownBtn_Click(object sender, EventArgs e)
         {
+            UpdateLastLogin();
             Application.Exit();
         }
 
         private void LogOutBtn_Click(object sender, EventArgs e)
         {
+            UpdateLastLogin();
             Application.Restart();
         }
 
@@ -201,6 +205,41 @@ namespace adminPanel
         private void ShutdownBtn_MouseLeave(object sender, EventArgs e)
         {
             ShutdownBtn.ForeColor = Color.Black;
+        }
+
+        //Oppdatere tidsstempelet i databasen
+        private void UpdateLastLogin()
+        {
+            Database db = new Database();
+            db.OpenConnection();
+
+            //Sjekker først om brukeren har en rad i tabellen innloggingshistorikk
+            String sql = "SELECT bruker FROM innloggingshistorikk WHERE bruker = @Brukernavn;";
+            var mySqlCommand = db.SqlCommand(sql);
+            mySqlCommand.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
+            MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
+            //Hvis brukeren finnes gjør vi bare en enkel update med sqlfunksjonen now()
+            if (reader.HasRows)
+            {
+                reader.Close();
+                sql = "UPDATE innloggingshistorikk SET tidsstempel=now() WHERE bruker = @Brukernavn;";
+                mySqlCommand = db.SqlCommand(sql);
+                mySqlCommand.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
+                mySqlCommand.ExecuteNonQuery();
+            }
+
+            //Hvis brukeren ikke finnes gjør vi en insert, samme her så bruker vi funksjonen now()
+            else
+            {
+                reader.Close();
+                sql = "INSERT INTO innloggingshistorikk (bruker, tidsstempel) VALUES (@Brukernavn, now());";
+                mySqlCommand = db.SqlCommand(sql);
+                mySqlCommand.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            reader.Close();
+            db.CloseConnection();
         }
     }
 }
