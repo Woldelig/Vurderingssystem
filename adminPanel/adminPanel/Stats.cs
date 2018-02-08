@@ -49,8 +49,8 @@ namespace adminPanel
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             spmListeboks.Items.Clear();//Fjerner elementer i listeboks. Må gjøres hvis klassekode byttes
-            for (int i = 1; i < 11; i++)//Populerer listeboksen. Øk loopen for flere spørsmål
-            {
+            for (int i = 1; i < 11; i++)//Populerer listeboksen. Øk loopen for flere spørsmål.
+            {                           //Hvis den økes må det lages flere prosedyrer i db og legges til i switchen under
                 spmListeboks.Items.Add("Spørsmål "+i);
             }
             spmListeboks.Show();
