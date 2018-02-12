@@ -105,6 +105,7 @@ namespace adminPanel
                     ((Label)c).Show();
                 }
             }
+            listboksLbl.Hide();
         }
 
         private void endreSkjemaBtn_Click(object sender, EventArgs e)
@@ -142,15 +143,25 @@ namespace adminPanel
             var cmd = db.SqlCommand(query);
             cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
             db.OpenConnection();
-            //MySqlDataReader leser = cmd.ExecuteReader();
-
+            MySqlDataReader leser = cmd.ExecuteReader();
+            /*
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             da.Fill(ds);
-            dt = ds.Tables[0];
-            
+            dt = ds.Tables[0];*/
+            String[] radArray = new String[11];
+            int i = 0;
+            while (leser.Read())
+            {
+                for (; i < 11; i++)
+                {
+                    radArray[i] = Convert.ToString(leser[i]);
+                    //radArray[i] = leser[i].ToString();
+                    Console.WriteLine(radArray[i].ToString());
+                }
+            }
             foreach (var c in Controls)
             {
                 ((TextBox)c).Text = leser[i].ToString();
