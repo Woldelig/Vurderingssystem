@@ -162,10 +162,17 @@ namespace adminPanel
                     Console.WriteLine(radArray[i].ToString());
                 }
             }
-            foreach (var c in Controls)
+            /*
+            beskrivelseTxt.Text = radArray[0];
+            for (int j = 1; j < 10; j++)
             {
-                ((TextBox)c).Text = leser[i].ToString();
-                i++;
+
+            }*/
+            int j = 0;
+            foreach (TextBox c in this.Controls.OfType<TextBox>())
+            {
+                ((TextBox)c).Text = radArray[j].ToString();
+                j++;
             }
             db.CloseConnection();
         }
