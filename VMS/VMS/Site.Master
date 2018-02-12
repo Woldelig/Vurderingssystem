@@ -17,7 +17,7 @@
 
 </head>
 <body>
-    <form runat="server">
+<form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -51,23 +51,22 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Mine fag</a></li>
-                        <li><a runat="server" href="~/MineVurderinger">Mine vurderinger</a></li>
-                        <li><a runat="server" href="~/Hjelp">Hjelp</a></li>
+                        <li><a runat="server" href="~/">Hjem</a></li>
+                        <li><a runat="server" href="~/About">Om oss</a></li>
+                        <li><a runat="server" href="~/Contact">Kontakt oss</a></li>
                     </ul>
-                    <div class="navbar-form navbar-left">
-                        <div class="input-group">
-                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
-                            <!-- <input class="form-control" id="Text1" type="text"> -->
+                    <div class="navbar-form">
+                        <div class="input-group col-xs-4">
+                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server"></asp:TextBox>
                             <div class="input-group-btn">
-                                <asp:LinkButton ID="searchBtn" runat="server" Text="Button" CssClass="btn btn-default">
-                                <!-- <button class="btn btn-default" id="Button1" type="submit"> -->
-                                    <span aria-hidden="true" class="glyphicon glyphicon-search"></span>
-                                </asp:LinkButton>
-                                <!-- </button> -->
+                                <asp:Button CssClass="btn btn-default" ID="Button1" runat="server" Text="Søk" />
                             </div>
                         </div>
                     </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a runat="server" href="~/Signup"><span class="glyphicon glyphicon-user"></span> Registrer</a></li>
+                        <li><a runat="server" href="~/Login"><span class="glyphicon glyphicon-log-in"></span> Logg inn</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -76,7 +75,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Vurderingssystem</p>
             </footer>
         </div>
 
