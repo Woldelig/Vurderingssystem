@@ -21,6 +21,17 @@ namespace adminPanel
 
         private void Schema_Load(object sender, EventArgs e)
         {
+            foreach (var c in Controls) //denne foreachen vil tømme alle textboksene i formen
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Hide();
+                }
+                if (c is Label)
+                {
+                    ((Label)c).Hide();
+                }
+            }
 
         }
 
