@@ -21,8 +21,7 @@ namespace adminPanel
 
         private void sqlBtn_Click(object sender, EventArgs e)
         {
-            String connString = "server=localhost;user=root;database=vurderingssystem;";//OBS OBS! HUSK Å ENDRE DATABSEN!
-            MySqlConnection dbConn = new MySqlConnection(connString);
+            Database db = new Database();
             String sql = sqlTxt.Text;
             String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE" };
             //Ord som vi ikke vil ha i spørringen, store bokstaver siden vi bruker toUpper
@@ -38,15 +37,13 @@ namespace adminPanel
 
             try
             {
-                dbConn.Open();
-
-                MySqlDataAdapter da = new MySqlDataAdapter(sql, dbConn);
+                db.OpenConnection();
+                var da = db.DataAdapter(sql); //Kaller på egenlagd metode som returnerer dataadapter
                 MySqlCommandBuilder sqlBygger = new MySqlCommandBuilder(da);
                 DataSet ds = new DataSet();
-                da.Fill(ds);
-                sqlDatagrid.DataSource = ds.Tables[0];
-
-                dbConn.Close();
+                da.Fill(ds); //Data adapteret fyller på datasetet
+                sqlDatagrid.DataSource = ds.Tables[0]; //Datasetet fyller på datagriden
+                db.CloseConnection();
             }
             catch (Exception ex)
             {
