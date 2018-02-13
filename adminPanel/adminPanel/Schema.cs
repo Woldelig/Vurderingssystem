@@ -23,17 +23,7 @@ namespace adminPanel
         {
             lagreSkjemaBtn.Hide();
             skjemaListeboks.Hide();
-            foreach (var c in Controls) //denne foreachen vil gjemme all labels og textbokser for brukeren
-            {
-                if (c is TextBox)
-                {
-                    ((TextBox)c).Hide();
-                }
-                if (c is Label)
-                {
-                    ((Label)c).Hide();
-                }
-            }
+            GjemController(); //Gjemmer unna alle textbokser og labels
 
         }
 
@@ -125,6 +115,20 @@ namespace adminPanel
             }
             db.CloseConnection();
         }
+        private void GjemController() {
+            foreach (var c in Controls) //denne foreachen vil gjemme all labels og textbokser for brukeren
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Hide();
+                }
+                if (c is Label)
+                {
+                    ((Label)c).Hide();
+                }
+            }
+        }
+
         private void HvisController()
         {
             foreach (var c in Controls) //denne foreachen vil vise alle kontrollerne
