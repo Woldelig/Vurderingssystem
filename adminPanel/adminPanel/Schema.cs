@@ -40,19 +40,7 @@ namespace adminPanel
         private void lagSkjemaBtn_Click(object sender, EventArgs e)
         {
 
-            foreach (Control c in this.Controls) //Denne foreachen sjekker om samtlige tekstbokser er fylt ut. Og avbryter koden hvis ikke
-            {
-                if (c is TextBox)
-                {
-                    TextBox textBox = c as TextBox;
-                    if (textBox.Text == string.Empty)
-                    {
-                        resultatLbl.ForeColor = Color.Red;
-                        resultatLbl.Text = "Fyll ut alle tekstfelt.";
-                        return;
-                    }
-                }
-            }
+            SjekkTextboksVerdi();
             String query = "INSERT INTO vurderingsskjema VALUES (NULL, @Beskrivelse, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
             var mySqlCommand = db.SqlCommand(query);
             mySqlCommand.Parameters.AddWithValue("@Beskrivelse", beskrivelseTxt.Text);
@@ -72,14 +60,7 @@ namespace adminPanel
             {
                 mySqlCommand.ExecuteNonQuery();
                 resultatLbl.Text = "Spørreskjema er laget";
-
-                foreach (var c in Controls) //denne foreachen vil tømme alle textboksene i formen
-                {
-                    if (c is TextBox)
-                    {
-                        ((TextBox)c).Text = String.Empty;
-                    }
-                }
+                ClearTextbox();//tømmer textbokser
             }
             catch (Exception ex)
             {
@@ -94,17 +75,7 @@ namespace adminPanel
         private void lagNyttSkjema_Click(object sender, EventArgs e)
         {
             lagreSkjemaBtn.Show();
-            foreach (var c in Controls) //denne foreachen vil vise alle kontrollerne
-            {
-                if (c is TextBox)
-                {
-                    ((TextBox)c).Show();
-                }
-                if (c is Label)
-                {
-                    ((Label)c).Show();
-                }
-            }
+            HvisController();
             listboksLbl.Hide();
         }
 
@@ -126,17 +97,7 @@ namespace adminPanel
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             lagreSkjemaBtn.Show();
-            foreach (var c in Controls) //denne foreachen vil vise alle kontrollerne
-            {
-                if (c is TextBox)
-                {
-                    ((TextBox)c).Show();
-                }
-                if (c is Label)
-                {
-                    ((Label)c).Show();
-                }
-            }
+            HvisController();
             listboksLbl.Hide();
             skjemaListeboks.Hide();
             String query = "SELECT beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE beskrivelse = @Beskrivelse";
@@ -144,13 +105,6 @@ namespace adminPanel
             cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
-            /*
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmd;
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            da.Fill(ds);
-            dt = ds.Tables[0];*/
             String[] radArray = new String[11];
             int i = 0;
             while (leser.Read())
@@ -162,12 +116,7 @@ namespace adminPanel
                     Console.WriteLine(radArray[i].ToString());
                 }
             }
-            /*
-            beskrivelseTxt.Text = radArray[0];
-            for (int j = 1; j < 10; j++)
-            {
 
-            }*/
             int j = 0;
             foreach (TextBox c in this.Controls.OfType<TextBox>())
             {
@@ -175,6 +124,47 @@ namespace adminPanel
                 j++;
             }
             db.CloseConnection();
+        }
+        private void HvisController()
+        {
+            foreach (var c in Controls) //denne foreachen vil vise alle kontrollerne
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Show();
+                }
+                if (c is Label)
+                {
+                    ((Label)c).Show();
+                }
+            }
+        }
+        private void ClearTextbox()
+        {
+            foreach (var c in Controls) //denne foreachen vil tømme alle textboksene i formen
+            {
+                if (c is TextBox)
+                {
+                    ((TextBox)c).Text = String.Empty;
+                }
+            }
+        }
+
+        private void SjekkTextboksVerdi()
+        {
+            foreach (Control c in this.Controls) //Denne foreachen sjekker om samtlige tekstbokser er fylt ut. Og avbryter koden hvis ikke
+            {
+                if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == string.Empty)
+                    {
+                        resultatLbl.ForeColor = Color.Red;
+                        resultatLbl.Text = "Fyll ut alle tekstfelt.";
+                        return;
+                    }
+                }
+            }
         }
     }
 }
