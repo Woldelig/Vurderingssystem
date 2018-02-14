@@ -24,7 +24,6 @@ namespace adminPanel
             lagreSkjemaBtn.Hide();
             skjemaListeboks.Hide();
             GjemController(); //Gjemmer unna alle textbokser og labels
-
         }
 
         private void lagSkjemaBtn_Click(object sender, EventArgs e)
@@ -95,22 +94,11 @@ namespace adminPanel
             cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
-            String[] radArray = new String[11];
-            int i = 0;
-            while (leser.Read())
-            {
-                for (; i < 11; i++)
-                {
-                    radArray[i] = Convert.ToString(leser[i]);
-                    //radArray[i] = leser[i].ToString();
-                    Console.WriteLine(radArray[i].ToString());
-                }
-            }
-
             int j = 0;
             foreach (TextBox c in this.Controls.OfType<TextBox>())
             {
-                ((TextBox)c).Text = radArray[j].ToString();
+                leser.Read();
+                ((TextBox)c).Text = leser[j].ToString();
                 j++;
             }
             db.CloseConnection();
