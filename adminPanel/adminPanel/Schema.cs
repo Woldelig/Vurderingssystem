@@ -96,17 +96,17 @@ namespace adminPanel
 
         private void EndreSkjemaBtn_Click(object sender, EventArgs e)
         {
+            skjemaListeboks.Items.Clear();
             nyttSkjema = false;
             listboksLbl.Show();
             skjemaListeboks.Show();
-            String query = "SELECT beskrivelse, skjemaid FROM vurderingsskjema;";
+            String query = "SELECT beskrivelse FROM vurderingsskjema;";
             db.OpenConnection();
             var cmd = db.SqlCommand(query);
             MySqlDataReader leser = cmd.ExecuteReader();
             while (leser.Read())
             {
                 skjemaListeboks.Items.Add(leser["Beskrivelse"].ToString());
-                valgtSkjemaId = leser[1].ToString();
             }
             db.CloseConnection();
         }
@@ -117,20 +117,42 @@ namespace adminPanel
             HvisController();
             listboksLbl.Hide();
             skjemaListeboks.Hide();
-            String query = "SELECT beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE beskrivelse = @Beskrivelse";
-            var cmd = db.SqlCommand(query);
-            cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
-            db.OpenConnection();
-            MySqlDataReader leser = cmd.ExecuteReader();
-            int j = 10; 
-            //Må sette j til 10 og ha j-- fordi foreach fylte opp boksene omvendt av hva man forventer
-            foreach (TextBox c in this.Controls.OfType<TextBox>()) //this.Controls.OfType vil gjøre at vi kun foreacher textboksene innenfor THIS
+            try
             {
-                leser.Read();
-                ((TextBox)c).Text = leser[j].ToString();
-                j--;
+                String skjemaIdQuery = "SELECT skjemaid FROM vurderingsskjema WHERE beskrivelse = @Beskrivelse;";
+                var cmdSkjemaId = db.SqlCommand(skjemaIdQuery);
+                cmdSkjemaId.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
+                db.OpenConnection();
+                MySqlDataReader skjemaIdleser = cmdSkjemaId.ExecuteReader();
+                while (skjemaIdleser.Read())
+                {
+                    valgtSkjemaId = skjemaIdleser[0].ToString();
+
+                }
+                Console.WriteLine(valgtSkjemaId);
+                db.CloseConnection();
+
+                String query = "SELECT beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE beskrivelse = @Beskrivelse";
+                var cmd = db.SqlCommand(query);
+                cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
+                db.OpenConnection();
+                MySqlDataReader leser = cmd.ExecuteReader();
+                Console.WriteLine(valgtSkjemaId);
+                int j = 10;
+                //Må sette j til 10 og ha j-- fordi foreach fylte opp boksene omvendt av hva man forventer
+                foreach (TextBox c in this.Controls.OfType<TextBox>()) //this.Controls.OfType vil gjøre at vi kun foreacher textboksene innenfor THIS
+                {
+                    leser.Read();
+                    ((TextBox)c).Text = leser[j].ToString();
+                    j--;
+                }
+                db.CloseConnection();
             }
-            db.CloseConnection();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
         }
         private void GjemController() {
             foreach (var c in Controls) //denne foreachen vil gjemme all labels og textbokser for brukeren
