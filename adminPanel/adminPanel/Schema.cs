@@ -18,6 +18,8 @@ namespace adminPanel
             InitializeComponent();
         }
         Database db = new Database();
+        bool nyttSkjema = false;
+        String valgtSkjemaId = "";
 
         private void Schema_Load(object sender, EventArgs e)
         {
@@ -28,10 +30,23 @@ namespace adminPanel
 
         private void lagSkjemaBtn_Click(object sender, EventArgs e)
         {
-
+            String query = "";
             SjekkTextboksVerdi();
-            String query = "INSERT INTO vurderingsskjema VALUES (NULL, @Beskrivelse, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
+            if (nyttSkjema)
+            {
+                query = "INSERT INTO vurderingsskjema VALUES (NULL, @Beskrivelse, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
+            }
+            else
+            {
+                query = "UPDATE vurderingsskjema SET beskrivelse = @Beskrivelse, spm1 = @Spm1, spm2 = @Spm2, spm3 = @Spm3, spm4 = @Spm4, spm5 = @Spm5, spm6 = @Spm6, spm7 = @Spm7, spm8 = @Spm8, spm9 = @Spm9, spm10 = @Spm10 WHERE skjemaid = @Skjemaid";
+            }
+             
             var mySqlCommand = db.SqlCommand(query);
+            if (!nyttSkjema)
+            {
+                Console.WriteLine(valgtSkjemaId);
+                mySqlCommand.Parameters.AddWithValue("@Skjemaid", valgtSkjemaId);
+            }
             mySqlCommand.Parameters.AddWithValue("@Beskrivelse", beskrivelseTxt.Text);
             mySqlCommand.Parameters.AddWithValue("@Spm1", spm1Txt.Text);
             mySqlCommand.Parameters.AddWithValue("@Spm2", spm2Txt.Text);
@@ -48,7 +63,16 @@ namespace adminPanel
             try
             {
                 mySqlCommand.ExecuteNonQuery();
-                resultatLbl.Text = "Spørreskjema er laget";
+                if (nyttSkjema)
+                {
+                    resultatLbl.Text = "Spørreskjema er laget.";
+
+                }
+                else
+                {
+                    resultatLbl.Text = "Spørreskjema er endret.";
+
+                }
                 ClearTextbox();//tømmer textbokser
             }
             catch (Exception ex)
@@ -63,6 +87,8 @@ namespace adminPanel
 
         private void lagNyttSkjema_Click(object sender, EventArgs e)
         {
+            nyttSkjema = true;
+            ClearTextbox();
             lagreSkjemaBtn.Show();
             HvisController();
             listboksLbl.Hide();
@@ -70,15 +96,17 @@ namespace adminPanel
 
         private void endreSkjemaBtn_Click(object sender, EventArgs e)
         {
+            nyttSkjema = false;
             listboksLbl.Show();
             skjemaListeboks.Show();
-            String query = "SELECT beskrivelse FROM vurderingsskjema;";
+            String query = "SELECT beskrivelse, skjemaid FROM vurderingsskjema;";
             db.OpenConnection();
             var cmd = db.SqlCommand(query);
             MySqlDataReader leser = cmd.ExecuteReader();
             while (leser.Read())
             {
                 skjemaListeboks.Items.Add(leser["Beskrivelse"].ToString());
+                valgtSkjemaId = leser[1].ToString();
             }
             db.CloseConnection();
         }
@@ -94,12 +122,13 @@ namespace adminPanel
             cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
-            int j = 0;
-            foreach (TextBox c in this.Controls.OfType<TextBox>())
+            int j = 10; 
+            //Må sette j til 10 og ha j-- fordi foreach fylte opp boksene omvendt av hva man forventer
+            foreach (TextBox c in this.Controls.OfType<TextBox>()) //this.Controls.OfType vil gjøre at vi kun foreacher textboksene innenfor THIS
             {
                 leser.Read();
                 ((TextBox)c).Text = leser[j].ToString();
-                j++;
+                j--;
             }
             db.CloseConnection();
         }
