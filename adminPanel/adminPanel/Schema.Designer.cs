@@ -268,7 +268,7 @@
             this.lagreSkjemaBtn.TabIndex = 25;
             this.lagreSkjemaBtn.Text = "Lagre spørreskjema";
             this.lagreSkjemaBtn.UseVisualStyleBackColor = false;
-            this.lagreSkjemaBtn.Click += new System.EventHandler(this.lagSkjemaBtn_Click);
+            this.lagreSkjemaBtn.Click += new System.EventHandler(this.LagSkjemaBtn_Click);
             // 
             // resultatLbl
             // 
@@ -290,7 +290,7 @@
             this.lagNyttSkjemaBtn.TabIndex = 27;
             this.lagNyttSkjemaBtn.Text = "Lag nytt skjema";
             this.lagNyttSkjemaBtn.UseVisualStyleBackColor = false;
-            this.lagNyttSkjemaBtn.Click += new System.EventHandler(this.lagNyttSkjema_Click);
+            this.lagNyttSkjemaBtn.Click += new System.EventHandler(this.LagNyttSkjema_Click);
             // 
             // endreSkjemaBtn
             // 
@@ -302,7 +302,7 @@
             this.endreSkjemaBtn.TabIndex = 28;
             this.endreSkjemaBtn.Text = "Endre eksisterende skjema";
             this.endreSkjemaBtn.UseVisualStyleBackColor = false;
-            this.endreSkjemaBtn.Click += new System.EventHandler(this.endreSkjemaBtn_Click);
+            this.endreSkjemaBtn.Click += new System.EventHandler(this.EndreSkjemaBtn_Click);
             // 
             // skjemaListeboks
             // 
@@ -312,7 +312,7 @@
             this.skjemaListeboks.Name = "skjemaListeboks";
             this.skjemaListeboks.Size = new System.Drawing.Size(316, 84);
             this.skjemaListeboks.TabIndex = 29;
-            this.skjemaListeboks.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.skjemaListeboks.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // listboksLbl
             // 

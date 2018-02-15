@@ -18,7 +18,7 @@ namespace adminPanel
             InitializeComponent();
         }
         Database db = new Database();
-        bool nyttSkjema = false;
+        bool nyttSkjema = false; //bool variabel jeg bruker i forgrenningssjekk for å se om det er et nytt skjema eller et som endres
         String valgtSkjemaId = "";
 
         private void Schema_Load(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace adminPanel
             GjemController(); //Gjemmer unna alle textbokser og labels
         }
 
-        private void lagSkjemaBtn_Click(object sender, EventArgs e)
+        private void LagSkjemaBtn_Click(object sender, EventArgs e)
         {
             String query = "";
             SjekkTextboksVerdi();
@@ -42,7 +42,7 @@ namespace adminPanel
             }
              
             var mySqlCommand = db.SqlCommand(query);
-            if (!nyttSkjema)
+            if (!nyttSkjema) //Hvis skjema endres må jeg ha valgtSkjemaId som parameter i tillegg
             {
                 Console.WriteLine(valgtSkjemaId);
                 mySqlCommand.Parameters.AddWithValue("@Skjemaid", valgtSkjemaId);
@@ -80,12 +80,12 @@ namespace adminPanel
                 Console.WriteLine(ex);
 
             }
-            Console.WriteLine(query);
+            //Console.WriteLine(query); //Denne linjen kan brukes til å sjekke queryen som blir sendt ut
             db.CloseConnection();
 
         }
 
-        private void lagNyttSkjema_Click(object sender, EventArgs e)
+        private void LagNyttSkjema_Click(object sender, EventArgs e)
         {
             nyttSkjema = true;
             ClearTextbox();
@@ -94,7 +94,7 @@ namespace adminPanel
             listboksLbl.Hide();
         }
 
-        private void endreSkjemaBtn_Click(object sender, EventArgs e)
+        private void EndreSkjemaBtn_Click(object sender, EventArgs e)
         {
             nyttSkjema = false;
             listboksLbl.Show();
@@ -111,7 +111,7 @@ namespace adminPanel
             db.CloseConnection();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             lagreSkjemaBtn.Show();
             HvisController();
