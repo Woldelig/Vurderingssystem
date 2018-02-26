@@ -30,7 +30,7 @@
         {
             this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.MyCoursesPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.InfoPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // MyCoursesHeader
@@ -52,23 +52,19 @@
             this.MyCoursesPanel.Size = new System.Drawing.Size(435, 500);
             this.MyCoursesPanel.TabIndex = 1;
             // 
-            // button1
+            // InfoPanel
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(747, 257);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.InfoPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.InfoPanel.Location = new System.Drawing.Point(518, 85);
+            this.InfoPanel.Name = "InfoPanel";
+            this.InfoPanel.Size = new System.Drawing.Size(435, 500);
+            this.InfoPanel.TabIndex = 2;
             // 
             // MyCourses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.InfoPanel);
             this.Controls.Add(this.MyCoursesPanel);
             this.Controls.Add(this.MyCoursesHeader);
             this.Name = "MyCourses";
@@ -82,6 +78,6 @@
 
         private System.Windows.Forms.Label MyCoursesHeader;
         private System.Windows.Forms.Panel MyCoursesPanel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel InfoPanel;
     }
 }
