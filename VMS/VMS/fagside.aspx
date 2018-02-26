@@ -19,7 +19,7 @@
     <br />
     <div class="Row">
         <div class="col-md-4"><asp:Label ID="foreleserLbl" runat="server" Text="Foreleser: Vetle Haugan"></asp:Label></div>
-        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4"><asp:Label ID="kvalitetLbl" runat="server" Text="Forelesningskvalitet:"></asp:Label></div>
         <div class="col-md-4">[RATING]</div>
     </div>
     <br />
@@ -27,7 +27,7 @@
     <br />
     <div class="Row">
         <div class="col-md-4"><asp:Label ID="studieLbl" runat="server" Text="Studie: It og informasjonssystemer"></asp:Label></div>
-        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4"><asp:Label ID="vasnkelighetsgradLbl" runat="server" Text="Vanskelighetsgrad:"></asp:Label></div>
         <div class="col-md-4">[RATING]</div>
     </div>
     <br />

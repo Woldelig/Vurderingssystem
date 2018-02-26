@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MySql.Data.MySqlClient;
 
 namespace VMS
 {
@@ -11,7 +12,7 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Database db = new Database();
         }
     }
 }
