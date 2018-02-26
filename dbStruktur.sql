@@ -20,13 +20,13 @@ CREATE TABLE fag(
 );
 
 CREATE TABLE student(
-    studentid INT(10) PRIMARY KEY,
+    studentid INT(10) PRIMARY KEY AUTO_INCREMENT,
     studieretning VARCHAR(128),
     FOREIGN KEY (studieretning) REFERENCES studier(studieretning)
 );
 
 CREATE TABLE vurderingsskjema (
-    skjemaid INT(4) PRIMARY KEY,
+    skjemaid INT(4) PRIMARY KEY AUTO_INCREMENT,
     beskrivelse VARCHAR(128),
     spm1 VARCHAR(128),
     spm2 VARCHAR(128),
@@ -91,8 +91,8 @@ INSERT INTO student(studentid, studieretning) VALUES (001, 'It og Informasjonssy
 (003, 'Regnskapsfører'), (004, 'Regnskapsfører'), (005, 'Dataingeniør'),
 (006, 'Dataingeniør');
 
-INSERT INTO vurderingsskjema(skjemaid, beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (1, 'Spørreskjema for databasefag', 'spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'), (2, 'Spørreskjema for dataingeiør','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'),
-(3, 'Spørreskjema for Markedsføringsledelse','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10');
+INSERT INTO vurderingsskjema(beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES ('Spørreskjema for databasefag', 'spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'), ('Spørreskjema for dataingeiør','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'),
+('Spørreskjema for Markedsføringsledelse','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10');
 
 INSERT INTO vurderingshistorikk (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (2, 006, 'OBJ2100', 1, 4, 3, 4, 3, 5, 1, 2, 1, 4), (2, 005, 'OBJ2100', 3, 5, 1, 2, 4, 2, 3, 4, 5, 4);
 
