@@ -51,9 +51,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Hjem</a></li>
-                        <li><a runat="server" href="~/About">Om oss</a></li>
-                        <li><a runat="server" href="~/Contact">Kontakt oss</a></li>
+                        <li><a runat="server" href="~/MineFag">Mine fag</a></li>
+                        <li><a runat="server" href="~/MineVurderinger">Mine vurderinger</a></li>
                     </ul>
                     <div class="navbar-form">
                         <div class="input-group col-xs-4">
@@ -80,7 +79,6 @@
         </div>
 
     </form>
-    <p>
-        &nbsp;</p>
+    <p>&nbsp;</p>
 </body>
 </html>
