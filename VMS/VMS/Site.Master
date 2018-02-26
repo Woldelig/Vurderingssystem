@@ -62,10 +62,6 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~/Signup"><span class="glyphicon glyphicon-user"></span> Registrer</a></li>
-                        <li><a runat="server" href="~/Login"><span class="glyphicon glyphicon-log-in"></span> Logg inn</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
