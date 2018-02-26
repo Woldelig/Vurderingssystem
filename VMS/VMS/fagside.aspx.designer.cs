@@ -31,13 +31,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label fagnavnLbl;
         
         /// <summary>
-        /// Label1 control.
+        /// pensumLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label pensumLbl;
         
         /// <summary>
         /// foreleserLbl control.

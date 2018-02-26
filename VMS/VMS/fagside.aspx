@@ -6,34 +6,38 @@
         <br />
     </p>
     <asp:Label ID="fagkodeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="fagkode"></asp:Label>
+    <br />
+    <br />
+    <br />
     <div class="Row">
-        <div class="col-md-4">[KODE]</div>
-        <div class="col-md-4">[KODE]</div>
-        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4"><asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="pensumLbl" runat="server" Text="Pensum:"></asp:Label></div>
+        <div class="col-md-4">[RATING]</div>
     </div>
-    <p>
-        
-    </p>
-    <p>
-        <asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label>
-        <asp:Label ID="Label1" runat="server" Text="Label" float="right"></asp:Label>
-    </p>
-    <p>
-        <asp:Label ID="foreleserLbl" runat="server" Text="Foreleser"></asp:Label>
-    </p>
-    <p>
-        <asp:Label ID="studieLbl" runat="server" Text="studieretning"></asp:Label>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-        <asp:Label ID="forkursLbl" runat="server" Text="forkurs"></asp:Label>
-    </p>
-    <p>
-    </p>
-    <p>
+    <br />
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-4"><asp:Label ID="foreleserLbl" runat="server" Text="Foreleser: Vetle Haugan"></asp:Label></div>
+        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4">[RATING]</div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-4"><asp:Label ID="studieLbl" runat="server" Text="Studie: It og informasjonssystemer"></asp:Label></div>
+        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4">[RATING]</div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-4"><asp:Label ID="forkursLbl" runat="server" Text="Forkurs: Prg1000"></asp:Label></div>
+        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4">[RATING]</div>
+    </div>
         <asp:Chart ID="Chart1" runat="server">
             <Series>
                 <asp:Series ChartType="Pie" Name="Series1">
@@ -44,5 +48,4 @@
                 </asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
-    </p>
 </asp:Content>
