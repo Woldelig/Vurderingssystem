@@ -12,9 +12,8 @@
         <asp:Label ID="fagkodeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="fagkode"></asp:Label>
     </p>
     <p>
-        <asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label><div style="text-align: center">
+        <asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label>
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-        </div>
     </p>
     <p>
         <asp:Label ID="foreleserLbl" runat="server" Text="Foreleser"></asp:Label>
