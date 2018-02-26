@@ -5,15 +5,18 @@
     <p>
         <br />
     </p>
+    <asp:Label ID="fagkodeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="fagkode"></asp:Label>
+    <div class="Row">
+        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4">[KODE]</div>
+        <div class="col-md-4">[KODE]</div>
+    </div>
     <p>
-        &nbsp;
-    </p>
-    <p>
-        <asp:Label ID="fagkodeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="fagkode"></asp:Label>
+        
     </p>
     <p>
         <asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label>
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Label" float="right"></asp:Label>
     </p>
     <p>
         <asp:Label ID="foreleserLbl" runat="server" Text="Foreleser"></asp:Label>
