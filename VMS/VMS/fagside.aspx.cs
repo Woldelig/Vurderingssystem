@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 namespace VMS
 {
-    public partial class fagside : System.Web.UI.Page
+    public partial class Fagside : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class fagside {
+    public partial class Fagside {
         
         /// <summary>
         /// fagkodeLbl control.

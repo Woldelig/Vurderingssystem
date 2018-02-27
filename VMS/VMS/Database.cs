@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
-namespace adminPanel
+namespace VMS
 {
     class Database
     {
