@@ -19,7 +19,7 @@ namespace VMS
              */
 
             Database db = new Database();
-            String foreleserId; //Denne trenger vi for å få informasjon om foreleser
+            int foreleserId; //Denne trenger vi for å få informasjon om foreleser
 
             String fagkodeQuery = "SELECT * FROM fag WHERE fagkode = @SidensFagkode";
             var cmd1 = db.SqlCommand(fagkodeQuery);
@@ -28,14 +28,14 @@ namespace VMS
             db.OpenConnection();
             MySqlDataReader leser = cmd1.ExecuteReader();
             leser.Read();
-            foreleserId = leser[2].ToString(); //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere
+            foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
             studieretningLbl.Text = "Studieretning: " + leser[3].ToString();
             leser.Close();
             db.CloseConnection();
 
-            String foreleserQuery = "SELECT fornavn, etternavn WHERE foreleserid = @ForeleserId";
+            String foreleserQuery = "SELECT fornavn, etternavn FROM foreleser WHERE foreleserid = @ForeleserId";
             var cmd2 = db.SqlCommand(foreleserQuery);
             cmd2.Parameters.AddWithValue("@ForeleserId", foreleserId);
 

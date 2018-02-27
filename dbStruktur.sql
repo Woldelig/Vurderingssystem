@@ -15,6 +15,7 @@ CREATE TABLE fag(
     fagnavn VARCHAR(128) NOT NULL,
     foreleserid INT(4),
     studieretning VARCHAR (128),
+    forkurs VARCHAR (128),
     FOREIGN KEY (foreleserid) REFERENCES foreleser(foreleserid),
     FOREIGN KEY (studieretning) REFERENCES studier(studieretning)
 );
