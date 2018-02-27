@@ -25,13 +25,17 @@ namespace VMS
             var cmd1 = db.SqlCommand(fagkodeQuery);
             cmd1.Parameters.AddWithValue("@SidensFagkode", sidensFagkode);
 
+
+            //Under hentes data ut fra databasen og blir lagt inn i labels
             db.OpenConnection();
             MySqlDataReader leser = cmd1.ExecuteReader();
             leser.Read();
-            foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere
+            foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere. Samtidig som verdien blir castet til int
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
             studieretningLbl.Text = "Studieretning: " + leser[3].ToString();
+            if (leser[4] == null){ forkursLbl.Text = "Forkurs: " + leser[4].ToString();} else { forkursLbl.Text = ""; }
+            //Linjen over sjekker om det finnes forkurs. Hvis det finnes settes det inn i label, hvis ikke forblir labelen tom
             leser.Close();
             db.CloseConnection();
 
@@ -42,7 +46,7 @@ namespace VMS
             db.OpenConnection();
             leser = cmd2.ExecuteReader();
             leser.Read();
-            String foreleserNavn = leser[0].ToString() + " " + leser[1].ToString();
+            String foreleserNavn = leser[0].ToString() + " " + leser[1].ToString(); //Setter sammen fornavn og etternavn fra databasen
             leser.Close();
             db.CloseConnection();
             foreleserLbl.Text = "Foreleser: " + foreleserNavn;
