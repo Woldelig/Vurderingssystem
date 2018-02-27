@@ -92,7 +92,7 @@ INSERT INTO student(studentid, studieretning) VALUES (001, 'It og Informasjonssy
 (003, 'Regnskapsfører'), (004, 'Regnskapsfører'), (005, 'Dataingeniør'),
 (006, 'Dataingeniør');
 
-INSERT INTO vurderingsskjema(beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES ('Spørreskjema for databasefag', 'spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'), ('Spørreskjema for dataingeiør','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'),
+INSERT INTO vurderingsskjema(beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES ('Spørreskjema for databasefag', 'Syntes du pensum var for vanskelig?', 'Stemte pensum overens med emneplanen?','Stemte oppgavene overens med hva du har lært?','Var faget vanskelig?','spm5','spm6','spm7','spm8','spm9','spm10'), ('Spørreskjema for dataingeiør','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10'),
 ('Spørreskjema for Markedsføringsledelse','spm1', 'spm2','spm3','spm4','spm5','spm6','spm7','spm8','spm9','spm10');
 
 INSERT INTO vurderingshistorikk (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (2, 006, 'OBJ2100', 1, 4, 3, 4, 3, 5, 1, 2, 1, 4), (2, 005, 'OBJ2100', 3, 5, 1, 2, 4, 2, 3, 4, 5, 4);
