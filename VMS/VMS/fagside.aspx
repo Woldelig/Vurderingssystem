@@ -26,7 +26,7 @@
     <br />
     <br />
     <div class="Row">
-        <div class="col-md-4"><asp:Label ID="studieLbl" runat="server" Text="Studie: It og informasjonssystemer"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="studieretningLbl" runat="server" Text="Studie: It og informasjonssystemer"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="vasnkelighetsgradLbl" runat="server" Text="Vanskelighetsgrad:"></asp:Label></div>
         <div class="col-md-4">[RATING]</div>
     </div>
