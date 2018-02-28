@@ -38,7 +38,7 @@
         <div class="col-md-4">[KODE]</div>
         <div class="col-md-4">[RATING]</div>
     </div>
-        <asp:Chart ID="Chart1" runat="server">
+        <asp:Chart ID="diagram" runat="server" Height="400px" Width="400px">
             <Series>
                 <asp:Series ChartType="Pie" Name="Series1">
                 </asp:Series>

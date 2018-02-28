@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace VMS
 {
@@ -51,10 +52,25 @@ namespace VMS
             db.CloseConnection();
             foreleserLbl.Text = "Foreleser: " + foreleserNavn;
 
+            String diagramTittel = "Var faget vanskelig?"; //diagramets tittel
+            String seriesname = "seriesName";
+            diagram.Series.Clear();
+            diagram.Legends.Clear();
+            diagram.Series.Add(seriesname);
+            diagram.Series[seriesname].ChartType = SeriesChartType.Pie;
+            Title tittel = diagram.Titles.Add(diagramTittel);
+            tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold); //Her setter vi skrifttype ol.
+
+            int[] prosedyrSvar = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
+            diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyrSvar[1]);
+            diagram.Series[seriesname].Points.AddXY("Litt missfornøyd", prosedyrSvar[2]);
+            diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyrSvar[3]);
+            diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyrSvar[4]);
+            diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyrSvar[5]);
 
 
         }
-        private int[] ProsedyreKaller (String prosedyrenr, String fagkode, int spmnr)
+        private int[] ProsedyreKaller (String prosedyreNavn, String fagkode, int spmnr)
         {
             //Denne metoden kaller på prosedyrer så vi får telling over alle verdier
             //derfor trenger vi fagkode, prosedyrenr og spmnr som et parameter, man 
@@ -62,6 +78,8 @@ namespace VMS
             //Posisjon 0 i arrayet vil innehold antall svar per spm
 
             var cmd = db.SqlCommand("");
+            cmd.CommandText = prosedyreNavn; //prosedyrenavn må være helt likt som i db
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
@@ -86,18 +104,17 @@ namespace VMS
             //gjennomsnittsverdien til vært enkelt spm
 
             cmd = db.SqlCommand(telleProsedyreNavn);
+            cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@in_spmnr", spmnr).Direction = ParameterDirection.Input;
-            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
 
             db.OpenConnection();
-            cmd.ExecuteNonQuery();
-            int totaltAntallSvar = (int)cmd.Parameters["@out_verdi"].Value;
+            int totaltAntallSvar = cmd.ExecuteNonQuery();
             db.CloseConnection();
             
             int[] rating = new int[] { totaltAntallSvar, stjerne1, stjerne2, stjerne3, stjerne4, stjerne5 };
 
-            return rating[];
+            return rating;
         }
     }
 }
