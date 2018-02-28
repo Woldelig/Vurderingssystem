@@ -54,8 +54,13 @@ namespace VMS
 
 
         }
-        private int[] ProsedyreKaller (String prosedyrenr, String fagkode)
+        private int[] ProsedyreKaller (String prosedyrenr, String fagkode, int spmnr)
         {
+            //Denne metoden kaller på prosedyrer så vi får telling over alle verdier
+            //derfor trenger vi fagkode, prosedyrenr og spmnr som et parameter, man 
+            //vil få tilbake et int array som resultat etter å ha kalt på metoden
+            //Posisjon 0 i arrayet vil innehold antall svar per spm
+
             var cmd = db.SqlCommand("");
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
@@ -73,7 +78,24 @@ namespace VMS
             int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
             db.CloseConnection();
 
-            int[] rating = new int[] { stjerne1, stjerne2, stjerne3, stjerne4, stjerne5 };
+
+
+            String telleProsedyreNavn = "telle_svar_skjemaer";
+            //Denne prosedyren teller opp antall svar som har kommet per fagkode og spm
+            //dette tallet kan vi dele på den totale summen vi får senere for å finne ut
+            //gjennomsnittsverdien til vært enkelt spm
+
+            cmd = db.SqlCommand(telleProsedyreNavn);
+            cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@in_spmnr", spmnr).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+
+            db.OpenConnection();
+            cmd.ExecuteNonQuery();
+            int totaltAntallSvar = (int)cmd.Parameters["@out_verdi"].Value;
+            db.CloseConnection();
+            
+            int[] rating = new int[] { totaltAntallSvar, stjerne1, stjerne2, stjerne3, stjerne4, stjerne5 };
 
             return rating[];
         }
