@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,25 +11,24 @@ namespace VMS
 {
     public partial class Fagside : System.Web.UI.Page
     {
+        Database db = new Database();
+        private String sidensFagkode = "OBJ2100";
+        /*
+         * Denne variabelen skal bestemme hva fagsiden handler om. Planen er at man kun skal trenge å 
+         * bytte ut denne variabelen så vil all info byttes ut dynamisk
+         */
         protected void Page_Load(object sender, EventArgs e)
         {
-            String sidensFagkode = "OBJ2100";
-            /*
-             * Denne variabelen skal bestemme hva fagsiden handler om. Planen er at man kun skal trenge å 
-             * bytte ut denne variabelen så vil all info byttes ut dynamisk
-             */
-
-            Database db = new Database();
             int foreleserId; //Denne trenger vi for å få informasjon om foreleser
 
-            String fagkodeQuery = "SELECT * FROM fag WHERE fagkode = @SidensFagkode";
-            var cmd1 = db.SqlCommand(fagkodeQuery);
-            cmd1.Parameters.AddWithValue("@SidensFagkode", sidensFagkode);
+            String query = "SELECT * FROM fag WHERE fagkode = @SidensFagkode";
+            var cmd = db.SqlCommand(query);
+            cmd.Parameters.AddWithValue("@SidensFagkode", sidensFagkode);
 
 
             //Under hentes data ut fra databasen og blir lagt inn i labels
             db.OpenConnection();
-            MySqlDataReader leser = cmd1.ExecuteReader();
+            MySqlDataReader leser = cmd.ExecuteReader();
             leser.Read();
             foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere. Samtidig som verdien blir castet til int
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
@@ -39,17 +39,43 @@ namespace VMS
             leser.Close();
             db.CloseConnection();
 
-            String foreleserQuery = "SELECT fornavn, etternavn FROM foreleser WHERE foreleserid = @ForeleserId";
-            var cmd2 = db.SqlCommand(foreleserQuery);
-            cmd2.Parameters.AddWithValue("@ForeleserId", foreleserId);
+            query = "SELECT fornavn, etternavn FROM foreleser WHERE foreleserid = @ForeleserId";
+            cmd = db.SqlCommand(query);
+            cmd.Parameters.AddWithValue("@ForeleserId", foreleserId);
 
             db.OpenConnection();
-            leser = cmd2.ExecuteReader();
+            leser = cmd.ExecuteReader();
             leser.Read();
             String foreleserNavn = leser[0].ToString() + " " + leser[1].ToString(); //Setter sammen fornavn og etternavn fra databasen
             leser.Close();
             db.CloseConnection();
             foreleserLbl.Text = "Foreleser: " + foreleserNavn;
+
+
+
+        }
+        private int[] ProsedyreKaller (String prosedyrenr, String fagkode)
+        {
+            var cmd = db.SqlCommand("");
+            cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+            cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+
+            db.OpenConnection();
+            cmd.ExecuteNonQuery();
+            int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
+            int stjerne2 = (int)cmd.Parameters["@out_verdi2"].Value;
+            int stjerne3 = (int)cmd.Parameters["@out_verdi3"].Value;
+            int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
+            int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
+            db.CloseConnection();
+
+            int[] rating = new int[] { stjerne1, stjerne2, stjerne3, stjerne4, stjerne5 };
+
+            return rating[];
         }
     }
 }
