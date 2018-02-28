@@ -12,7 +12,7 @@
     <div class="Row">
         <div class="col-md-4"><asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="pensumLbl" runat="server" Text="Pensum:"></asp:Label></div>
-        <div class="col-md-4">[RATING]</div>
+        <div class="col-md-4"><asp:Label ID="pensumRatingLbl" runat="server"></asp:Label></div>
     </div>
     <br />
     <br />

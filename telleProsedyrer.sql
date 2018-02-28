@@ -10,7 +10,7 @@ CREATE PROCEDURE telle_svar_skjemaer
     OUT out_verdi1 INT
 )
 BEGIN
-    SELECT COUNT(in_spmnr) FROM vurderingshistorikk WHERE fagkode = in_fagkode;
+    SELECT COUNT(in_spmnr) INTO out_verdi1 FROM vurderingshistorikk WHERE fagkode = in_fagkode;
 END $$
 DELIMITER ;
 

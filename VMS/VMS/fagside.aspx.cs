@@ -52,6 +52,16 @@ namespace VMS
             db.CloseConnection();
             foreleserLbl.Text = "Foreleser: " + foreleserNavn;
 
+
+            int[] prosedyrSvar = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
+            //Her kaller vi på prosedyren for spm1, kaller på den her pga dataen skal brukes flere steder
+
+            int totalSpm1Rating = prosedyrSvar[1] + prosedyrSvar[2] + prosedyrSvar[3] + prosedyrSvar[4] + prosedyrSvar[5];
+            double spm1GjennomsnittsRating = totalSpm1Rating / prosedyrSvar[0]; //NB HVIS DET IKKE FINNES VERDIER I DB VIL DU FÅ DIVIDE BY ZERO EXCEPTION
+            pensumRatingLbl.Text = spm1GjennomsnittsRating.ToString();
+
+
+            //Koden under påvirker kun diagrammet
             String diagramTittel = "Var faget vanskelig?"; //diagramets tittel
             String seriesname = "seriesName";
             diagram.Series.Clear();
@@ -61,7 +71,6 @@ namespace VMS
             Title tittel = diagram.Titles.Add(diagramTittel);
             tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold); //Her setter vi skrifttype ol.
 
-            int[] prosedyrSvar = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
             diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyrSvar[1]);
             diagram.Series[seriesname].Points.AddXY("Litt missfornøyd", prosedyrSvar[2]);
             diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyrSvar[3]);
@@ -106,10 +115,12 @@ namespace VMS
             cmd = db.SqlCommand(telleProsedyreNavn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
             cmd.Parameters.AddWithValue("@in_spmnr", spmnr).Direction = ParameterDirection.Input;
 
             db.OpenConnection();
-            int totaltAntallSvar = cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
+            int totaltAntallSvar = (int)cmd.Parameters["@out_verdi1"].Value;
             db.CloseConnection();
             
             int[] rating = new int[] { totaltAntallSvar, stjerne1, stjerne2, stjerne3, stjerne4, stjerne5 };
