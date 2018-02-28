@@ -87,9 +87,16 @@ INSERT INTO foreleser(foreleserid, fornavn, etternavn) VALUES (313, 'Ola', 'Nord
 INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning) VALUES ('DAT1000', 'Database', 313, 'It og Informasjonssystemer'), ('OBJ2100', 'Objective C', 666, 'Dataingeniør'), ('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører'),
 ('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer');
 
-INSERT INTO student(studentid, studieretning) VALUES (001, 'It og Informasjonssystemer'), (002, 'It og Informasjonssystemer'),
-(003, 'Regnskapsfører'), (004, 'Regnskapsfører'), (005, 'Dataingeniør'),
-(006, 'Dataingeniør');
+INSERT INTO student(studentid, studieretning) VALUES 
+(0, 'Dataingeniør'), (1, 'Dataingeniør'), (2, 'Dataingeniør'), (3, 'Dataingeniør'), (4, 'Dataingeniør'), (5, 'Dataingeniør'), (6, 'Dataingeniør'), (7, 'Dataingeniør'), 
+(8, 'Dataingeniør'), (9, 'Dataingeniør'), (10, 'Dataingeniør'), (11, 'Dataingeniør'), (12, 'Dataingeniør'), (13, 'Dataingeniør'), (14, 'Dataingeniør'), (15, 'Dataingeniør'), 
+(16, 'Dataingeniør'), (17, 'Dataingeniør'), (18, 'Dataingeniør'), (19, 'Dataingeniør'), (20, 'It og Informasjonssystemer'), (21, 'It og Informasjonssystemer'), (22, 'It og Informasjonssystemer'), 
+(23, 'It og Informasjonssystemer'), (24, 'It og Informasjonssystemer'), (25, 'It og Informasjonssystemer'), (26, 'It og Informasjonssystemer'), (27, 'It og Informasjonssystemer'), 
+(28, 'It og Informasjonssystemer'), (29, 'It og Informasjonssystemer'), (30, 'It og Informasjonssystemer'), (31, 'It og Informasjonssystemer'), (32, 'It og Informasjonssystemer'), 
+(33, 'It og Informasjonssystemer'), (34, 'It og Informasjonssystemer'), (35, 'It og Informasjonssystemer'), (36, 'It og Informasjonssystemer'), (37, 'It og Informasjonssystemer'), 
+(38, 'It og Informasjonssystemer'), (39, 'It og Informasjonssystemer'), (40, 'Regnskapsfører'), (41, 'Regnskapsfører'), (42, 'Regnskapsfører'), (43, 'Regnskapsfører'), (44, 'Regnskapsfører'), 
+(45, 'Regnskapsfører'), (46, 'Regnskapsfører'), (47, 'Regnskapsfører'), (48, 'Regnskapsfører'), (49, 'Regnskapsfører'), (50, 'Regnskapsfører'), (51, 'Regnskapsfører'), (52, 'Regnskapsfører'), 
+(53, 'Regnskapsfører'), (54, 'Regnskapsfører'), (55, 'Regnskapsfører'), (56, 'Regnskapsfører'), (57, 'Regnskapsfører'), (58, 'Regnskapsfører'), (59, 'Regnskapsfører');
 
 INSERT INTO vurderingsskjema(fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES 
 ('DAT1000', 'Syntes du pensum var for vanskelig?', 'Stemte pensum overens med emneplanen?','Stemte oppgavene overens med hva du har lært?','Var faget vanskelig?','spm5','spm6','spm7','spm8','spm9','spm10'), 
