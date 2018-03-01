@@ -34,11 +34,11 @@ namespace adminPanel
             SjekkTextboksVerdi();
             if (nyttSkjema)
             {
-                query = "INSERT INTO vurderingsskjema VALUES (NULL, @Beskrivelse, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
+                query = "INSERT INTO vurderingsskjema VALUES (NULL, @Fagkode, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
             }
             else
             {
-                query = "UPDATE vurderingsskjema SET beskrivelse = @Beskrivelse, spm1 = @Spm1, spm2 = @Spm2, spm3 = @Spm3, spm4 = @Spm4, spm5 = @Spm5, spm6 = @Spm6, spm7 = @Spm7, spm8 = @Spm8, spm9 = @Spm9, spm10 = @Spm10 WHERE skjemaid = @Skjemaid";
+                query = "UPDATE vurderingsskjema SET fagkode = @Fagkode, spm1 = @Spm1, spm2 = @Spm2, spm3 = @Spm3, spm4 = @Spm4, spm5 = @Spm5, spm6 = @Spm6, spm7 = @Spm7, spm8 = @Spm8, spm9 = @Spm9, spm10 = @Spm10 WHERE skjemaid = @Skjemaid";
             }
              
             var mySqlCommand = db.SqlCommand(query);
@@ -47,7 +47,7 @@ namespace adminPanel
                 Console.WriteLine(valgtSkjemaId);
                 mySqlCommand.Parameters.AddWithValue("@Skjemaid", valgtSkjemaId);
             }
-            mySqlCommand.Parameters.AddWithValue("@Beskrivelse", beskrivelseTxt.Text);
+            mySqlCommand.Parameters.AddWithValue("@Fagkode", fagkodeTxt.Text);
             mySqlCommand.Parameters.AddWithValue("@Spm1", spm1Txt.Text);
             mySqlCommand.Parameters.AddWithValue("@Spm2", spm2Txt.Text);
             mySqlCommand.Parameters.AddWithValue("@Spm3", spm3Txt.Text);
@@ -100,13 +100,13 @@ namespace adminPanel
             nyttSkjema = false;
             listboksLbl.Show();
             skjemaListeboks.Show();
-            String query = "SELECT beskrivelse FROM vurderingsskjema;";
+            String query = "SELECT fagkode FROM vurderingsskjema;";
             db.OpenConnection();
             var cmd = db.SqlCommand(query);
             MySqlDataReader leser = cmd.ExecuteReader();
             while (leser.Read())
             {
-                skjemaListeboks.Items.Add(leser["Beskrivelse"].ToString());
+                skjemaListeboks.Items.Add(leser["fagkode"].ToString());
             }
             db.CloseConnection();
         }
@@ -119,9 +119,9 @@ namespace adminPanel
             skjemaListeboks.Hide();
             try
             {
-                String skjemaIdQuery = "SELECT skjemaid FROM vurderingsskjema WHERE beskrivelse = @Beskrivelse;";
+                String skjemaIdQuery = "SELECT skjemaid FROM vurderingsskjema WHERE fagkode = @Fagkode;";
                 var cmdSkjemaId = db.SqlCommand(skjemaIdQuery);
-                cmdSkjemaId.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
+                cmdSkjemaId.Parameters.AddWithValue("@Fagkode", skjemaListeboks.SelectedItem.ToString());
                 db.OpenConnection();
                 MySqlDataReader skjemaIdleser = cmdSkjemaId.ExecuteReader();
                 while (skjemaIdleser.Read())
@@ -132,9 +132,9 @@ namespace adminPanel
                 Console.WriteLine(valgtSkjemaId);
                 db.CloseConnection();
 
-                String query = "SELECT beskrivelse, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE beskrivelse = @Beskrivelse";
+                String query = "SELECT fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE fagkode = @Fagkode";
                 var cmd = db.SqlCommand(query);
-                cmd.Parameters.AddWithValue("@Beskrivelse", skjemaListeboks.SelectedItem.ToString());
+                cmd.Parameters.AddWithValue("@Fagkode", skjemaListeboks.SelectedItem.ToString());
                 db.OpenConnection();
                 MySqlDataReader leser = cmd.ExecuteReader();
                 Console.WriteLine(valgtSkjemaId);
