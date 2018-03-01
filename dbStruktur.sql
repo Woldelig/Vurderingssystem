@@ -1,3 +1,12 @@
+DROP TABLE studier;
+DROP TABLE foreleser;
+DROP TABLE fag;
+DROP TABLE student;
+DROP TABLE vurderingsskjema;
+DROP TABLE vurderingshistorikk;
+DROP TABLE formlogin;
+DROP TABLE innloggingshistorikk;
+
 CREATE TABLE studier(
     studieretning VARCHAR(128) PRIMARY KEY,
     grad VARCHAR(45),
@@ -179,11 +188,3 @@ INSERT INTO innloggingshistorikk(bruker, tidsstempel) VALUES
 ('admin', '2018-02-05 13:45:37');
 
 
-DROP TABLE studier;
-DROP TABLE foreleser;
-DROP TABLE fag;
-DROP TABLE student;
-DROP TABLE vurderingsskjema;
-DROP TABLE vurderingshistorikk;
-DROP TABLE formlogin;
-DROP TABLE innloggingshistorikk;

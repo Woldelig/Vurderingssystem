@@ -53,18 +53,11 @@ namespace VMS
             foreleserLbl.Text = "Foreleser: " + foreleserNavn;
 
 
-            int[] prosedyrSvar = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
+            int[] prosedyreSvar = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
             //Her kaller vi på prosedyren for spm1, kaller på den her pga dataen skal brukes flere steder
 
-            int totalSpm1Rating = prosedyrSvar[1]*1 + prosedyrSvar[2]*2 + prosedyrSvar[3]*3 + prosedyrSvar[4]*4 + prosedyrSvar[5]*5;
-            //Grunnen til at prosedyre svar må ganges opp er fordi den kun teller antall forekomster, så for å få den korrekte gjennomsnittsverdien
-            //må vi gange opp verdiene så vi for den riktige totalsummen så vi kan få gjennomsnittet
 
-            double spm1GjennomsnittsRating = (double)totalSpm1Rating / (double)prosedyrSvar[0];
-            //NB HVIS DET IKKE FINNES VERDIER I DB VIL DU FÅ DIVIDE BY ZERO EXCEPTION
-
-            pensumRatingLbl.Text = Math.Round(spm1GjennomsnittsRating, 1).ToString();
-            //Runder av gjennomsnittet til å vise en desimal
+            pensumRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvar);
 
 
             //Koden under påvirker kun diagrammet
@@ -77,14 +70,28 @@ namespace VMS
             Title tittel = diagram.Titles.Add(diagramTittel);
             tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold); //Her setter vi skrifttype ol.
 
-            diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyrSvar[1]);
-            diagram.Series[seriesname].Points.AddXY("Litt misfornøyd", prosedyrSvar[2]);
-            diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyrSvar[3]);
-            diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyrSvar[4]);
-            diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyrSvar[5]);
+            diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyreSvar[1]);
+            diagram.Series[seriesname].Points.AddXY("Litt misfornøyd", prosedyreSvar[2]);
+            diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyreSvar[3]);
+            diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyreSvar[4]);
+            diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyreSvar[5]);
 
 
         }
+
+        private String BeregnGjennomsnittsRating (int[] prosedyreSvar)
+        {
+            int totalSpm1Rating = prosedyreSvar[1] * 1 + prosedyreSvar[2] * 2 + prosedyreSvar[3] * 3 + prosedyreSvar[4] * 4 + prosedyreSvar[5] * 5;
+            //Grunnen til at prosedyre svar må ganges opp er fordi den kun teller antall forekomster, så for å få den korrekte gjennomsnittsverdien
+            //må vi gange opp verdiene så vi for den riktige totalsummen så vi kan få gjennomsnittet
+
+            double spm1GjennomsnittsRating = (double)totalSpm1Rating / (double)prosedyreSvar[0];
+            //NB HVIS DET IKKE FINNES VERDIER I DB VIL DU FÅ DIVIDE BY ZERO EXCEPTION
+                        
+            //Runder av gjennomsnittet til å vise en desimal og returner verdien som en string
+            return Math.Round(spm1GjennomsnittsRating, 1).ToString();
+        }
+
         private int[] ProsedyreKaller (String prosedyreNavn, String fagkode, int spmnr)
         {
             //Denne metoden kaller på prosedyrer så vi får telling over alle verdier
