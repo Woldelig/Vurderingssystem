@@ -67,6 +67,15 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label kvalitetLbl;
         
         /// <summary>
+        /// kvalitetRatingLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label kvalitetRatingLbl;
+        
+        /// <summary>
         /// studieretningLbl control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label vasnkelighetsgradLbl;
+        
+        /// <summary>
+        /// vanskelighetsgradRatingLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label vanskelighetsgradRatingLbl;
         
         /// <summary>
         /// forkursLbl control.
