@@ -35,9 +35,20 @@
     <br />
     <div class="Row">
         <div class="col-md-4"><asp:Label ID="forkursLbl" runat="server" Text="Forkurs: Prg1000"></asp:Label></div>
-        <div class="col-md-4"></div>
-        <div class="col-md-4"></div>
-    </div>
+        <div class="col-md-4"><asp:Label ID="spm4Lbl" runat="server" Text ="placeholder"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="spm4RatingLbl" runat="server"></asp:Label></div>
+    </div>    
+    <br />
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-4"><asp:Label ID="placeholder" runat="server" Text ="placeholder"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="spm5Lbl" runat="server" Text ="placeholder"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="spm5RatingLbl" runat="server"></asp:Label></div>
+    </div>    
+    <br />
+    <br />
+    <br />
         <asp:Chart ID="diagram" runat="server" Height="400px" Width="400px">
             <Series>
                 <asp:Series ChartType="Pie" Name="Series1">

@@ -112,6 +112,51 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label forkursLbl;
         
         /// <summary>
+        /// spm4Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label spm4Lbl;
+        
+        /// <summary>
+        /// spm4RatingLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label spm4RatingLbl;
+        
+        /// <summary>
+        /// placeholder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label placeholder;
+        
+        /// <summary>
+        /// spm5Lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label spm5Lbl;
+        
+        /// <summary>
+        /// spm5RatingLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label spm5RatingLbl;
+        
+        /// <summary>
         /// diagram control.
         /// </summary>
         /// <remarks>

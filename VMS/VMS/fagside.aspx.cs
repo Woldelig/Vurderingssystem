@@ -57,10 +57,14 @@ namespace VMS
             int[] prosedyreSvarSpm1 = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
             int[] prosedyreSvarSpm2 = ProsedyreKaller("hent_spm2_verdier", sidensFagkode, 2);
             int[] prosedyreSvarSpm3 = ProsedyreKaller("hent_spm3_verdier", sidensFagkode, 3);
+            int[] prosedyreSvarSpm4 = ProsedyreKaller("hent_spm4_verdier", sidensFagkode, 4);
+            int[] prosedyreSvarSpm5 = ProsedyreKaller("hent_spm5_verdier", sidensFagkode, 5);
 
             pensumRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
             kvalitetRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
             vanskelighetsgradRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
+            spm4RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm4);//PLACEHOLDER
+            spm5RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm5);//PLACEHOLDER
 
 
             //Koden under påvirker kun diagrammet
