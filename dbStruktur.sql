@@ -78,13 +78,21 @@ CREATE TABLE innloggingshistorikk(
 
 
 
-INSERT INTO studier(studieretning, grad, fakultet) VALUES ('It og Informasjonssystemer', 'Bachelor', 'Handelshøyskolen'), ('Dataingeniør', 'Bachelor','Ingeniørhøyskolen'),
+INSERT INTO studier(studieretning, grad, fakultet) VALUES 
+('It og Informasjonssystemer', 'Bachelor', 'Handelshøyskolen'), 
+('Dataingeniør', 'Bachelor','Ingeniørhøyskolen'),
 ('Regnskapsfører', 'Master', 'Handelshøyskolen');
 
-INSERT INTO foreleser(foreleserid, fornavn, etternavn) VALUES (313, 'Ola', 'Nordmann'), (1337, 'Linus', 'Thorvaldsen'),
-(666, 'Steve', 'Jobs'), (111, 'Bill', 'Gates');
+INSERT INTO foreleser(foreleserid, fornavn, etternavn) VALUES 
+(313, 'Ola', 'Nordmann'), 
+(1337, 'Linus', 'Thorvaldsen'),
+(666, 'Steve', 'Jobs'), 
+(111, 'Bill', 'Gates');
 
-INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning) VALUES ('DAT1000', 'Database', 313, 'It og Informasjonssystemer'), ('OBJ2100', 'Objective C', 666, 'Dataingeniør'), ('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører'),
+INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning) VALUES 
+('DAT1000', 'Database', 313, 'It og Informasjonssystemer'), 
+('OBJ2100', 'Objective C', 666, 'Dataingeniør'), 
+('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører'),
 ('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer');
 
 INSERT INTO student(studentid, studieretning) VALUES 
