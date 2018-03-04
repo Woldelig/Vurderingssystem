@@ -44,9 +44,14 @@ namespace VMS
             }
             db.CloseConnection();
 
+            div1.InnerHtml = "<div class='col-md-4'>test</div> < div class='col-md-4'>test</div><div class='col-md-4'>test</div>";
+            MyPlaceholder.Controls.Add(new Literal() { Text = "<div class='col-md-4'>test</div> < div class='col-md-4'>test</div><div class='col-md-4'>test</div>" });
+            //Kommer til å bruke literal class for å få ut skjema dynamisk, for den fungerer bedre enn innerhtml. 
+            //i placeholder skal vi få ut spørreskjema. Skrive at vi prøvde div1.innerhtml i rapporten?
+
 
             //Kun for å se hvilke verdier jeg får
-            Label1.Text = skjemaSpm[0];
+                Label1.Text = skjemaSpm[0];
             Label2.Text = skjemaSpm[1];
             Label3.Text = skjemaSpm[2];
             Label4.Text = skjemaSpm[3];

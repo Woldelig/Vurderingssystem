@@ -19,4 +19,7 @@
     <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
     <br />
     <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
+    <div id="div1" runat="server"></div>
+    <asp:PlaceHolder ID="MyPlaceholder" runat="server"></asp:PlaceHolder>
+
 </asp:Content>
