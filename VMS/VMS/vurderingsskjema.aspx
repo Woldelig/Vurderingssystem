@@ -1,25 +1,64 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vurderingsskjema.aspx.cs" Inherits="VMS.vurderingsskjema" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="vurderingsskjema.aspx.cs" Inherits="Vurderingsskjema" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm1Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm1RadioknappDiv" runat="server"> </table></div>
+    </div>
     <br />
-    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
     <br />
-    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm2Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm2RadioknappDiv" runat="server"> </table></div>
+    </div>
     <br />
-    <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
     <br />
-    <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm3Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm3RadioknappDiv" runat="server"> </table></div>
+    </div>
     <br />
-    <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
     <br />
-    <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm4Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm4RadioknappDiv" runat="server"> </table></div>
+    </div>
     <br />
-    <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
     <br />
-    <asp:Label ID="Label9" runat="server" Text="Label"></asp:Label>
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm5Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm5RadioknappDiv" runat="server"> </table></div>
+    </div>
     <br />
-    <asp:Label ID="Label10" runat="server" Text="Label"></asp:Label>
-    <div id="div1" runat="server"></div>
+    <br />
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm6Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm6RadioknappDiv" runat="server"> </table></div>
+    </div>
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm7Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm7RadioknappDiv" runat="server"> </table></div>
+    </div>
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm8Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm8RadioknappDiv" runat="server"> </table></div>
+    </div>
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm9Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm9RadioknappDiv" runat="server"> </table></div>
+    </div>
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spm10Lbl" runat="server" Font-Size="Large"></asp:Label></div>
+        <div class="col-md-4"><table id="spm10RadioknappDiv" runat="server"> </table></div>
+    </div>
     <asp:PlaceHolder ID="MyPlaceholder" runat="server"></asp:PlaceHolder>
+    <table id="table1" runat="server"> </table>
 
 </asp:Content>
