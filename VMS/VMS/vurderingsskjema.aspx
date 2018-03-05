@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Vurderingsskjema.aspx.cs" Inherits="VMS.vurderingsskjema" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <br />
     <div class="Row">
         <div class="col-md-8"><asp:Label ID="spm1Lbl" runat="server" Font-Size="Large"></asp:Label></div>
         <div class="col-md-4"><table id="spm1RadioknappDiv" runat="server"> </table></div>
@@ -58,7 +60,12 @@
         <div class="col-md-8"><asp:Label ID="spm10Lbl" runat="server" Font-Size="Large"></asp:Label></div>
         <div class="col-md-4"><table id="spm10RadioknappDiv" runat="server"> </table></div>
     </div>
-    <asp:PlaceHolder ID="MyPlaceholder" runat="server"></asp:PlaceHolder>
-    <table id="table1" runat="server"> </table>
+    <br />
+    <br />
+    <div class="Row">
+        <div class="col-md-8">
+            <asp:Button ID="sendInnSkjemaBtn" runat="server" Text="Send inn" class="btn btn-success btn-lg" OnClick="sendInnSkjemaBtn_Click"/>
+        </div>
+    </div>
 
 </asp:Content>

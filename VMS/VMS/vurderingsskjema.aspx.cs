@@ -23,7 +23,8 @@ namespace VMS
             //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
             //Denne setningen får tak i spørsmålene ved hjelp av betingelser på kryss av tabeller
             var cmd = db.SqlCommand(query);
-            db.OpenConnection(); MySqlDataReader leser = cmd.ExecuteReader();
+            db.OpenConnection();
+            MySqlDataReader leser = cmd.ExecuteReader();
 
             String[] skjemaSpm = new String[10];
             while (leser.Read())
@@ -46,20 +47,6 @@ namespace VMS
                 lbl.Text = skjemaSpm[spmIndex];
                 spmIndex++;
             }
-            //Kun for å se hvilke verdier jeg får
-            /*
-            spm1Lbl.Text = skjemaSpm[0];
-            spm2Lbl.Text = skjemaSpm[1];
-            spm3Lbl.Text = skjemaSpm[2];
-            spm4Lbl.Text = skjemaSpm[3];
-            spm5Lbl.Text = skjemaSpm[4];
-            spm6Lbl.Text = skjemaSpm[5];
-            spm7Lbl.Text = skjemaSpm[6];
-            spm8Lbl.Text = skjemaSpm[7];
-            spm9Lbl.Text = skjemaSpm[8];
-            spm10Lbl.Text = skjemaSpm[9];*/
-
-            
 
             /*
              TODO
@@ -76,6 +63,10 @@ namespace VMS
             //https://stackoverflow.com/questions/5508666/dynamically-add-html-to-asp-net-page
 
         }
+        protected void SendInnSkjemaBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
         void LagRadioKnapper(HtmlTable radioKnappDiv)
         {
 
@@ -89,5 +80,6 @@ namespace VMS
             }
             radioKnappDiv.Rows.Add(row);
         }
+
     }
 }

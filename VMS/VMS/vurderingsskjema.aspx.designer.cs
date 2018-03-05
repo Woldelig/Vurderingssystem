@@ -193,21 +193,12 @@ namespace VMS {
         protected global::System.Web.UI.HtmlControls.HtmlTable spm10RadioknappDiv;
         
         /// <summary>
-        /// MyPlaceholder control.
+        /// sendInnSkjemaBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder MyPlaceholder;
-        
-        /// <summary>
-        /// table1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable table1;
+        protected global::System.Web.UI.WebControls.Button sendInnSkjemaBtn;
     }
 }
