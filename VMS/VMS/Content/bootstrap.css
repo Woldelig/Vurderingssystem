@@ -407,6 +407,8 @@ hr {
 
 p {
   margin: 0 0 10px;
+    height: 21px;
+    width: 492px;
 }
 
 .lead {
