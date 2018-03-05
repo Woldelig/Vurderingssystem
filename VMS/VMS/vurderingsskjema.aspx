@@ -64,8 +64,10 @@
     <br />
     <div class="Row">
         <div class="col-md-8">
-            <asp:Button ID="sendInnSkjemaBtn" runat="server" Text="Send inn" class="btn btn-success btn-lg" OnClick="sendInnSkjemaBtn_Click"/>
+            <asp:Button ID="SendInnSkjemaBtn" runat="server" Text="Send inn" class="btn btn-success btn-lg" OnClick="SendInnSkjemaBtn_Click"/>
         </div>
     </div>
+    <br />
+    <br />
 
 </asp:Content>
