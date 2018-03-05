@@ -51,7 +51,7 @@
             this.LoginBoarder.Location = new System.Drawing.Point(0, 0);
             this.LoginBoarder.Name = "LoginBoarder";
             this.LoginBoarder.Size = new System.Drawing.Size(359, 42);
-            this.LoginBoarder.TabIndex = 0;
+            this.LoginBoarder.TabIndex = 9;
             this.LoginBoarder.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LoginBoarder_MouseDown);
             this.LoginBoarder.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginBoarder_MouseMove);
             this.LoginBoarder.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LoginBoarder_MouseUp);
@@ -67,7 +67,7 @@
             this.MinimizeBtn.Name = "MinimizeBtn";
             this.MinimizeBtn.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.MinimizeBtn.Size = new System.Drawing.Size(41, 42);
-            this.MinimizeBtn.TabIndex = 4;
+            this.MinimizeBtn.TabIndex = 1;
             this.MinimizeBtn.Text = "_";
             this.MinimizeBtn.UseVisualStyleBackColor = true;
             this.MinimizeBtn.Click += new System.EventHandler(this.MinimizeBtn_Click);
@@ -82,7 +82,7 @@
             this.ExitBtn.Location = new System.Drawing.Point(318, 0);
             this.ExitBtn.Name = "ExitBtn";
             this.ExitBtn.Size = new System.Drawing.Size(41, 42);
-            this.ExitBtn.TabIndex = 5;
+            this.ExitBtn.TabIndex = 0;
             this.ExitBtn.Text = "X";
             this.ExitBtn.UseVisualStyleBackColor = true;
             this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
