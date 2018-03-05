@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 namespace VMS
 {
-    public partial class Vurderingsskjema : System.Web.UI.Page
+    public partial class vurderingsskjema : System.Web.UI.Page
     {
         //Denne siden skal ikke være tilgjengelig med mindre du er student med gyldig session
         //session må gi oss en studentid, med den kan vi få tak i studieretning og fagkode som gir
@@ -39,9 +39,9 @@ namespace VMS
             {
                 LagRadioKnapper(div);
             }
-
+            Label[] spmLabel = new Label[10] { spm1Lbl, spm2Lbl, spm3Lbl, spm4Lbl, spm5Lbl, spm6Lbl, spm7Lbl, spm8Lbl, spm9Lbl, spm10Lbl };
             int spmIndex = 0;
-            foreach (Label lbl in Label)
+            foreach (Label lbl in spmLabel)
             {
                 lbl.Text = skjemaSpm[spmIndex];
                 spmIndex++;
