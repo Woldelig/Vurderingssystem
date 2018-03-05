@@ -99,7 +99,7 @@
             this.LoginBtn.Name = "LoginBtn";
             this.LoginBtn.Size = new System.Drawing.Size(202, 36);
             this.LoginBtn.TabIndex = 2;
-            this.LoginBtn.Text = "Logg in";
+            this.LoginBtn.Text = "Logg inn";
             this.LoginBtn.UseVisualStyleBackColor = false;
             this.LoginBtn.Click += new System.EventHandler(this.LoginBtn_Click);
             this.LoginBtn.MouseEnter += new System.EventHandler(this.LoginBtn_MouseEnter);
