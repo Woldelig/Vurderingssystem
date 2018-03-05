@@ -18,28 +18,16 @@ namespace VMS
         protected void Page_Load(object sender, EventArgs e)
         {
             //Her får vi ut studieretning
-            String query = "SELECT studieretning FROM student WHERE studentid=1"; //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
+            String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = 1 AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode"; //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
             var cmd = db.SqlCommand(query);
-            db.OpenConnection();
-            var result = cmd.ExecuteScalar(); //executescalar returner kun 1 rad.
-
-            //Her får vi ut fagkode
-            query = "SELECT fagkode FROM fag WHERE studieretning = '" + result + "'"; //Bruker ikke parameter overføring her siden injection er lite sannsynlig
-            cmd = db.SqlCommand(query);
-            var fagkode = cmd.ExecuteScalar(); //studentens fagkode blir lagt in i var fagkode
-
-            //Her får vi ut skjemaets spørsmål og mater det inn i et array
-            query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE fagkode = '" + fagkode + "'";
-            cmd = db.SqlCommand(query);
-            MySqlDataReader leser = cmd.ExecuteReader();
+            db.OpenConnection(); MySqlDataReader leser = cmd.ExecuteReader();
 
             String[] skjemaSpm = new String[10];
-            while(leser.Read())
+            while (leser.Read())
             {
                 for (int i = 0; i < 10; i++)
                 {
                     skjemaSpm[i] = leser[i].ToString();
-
                 }
             }
             db.CloseConnection();
