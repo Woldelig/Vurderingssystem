@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fagside.aspx" />
+    <Content Include="innlogging.aspx" />
     <Content Include="MineVurderinger.aspx" />
     <Content Include="Hjelp.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="fagside.aspx.designer.cs">
       <DependentUpon>fagside.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="innlogging.aspx.cs">
+      <DependentUpon>innlogging.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="innlogging.aspx.designer.cs">
+      <DependentUpon>innlogging.aspx</DependentUpon>
     </Compile>
     <Compile Include="MineVurderinger.aspx.cs">
       <DependentUpon>MineVurderinger.aspx</DependentUpon>
