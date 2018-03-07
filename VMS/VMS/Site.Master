@@ -38,6 +38,8 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+    <!-- Egne scripts -->
+    <script src="Scripts/jquery.rateit.min.js"></script>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
