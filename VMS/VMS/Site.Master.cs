@@ -9,9 +9,31 @@ namespace VMS
 {
     public partial class SiteMaster : MasterPage
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(Session["logginn"] == null)
+            {
+                Server.Transfer("velkomstside.aspx", true);
+            }
+            else if(!SjekkInnlogging())
+            {
+                minefag.Visible = false;
+                minevurderinger.Visible = false;
 
+            } 
+        }
+        private Boolean SjekkInnlogging()
+        {
+            if((int)Session["logginn"] == 0)
+            {
+                return false;
+            }
+            else if((int)Session["logginn"] == 1)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

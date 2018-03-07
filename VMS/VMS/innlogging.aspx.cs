@@ -11,11 +11,11 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (!Page.IsPostBack)
             {
                 StudentID.Text = "00000";
             }
+            Session["logginn"] = 0;
         }
         
         protected void Login_Click(object sender, EventArgs e)
@@ -27,8 +27,11 @@ namespace VMS
                 Feilmelding.ForeColor = System.Drawing.Color.Red;
                 Feilmelding.Text = "Student-ID må inneholde tall!";
                 return;
-            } else
+            }
+            else
             {
+                //Setter innlogging til 1
+                Session["logginn"] = 1;
                 //Setter studentID inn i sessionvariabelen
                 Session["studentID"] = parsedStudID;
                 //Sender brukeren videre til velkomstsiden

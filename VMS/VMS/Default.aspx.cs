@@ -11,8 +11,15 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Setter StudentID inn i labelen
-            StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
+            if (Session["logginn"] == null)
+            {
+                Server.Transfer("velkomstside.aspx", true);
+            }
+            else
+            {
+                //Setter StudentID inn i labelen
+                StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
+            }
         }
     }
 }
