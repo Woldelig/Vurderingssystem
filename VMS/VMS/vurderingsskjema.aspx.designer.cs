@@ -40,13 +40,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm1Lbl;
         
         /// <summary>
-        /// spm1RadioknappDiv control.
+        /// spm1rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm1RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm1rating;
         
         /// <summary>
         /// spm2Lbl control.
@@ -58,13 +58,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm2Lbl;
         
         /// <summary>
-        /// spm2RadioknappDiv control.
+        /// spm2rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm2RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm2rating;
         
         /// <summary>
         /// spm3Lbl control.
@@ -76,13 +76,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm3Lbl;
         
         /// <summary>
-        /// spm3RadioknappDiv control.
+        /// spm3rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm3RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm3rating;
         
         /// <summary>
         /// spm4Lbl control.
@@ -94,13 +94,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm4Lbl;
         
         /// <summary>
-        /// spm4RadioknappDiv control.
+        /// spm4rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm4RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm4rating;
         
         /// <summary>
         /// spm5Lbl control.
@@ -112,13 +112,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm5Lbl;
         
         /// <summary>
-        /// spm5RadioknappDiv control.
+        /// spm5rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm5RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm5rating;
         
         /// <summary>
         /// spm6Lbl control.
@@ -130,13 +130,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm6Lbl;
         
         /// <summary>
-        /// spm6RadioknappDiv control.
+        /// spm6rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm6RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm6rating;
         
         /// <summary>
         /// spm7Lbl control.
@@ -148,13 +148,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm7Lbl;
         
         /// <summary>
-        /// spm7RadioknappDiv control.
+        /// spm7rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm7RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm7rating;
         
         /// <summary>
         /// spm8Lbl control.
@@ -166,13 +166,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm8Lbl;
         
         /// <summary>
-        /// spm8RadioknappDiv control.
+        /// spm8rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm8RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm8rating;
         
         /// <summary>
         /// spm9Lbl control.
@@ -184,13 +184,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm9Lbl;
         
         /// <summary>
-        /// spm9RadioknappDiv control.
+        /// spm9rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm9RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm9rating;
         
         /// <summary>
         /// spm10Lbl control.
@@ -202,13 +202,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm10Lbl;
         
         /// <summary>
-        /// spm10RadioknappDiv control.
+        /// spm10rating control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable spm10RadioknappDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm10rating;
         
         /// <summary>
         /// SendInnSkjemaBtn control.

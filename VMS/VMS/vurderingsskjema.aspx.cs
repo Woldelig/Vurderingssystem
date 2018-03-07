@@ -36,11 +36,6 @@ namespace VMS
                 }
             }
             db.CloseConnection();
-            HtmlTable[] spmKnappDiv = new HtmlTable[10] { spm1RadioknappDiv, spm2RadioknappDiv, spm3RadioknappDiv, spm4RadioknappDiv, spm5RadioknappDiv, spm6RadioknappDiv, spm7RadioknappDiv, spm8RadioknappDiv, spm9RadioknappDiv, spm10RadioknappDiv };
-            foreach (var div in spmKnappDiv)
-            {
-                LagRadioKnapper(div);
-            }
             Label[] spmLabel = new Label[10] { spm1Lbl, spm2Lbl, spm3Lbl, spm4Lbl, spm5Lbl, spm6Lbl, spm7Lbl, spm8Lbl, spm9Lbl, spm10Lbl };
             int spmIndex = 0;
             foreach (Label lbl in spmLabel)
@@ -48,39 +43,32 @@ namespace VMS
                 lbl.Text = skjemaSpm[spmIndex];
                 spmIndex++;
             }
-
-            /*
-             TODO
-             1. Må vite hvem studenten er (Studentid)
-             2. Må velge hvilket fag studenten vil ta vurdering i
-             3. Må hente ut riktig skjema
-                - Printe ut spm
-                - Lage 5 radioknapper verdi 1-5 (muligens en annen type knapp kommer an på stjerne tingen)
-            4. Send inn registrerte svar til databasen
-             */
-            //MyPlaceholder.Controls.Add(new Literal() { Text = "<div class='col-md-4'>test</div> < div class='col-md-4'>test</div><div class='col-md-4'>test</div></div>" });
-            //Kommer til å bruke literal class for å få ut skjema dynamisk, for den fungerer bedre enn innerhtml. 
-            //i placeholder skal vi få ut spørreskjema. Skrive at vi prøvde div1.innerhtml i rapporten?
-            //https://stackoverflow.com/questions/5508666/dynamically-add-html-to-asp-net-page
-
         }
         protected void SendInnSkjemaBtn_Click(object sender, EventArgs e)
         {
+            int spm1 = Int32.Parse(spm1rating.Value);
+            int spm2 = Int32.Parse(spm2rating.Value);
+            int spm3 = Int32.Parse(spm3rating.Value);
+            int spm4 = Int32.Parse(spm4rating.Value);
+            int spm5 = Int32.Parse(spm5rating.Value);
+            int spm6 = Int32.Parse(spm6rating.Value);
+            int spm7 = Int32.Parse(spm7rating.Value);
+            int spm8 = Int32.Parse(spm8rating.Value);
+            int spm9 = Int32.Parse(spm9rating.Value);
+            int spm10 = Int32.Parse(spm10rating.Value);
             
-        }
-        void LagRadioKnapper(HtmlTable radioKnappDiv)
-        {
-
-            HtmlTableRow row = new HtmlTableRow();
-            for (int i = 0; i < 5; i++)
+            int[] ratingArray = new int[10] { spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 };
+            foreach (var rating in ratingArray)
             {
-                HtmlTableCell cell = new HtmlTableCell();
-                RadioButton radioButton = new RadioButton();
-                cell.Controls.Add(radioButton);
-                row.Cells.Add(cell);
+                if (rating.Equals(0))
+                {
+                    placeholderLbl.Text = rating.ToString();
+                }
+                else
+                {
+                    String sql = "INSERT INTO vurderingshistorikk VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
+                }
             }
-            radioKnappDiv.Rows.Add(row);
         }
-
     }
 }
