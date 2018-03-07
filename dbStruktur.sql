@@ -106,15 +106,33 @@ INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning) VALUES
 ('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer');
 
 INSERT INTO student(studentid, studieretning) VALUES 
-(1, 'Dataingeniør'), (2, 'Dataingeniør'), (3, 'Dataingeniør'), (4, 'Dataingeniør'), (5, 'Dataingeniør'), (6, 'Dataingeniør'), (7, 'Dataingeniør'), 
-(8, 'Dataingeniør'), (9, 'Dataingeniør'), (10, 'Dataingeniør'), (11, 'Dataingeniør'), (12, 'Dataingeniør'), (13, 'Dataingeniør'), (14, 'Dataingeniør'), (15, 'Dataingeniør'), 
-(16, 'Dataingeniør'), (17, 'Dataingeniør'), (18, 'Dataingeniør'), (19, 'Dataingeniør'), (20, 'It og Informasjonssystemer'), (21, 'It og Informasjonssystemer'), (22, 'It og Informasjonssystemer'), 
-(23, 'It og Informasjonssystemer'), (24, 'It og Informasjonssystemer'), (25, 'It og Informasjonssystemer'), (26, 'It og Informasjonssystemer'), (27, 'It og Informasjonssystemer'), 
-(28, 'It og Informasjonssystemer'), (29, 'It og Informasjonssystemer'), (30, 'It og Informasjonssystemer'), (31, 'It og Informasjonssystemer'), (32, 'It og Informasjonssystemer'), 
-(33, 'It og Informasjonssystemer'), (34, 'It og Informasjonssystemer'), (35, 'It og Informasjonssystemer'), (36, 'It og Informasjonssystemer'), (37, 'It og Informasjonssystemer'), 
-(38, 'It og Informasjonssystemer'), (39, 'It og Informasjonssystemer'), (40, 'Regnskapsfører'), (41, 'Regnskapsfører'), (42, 'Regnskapsfører'), (43, 'Regnskapsfører'), (44, 'Regnskapsfører'), 
-(45, 'Regnskapsfører'), (46, 'Regnskapsfører'), (47, 'Regnskapsfører'), (48, 'Regnskapsfører'), (49, 'Regnskapsfører'), (50, 'Regnskapsfører'), (51, 'Regnskapsfører'), (52, 'Regnskapsfører'), 
-(53, 'Regnskapsfører'), (54, 'Regnskapsfører'), (55, 'Regnskapsfører'), (56, 'Regnskapsfører'), (57, 'Regnskapsfører'), (58, 'Regnskapsfører'), (59, 'Regnskapsfører');
+(1, 'Dataingeniør'), (2, 'Dataingeniør'), (3, 'Dataingeniør'), (4, 'Dataingeniør'), 
+(5, 'Dataingeniør'), (6, 'Dataingeniør'), (7, 'Dataingeniør'), (8, 'Dataingeniør'), 
+(9, 'Dataingeniør'), (10, 'Dataingeniør'), (11, 'Dataingeniør'), (12, 'Dataingeniør'), 
+(13, 'Dataingeniør'), (14, 'Dataingeniør'), (15, 'Dataingeniør'), (16, 'Dataingeniør'), 
+(17, 'Dataingeniør'), (18, 'Dataingeniør'), (19, 'Dataingeniør'), (20, 'It og Informasjonssystemer'), 
+(21, 'It og Informasjonssystemer'), (22, 'It og Informasjonssystemer'), (23, 'It og Informasjonssystemer'), 
+(24, 'It og Informasjonssystemer'), (25, 'It og Informasjonssystemer'), (26, 'It og Informasjonssystemer'), 
+(27, 'It og Informasjonssystemer'), (28, 'It og Informasjonssystemer'), (29, 'It og Informasjonssystemer'), 
+(30, 'It og Informasjonssystemer'), (31, 'It og Informasjonssystemer'), (32, 'It og Informasjonssystemer'), 
+(33, 'It og Informasjonssystemer'), (34, 'It og Informasjonssystemer'), (35, 'It og Informasjonssystemer'), 
+(36, 'It og Informasjonssystemer'), (37, 'It og Informasjonssystemer'), (38, 'It og Informasjonssystemer'), 
+(39, 'It og Informasjonssystemer'), (40, 'Regnskapsfører'), (41, 'Regnskapsfører'), (42, 'Regnskapsfører'), 
+(43, 'Regnskapsfører'), (44, 'Regnskapsfører'), (45, 'Regnskapsfører'), (46, 'Regnskapsfører'), 
+(47, 'Regnskapsfører'), (48, 'Regnskapsfører'), (49, 'Regnskapsfører'), (50, 'Regnskapsfører'), 
+(51, 'Regnskapsfører'), (52, 'Regnskapsfører'), (53, 'Regnskapsfører'), (54, 'Regnskapsfører'), 
+(55, 'Regnskapsfører'), (56, 'Regnskapsfører'), (57, 'Regnskapsfører'),(58, 'Regnskapsfører'), 
+(59, 'Regnskapsfører'),(60, 'Dataingeniør'), (61, 'Dataingeniør'), (62, 'Dataingeniør'), 
+(63, 'Dataingeniør'), (64, 'Dataingeniør'), (65, 'Dataingeniør'), (66, 'Dataingeniør'), 
+(67, 'Dataingeniør'), (68, 'Dataingeniør'), (69, 'Dataingeniør'), (70, 'Dataingeniør'), 
+(71, 'Dataingeniør'), (72, 'Dataingeniør'), (73, 'Dataingeniør'), (74, 'Dataingeniør'), 
+(75, 'Dataingeniør'), (76, 'Dataingeniør'), (77, 'Dataingeniør'), (78, 'Dataingeniør'), 
+(79, 'Dataingeniør'), (80, 'Dataingeniør'), (81, 'Dataingeniør'), (82, 'Dataingeniør'), 
+(83, 'Dataingeniør'), (84, 'Dataingeniør'), (85, 'Dataingeniør'), (86, 'Dataingeniør'), 
+(87, 'Dataingeniør'), (88, 'Dataingeniør'), (89, 'Dataingeniør'), (90, 'Dataingeniør'), 
+(91, 'Dataingeniør'), (92, 'Dataingeniør'), (93, 'Dataingeniør'), (94, 'Dataingeniør'), 
+(95, 'Dataingeniør'), (96, 'Dataingeniør'), (97, 'Dataingeniør'), (98, 'Dataingeniør'), 
+(99, 'Dataingeniør');
 
 INSERT INTO vurderingsskjema(fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES 
 ('DAT1000', 'Syntes du pensum var for vanskelig?', 'Stemte pensum overens med emneplanen?','Stemte oppgavene overens med hva du har lært?','Var faget vanskelig?','spm5','spm6','spm7','spm8','spm9','spm10'), 
