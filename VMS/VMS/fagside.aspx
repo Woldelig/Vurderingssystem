@@ -13,8 +13,8 @@
         <div class="col-md-4"><asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="pensumLbl" runat="server" Text="Pensum:"></asp:Label></div>
         <div class="col-md-2">
-            <input type="range" runat="server" id="pensumRatingStjerne" min="0" max="5" value="0" step="0.25" ClientIDMode="static">
-            <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#pensumRatingStjerner"></div>
+            <input type="range" id="pensumRatingStjerne" ClientIDMode="static" min="0" max="5" value="0" step="0.25" runat="server">
+            <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#pensumRatingStjerne"></div>
         </div>
         <div class="col-md-2"><asp:Label ID="pensumRatingLbl" runat="server"></asp:Label></div>
     </div>
