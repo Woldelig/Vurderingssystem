@@ -16,13 +16,14 @@ namespace VMS
         //session må gi oss en studentid, med den kan vi få tak i studieretning og fagkode som gir
         //oss tilgangen til skjemaene.
         Database db = new Database();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Her får vi ut studieretning
-            String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = 20 AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
+            String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
             //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
             //Denne setningen får tak i spørsmålene ved hjelp av betingelser på kryss av tabeller
             var cmd = db.SqlCommand(query);
+            cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
 

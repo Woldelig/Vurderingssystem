@@ -13,6 +13,24 @@ namespace VMS {
     public partial class vurderingsskjema {
         
         /// <summary>
+        /// spmLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label spmLbl;
+        
+        /// <summary>
+        /// placeholderLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label placeholderLbl;
+        
+        /// <summary>
         /// spm1Lbl control.
         /// </summary>
         /// <remarks>

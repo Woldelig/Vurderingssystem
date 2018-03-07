@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Vurderingsskjema.aspx.cs" Inherits="VMS.vurderingsskjema" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
+    <div class="Row">
+        <div class="col-md-8"><asp:Label ID="spmLbl" runat="server" Font-Size="X-Large" text="Spørsmål"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="placeholderLbl" runat="server" Font-Size="X-Large" Text="Vurdering"></asp:Label></div>
+    </div>
+    <br />
+    <br />
     <br />
     <div class="Row">
         <div class="col-md-8"><asp:Label ID="spm1Lbl" runat="server" Font-Size="Large"></asp:Label></div>
@@ -69,5 +75,4 @@
     </div>
     <br />
     <br />
-
 </asp:Content>
