@@ -11,7 +11,8 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Setter StudentID inn i labelen
+            StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
         }
     }
 }
