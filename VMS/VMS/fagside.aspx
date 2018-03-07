@@ -13,7 +13,7 @@
         <div class="col-md-4"><asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="pensumLbl" runat="server" Text="Pensum:"></asp:Label></div>
         <div class="col-md-2">
-            <input type="range" id="pensumRatingStjerne" ClientIDMode="static" min="0" max="5" value="0" step="0.25" runat="server">
+            <input type="range" id="pensumRatingStjerne" ClientIDMode="static" min="0" max="5" value="0" step="0.1" runat="server">
             <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#pensumRatingStjerne"></div>
         </div>
         <div class="col-md-2"><asp:Label ID="pensumRatingLbl" runat="server"></asp:Label></div>
@@ -25,7 +25,7 @@
         <div class="col-md-4"><asp:Label ID="foreleserLbl" runat="server" Text="Foreleser: Vetle Haugan"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="kvalitetLbl" runat="server" Text="Forelesningskvalitet:"></asp:Label></div>
         <div class="col-md-2">
-            <input type="range" runat="server" id="kvalitetRatingStjerne" min="0" max="5" value="0" step="0.25" ClientIDMode="static">
+            <input type="range" runat="server" id="kvalitetRatingStjerne" min="0" max="5" value="0" step="0.1" ClientIDMode="static">
             <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#kvalitetRatingStjerne"></div>
         </div>
         <div class="col-md-2"><asp:Label ID="kvalitetRatingLbl" runat="server"></asp:Label></div>
@@ -37,7 +37,7 @@
         <div class="col-md-4"><asp:Label ID="studieretningLbl" runat="server" Text="Studie: It og informasjonssystemer"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="vasnkelighetsgradLbl" runat="server" Text="Vanskelighetsgrad:"></asp:Label></div>
         <div class="col-md-2">
-            <input type="range" runat="server" id="vanskelighetsgradRatingStjerne" min="0" max="5" value="0" step="0.25" ClientIDMode="static">
+            <input type="range" runat="server" id="vanskelighetsgradRatingStjerne" min="0" max="5" value="0" step="0.1" ClientIDMode="static">
             <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#vanskelighetsgradRatingStjerne"></div>
         </div>
         <div class="col-md-2"><asp:Label ID="vanskelighetsgradRatingLbl" runat="server"></asp:Label></div>
@@ -49,7 +49,7 @@
         <div class="col-md-4"><asp:Label ID="forkursLbl" runat="server" Text="Forkurs: Prg1000"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="spm4Lbl" runat="server" Text ="placeholder"></asp:Label></div>
         <div class="col-md-2">
-            <input type="range" runat="server" id="spm4RatingStjerne" min="0" max="5" value="0" step="0.25" ClientIDMode="static">
+            <input type="range" runat="server" id="spm4RatingStjerne" min="0" max="5" value="0" step="0.1" ClientIDMode="static">
             <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#spm4RatingStjerne"></div>
         </div>
         <div class="col-md-2"><asp:Label ID="spm4RatingLbl" runat="server"></asp:Label></div>
@@ -61,7 +61,7 @@
         <div class="col-md-4"><asp:Label ID="placeholder" runat="server" Text ="placeholder"></asp:Label></div>
         <div class="col-md-4"><asp:Label ID="spm5Lbl" runat="server" Text ="placeholder"></asp:Label></div>
         <div class="col-md-2">
-            <input type="range" runat="server" id="spm5RatingStjerne" min="0" max="5" value="0" step="0.25" ClientIDMode="static">
+            <input type="range" runat="server" id="spm5RatingStjerne" min="0" max="5" value="0" step="0.1" ClientIDMode="static">
             <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#spm5RatingStjerne"></div>
         </div>
         <div class="col-md-2"><asp:Label ID="spm5RatingLbl" runat="server"></asp:Label></div>
