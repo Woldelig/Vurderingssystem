@@ -62,11 +62,45 @@ namespace VMS
             {
                 if (rating.Equals(0))
                 {
-                    placeholderLbl.Text = rating.ToString();
+                    feilmeldingLbl.Text = "Du må fylle ut hele skjemaet";
                 }
                 else
                 {
-                    String sql = "INSERT INTO vurderingshistorikk VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
+                    String skjemaid = "";
+                    String fagkode = "";
+                    String sql = "SELECT skjemaid, f.fagkode FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
+                    var cmd = db.SqlCommand(sql);
+                    cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+                    db.OpenConnection();
+                    MySqlDataReader leser = cmd.ExecuteReader();
+                    while (leser.Read())
+                    {
+                        fagkode = leser[0].ToString();
+                        skjemaid = leser[1].ToString();
+                    }
+                    db.CloseConnection();
+                    
+
+                    
+                    sql = "INSERT INTO vurderingshistorikk VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
+                    cmd = db.SqlCommand(sql);
+                    cmd.Parameters.AddWithValue("@Skjemaid", skjemaid);
+                    cmd.Parameters.AddWithValue("@Fagkode", fagkode);
+                    cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+                    cmd.Parameters.AddWithValue("@Spm1rating", spm1);
+                    cmd.Parameters.AddWithValue("@Spm2rating", spm2);
+                    cmd.Parameters.AddWithValue("@Spm3rating", spm3);
+                    cmd.Parameters.AddWithValue("@Spm4rating", spm4);
+                    cmd.Parameters.AddWithValue("@Spm5rating", spm5);
+                    cmd.Parameters.AddWithValue("@Spm6rating", spm6);
+                    cmd.Parameters.AddWithValue("@Spm7rating", spm7);
+                    cmd.Parameters.AddWithValue("@Spm8rating", spm8);
+                    cmd.Parameters.AddWithValue("@Spm9rating", spm9);
+                    cmd.Parameters.AddWithValue("@Spm10rating", spm10);
+                    db.OpenConnection();
+                    cmd.ExecuteNonQuery();
+                    db.CloseConnection();
+
                 }
             }
         }
