@@ -40,6 +40,15 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label pensumLbl;
         
         /// <summary>
+        /// pensumRatingStjerne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl pensumRatingStjerne;
+        
+        /// <summary>
         /// pensumRatingLbl control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label kvalitetLbl;
+        
+        /// <summary>
+        /// kvalitetRatingStjerne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl kvalitetRatingStjerne;
         
         /// <summary>
         /// kvalitetRatingLbl control.
@@ -94,6 +112,15 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label vasnkelighetsgradLbl;
         
         /// <summary>
+        /// vanskelighetsgradRatingStjerne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl vanskelighetsgradRatingStjerne;
+        
+        /// <summary>
         /// vanskelighetsgradRatingLbl control.
         /// </summary>
         /// <remarks>
@@ -121,6 +148,15 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm4Lbl;
         
         /// <summary>
+        /// spm4RatingStjerne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm4RatingStjerne;
+        
+        /// <summary>
         /// spm4RatingLbl control.
         /// </summary>
         /// <remarks>
@@ -146,6 +182,15 @@ namespace VMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label spm5Lbl;
+        
+        /// <summary>
+        /// spm5RatingStjerne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl spm5RatingStjerne;
         
         /// <summary>
         /// spm5RatingLbl control.
