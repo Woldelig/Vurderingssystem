@@ -46,6 +46,7 @@ namespace VMS
         }
         protected void SendInnSkjemaBtn_Click(object sender, EventArgs e)
         {
+            //Parser verdiene til int
             int spm1 = Int32.Parse(spm1rating.Value);
             int spm2 = Int32.Parse(spm2rating.Value);
             int spm3 = Int32.Parse(spm3rating.Value);
@@ -56,16 +57,24 @@ namespace VMS
             int spm8 = Int32.Parse(spm8rating.Value);
             int spm9 = Int32.Parse(spm9rating.Value);
             int spm10 = Int32.Parse(spm10rating.Value);
-            
+
             int[] ratingArray = new int[10] { spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 };
+            //Sjekker om studentene har svart på alle spm
             foreach (var rating in ratingArray)
             {
                 if (rating.Equals(0))
                 {
                     feilmeldingLbl.Text = "Du må fylle ut hele skjemaet";
-                    break;
+                    return;
+                    //Stopper resten av koden fra å kjøre
+                }
+                else
+                {
+
+                    feilmeldingLbl.Text = "";
                 }
             }
+
             String skjemaid = null;
             String fagkode = null;
             String sql = "SELECT skjemaid, f.fagkode FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
@@ -101,7 +110,7 @@ namespace VMS
 
             suksessLbl.Text = "Takk for at at du svarte på våre spørsmål. Du vil nå bli sendt til forsiden.";
             Response.AddHeader("REFRESH", "4;URL=MineVurderinger.aspx");
-
+            //Sender brukeren til mineVurderinger etter 4 sekunder
         }
     }
 }
