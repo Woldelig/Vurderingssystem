@@ -23,4 +23,5 @@ https://stackoverflow.com/questions/14599127/session-for-windows-forms-applicati
 - [ ] Lage FAQ for WF
 - [ ] Hjelpeside for WF
 - [ ] Legge inn div info på asp.net
+- [ ] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
 
