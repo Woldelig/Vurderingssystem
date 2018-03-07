@@ -101,6 +101,7 @@
     <div class="Row">
         <div class="col-md-8">
             <asp:Button ID="SendInnSkjemaBtn" runat="server" Text="Send inn" class="btn btn-success btn-lg" OnClick="SendInnSkjemaBtn_Click"/>
+            <asp:Label ID="suksessLbl" runat="server" Font-size="Large"></asp:Label>
             <asp:Label ID="feilmeldingLbl" runat="server" ForeColor="Red" Font-size="Large"></asp:Label>
         </div>
     </div>

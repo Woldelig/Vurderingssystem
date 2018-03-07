@@ -63,6 +63,7 @@ namespace VMS
                 if (rating.Equals(0))
                 {
                     feilmeldingLbl.Text = "Du må fylle ut hele skjemaet";
+                    break;
                 }
             }
             String skjemaid = null;
@@ -97,6 +98,10 @@ namespace VMS
             db.OpenConnection();
             cmd.ExecuteNonQuery();
             db.CloseConnection();
+
+            suksessLbl.Text = "Takk for at at du svarte på våre spørsmål. Du vil nå bli sendt til forsiden.";
+            Response.AddHeader("REFRESH", "4;URL=MineVurderinger.aspx");
+
         }
     }
 }
