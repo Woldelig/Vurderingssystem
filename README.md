@@ -24,4 +24,4 @@ https://stackoverflow.com/questions/14599127/session-for-windows-forms-applicati
 - [ ] Hjelpeside for WF
 - [ ] Legge inn div info på asp.net
 - [ ] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
-
+- [ ] Legge til knapp for å lagre til xml,pdf (evt andre filformater) på SQL editoren i WF
