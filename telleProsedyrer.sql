@@ -1,5 +1,27 @@
-call hent_spm1_verdier("OBJ2100",@out_value1,@out_value2,@out_value3,@out_value4,@out_value5);
-SELECT @out_value1,@out_value2,@out_value3,@out_value4,@out_value5
+-- call hent_spm1_verdier("OBJ2100",@out_value1,@out_value2,@out_value3,@out_value4,@out_value5);
+-- SELECT @out_value1,@out_value2,@out_value3,@out_value4,@out_value5;
+-- call historikk_prosedyre("tabbelnavnSkalher");
+-- Over er eksempler på hvordan man kaller på prosedyrer
+
+DROP PROCEDURE IF EXISTS nytt_semester_prosedyre;
+DELIMITER $$
+CREATE PROCEDURE nytt_semester_prosedyre
+(
+    IN ny_tabell VARCHAR(10)
+)
+BEGIN
+    SET @Sql = CONCAT("CREATE TABLE ",ny_tabell," AS SELECT * FROM vurderingshistorikk;");
+    PREPARE stmt FROM @Sql;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+    DELETE FROM vurderingshistorikk;
+END$$
+DELIMITER ;
+
+
+
+
+
 
 DROP PROCEDURE IF EXISTS telle_svar_skjemaer;
 DELIMITER $$
