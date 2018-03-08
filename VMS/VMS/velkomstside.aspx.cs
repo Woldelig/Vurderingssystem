@@ -9,22 +9,40 @@ namespace VMS
 {
     public partial class velkomstside : System.Web.UI.Page
     {
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["logginn"] = null;
+            Session["logginn"] = 0;
+            this.Master.loggutBtnShow = false;
         }
 
-        protected void LoginBtn_Click(object sender, EventArgs e)
+        protected void Logginn_Click(object sender, EventArgs e)
         {
-            Server.Transfer("innlogging.aspx", true);
+            int parsedStudID;
+            //Sjekker om StudentID inneholder tall
+            if (!int.TryParse(StudentID.Text, out parsedStudID))
+            {
+                Feilmelding.ForeColor = System.Drawing.Color.Red;
+                Feilmelding.Text = "Student-ID må inneholde tall!";
+                return;
+            }
+            else
+            {
+                //Setter innlogging til 1
+                Session["logginn"] = 1;
+                //Setter studentID inn i sessionvariabelen
+                Session["studentID"] = parsedStudID;
+                //Sender brukeren videre til velkomstsiden
+                Response.Redirect("Default.aspx", true);
+            }
         }
 
         protected void continue_Click(object sender, EventArgs e)
         {
             Session["logginn"] = 0;
             Session["studentID"] = "Ukjent";
-            Server.Transfer("Default.aspx", true);
+            Response.Redirect("Default.aspx", true);
         }
     }
 }

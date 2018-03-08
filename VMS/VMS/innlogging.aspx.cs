@@ -16,6 +16,8 @@ namespace VMS
                 StudentID.Text = "00000";
             }
             Session["logginn"] = 0;
+
+            this.Master.loggutBtnShow = false;
         }
         
         protected void Login_Click(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace VMS
                 //Setter studentID inn i sessionvariabelen
                 Session["studentID"] = parsedStudID;
                 //Sender brukeren videre til velkomstsiden
-                Server.Transfer("Default.aspx", true);
+                Response.Redirect("Default.aspx", true);
             }
         }
     }

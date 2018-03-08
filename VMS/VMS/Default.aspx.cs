@@ -13,7 +13,7 @@ namespace VMS
         {
             if (Session["logginn"] == null)
             {
-                Server.Transfer("velkomstside.aspx", true);
+                Response.Redirect("velkomstside.aspx", true);
             }
             else
             {
@@ -21,5 +21,8 @@ namespace VMS
                 StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
             }
         }
+
+
+
     }
 }

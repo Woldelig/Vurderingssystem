@@ -12,14 +12,11 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(Session["logginn"] == null)
-            {
-                Server.Transfer("velkomstside.aspx", true);
-            }
-            else if(!SjekkInnlogging())
+            if(!SjekkInnlogging())
             {
                 minefag.Visible = false;
                 minevurderinger.Visible = false;
+                loggutBtn.Text = "Logg inn";
 
             } 
         }
@@ -34,6 +31,42 @@ namespace VMS
                 return true;
             }
             return false;
+        }
+
+        public string loggutBtnText
+        {
+            get
+            {
+                return loggutBtn.Text;
+            }
+            set
+            {
+                loggutBtn.Text = value;
+            }
+        }
+
+        public Boolean loggutBtnShow
+        {
+            get
+            {
+                return loggutBtn.Visible = true;
+            }
+            set
+            {
+                loggutBtn.Visible = value;
+            }
+        }
+
+        protected void loggutBtn_Click(object sender, EventArgs e)
+        {
+            if (loggutBtn.Text == "Logg ut")
+            {
+                Session["logginn"] = 0;
+                Response.Redirect("velkomstside.aspx", true);
+            } else if(loggutBtn.Text == "Logg inn")
+            {
+                Response.Redirect("innlogging.aspx", true);
+            }
         }
     }
 }

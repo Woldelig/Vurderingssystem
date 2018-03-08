@@ -62,6 +62,10 @@
                             </div>
                         </div>
                     </div>
+                    <div class="navbar-header">
+                        <asp:button type="button" class="btn btn-success pull-right" ID="loggutBtn" runat="server" Text="Logg ut" OnClick="loggutBtn_Click" />
+                        
+                    </div>
                 </div>
             </div>
         </div>
