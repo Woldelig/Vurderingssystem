@@ -7,7 +7,7 @@ DROP PROCEDURE IF EXISTS nytt_semester_prosedyre;
 DELIMITER $$
 CREATE PROCEDURE nytt_semester_prosedyre
 (
-    IN ny_tabell VARCHAR(10)
+    IN ny_tabell VARCHAR(64)
 )
 BEGIN
     SET @Sql = CONCAT("CREATE TABLE ",ny_tabell," AS SELECT * FROM vurderingshistorikk;");
