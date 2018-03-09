@@ -24,7 +24,7 @@ namespace adminPanel
         {
             Database db = new Database();
             String sql = sqlTxt.Text;
-            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE" };
+            String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE", "CALL" };
             //Ord som vi ikke vil ha i spørringen, store bokstaver siden vi bruker toUpper
 
             foreach (string ord in fyOrd)  //Her foreacher vi alle ordene i fyOrd for å se om sql spørringen inneholder ulovlige kommandoer
@@ -57,6 +57,9 @@ namespace adminPanel
 
         private void LagreXmlBtn_Click(object sender, EventArgs e)
         {
+            //Datagridview objektet blir kastet over til et datatable objekt
+            //deretter lager vi et fildialog objekt
+            //helt til slutt skriver vi ut datatable som xml og angir filnavnet brukeren taster i fildialogen
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "XML | *.xml";
