@@ -13,9 +13,20 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Jallaløsning - men vi skal jo ikke ha modal uansett
+            //Prøver å få programmet til å trykke på logg-innknappen av seg selv
+            //Sliter med javascript
+            if (Page.IsPostBack)
+            {
+                string s = "<script> document.getElementById(\"LoginBtn\").click();</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", s);
+            }
+
+
             Session["logginn"] = 0;
             this.Master.loggutBtnShow = false;
         }
+
 
         protected void Logginn_Click(object sender, EventArgs e)
         {
@@ -25,6 +36,7 @@ namespace VMS
             {
                 Feilmelding.ForeColor = System.Drawing.Color.Red;
                 Feilmelding.Text = "Student-ID må inneholde tall!";
+                
                 return;
             }
             else

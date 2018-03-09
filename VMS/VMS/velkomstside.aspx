@@ -21,15 +21,12 @@
                     </div>
                     <div class="modal-body">
                         <asp:Label ID="Melding" runat="server" Text="Logg inn med Student-ID"></asp:Label>
-                        <br />
-                        <div class="col-lg-8">
                             <div class="input-group">
-                                <asp:TextBox class="form-control" ID="StudentID" runat="server" />
+                                <asp:TextBox CssClass="form-control" ID="StudentID" runat="server" placeholder="000000" ></asp:TextBox>
                                 <span class="input-group-btn">
-                                    <asp:Button class="btn btn-success" ID="Logginn" runat="server" Text="Logg inn" OnClick="Logginn_Click" />
+                                    <asp:Button CssClass="btn btn-success" ID="Logginn" runat="server" Text="Logg inn" OnClick="Logginn_Click"></asp:Button>
                                 </span>
                              </div>
-                        </div>
                         <asp:Label ID="Feilmelding" runat="server" Text=""></asp:Label>
                     </div>
                     <div class="modal-footer">
