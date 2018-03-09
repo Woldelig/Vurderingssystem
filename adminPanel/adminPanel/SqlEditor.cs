@@ -17,6 +17,7 @@ namespace adminPanel
         {
             InitializeComponent();
             feilmeldingTxt.ForeColor = Color.Red;
+            LagreXmlBtn.Hide();
         }
 
         private void sqlBtn_Click(object sender, EventArgs e)
@@ -44,11 +45,31 @@ namespace adminPanel
                 da.Fill(ds); //Data adapteret fyller på datasetet
                 sqlDatagrid.DataSource = ds.Tables[0]; //Datasetet fyller på datagriden
                 db.CloseConnection();
+                LagreXmlBtn.Show();
             }
             catch (Exception ex)
             {
                 feilmeldingTxt.Text = "Spørring feilet, pass på at du har skrevet korrekt syntaks";
                 Console.WriteLine(ex); //cw for debugging
+            }
+
+        }
+
+        private void LagreXmlBtn_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)sqlDatagrid.DataSource;
+            SaveFileDialog lagreFilDialog = new SaveFileDialog();
+            lagreFilDialog.Filter = "XML | *.xml";
+            if (lagreFilDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    dt.WriteXml(lagreFilDialog.FileName);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
         }
     }
