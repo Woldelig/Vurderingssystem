@@ -93,7 +93,11 @@ namespace adminPanel
                 }
                 for (int j = 0; j < antallKolonner; j++)
                 {
-
+                    sw.Write(dt.Rows[j]);
+                    if (j < antallKolonner -1)
+                    {
+                        sw.Write(",");
+                    }
                 }
                 sw.Write(sw.NewLine);
             }
