@@ -75,5 +75,28 @@ namespace adminPanel
                 }
             }
         }
+
+        private void LagreCsbBtn_Click(object sender, EventArgs e)
+        {
+            int antallKolonner = sqlDatagrid.ColumnCount;
+            int antallRader = sqlDatagrid.RowCount;
+
+            for (int i = 0; i < antallRader; i++)
+            {
+                for (int j = 0; j < antallKolonner; j++)
+                {
+
+                }
+            }
+            /*
+             todo
+             1. tell rader + kolonner
+             2. lag double for loop
+             3. legg til komma , bak alle elementer
+             4. skriv til fil
+             5. fildialog med streamwriter
+             6. legg til newline
+             */
+        }
     }
 }

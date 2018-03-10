@@ -106,6 +106,7 @@
             this.LagreCsbBtn.TabIndex = 6;
             this.LagreCsbBtn.Text = "Lagre til csv";
             this.LagreCsbBtn.UseVisualStyleBackColor = false;
+            this.LagreCsbBtn.Click += new System.EventHandler(this.LagreCsbBtn_Click);
             // 
             // SqlEditor
             // 
