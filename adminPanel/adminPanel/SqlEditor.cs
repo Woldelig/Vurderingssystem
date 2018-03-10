@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.IO;
 
 namespace adminPanel
 {
@@ -78,15 +79,23 @@ namespace adminPanel
 
         private void LagreCsbBtn_Click(object sender, EventArgs e)
         {
+            DataTable dt = (DataTable)sqlDatagrid.DataSource;
             int antallKolonner = sqlDatagrid.ColumnCount;
             int antallRader = sqlDatagrid.RowCount;
+            StreamWriter sw = new StreamWriter("test.csv");
 
             for (int i = 0; i < antallRader; i++)
             {
+                sw.Write(dt.Columns[i]);
+                if (i < antallKolonner - 1)
+                {
+                    sw.Write(",");
+                }
                 for (int j = 0; j < antallKolonner; j++)
                 {
 
                 }
+                sw.Write(sw.NewLine);
             }
             /*
              todo
