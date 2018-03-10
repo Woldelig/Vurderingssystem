@@ -80,26 +80,32 @@ namespace adminPanel
         private void LagreCsbBtn_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
+            SaveFileDialog lagreFilDialog = new SaveFileDialog();
+            lagreFilDialog.Filter = "CSV | *.csv";
+
             int antallKolonner = sqlDatagrid.ColumnCount;
             int antallRader = sqlDatagrid.RowCount;
-            StreamWriter sw = new StreamWriter("test.csv");
+            StreamWriter sw = new StreamWriter(lagreFilDialog.FileName);
 
-            for (int i = 0; i < antallRader; i++)
+            if (lagreFilDialog.ShowDialog() == DialogResult.OK)
             {
-                sw.Write(dt.Columns[i]);
-                if (i < antallKolonner - 1)
+                for (int i = 0; i < antallRader; i++)
                 {
-                    sw.Write(",");
-                }
-                for (int j = 0; j < antallKolonner; j++)
-                {
-                    sw.Write(dt.Rows[j]);
-                    if (j < antallKolonner -1)
+                    sw.Write(dt.Columns[i]);
+                    if (i < antallKolonner - 1)
                     {
                         sw.Write(",");
                     }
+                    for (int j = 0; j < antallKolonner; j++)
+                    {
+                        sw.Write(dt.Rows[j]);
+                        if (j < antallKolonner - 1)
+                        {
+                            sw.Write(",");
+                        }
+                    }
+                    sw.Write(sw.NewLine);
                 }
-                sw.Write(sw.NewLine);
             }
             /*
              todo
