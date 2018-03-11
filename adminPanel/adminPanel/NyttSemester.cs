@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace adminPanel
 {
@@ -78,7 +79,37 @@ namespace adminPanel
             }
             else
             {
+                Database db = new Database();
+                var cmd = db.SqlCommand("SELECT * FROM information_schema.tables WHERE table_schema = 'vurderingssystem' AND table_name = @tabell LIMIT 1;");
+                //Setningen over sjekker om tabellen eksisterer. Man kan ikke bruke en vanlig select * from tabellnavn
+                //grunnen til dette er at hvis tabellen ikke eksisterer vil mysql gi en feilmelding
+                cmd.Parameters.AddWithValue("@tabell", TabellNavnTextbox.Text);
+                db.OpenConnection();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    FeilmeldingLbl.Text = "Tabellnavnet finnes fra før!";
+                    db.CloseConnection();
+                    return;
+                }
+                db.CloseConnection();
 
+
+                cmd = db.SqlCommand("historikk_prosedyre");
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ny_tabell", TabellNavnTextbox.Text).Direction = ParameterDirection.Input;
+                db.OpenConnection();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    FeilmeldingLbl.ForeColor = Color.Black;
+                    FeilmeldingLbl.Text = "Prosedyren er utført.";
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                db.CloseConnection();
             }
         }
     }
