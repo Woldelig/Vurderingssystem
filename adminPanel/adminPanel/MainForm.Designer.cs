@@ -41,6 +41,7 @@
             this.ExitBtn = new System.Windows.Forms.Button();
             this.LogoLbl = new System.Windows.Forms.Label();
             this.ContainerPanel = new System.Windows.Forms.Panel();
+            this.NyttSemesterBtn = new System.Windows.Forms.Button();
             this.ControllPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +49,7 @@
             // ControllPanel
             // 
             this.ControllPanel.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ControllPanel.Controls.Add(this.NyttSemesterBtn);
             this.ControllPanel.Controls.Add(this.ShutdownBtn);
             this.ControllPanel.Controls.Add(this.SqlBtn);
             this.ControllPanel.Controls.Add(this.LogOutBtn);
@@ -262,6 +264,24 @@
             this.ContainerPanel.Size = new System.Drawing.Size(1008, 627);
             this.ContainerPanel.TabIndex = 2;
             // 
+            // NyttSemesterBtn
+            // 
+            this.NyttSemesterBtn.BackColor = System.Drawing.Color.LightSlateGray;
+            this.NyttSemesterBtn.FlatAppearance.BorderSize = 0;
+            this.NyttSemesterBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.NyttSemesterBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.NyttSemesterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NyttSemesterBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.NyttSemesterBtn.Location = new System.Drawing.Point(0, 260);
+            this.NyttSemesterBtn.Name = "NyttSemesterBtn";
+            this.NyttSemesterBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.NyttSemesterBtn.Size = new System.Drawing.Size(191, 52);
+            this.NyttSemesterBtn.TabIndex = 4;
+            this.NyttSemesterBtn.Text = "Ny vurdering";
+            this.NyttSemesterBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.NyttSemesterBtn.UseVisualStyleBackColor = false;
+            this.NyttSemesterBtn.Click += new System.EventHandler(this.NyttSemesterBtn_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,5 +318,6 @@
         private System.Windows.Forms.Panel ContainerPanel;
         private System.Windows.Forms.Button ShutdownBtn;
         private System.Windows.Forms.Button LogOutBtn;
+        private System.Windows.Forms.Button NyttSemesterBtn;
     }
 }

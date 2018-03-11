@@ -171,6 +171,7 @@ namespace adminPanel
             StatsBtn.BackColor = Color.LightSlateGray;
             SchemaBtn.BackColor = Color.LightSlateGray;
             SqlBtn.BackColor = Color.LightSlateGray;
+            NyttSemesterBtn.BackColor = Color.LightSlateGray;
 
             ((Control)sender).BackColor = Color.FromArgb(86, 99, 112);
         }
@@ -240,6 +241,26 @@ namespace adminPanel
             }
             reader.Close();
             db.CloseConnection();
+        }
+
+        private void NyttSemesterBtn_Click(object sender, EventArgs e)
+        {
+            ButtonToggle(sender);
+
+            foreach (Control ctrl in ContainerPanel.Controls)
+            {
+                ctrl.Dispose();
+            }
+            ContainerPanel.Controls.Add(new SqlEditor());
+        }
+        private void NyttSemesterBtn_MouseEnter(object sender, EventArgs e)
+        {
+            NyttSemesterBtn.ForeColor = Color.FromArgb(70, 130, 180);
+        }
+
+        private void NyttSemesterBtn_MouseLeave(object sender, EventArgs e)
+        {
+            NyttSemesterBtn.ForeColor = Color.Black;
         }
     }
 }
