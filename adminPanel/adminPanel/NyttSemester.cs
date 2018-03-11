@@ -16,6 +16,7 @@ namespace adminPanel
         public NyttSemester()
         {
             InitializeComponent();
+            FeilmeldingLbl.Text = "";
             //Event handlers blir definert under. Mye lettere å håndtere de her enn i design. Spesielt hvis man skal endre navn.
             GodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(GodkjennNyttSemesterLbl_MouseDown);
             IkkeGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(IkkeGodkjennNyttSemesterLbl_MouseDown);
@@ -95,7 +96,7 @@ namespace adminPanel
                 db.CloseConnection();
 
 
-                cmd = db.SqlCommand("historikk_prosedyre");
+                cmd = db.SqlCommand("nytt_semester_prosedyre");
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ny_tabell", TabellNavnTextbox.Text).Direction = ParameterDirection.Input;
                 db.OpenConnection();
