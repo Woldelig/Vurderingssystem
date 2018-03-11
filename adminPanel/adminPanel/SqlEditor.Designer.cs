@@ -33,7 +33,7 @@
             this.sqlDatagrid = new System.Windows.Forms.DataGridView();
             this.feilmeldingTxt = new System.Windows.Forms.Label();
             this.LagreXmlBtn = new System.Windows.Forms.Button();
-            this.LagreCsbBtn = new System.Windows.Forms.Button();
+            this.LagreCsvBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sqlDatagrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,25 +94,25 @@
             this.LagreXmlBtn.UseVisualStyleBackColor = false;
             this.LagreXmlBtn.Click += new System.EventHandler(this.LagreXmlBtn_Click);
             // 
-            // LagreCsbBtn
+            // LagreCsvBtn
             // 
-            this.LagreCsbBtn.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.LagreCsbBtn.FlatAppearance.BorderSize = 0;
-            this.LagreCsbBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.LagreCsbBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LagreCsbBtn.Location = new System.Drawing.Point(103, 567);
-            this.LagreCsbBtn.Name = "LagreCsbBtn";
-            this.LagreCsbBtn.Size = new System.Drawing.Size(119, 34);
-            this.LagreCsbBtn.TabIndex = 6;
-            this.LagreCsbBtn.Text = "Lagre til csv";
-            this.LagreCsbBtn.UseVisualStyleBackColor = false;
-            this.LagreCsbBtn.Click += new System.EventHandler(this.LagreCsbBtn_Click);
+            this.LagreCsvBtn.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.LagreCsvBtn.FlatAppearance.BorderSize = 0;
+            this.LagreCsvBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LagreCsvBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LagreCsvBtn.Location = new System.Drawing.Point(103, 567);
+            this.LagreCsvBtn.Name = "LagreCsvBtn";
+            this.LagreCsvBtn.Size = new System.Drawing.Size(119, 34);
+            this.LagreCsvBtn.TabIndex = 6;
+            this.LagreCsvBtn.Text = "Lagre til csv";
+            this.LagreCsvBtn.UseVisualStyleBackColor = false;
+            this.LagreCsvBtn.Click += new System.EventHandler(this.LagreCsvBtn_Click);
             // 
             // SqlEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.LagreCsbBtn);
+            this.Controls.Add(this.LagreCsvBtn);
             this.Controls.Add(this.LagreXmlBtn);
             this.Controls.Add(this.feilmeldingTxt);
             this.Controls.Add(this.sqlDatagrid);
@@ -133,6 +133,6 @@
         private System.Windows.Forms.DataGridView sqlDatagrid;
         private System.Windows.Forms.Label feilmeldingTxt;
         private System.Windows.Forms.Button LagreXmlBtn;
-        private System.Windows.Forms.Button LagreCsbBtn;
+        private System.Windows.Forms.Button LagreCsvBtn;
     }
 }

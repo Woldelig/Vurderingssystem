@@ -19,6 +19,7 @@ namespace adminPanel
             InitializeComponent();
             feilmeldingTxt.ForeColor = Color.Red;
             LagreXmlBtn.Hide();
+            LagreCsvBtn.Hide();
         }
 
         private void sqlBtn_Click(object sender, EventArgs e)
@@ -47,6 +48,7 @@ namespace adminPanel
                 sqlDatagrid.DataSource = ds.Tables[0]; //Datasetet fyller på datagriden
                 db.CloseConnection();
                 LagreXmlBtn.Show();
+                LagreCsvBtn.Show();
             }
             catch (Exception ex)
             {
@@ -77,7 +79,7 @@ namespace adminPanel
             }
         }
 
-        private void LagreCsbBtn_Click(object sender, EventArgs e)
+        private void LagreCsvBtn_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
@@ -85,10 +87,10 @@ namespace adminPanel
 
             int antallKolonner = sqlDatagrid.ColumnCount;
             int antallRader = sqlDatagrid.RowCount;
-            StreamWriter sw = new StreamWriter(lagreFilDialog.FileName);
 
             if (lagreFilDialog.ShowDialog() == DialogResult.OK)
             {
+                StreamWriter sw = new StreamWriter(lagreFilDialog.FileName);
                 for (int i = 0; i < antallRader; i++)
                 {
                     sw.Write(dt.Columns[i]);
