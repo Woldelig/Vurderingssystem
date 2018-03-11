@@ -91,33 +91,33 @@ namespace adminPanel
             if (lagreFilDialog.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter sw = new StreamWriter(lagreFilDialog.FileName);
-                for (int i = 0; i < antallRader; i++)
+                
+                //Denne loopen får ut kolonne navnene, dette er vanligvis ikke med i csv filer, men vi tar det med.
+                for (int i = 0; i < antallKolonner; i++)
                 {
                     sw.Write(dt.Columns[i]);
                     if (i < antallKolonner - 1)
                     {
                         sw.Write(",");
                     }
-                    for (int j = 0; j < antallKolonner; j++)
+                }
+                sw.Write(sw.NewLine);
+
+                foreach (DataRow rad in dt.Rows)
+                {
+                    for (int i = 0; i < antallKolonner; i++)
                     {
-                        sw.Write(dt.Rows[j]);
-                        if (j < antallKolonner - 1)
+                        sw.Write(rad[i].ToString());
+                        if (i < antallKolonner - 1)
                         {
                             sw.Write(",");
+                            //sw.Write(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator);
                         }
                     }
                     sw.Write(sw.NewLine);
                 }
+                sw.Close();
             }
-            /*
-             todo
-             1. tell rader + kolonner
-             2. lag double for loop
-             3. legg til komma , bak alle elementer
-             4. skriv til fil
-             5. fildialog med streamwriter
-             6. legg til newline
-             */
         }
     }
 }
