@@ -251,7 +251,7 @@ namespace adminPanel
             {
                 ctrl.Dispose();
             }
-            ContainerPanel.Controls.Add(new SqlEditor());
+            ContainerPanel.Controls.Add(new NyttSemester());
         }
         private void NyttSemesterBtn_MouseEnter(object sender, EventArgs e)
         {
