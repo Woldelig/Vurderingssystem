@@ -96,12 +96,14 @@ namespace adminPanel
                 for (int i = 0; i < antallKolonner; i++)
                 {
                     sw.Write(dt.Columns[i]);
+                    //Denne sjekken gjør at siste linje ikke får komma
                     if (i < antallKolonner - 1)
                     {
                         sw.Write(",");
                     }
                 }
                 sw.Write(sw.NewLine);
+                //Setter inn en ny linje
 
                 foreach (DataRow rad in dt.Rows)
                 {
@@ -112,6 +114,9 @@ namespace adminPanel
                         {
                             sw.Write(",");
                             //sw.Write(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator);
+                            //Denne linjen ville gitt oss et semikolon siden dette er seperatoren vi bruker i europa.
+                            //den finnger ut hvilken seperator den skal sette basert på "kulturen" til din datamaskin
+                            //linjen er bare med for å vise at dette er en mulighet
                         }
                     }
                     sw.Write(sw.NewLine);
