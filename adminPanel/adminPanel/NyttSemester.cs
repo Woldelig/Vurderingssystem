@@ -15,27 +15,34 @@ namespace adminPanel
         public NyttSemester()
         {
             InitializeComponent();
+            //Event handlers blir definert under. Mye lettere å håndtere de her enn i design. Spesielt hvis man skal endre navn.
             GodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(GodkjennNyttSemesterLbl_MouseDown);
-            textBox1.AllowDrop = true;
-            textBox1.DragEnter += new DragEventHandler(textBox1_DragEnter);
-            textBox1.DragDrop += new DragEventHandler(textBox1_DragDrop);
+            IkkeGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(IkkeGodkjennNyttSemesterLbl_MouseDown);
             ValideringsTextBox.AllowDrop = true;
             ValideringsTextBox.DragEnter += new DragEventHandler(ValideringsTextBox_DragEnter);
             ValideringsTextBox.DragDrop += new DragEventHandler(ValideringsTextBox_DragDrop);
+
+            //Her lages tooltip for å hjelpe brukeren. Tallene representerer tid
+            ToolTip tooltip1 = new ToolTip();
+            tooltip1.AutoPopDelay = 1500;
+            tooltip1.InitialDelay = 700;
+            tooltip1.ReshowDelay = 500;
+            tooltip1.ShowAlways = true;
+
+            //Her setter vi tekstverdiene. Vi kan bruke tooltip objektet for all kontrollene
+            tooltip1.SetToolTip(this.TabellNavnLbl, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
+            tooltip1.SetToolTip(this.StartNyttSemesterBtn, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
+            tooltip1.SetToolTip(this.TabellNavnTextbox, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
+            tooltip1.SetToolTip(this.GodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne handlingen.");
+            tooltip1.SetToolTip(this.IkkeGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne ikke handlingen.");
         }
         private void GodkjennNyttSemesterLbl_MouseDown(object sender,MouseEventArgs e)
         {
             DoDragDrop(GodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
         }
-
-        private void textBox1_DragEnter(object sender, DragEventArgs e)
+        private void IkkeGodkjennNyttSemesterLbl_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.Text)) e.Effect = DragDropEffects.Copy;
-            else e.Effect = DragDropEffects.None;
-        }
-        private void textBox1_DragDrop(object sender, DragEventArgs e)
-        {
-            textBox1.Text = (String)e.Data.GetData(DataFormats.Text);
+            DoDragDrop(IkkeGodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
         }
         private void ValideringsTextBox_DragEnter(object sender, DragEventArgs e)
         {
@@ -55,6 +62,24 @@ namespace adminPanel
             //plus symbolene gir linjeskift i messagebox
             MessageBox.Show(hjelpetekst,"Hjelp", MessageBoxButtons.OK);
             //Parameter nr 2 setter tittelen til messagebox og parameter 3 legger til en ok knapp
+        }
+
+        private void StartNyttSemesterBtn_Click(object sender, EventArgs e)
+        {
+            FeilmeldingLbl.ForeColor = Color.Red;
+            //Under sjekker vi først at tekstboksen ikke er tom eller bare har whitespace, deretter sjekker vi valideringstekstboksen
+            if (String.IsNullOrWhiteSpace(TabellNavnTextbox.Text))
+            {
+                FeilmeldingLbl.Text = "Tekstboksen må ha et navn";
+            }
+            else if (ValideringsTextBox.Text != "Godkjenn")
+            {
+                FeilmeldingLbl.Text = "Du må godkjenne handlingen med valideringsteksboksen!";
+            }
+            else
+            {
+
+            }
         }
     }
 }
