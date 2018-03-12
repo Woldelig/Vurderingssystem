@@ -172,7 +172,7 @@ namespace adminPanel
                         chart1.Series.Clear();
                         chart1.Legends.Clear();
                         chart1.Series.Add(seriesname);
-                        chart1.Series[seriesname].ChartType = SeriesChartType.Bar;
+                        chart1.Series[seriesname].ChartType = SeriesChartType.Column;
                         break;
 
                     default:

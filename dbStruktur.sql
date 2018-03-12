@@ -26,7 +26,8 @@ CREATE TABLE fag(
     studieretning VARCHAR (128),
     forkurs VARCHAR (128),
     FOREIGN KEY (foreleserid) REFERENCES foreleser(foreleserid),
-    FOREIGN KEY (studieretning) REFERENCES studier(studieretning)
+    FOREIGN KEY (studieretning) REFERENCES studier(studieretning),
+    FOREIGN KEY (forkurs) REFERENCES fag(fagkode)
 );
 
 CREATE TABLE student(
@@ -98,12 +99,12 @@ INSERT INTO foreleser(foreleserid, fornavn, etternavn) VALUES
 (666, 'Steve', 'Jobs'), 
 (111, 'Bill', 'Gates');
 
-INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning) VALUES 
-('DAT1000', 'Database', 313, 'It og Informasjonssystemer'), 
-('OBJ2000', 'SWIFT', 666, 'Dataingeniør'), 
-('OBJ2100', 'Objective C', 666, 'Dataingeniør'), 
-('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører'),
-('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer');
+INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning, forkurs) VALUES 
+('DAT1000', 'Database', 313, 'It og Informasjonssystemer', ''), 
+('OBJ2000', 'SWIFT', 666, 'Dataingeniør', ''), 
+('OBJ2100', 'Objective C', 666, 'Dataingeniør', 'OBJ200'), 
+('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører', ''),
+('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer','');
 
 INSERT INTO student(studentid, studieretning) VALUES 
 (1, 'Dataingeniør'), (2, 'Dataingeniør'), (3, 'Dataingeniør'), (4, 'Dataingeniør'), 
