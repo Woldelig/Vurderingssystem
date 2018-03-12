@@ -21,14 +21,11 @@ Prototype for APP2000
 - [ ] Sett opp størrelser på siden
 - [ ] Varsel for session timeout?
 - [ ] Velkomstsside kan være mine fag eller mine vurderinger?
-  
-  
-  
 
+***
 - [ ] Logo for vms
 - [ ] Favicon
-  
-  
+*** 
   
 
 - [ ] Feilsøking/validering
@@ -52,10 +49,7 @@ Prototype for APP2000
 - [ ] Finne løsning på avatar bilde (url i db?)
 - [ ] Passord hash!
   
-  
-  
-
-
+  ***
 - [ ] Feilsøking/validering
 - [ ] Kode kommentering
 - [ ] Korrektur
