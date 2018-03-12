@@ -16,7 +16,7 @@ Prototype for APP2000
 - [ ] Session redirect hvis du ikke har tilgang til siden
 - [ ] Lag mine fag
 - [ ] Lag min vurderinger
-- [ ] Fagside try catch - divide by zero - Hvis databasen er tom
+- [x] Fagside try catch - divide by zero - Hvis databasen er tom
 - [ ] Fiks gapet i navbar
 - [ ] Sett opp størrelser på siden
 - [ ] Varsel for session timeout?
@@ -39,7 +39,7 @@ Prototype for APP2000
 - [ ] Lage tooltip for elementer
 - [ ] Lag bedre design på start ny vurdering semester
 - [ ] Skrive en bedre tekst til hjelpknapp på ny vurdering semester
-- [ ] Fikse på lagre/endre skjema readonly/ på det første 5 tekstboksene
+- [x] Fikse på lagre/endre skjema readonly/ på det første 5 tekstboksene
 - [ ] Lage FAQ for WF
 - [ ] Hjelpeside for WF
 - [x] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
