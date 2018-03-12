@@ -46,6 +46,7 @@ Prototype for APP2000
 - [ ] Velkomstsskjerm, legge inn noe i området som nå er lilla og inneholder teksten "aner ikke hva som skal her"
 - [ ] Legge til flere diagramtyper på se statistikk
 - [ ] Finne løsning på avatar bilde (url i db?)
+- [ ] Passord hash!
 
 
 
@@ -66,4 +67,5 @@ Prototype for APP2000
 ### Forslag
 - [ ] ny Tabell pågående vurdering
 - [ ] Legg til mulighet for å kunne ta vurdering for flere fag
+- [ ] Finn en bruk for threads/ multithreading
 
