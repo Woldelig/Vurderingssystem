@@ -125,11 +125,14 @@ namespace VMS
             else
             {
 
-                pensumLbl.Text = "Det er for lite data til å kunne vises.";
-                kvalitetLbl.Text = "Det er for lite data til å kunne vises.";
-                vasnkelighetsgradLbl.Text = "Det er for lite data til å kunne vises.";
-                spm4Lbl.Text = "Det er for lite data til å kunne vises.";
-                spm5Lbl.Text = "Det er for lite data til å kunne vises.";
+                pensumLbl.Text = "Det er for lite data om denne fagkoden til at det kan vises på denne siden.";
+
+                //Kodesnutten under trenger vi for å skjule rateit. Uten den vil stjernene vises
+                spm1Div.InnerHtml = "";
+                spm2Div.InnerHtml = "";
+                spm3Div.InnerHtml = "";
+                spm4Div.InnerHtml = "";
+                spm5Div.InnerHtml = "";
             }
         }
 
