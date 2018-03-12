@@ -18,10 +18,10 @@ https://stackoverflow.com/questions/14599127/session-for-windows-forms-applicati
 - [ ] Lage ASP siden to delt, det vil si at hvis man ikke er innlogget skal man ikke se det en innlogget bruker vil se
 - [ ] Søkebar (KISS kanskje bare bruke SQL. Er ikke så mye å søke etter. Og heller lage noe sykt for en BA)
 - [ ] Oppdatere ER diagram (kan avvente til vi er sikre på at db strukturen er ferdig)
-- [ ] Sette tidsbegrensning på innlogging i webconfig. Sette tidsbegrensning på vurderingsskjema (thread.timer)
+- [x] Sette tidsbegrensning på innlogging i webconfig. Sette tidsbegrensning på vurderingsskjema (thread.timer)
 - [ ] Lage FAQ for asp.net
 - [ ] Lage FAQ for WF
 - [ ] Hjelpeside for WF
 - [ ] Legge inn div info på asp.net
-- [ ] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
-- [ ] Legge til knapp for å lagre til xml,pdf (evt andre filformater) på SQL editoren i WF
+- [x] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
+- [x] Legge til knapp for å lagre til xml,pdf (evt andre filformater) på SQL editoren i WF
