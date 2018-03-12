@@ -21,11 +21,15 @@ Prototype for APP2000
 - [ ] Sett opp størrelser på siden
 - [ ] Varsel for session timeout?
 - [ ] Velkomstsside kan være mine fag eller mine vurderinger?
-
+  
+  
+  
 
 - [ ] Logo for vms
 - [ ] Favicon
-
+  
+  
+  
 
 - [ ] Feilsøking/validering
 - [ ] Kode kommentering
@@ -47,7 +51,9 @@ Prototype for APP2000
 - [ ] Legge til flere diagramtyper på se statistikk
 - [ ] Finne løsning på avatar bilde (url i db?)
 - [ ] Passord hash!
-
+  
+  
+  
 
 
 - [ ] Feilsøking/validering
@@ -58,10 +64,14 @@ Prototype for APP2000
 - [ ] Gantt for rapport
 - [ ] Oppdatere ER diagram (kan avvente til vi er sikre på at db strukturen er ferdig)
 - [ ] UML, sekvensdiagrammer for å vise hvordan feks vurdering fungerer. Viktig når vi skal vise fram for håvard/stine
-
+  
+  
+  
 
 - [ ] Korrektur
-
+  
+  
+  
 
 
 ### Forslag
