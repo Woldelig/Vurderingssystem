@@ -19,18 +19,19 @@ namespace VMS
             {
                 //Setter StudentID inn i labelen
                 StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
-            //Setter StudentID inn i labelen
-            try
-            {
-                StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
+                //Setter StudentID inn i labelen
+                try
+                {
+                    StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
+                }
+                catch (Exception)
+                {
+                    StudIDLabel.Text = "StudentID: Ingen session registrert";
+                }
             }
-            catch (Exception)
-            {
-                StudIDLabel.Text = "StudentID: Ingen session registrert";
-            }
+
+
+
         }
-
-
-
     }
 }
