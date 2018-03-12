@@ -60,12 +60,31 @@ namespace VMS
             int[] prosedyreSvarSpm4 = ProsedyreKaller("hent_spm4_verdier", sidensFagkode, 4);
             int[] prosedyreSvarSpm5 = ProsedyreKaller("hent_spm5_verdier", sidensFagkode, 5);
 
+            String gjennomsnittSpm1 = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
+            String gjennomsnittSpm2 = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
+            String gjennomsnittSpm3 = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
+            String gjennomsnittSpm4 = BeregnGjennomsnittsRating(prosedyreSvarSpm4);
+            String gjennomsnittSpm5 = BeregnGjennomsnittsRating(prosedyreSvarSpm5);
+
+            pensumRatingLbl.Text = gjennomsnittSpm1;
+            kvalitetRatingLbl.Text = gjennomsnittSpm2;
+            vanskelighetsgradRatingLbl.Text = gjennomsnittSpm3;
+            spm4RatingLbl.Text = gjennomsnittSpm4;
+            spm5RatingLbl.Text = gjennomsnittSpm5;
+
+            pensumRatingStjerne.Value = gjennomsnittSpm1.Replace(",", ".");
+            kvalitetRatingStjerne.Value = gjennomsnittSpm2.Replace(",", ".");
+            vanskelighetsgradRatingStjerne.Value = gjennomsnittSpm3.Replace(",", ".");
+            spm4RatingStjerne.Value = gjennomsnittSpm4.Replace(",", ".");
+            spm5RatingStjerne.Value = gjennomsnittSpm5.Replace(",", ".");
+
+            /* Chris sine gamle variabler
             pensumRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
             kvalitetRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
             vanskelighetsgradRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
             spm4RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm4);//PLACEHOLDER
             spm5RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm5);//PLACEHOLDER
-
+            */
 
             //Koden under påvirker kun diagrammet
             String diagramTittel = "Var faget vanskelig?"; //diagramets tittel
