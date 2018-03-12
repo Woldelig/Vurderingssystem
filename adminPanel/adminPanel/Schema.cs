@@ -30,21 +30,22 @@ namespace adminPanel
 
         private void LagSkjemaBtn_Click(object sender, EventArgs e)
         {
-            String query = "";
-            
             //Denne foreachen sjekker om samtlige tekstbokser er fylt ut. Og avbryter koden hvis ikke
-            foreach (Control c in this.Controls) 
+            foreach (Control c in this.Controls)
             {
                 if (c is TextBox)
                 {
-                    ((TextBox)c).Text = String.Empty;
-
-                    resultatLbl.ForeColor = Color.Red;
-                    resultatLbl.Text = "Fyll ut alle tekstfelt.";
-                    return;
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == string.Empty)
+                    {
+                        resultatLbl.ForeColor = Color.Red;
+                        resultatLbl.Text = "Fyll ut alle tekstfelt.";
+                        return;
+                    }
                 }
             }
 
+            String query = "";
             if (nyttSkjema)
             {
                 query = "INSERT INTO vurderingsskjema VALUES (NULL, @Fagkode, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
