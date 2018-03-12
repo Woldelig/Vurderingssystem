@@ -13,7 +13,7 @@ namespace VMS
     public partial class Fagside : System.Web.UI.Page
     {
         Database db = new Database();
-        private String sidensFagkode = "obj2000";
+        private String sidensFagkode = "obj2100";
         /*
          * Denne variabelen skal bestemme hva fagsiden handler om. Planen er at man kun skal trenge å 
          * bytte ut denne variabelen så vil all info byttes ut dynamisk
@@ -121,6 +121,15 @@ namespace VMS
                 diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyreSvarSpm1[4]);
                 diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyreSvarSpm1[5]);
                 //Teksten er den som vises på selve diagrammet
+            }
+            else
+            {
+
+                pensumLbl.Text = "Det er for lite data til å kunne vises.";
+                kvalitetLbl.Text = "Det er for lite data til å kunne vises.";
+                vasnkelighetsgradLbl.Text = "Det er for lite data til å kunne vises.";
+                spm4Lbl.Text = "Det er for lite data til å kunne vises.";
+                spm5Lbl.Text = "Det er for lite data til å kunne vises.";
             }
         }
 
