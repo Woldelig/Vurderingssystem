@@ -72,9 +72,9 @@
             this.spm1Lbl.AutoSize = true;
             this.spm1Lbl.Location = new System.Drawing.Point(436, 62);
             this.spm1Lbl.Name = "spm1Lbl";
-            this.spm1Lbl.Size = new System.Drawing.Size(104, 13);
+            this.spm1Lbl.Size = new System.Drawing.Size(137, 13);
             this.spm1Lbl.TabIndex = 4;
-            this.spm1Lbl.Text = "Skriv inn spørsmål 1:";
+            this.spm1Lbl.Text = "Spørsmål 1 er standardisert:";
             // 
             // fagkodeTxt
             // 
@@ -88,6 +88,7 @@
             // 
             this.spm1Txt.Location = new System.Drawing.Point(438, 77);
             this.spm1Txt.Name = "spm1Txt";
+            this.spm1Txt.ReadOnly = true;
             this.spm1Txt.Size = new System.Drawing.Size(554, 20);
             this.spm1Txt.TabIndex = 6;
             // 
@@ -95,6 +96,7 @@
             // 
             this.spm2Txt.Location = new System.Drawing.Point(438, 116);
             this.spm2Txt.Name = "spm2Txt";
+            this.spm2Txt.ReadOnly = true;
             this.spm2Txt.Size = new System.Drawing.Size(554, 20);
             this.spm2Txt.TabIndex = 8;
             // 
@@ -103,14 +105,15 @@
             this.spm2Lbl.AutoSize = true;
             this.spm2Lbl.Location = new System.Drawing.Point(436, 101);
             this.spm2Lbl.Name = "spm2Lbl";
-            this.spm2Lbl.Size = new System.Drawing.Size(104, 13);
+            this.spm2Lbl.Size = new System.Drawing.Size(137, 13);
             this.spm2Lbl.TabIndex = 7;
-            this.spm2Lbl.Text = "Skriv inn spørsmål 2:";
+            this.spm2Lbl.Text = "Spørsmål 2 er standardisert:";
             // 
             // spm3Txt
             // 
             this.spm3Txt.Location = new System.Drawing.Point(438, 155);
             this.spm3Txt.Name = "spm3Txt";
+            this.spm3Txt.ReadOnly = true;
             this.spm3Txt.Size = new System.Drawing.Size(554, 20);
             this.spm3Txt.TabIndex = 10;
             // 
@@ -119,14 +122,15 @@
             this.spm3Lbl.AutoSize = true;
             this.spm3Lbl.Location = new System.Drawing.Point(436, 140);
             this.spm3Lbl.Name = "spm3Lbl";
-            this.spm3Lbl.Size = new System.Drawing.Size(104, 13);
+            this.spm3Lbl.Size = new System.Drawing.Size(137, 13);
             this.spm3Lbl.TabIndex = 9;
-            this.spm3Lbl.Text = "Skriv inn spørsmål 3:";
+            this.spm3Lbl.Text = "Spørsmål 3 er standardisert:";
             // 
             // spm4Txt
             // 
             this.spm4Txt.Location = new System.Drawing.Point(438, 194);
             this.spm4Txt.Name = "spm4Txt";
+            this.spm4Txt.ReadOnly = true;
             this.spm4Txt.Size = new System.Drawing.Size(554, 20);
             this.spm4Txt.TabIndex = 12;
             // 
@@ -135,14 +139,15 @@
             this.spm4Lbl.AutoSize = true;
             this.spm4Lbl.Location = new System.Drawing.Point(436, 179);
             this.spm4Lbl.Name = "spm4Lbl";
-            this.spm4Lbl.Size = new System.Drawing.Size(104, 13);
+            this.spm4Lbl.Size = new System.Drawing.Size(137, 13);
             this.spm4Lbl.TabIndex = 11;
-            this.spm4Lbl.Text = "Skriv inn spørsmål 4:";
+            this.spm4Lbl.Text = "Spørsmål 4 er standardisert:";
             // 
             // spm5Txt
             // 
             this.spm5Txt.Location = new System.Drawing.Point(438, 233);
             this.spm5Txt.Name = "spm5Txt";
+            this.spm5Txt.ReadOnly = true;
             this.spm5Txt.Size = new System.Drawing.Size(554, 20);
             this.spm5Txt.TabIndex = 14;
             // 
@@ -151,9 +156,9 @@
             this.spm5Lbl.AutoSize = true;
             this.spm5Lbl.Location = new System.Drawing.Point(436, 218);
             this.spm5Lbl.Name = "spm5Lbl";
-            this.spm5Lbl.Size = new System.Drawing.Size(104, 13);
+            this.spm5Lbl.Size = new System.Drawing.Size(137, 13);
             this.spm5Lbl.TabIndex = 13;
-            this.spm5Lbl.Text = "Skriv inn spørsmål 5:";
+            this.spm5Lbl.Text = "Spørsmål 5 er standardisert:";
             // 
             // spm6Txt
             // 
@@ -261,7 +266,7 @@
             this.lagNyttSkjemaBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lagNyttSkjemaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lagNyttSkjemaBtn.Location = new System.Drawing.Point(42, 296);
-            this.lagNyttSkjemaBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lagNyttSkjemaBtn.Margin = new System.Windows.Forms.Padding(2);
             this.lagNyttSkjemaBtn.Name = "lagNyttSkjemaBtn";
             this.lagNyttSkjemaBtn.Size = new System.Drawing.Size(238, 143);
             this.lagNyttSkjemaBtn.TabIndex = 27;
@@ -274,7 +279,7 @@
             this.endreSkjemaBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.endreSkjemaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.endreSkjemaBtn.Location = new System.Drawing.Point(42, 467);
-            this.endreSkjemaBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.endreSkjemaBtn.Margin = new System.Windows.Forms.Padding(2);
             this.endreSkjemaBtn.Name = "endreSkjemaBtn";
             this.endreSkjemaBtn.Size = new System.Drawing.Size(238, 143);
             this.endreSkjemaBtn.TabIndex = 28;
@@ -286,7 +291,7 @@
             // 
             this.skjemaListeboks.FormattingEnabled = true;
             this.skjemaListeboks.Location = new System.Drawing.Point(43, 202);
-            this.skjemaListeboks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.skjemaListeboks.Margin = new System.Windows.Forms.Padding(2);
             this.skjemaListeboks.Name = "skjemaListeboks";
             this.skjemaListeboks.Size = new System.Drawing.Size(238, 69);
             this.skjemaListeboks.TabIndex = 29;
