@@ -138,8 +138,8 @@ INSERT INTO student(studentid, studieretning) VALUES
 
 INSERT INTO vurderingsskjema (skjemaid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES ('0', 'standard', 'Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?', 'Var faget vanskelig?', 'Var foreleseren flink til å formidle pensum?', 'Syntes du faget var relevant for din studielinje?', NULL, NULL, NULL, NULL, NULL);
 INSERT INTO vurderingsskjema(fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES 
-('DAT1000', 'Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10'), 
 ('OBJ2100','Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10'),
+('DAT1000', 'Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10'), 
 ('MAR1000','Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10');
 
 INSERT INTO vurderingshistorikk (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES 
