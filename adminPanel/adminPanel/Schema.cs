@@ -92,6 +92,23 @@ namespace adminPanel
             lagreSkjemaBtn.Show();
             HvisController();
             listboksLbl.Hide();
+            String hentStandardSpm = "SELECT spm1, spm2, spm3, spm4, spm5 FROM vurderingsskjema WHERE fagkode = 'standard'";
+            var cmd = db.SqlCommand(hentStandardSpm);
+            db.OpenConnection();
+            MySqlDataReader leser = cmd.ExecuteReader();
+
+            //Foreachen under fyller på de 5 første standard spørsmålene
+            foreach (TextBox c in this.Controls.OfType<TextBox>())
+            {
+                leser.Read();
+                if (c == spm1Txt){((TextBox)c).Text = leser[0].ToString();}
+                if (c == spm2Txt){((TextBox)c).Text = leser[1].ToString();}
+                if (c == spm3Txt){((TextBox)c).Text = leser[2].ToString();}
+                if (c == spm4Txt){((TextBox)c).Text = leser[3].ToString();}
+                if (c == spm5Txt){((TextBox)c).Text = leser[4].ToString(); }
+            }
+            leser.Close();
+            db.CloseConnection();
         }
 
         private void EndreSkjemaBtn_Click(object sender, EventArgs e)
@@ -107,6 +124,12 @@ namespace adminPanel
             while (leser.Read())
             {
                 skjemaListeboks.Items.Add(leser["fagkode"].ToString());
+
+                //Linjen under sjekkerom standard skjemaet kommer inn i listeboksen. Og fjerner den hvis den kommer der
+                if (skjemaListeboks.Items.Contains("standard"))
+                {
+                    skjemaListeboks.Items.Remove("standard");
+                }
             }
             db.CloseConnection();
         }
@@ -146,6 +169,7 @@ namespace adminPanel
                     ((TextBox)c).Text = leser[j].ToString();
                     j--;
                 }
+                leser.Close();
                 db.CloseConnection();
             }
             catch (Exception ex)
