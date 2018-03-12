@@ -12,13 +12,21 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!SjekkInnlogging())
+            try
             {
-                minefag.Visible = false;
-                minevurderinger.Visible = false;
-                loggutBtn.Text = "Logg inn";
+                if (!SjekkInnlogging())
+                {
+                    minefag.Visible = false;
+                    minevurderinger.Visible = false;
+                    loggutBtn.Text = "Logg inn";
 
-            } 
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
         }
         private Boolean SjekkInnlogging()
         {

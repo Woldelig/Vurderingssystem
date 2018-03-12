@@ -13,7 +13,7 @@ namespace VMS
     public partial class Fagside : System.Web.UI.Page
     {
         Database db = new Database();
-        private String sidensFagkode = "OBJ2100";
+        private String sidensFagkode = "obj2000";
         /*
          * Denne variabelen skal bestemme hva fagsiden handler om. Planen er at man kun skal trenge å 
          * bytte ut denne variabelen så vil all info byttes ut dynamisk
@@ -30,6 +30,12 @@ namespace VMS
             //Under hentes data ut fra databasen og blir lagt inn i labels
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
+
+            if (!leser.HasRows)
+            {
+                Server.Transfer("Default.aspx");
+                //Hvis fagkoden ikke inneholder informasjon eller er feil sender serveren deg til default
+            }
             leser.Read();
             foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere. Samtidig som verdien blir castet til int
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
@@ -60,48 +66,62 @@ namespace VMS
             int[] prosedyreSvarSpm4 = ProsedyreKaller("hent_spm4_verdier", sidensFagkode, 4);
             int[] prosedyreSvarSpm5 = ProsedyreKaller("hent_spm5_verdier", sidensFagkode, 5);
 
-            String gjennomsnittSpm1 = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
-            String gjennomsnittSpm2 = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
-            String gjennomsnittSpm3 = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
-            String gjennomsnittSpm4 = BeregnGjennomsnittsRating(prosedyreSvarSpm4);
-            String gjennomsnittSpm5 = BeregnGjennomsnittsRating(prosedyreSvarSpm5);
+            //Under sjekker vi om et eller flere av spørsmålene ikke har data
+            //de uten data blir deretter skjult fra nettsiden
+            int sumSpm1 = prosedyreSvarSpm1.Sum();
+            int sumSpm2 = prosedyreSvarSpm2.Sum();
+            int sumSpm3 = prosedyreSvarSpm3.Sum();
+            int sumSpm4 = prosedyreSvarSpm4.Sum();
+            int sumSpm5 = prosedyreSvarSpm5.Sum();
 
-            pensumRatingLbl.Text = gjennomsnittSpm1;
-            kvalitetRatingLbl.Text = gjennomsnittSpm2;
-            vanskelighetsgradRatingLbl.Text = gjennomsnittSpm3;
-            spm4RatingLbl.Text = gjennomsnittSpm4;
-            spm5RatingLbl.Text = gjennomsnittSpm5;
+            
+            
+            //if (sumSpm1 != 0 || sumSpm2 != 0 || sumSpm3 != 0 ) Setningen under fungerer på samme måte som denne. Men den har mye penere syntax og er mindre repeterende
+            if (!new int[] { sumSpm1, sumSpm2, sumSpm3, sumSpm4, sumSpm5 }.Contains(0))
+            {
+                String gjennomsnittSpm1 = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
+                String gjennomsnittSpm2 = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
+                String gjennomsnittSpm3 = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
+                String gjennomsnittSpm4 = BeregnGjennomsnittsRating(prosedyreSvarSpm4);
+                String gjennomsnittSpm5 = BeregnGjennomsnittsRating(prosedyreSvarSpm5);
 
-            pensumRatingStjerne.Value = gjennomsnittSpm1.Replace(",", ".");
-            kvalitetRatingStjerne.Value = gjennomsnittSpm2.Replace(",", ".");
-            vanskelighetsgradRatingStjerne.Value = gjennomsnittSpm3.Replace(",", ".");
-            spm4RatingStjerne.Value = gjennomsnittSpm4.Replace(",", ".");
-            spm5RatingStjerne.Value = gjennomsnittSpm5.Replace(",", ".");
+                pensumRatingLbl.Text = gjennomsnittSpm1;
+                kvalitetRatingLbl.Text = gjennomsnittSpm2;
+                vanskelighetsgradRatingLbl.Text = gjennomsnittSpm3;
+                spm4RatingLbl.Text = gjennomsnittSpm4;
+                spm5RatingLbl.Text = gjennomsnittSpm5;
 
-            /* Chris sine gamle variabler
-            pensumRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
-            kvalitetRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
-            vanskelighetsgradRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
-            spm4RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm4);//PLACEHOLDER
-            spm5RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm5);//PLACEHOLDER
-            */
+                pensumRatingStjerne.Value = gjennomsnittSpm1.Replace(",", ".");
+                kvalitetRatingStjerne.Value = gjennomsnittSpm2.Replace(",", ".");
+                vanskelighetsgradRatingStjerne.Value = gjennomsnittSpm3.Replace(",", ".");
+                spm4RatingStjerne.Value = gjennomsnittSpm4.Replace(",", ".");
+                spm5RatingStjerne.Value = gjennomsnittSpm5.Replace(",", ".");
 
-            //Koden under påvirker kun diagrammet
-            String diagramTittel = "Var faget vanskelig?"; //diagramets tittel
-            String seriesname = "seriesName";
-            diagram.Series.Clear();
-            diagram.Legends.Clear();
-            diagram.Series.Add(seriesname);
-            diagram.Series[seriesname].ChartType = SeriesChartType.Pie;
-            Title tittel = diagram.Titles.Add(diagramTittel);
-            tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold); //Her setter vi skrifttype ol.
+                /* Chris sine gamle variabler
+                pensumRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
+                kvalitetRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
+                vanskelighetsgradRatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
+                spm4RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm4);//PLACEHOLDER
+                spm5RatingLbl.Text = BeregnGjennomsnittsRating(prosedyreSvarSpm5);//PLACEHOLDER
+                */
 
-            diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyreSvarSpm1[1]);
-            diagram.Series[seriesname].Points.AddXY("Litt misfornøyd", prosedyreSvarSpm1[2]);
-            diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyreSvarSpm1[3]);
-            diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyreSvarSpm1[4]);
-            diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyreSvarSpm1[5]);
-            //Teksten er den som vises på selve diagrammet
+                //Koden under påvirker kun diagrammet
+                String diagramTittel = "Var faget vanskelig?"; //diagramets tittel
+                String seriesname = "seriesName";
+                diagram.Series.Clear();
+                diagram.Legends.Clear();
+                diagram.Series.Add(seriesname);
+                diagram.Series[seriesname].ChartType = SeriesChartType.Pie;
+                Title tittel = diagram.Titles.Add(diagramTittel);
+                tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold); //Her setter vi skrifttype ol.
+
+                diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyreSvarSpm1[1]);
+                diagram.Series[seriesname].Points.AddXY("Litt misfornøyd", prosedyreSvarSpm1[2]);
+                diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyreSvarSpm1[3]);
+                diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyreSvarSpm1[4]);
+                diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyreSvarSpm1[5]);
+                //Teksten er den som vises på selve diagrammet
+            }
         }
 
         private String BeregnGjennomsnittsRating (int[] prosedyreSvar)
