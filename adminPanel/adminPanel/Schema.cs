@@ -30,8 +30,22 @@ namespace adminPanel
 
         private void LagSkjemaBtn_Click(object sender, EventArgs e)
         {
+            //Denne foreachen sjekker om samtlige tekstbokser er fylt ut. Og avbryter koden hvis ikke
+            foreach (Control c in this.Controls)
+            {
+                if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (textBox.Text == string.Empty)
+                    {
+                        resultatLbl.ForeColor = Color.Red;
+                        resultatLbl.Text = "Fyll ut alle tekstfelt.";
+                        return;
+                    }
+                }
+            }
+
             String query = "";
-            SjekkTextboksVerdi();
             if (nyttSkjema)
             {
                 query = "INSERT INTO vurderingsskjema VALUES (NULL, @Fagkode, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
@@ -92,6 +106,23 @@ namespace adminPanel
             lagreSkjemaBtn.Show();
             HvisController();
             listboksLbl.Hide();
+            String hentStandardSpm = "SELECT spm1, spm2, spm3, spm4, spm5 FROM vurderingsskjema WHERE fagkode = 'standard'";
+            var cmd = db.SqlCommand(hentStandardSpm);
+            db.OpenConnection();
+            MySqlDataReader leser = cmd.ExecuteReader();
+
+            //Foreachen under fyller på de 5 første standard spørsmålene
+            foreach (TextBox c in this.Controls.OfType<TextBox>())
+            {
+                leser.Read();
+                if (c == spm1Txt){((TextBox)c).Text = leser[0].ToString();}
+                if (c == spm2Txt){((TextBox)c).Text = leser[1].ToString();}
+                if (c == spm3Txt){((TextBox)c).Text = leser[2].ToString();}
+                if (c == spm4Txt){((TextBox)c).Text = leser[3].ToString();}
+                if (c == spm5Txt){((TextBox)c).Text = leser[4].ToString();}
+            }
+            leser.Close();
+            db.CloseConnection();
         }
 
         private void EndreSkjemaBtn_Click(object sender, EventArgs e)
@@ -107,6 +138,12 @@ namespace adminPanel
             while (leser.Read())
             {
                 skjemaListeboks.Items.Add(leser["fagkode"].ToString());
+
+                //Linjen under sjekkerom standard skjemaet kommer inn i listeboksen. Og fjerner den hvis den kommer der
+                if (skjemaListeboks.Items.Contains("standard"))
+                {
+                    skjemaListeboks.Items.Remove("standard");
+                }
             }
             db.CloseConnection();
         }
@@ -146,6 +183,7 @@ namespace adminPanel
                     ((TextBox)c).Text = leser[j].ToString();
                     j--;
                 }
+                leser.Close();
                 db.CloseConnection();
             }
             catch (Exception ex)
@@ -189,23 +227,6 @@ namespace adminPanel
                 if (c is TextBox)
                 {
                     ((TextBox)c).Text = String.Empty;
-                }
-            }
-        }
-
-        private void SjekkTextboksVerdi()
-        {
-            foreach (Control c in this.Controls) //Denne foreachen sjekker om samtlige tekstbokser er fylt ut. Og avbryter koden hvis ikke
-            {
-                if (c is TextBox)
-                {
-                    TextBox textBox = c as TextBox;
-                    if (textBox.Text == string.Empty)
-                    {
-                        resultatLbl.ForeColor = Color.Red;
-                        resultatLbl.Text = "Fyll ut alle tekstfelt.";
-                        return;
-                    }
                 }
             }
         }
