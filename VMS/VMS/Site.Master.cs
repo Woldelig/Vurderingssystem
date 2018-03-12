@@ -22,15 +22,15 @@ namespace VMS
         }
         private Boolean SjekkInnlogging()
         {
-            if((int)Session["logginn"] == 0)
-            {
-                return false;
-            }
-            else if((int)Session["logginn"] == 1)
+            if((int)Session["logginn"] == 1)
             {
                 return true;
             }
-            return false;
+            else //if((int)Session["logginn"] == 1)
+            {
+                return false;
+            }
+            //return false;
         }
 
         public string loggutBtnText
