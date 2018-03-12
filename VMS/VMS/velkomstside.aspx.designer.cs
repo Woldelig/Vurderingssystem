@@ -10,7 +10,25 @@
 namespace VMS {
     
     
-    public partial class innlogging {
+    public partial class velkomstside {
+        
+        /// <summary>
+        /// LoginBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button LoginBtn;
+        
+        /// <summary>
+        /// continue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button @continue;
         
         /// <summary>
         /// Melding control.
@@ -31,13 +49,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.TextBox StudentID;
         
         /// <summary>
-        /// Login control.
+        /// Logginn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Login;
+        protected global::System.Web.UI.WebControls.Button Logginn;
         
         /// <summary>
         /// Feilmelding control.

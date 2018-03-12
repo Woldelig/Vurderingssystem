@@ -11,6 +11,14 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["logginn"] == null)
+            {
+                Response.Redirect("velkomstside.aspx", true);
+            }
+            else
+            {
+                //Setter StudentID inn i labelen
+                StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
             //Setter StudentID inn i labelen
             try
             {
@@ -21,5 +29,8 @@ namespace VMS
                 StudIDLabel.Text = "StudentID: Ingen session registrert";
             }
         }
+
+
+
     }
 }

@@ -53,8 +53,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/MineFag">Mine fag</a></li>
-                        <li><a runat="server" href="~/MineVurderinger">Mine vurderinger</a></li>
+                        <li><a id="minefag" runat="server" href="~/MineFag">Mine fag</a></li>
+                        <li><a id="minevurderinger" runat="server" href="~/MineVurderinger">Mine vurderinger</a></li>
                     </ul>
                     <div class="navbar-form">
                         <div class="input-group col-xs-4">
@@ -63,6 +63,10 @@
                                 <asp:Button CssClass="btn btn-default" ID="Button1" runat="server" Text="Søk" />
                             </div>
                         </div>
+                    </div>
+                    <div class="navbar-header">
+                        <asp:button type="button" class="btn btn-success pull-right" ID="loggutBtn" runat="server" Text="Logg ut" OnClick="loggutBtn_Click" />
+                        
                     </div>
                 </div>
             </div>

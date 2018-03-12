@@ -7,27 +7,36 @@ using System.Web.UI.WebControls;
 
 namespace VMS
 {
-    public partial class innlogging : System.Web.UI.Page
+    public partial class velkomstside : System.Web.UI.Page
     {
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            //Jallaløsning - men vi skal jo ikke ha modal uansett
+            //Prøver å få programmet til å trykke på logg-innknappen av seg selv
+            //Sliter med javascript
+            if (Page.IsPostBack)
             {
-                StudentID.Text = "00000";
+                string s = "<script> document.getElementById(\"LoginBtn\").click();</script>";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", s);
             }
-            Session["logginn"] = 0;
 
+
+            Session["logginn"] = 0;
             this.Master.loggutBtnShow = false;
         }
-        
-        protected void Login_Click(object sender, EventArgs e)
+
+
+        protected void Logginn_Click(object sender, EventArgs e)
         {
             int parsedStudID;
             //Sjekker om StudentID inneholder tall
-            if(!int.TryParse(StudentID.Text, out parsedStudID))
+            if (!int.TryParse(StudentID.Text, out parsedStudID))
             {
                 Feilmelding.ForeColor = System.Drawing.Color.Red;
                 Feilmelding.Text = "Student-ID må inneholde tall!";
+                
                 return;
             }
             else
@@ -39,6 +48,13 @@ namespace VMS
                 //Sender brukeren videre til velkomstsiden
                 Response.Redirect("Default.aspx", true);
             }
+        }
+
+        protected void continue_Click(object sender, EventArgs e)
+        {
+            Session["logginn"] = 0;
+            Session["studentID"] = "Ukjent";
+            Response.Redirect("Default.aspx", true);
         }
     }
 }
