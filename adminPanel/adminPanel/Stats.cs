@@ -179,6 +179,7 @@ namespace adminPanel
                         chart1.Series.Clear();
                         chart1.Legends.Clear();
                         chart1.Series.Add(seriesname);
+                        chart1.Series[seriesname].BorderWidth = 3; //Setter tykkelsen på linjen
                         chart1.Series[seriesname].ChartType = SeriesChartType.Line;
                         break;
 
@@ -192,12 +193,16 @@ namespace adminPanel
                     default:
                         break;
                 }
-
                 chart1.Series[seriesname].Points.AddXY("1 Stjerne", stjerne1);
                 chart1.Series[seriesname].Points.AddXY("2 Stjerner", stjerne2);
                 chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
                 chart1.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
                 chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
+                chart1.Series[seriesname].Points[0].Color = Color.Green;
+                chart1.Series[seriesname].Points[1].Color = Color.Red;
+                chart1.Series[seriesname].Points[2].Color = Color.PowderBlue;
+                chart1.Series[seriesname].Points[3].Color = Color.Peru;
+                chart1.Series[seriesname].Points[4].Color = Color.Yellow;
                 chart1.Show();
             }
             catch (Exception ex)
