@@ -96,7 +96,7 @@ namespace adminPanel
                 db.CloseConnection();
 
 
-                cmd = db.SqlCommand("nytt_semester_prosedyre");
+                cmd = db.SqlCommand("lagre_pågående_evaluerings_resultater");
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ny_tabell", TabellNavnTextbox.Text).Direction = ParameterDirection.Input;
                 db.OpenConnection();
