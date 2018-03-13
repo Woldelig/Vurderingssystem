@@ -41,7 +41,8 @@ namespace VMS
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
             studieretningLbl.Text = "Studieretning: " + leser[3].ToString();
-            if (leser[4] == null){ forkursLbl.Text = "Forkurs: " + leser[4].ToString();} else { forkursLbl.Text = ""; }
+            String forkurs = leser[4].ToString();
+            if (leser[4].ToString() != ""){ forkursLbl.Text = "Forkurs: " + leser[4].ToString();} else { forkursLbl.Text = ""; }
             //Linjen over sjekker om det finnes forkurs. Hvis det finnes settes det inn i label, hvis ikke forblir labelen tom
             leser.Close();
             db.CloseConnection();
@@ -85,15 +86,15 @@ namespace VMS
                 String gjennomsnittSpm4 = BeregnGjennomsnittsRating(prosedyreSvarSpm4);
                 String gjennomsnittSpm5 = BeregnGjennomsnittsRating(prosedyreSvarSpm5);
 
-                pensumRatingLbl.Text = gjennomsnittSpm1;
-                kvalitetRatingLbl.Text = gjennomsnittSpm2;
-                vanskelighetsgradRatingLbl.Text = gjennomsnittSpm3;
+                spm1RatingLbl.Text = gjennomsnittSpm1;
+                spm2RatingLbl.Text = gjennomsnittSpm2;
+                spm3RatingLbl.Text = gjennomsnittSpm3;
                 spm4RatingLbl.Text = gjennomsnittSpm4;
                 spm5RatingLbl.Text = gjennomsnittSpm5;
 
-                pensumRatingStjerne.Value = gjennomsnittSpm1.Replace(",", ".");
-                kvalitetRatingStjerne.Value = gjennomsnittSpm2.Replace(",", ".");
-                vanskelighetsgradRatingStjerne.Value = gjennomsnittSpm3.Replace(",", ".");
+                spm1RatingStjerne.Value = gjennomsnittSpm1.Replace(",", ".");
+                spm2RatingStjerne.Value = gjennomsnittSpm2.Replace(",", ".");
+                spm3RatingStjerne.Value = gjennomsnittSpm3.Replace(",", ".");
                 spm4RatingStjerne.Value = gjennomsnittSpm4.Replace(",", ".");
                 spm5RatingStjerne.Value = gjennomsnittSpm5.Replace(",", ".");
 
