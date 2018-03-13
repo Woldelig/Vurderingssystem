@@ -153,6 +153,8 @@ namespace adminPanel
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
             try
             {
+                bool diagramSkalHaFarger = false;
+                //hvis variabelen over settes til true vil det legges til egendefinerte farger på diagrammet
                 switch (diagramListeboks.SelectedItem.ToString())
                 {
                     case "Kakediagram":
@@ -166,6 +168,7 @@ namespace adminPanel
                         chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
                         chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
                         chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
+                        diagramSkalHaFarger = true;
                         break;
 
                     case "Stolpediagram":
@@ -173,6 +176,7 @@ namespace adminPanel
                         chart1.Legends.Clear();
                         chart1.Series.Add(seriesname);
                         chart1.Series[seriesname].ChartType = SeriesChartType.Column;
+                        diagramSkalHaFarger = true;
                         break;
 
                     case "Linjediagram":
@@ -198,11 +202,14 @@ namespace adminPanel
                 chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
                 chart1.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
                 chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
+                if (diagramSkalHaFarger)
+                {
                 chart1.Series[seriesname].Points[0].Color = Color.Green;
                 chart1.Series[seriesname].Points[1].Color = Color.Red;
                 chart1.Series[seriesname].Points[2].Color = Color.PowderBlue;
                 chart1.Series[seriesname].Points[3].Color = Color.Peru;
                 chart1.Series[seriesname].Points[4].Color = Color.Yellow;
+                }
                 chart1.Show();
             }
             catch (Exception ex)
