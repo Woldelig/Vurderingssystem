@@ -67,7 +67,7 @@ namespace adminPanel
             diagramListeboks.Items.Clear(); //Fjerner elementer i listeboksen
             diagramListeboks.Show();
             diagramLbl.Show();
-            String[] diagramTyper = { "Kakediagram", "Stolpediagram" }; //Legg til flere diagrammer her når vi er i gang
+            String[] diagramTyper = { "Kakediagram", "Stolpediagram", "Linjediagram", "Radardiagram"}; //Legg til flere diagrammer her når vi er i gang
 
             foreach (String diagram in diagramTyper)
             {
@@ -173,6 +173,20 @@ namespace adminPanel
                         chart1.Legends.Clear();
                         chart1.Series.Add(seriesname);
                         chart1.Series[seriesname].ChartType = SeriesChartType.Column;
+                        break;
+
+                    case "Linjediagram":
+                        chart1.Series.Clear();
+                        chart1.Legends.Clear();
+                        chart1.Series.Add(seriesname);
+                        chart1.Series[seriesname].ChartType = SeriesChartType.Line;
+                        break;
+
+                    case "Radardiagram":
+                        chart1.Series.Clear();
+                        chart1.Legends.Clear();
+                        chart1.Series.Add(seriesname);
+                        chart1.Series[seriesname].ChartType = SeriesChartType.Radar;
                         break;
 
                     default:
