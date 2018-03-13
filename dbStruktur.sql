@@ -72,6 +72,26 @@ CREATE TABLE vurderingshistorikk(
     PRIMARY KEY (fagkode, studentid)
 );
 
+CREATE TABLE pågåendevurdering(
+    skjemaid INT(4),
+    studentid INT(10),
+    fagkode VARCHAR(8),
+    spm1 INT(1),
+    spm2 INT(1),
+    spm3 INT(1),
+    spm4 INT(1),
+    spm5 INT(1),
+    spm6 INT(1),
+    spm7 INT(1),
+    spm8 INT(1),
+    spm9 INT(1),
+    spm10 INT(1),
+    FOREIGN KEY (skjemaid) REFERENCES vurderingsskjema (skjemaid),
+    FOREIGN KEY (studentid) REFERENCES student (studentid),
+    FOREIGN KEY (fagkode) REFERENCES fag (fagkode),
+    PRIMARY KEY (fagkode, studentid)
+);
+
 CREATE TABLE formlogin(
     bruker VARCHAR(64) PRIMARY KEY,
     passord VARCHAR(64),
@@ -141,6 +161,12 @@ INSERT INTO vurderingsskjema(fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, 
 ('OBJ2100','Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10'),
 ('DAT1000', 'Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10'), 
 ('MAR1000','Syntes du pensum var for vanskelig?', 'Hvordan var kvaliteten på forelesningen?','Var faget vanskelig?','Var foreleseren flink til å formidle pensum?','Syntes du faget var relevant for din studielinje?','spm6','spm7','spm8','spm9','spm10');
+
+INSERT INTO pågåendevurdering (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES 
+(4, 60, 'MAR1000', 3, 4, 3, 1, 3, 5, 2, 5, 1, 2), 
+(4, 61, 'MAR1000', 2, 5, 3, 1, 4, 2, 4, 3, 4, 3), 
+(4, 62, 'MAR1000', 3, 3, 1, 3, 3, 5, 3, 4, 5, 5);
+
 
 INSERT INTO vurderingshistorikk (skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES 
 (2, 1, 'OBJ2100', 3, 3, 2, 3, 3, 1, 1, 2, 4, 5), 
