@@ -149,6 +149,18 @@ namespace adminPanel
             int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
             db.CloseConnection();
 
+
+            //Her sjekker vi om det faktisk er data relatert til diagrammet, hvis ikke skrives det ut en feilmelding og det vises ingen diagram
+            if (stjerne1 == 0 && stjerne2 == 0 && stjerne3 == 0 && stjerne4 == 0 && stjerne5 == 0)
+            {
+                FeilmeldingsLbl.ForeColor = Color.Red;
+                FeilmeldingsLbl.Text = "Denne fagkoden eller spørsmålet har ikke fått inn nok vurderinger til å lage et diagram.";
+                chart1.Hide();
+                return;
+            }
+            FeilmeldingsLbl.Text = "";
+            //Hvis forrige diagram hadde en feilmelding blir den fjernet på her.
+
             chart1.Series.Clear();
             string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
             try
@@ -204,9 +216,11 @@ namespace adminPanel
                 chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
                 if (diagramSkalHaFarger)
                 {
+                //Under blir det satt at det vises prosenter i figuren i tillegg til at farger velges
+                chart1.Series[seriesname].Label = "#PERCENT{P0}";
                 chart1.Series[seriesname].Points[0].Color = Color.Green;
                 chart1.Series[seriesname].Points[1].Color = Color.Red;
-                chart1.Series[seriesname].Points[2].Color = Color.PowderBlue;
+                chart1.Series[seriesname].Points[2].Color = Color.LightBlue;
                 chart1.Series[seriesname].Points[3].Color = Color.Peru;
                 chart1.Series[seriesname].Points[4].Color = Color.Yellow;
                 }
