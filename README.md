@@ -45,7 +45,7 @@ Prototype for APP2000
 - [x] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
 - [x] Legge til knapp for å lagre til xml,pdf (evt andre filformater) på SQL editoren i WF
 - [ ] Velkomstsskjerm, legge inn noe i området som nå er lilla og inneholder teksten "aner ikke hva som skal her"
-- [ ] Legge til flere diagramtyper på se statistikk
+- [x] Legge til flere diagramtyper på se statistikk
 - [ ] Finne løsning på avatar bilde (url i db?)
 - [ ] Passord hash!
   
@@ -57,11 +57,8 @@ Prototype for APP2000
 ### Rapport
 - [ ] Gantt for rapport
 - [ ] Oppdatere ER diagram (kan avvente til vi er sikre på at db strukturen er ferdig)
-- [ ] UML, sekvensdiagrammer for å vise hvordan feks vurdering fungerer. Viktig når vi skal vise fram for håvard/stine
-  
-  
-  
-
+- [ ] UML, sekvensdiagrammer for å vise hvordan feks vurdering fungerer. Viktig når vi skal vise fram for håvard/stine  
+***
 - [ ] Korrektur
   
   
