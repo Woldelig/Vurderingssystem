@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
@@ -183,6 +184,42 @@ namespace adminPanel
         private void ShutdownBtn_MouseLeave(object sender, EventArgs e)
         {
             ShutdownBtn.ForeColor = Color.Black;
+        }
+
+        private void nyBrukerBtn_MouseLeave(object sender, EventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.SteelBlue;
+        }
+
+        private void nyBrukerBtn_MouseEnter(object sender, EventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.FromArgb(37, 69, 95);
+        }
+
+        private void nyBrukerBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.FromArgb(120, 163, 201);
+        }
+
+        private void nyBrukerBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.SteelBlue;
+        }
+
+        //Bruker Multithreading
+        private void nyBrukerBtn_Click(object sender, EventArgs e)
+        {
+
+
+            ThreadStart testThreadStart = new ThreadStart(new LoginForm().testThread);
+            Thread testThread = new Thread(testThreadStart);
+            testThread.Start();
+
+           // Application.Run(new nyBrukerForm());
+        }
+        public void testThread()
+        {
+            Application.Run(new nyBrukerForm());
         }
     }
 }
