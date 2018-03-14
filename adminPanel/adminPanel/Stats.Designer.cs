@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.fagkodeListeboks = new System.Windows.Forms.ListBox();
             this.spmListeboks = new System.Windows.Forms.ListBox();
             this.diagramListeboks = new System.Windows.Forms.ListBox();
@@ -41,6 +41,7 @@
             this.clearListeboxBtn = new System.Windows.Forms.Button();
             this.printBtn = new System.Windows.Forms.Button();
             this.lagreChartBtn = new System.Windows.Forms.Button();
+            this.FeilmeldingsLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,16 +74,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(67, 192);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(852, 378);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
@@ -147,10 +148,20 @@
             this.lagreChartBtn.UseVisualStyleBackColor = false;
             this.lagreChartBtn.Click += new System.EventHandler(this.lagreChartBtn_Click);
             // 
+            // FeilmeldingsLbl
+            // 
+            this.FeilmeldingsLbl.AutoSize = true;
+            this.FeilmeldingsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FeilmeldingsLbl.Location = new System.Drawing.Point(77, 591);
+            this.FeilmeldingsLbl.Name = "FeilmeldingsLbl";
+            this.FeilmeldingsLbl.Size = new System.Drawing.Size(0, 25);
+            this.FeilmeldingsLbl.TabIndex = 10;
+            // 
             // Stats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FeilmeldingsLbl);
             this.Controls.Add(this.lagreChartBtn);
             this.Controls.Add(this.printBtn);
             this.Controls.Add(this.clearListeboxBtn);
@@ -182,5 +193,6 @@
         private System.Windows.Forms.Button clearListeboxBtn;
         private System.Windows.Forms.Button printBtn;
         private System.Windows.Forms.Button lagreChartBtn;
+        private System.Windows.Forms.Label FeilmeldingsLbl;
     }
 }
