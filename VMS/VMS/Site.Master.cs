@@ -26,11 +26,10 @@ namespace VMS
             {
                 return true;
             }
-            else //if((int)Session["logginn"] == 1)
+            else
             {
                 return false;
             }
-            //return false;
         }
 
         public string loggutBtnText
@@ -65,7 +64,7 @@ namespace VMS
                 Response.Redirect("velkomstside.aspx", true);
             } else if(loggutBtn.Text == "Logg inn")
             {
-                Response.Redirect("innlogging.aspx", true);
+                Response.Redirect("velkomstside.aspx", true);
             }
         }
     }

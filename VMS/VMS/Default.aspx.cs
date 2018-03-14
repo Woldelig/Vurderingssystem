@@ -11,7 +11,7 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["logginn"] == null)
+            if (Session["logginn"] == null || Session["studentID"] == null)
             {
                 Response.Redirect("velkomstside.aspx", true);
             }
