@@ -17,6 +17,8 @@ namespace adminPanel
         {
             InitializeComponent();
             FeilmeldingLbl.Text = "";
+            AvsluttVurderingFeilmeldingLbl.Text = "";
+
             //Event handlers blir definert under. Mye lettere å håndtere de her enn i design. Spesielt hvis man skal endre navn.
             NyTabellGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(NyTabellGodkjennNyttSemesterLbl_MouseDown);
             NyTabellIkkeGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(NyTabellIkkeGodkjennNyttSemesterLbl_MouseDown);
@@ -134,6 +136,31 @@ namespace adminPanel
                 }
                 db.CloseConnection();
             }
+        }
+
+        private void AvsluttVurderingBtn_Click(object sender, EventArgs e)
+        {
+            AvsluttVurderingFeilmeldingLbl.ForeColor = Color.Red;
+            if (GodkjennAvsluttVurderingTextbox.Text != "Godkjenn")
+            {
+                AvsluttVurderingFeilmeldingLbl.Text = "Du må godkjenne handlingen med valideringsteksboksen!";
+                return;
+            }
+            Database db = new Database();
+            var cmd = db.SqlCommand("avslutt_evaluering");
+            cmd.CommandType = CommandType.StoredProcedure;
+            db.OpenConnection();
+            try
+            {
+                cmd.ExecuteNonQuery();
+                AvsluttVurderingFeilmeldingLbl.ForeColor = Color.Black;
+                AvsluttVurderingFeilmeldingLbl.Text = "Vurderingen er nå avsluttet.";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            db.CloseConnection();
         }
     }
 }
