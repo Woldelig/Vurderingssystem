@@ -51,7 +51,18 @@ namespace VMS
             FagnavnLbl.Text = "Fagnavn: " + faginfo[0,1];
             ForleserLbl.Text = "Foreleser: " + faginfo[0,2];
 
+            testsomething.InnerHtml = "<a href='fagside.aspx' style='text-decoration: none'><div><asp:Label ID='FagkodeLbl1' runat='server' Text='Label' ForeColor='Black' Font-Bold='true'></asp:Label><br /><asp:Label ID='FagnavnLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /><asp:Label ID='ForleserLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /></div> </a>";
+            try
+            {
+            FagkodeLbl1.Text = "Fagkode: " + faginfo[1, 0];
+            FagnavnLbl1.Text = "Fagnavn: " + faginfo[1, 1];
+            ForleserLbl1.Text = "Foreleser: " + faginfo[1, 2];
 
+            }
+            catch (Exception)
+            {
+                
+            }
             /*
              TODO
              1. Hente ut fag

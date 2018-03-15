@@ -15,8 +15,14 @@
                     </div>
                 </a>
             </div>
-            <div class="col-md-4">
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        </div>
+    </div>
+    <div class="Row">
+        <div class="col-md-4">
+            <div class="divKnappBorder">
+                <div id="testsomething" runat="server">
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                </div>
             </div>
         </div>
     </div>
