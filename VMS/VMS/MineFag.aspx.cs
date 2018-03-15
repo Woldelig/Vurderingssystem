@@ -23,21 +23,33 @@ namespace VMS
             List<String> sqlResultat = new List<string>();
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
-            while (leser.Read())
+            String[,] faginfo = new String[3, 3];
+            leser.Read();
+            for (int i = 0, j = 0, h = 1,k = 2; i < 1; i++, j += 3, h += 3, k += 3)
             {
-                for (int i = 0; i < leser.FieldCount; i++)
-                {
-                    sqlResultat.Add(Convert.ToString(leser[i]));
-                }
-            }
+                faginfo[i,0] = leser[j].ToString();
+                faginfo[i,1] = leser[h].ToString();
+                faginfo[i,2] = leser[k].ToString();
+            }/*
+            faginfo[0, 0] = leser[0].ToString();
+            faginfo[0, 1] = leser[1].ToString();
+            faginfo[0, 2] = leser[2].ToString();*/
             leser.Close();
-            db.CloseConnection();
-            
+                /* while (leser.Read())
+                 {
+                     for (int i = 0; i < leser.FieldCount; i++)
+                     {
+                         sqlResultat.Add(Convert.ToString(leser[i]));
+                     }
+                 }
+                 Label1.Text = leser.FieldCount.ToString();
+                 leser.Close();*/
+                db.CloseConnection();
             //deler på 3 fordi et fag består av 3 verdier i denne sammenhengen
             int antallFag = sqlResultat.Count()/3;
-            FagkodeLbl.Text = "Fagkode: " + sqlResultat[j];
-            FagnavnLbl.Text = "Fagnavn: " + sqlResultat[j];
-            ForleserLbl.Text = "Foreleser: " + sqlResultat[j];
+            FagkodeLbl.Text = "Fagkode: " + faginfo[0,0];
+            FagnavnLbl.Text = "Fagnavn: " + faginfo[0,1];
+            ForleserLbl.Text = "Foreleser: " + faginfo[0,2];
 
 
             /*

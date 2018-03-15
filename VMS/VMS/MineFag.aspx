@@ -6,9 +6,9 @@
             <div class="divKnappBorder">
                 <a href="fagside.aspx" style="text-decoration:none">
                     <div>
-                        <asp:Label ID="FagkodeLbl" runat="server" Text="Label" Font-Bold="true"></asp:Label><br />
-                        <asp:Label ID="FagnavnLbl" runat="server" Text="Label"></asp:Label><br />
-                        <asp:Label ID="ForleserLbl" runat="server" Text="Label"></asp:Label><br />
+                        <asp:Label ID="FagkodeLbl" runat="server" Text="Label" ForeColor="Black" Font-Bold="true"></asp:Label><br />
+                        <asp:Label ID="FagnavnLbl" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
+                        <asp:Label ID="ForleserLbl" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
                     </div>
                 </a>
             </div>
