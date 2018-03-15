@@ -3,8 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="Row">
         <div class="col-md-4">
-            <div class="helediven">
-                <a href="fagside.aspx"><div> F<br />U<br />N</div></a>
+            <div class="divKnappBorder">
+                <a href="fagside.aspx" style="text-decoration:none">
+                    <div>
+                        <asp:Label ID="FagkodeLbl" runat="server" Text="Label" Font-Bold="true"></asp:Label><br />
+                        <asp:Label ID="FagnavnLbl" runat="server" Text="Label"></asp:Label><br />
+                        <asp:Label ID="ForleserLbl" runat="server" Text="Label"></asp:Label><br />
+                    </div>
+                </a>
             </div>
             <div class="col-md-4">
                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>

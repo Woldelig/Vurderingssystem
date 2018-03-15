@@ -24,14 +24,14 @@ namespace VMS
             List<String> studentendsFagkoder = new List<string>();
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
-            int i = 0;
-            while (leser.Read())
+            /*while (leser.Read())
             {
                 studentendsFagkoder.Add(Convert.ToString(leser[i]));
                 i++;
             }
-            Label1.Text = studentendsFagkoder[0]+ studentendsFagkoder[1];
+            Label1.Text = studentendsFagkoder[0]+ studentendsFagkoder[1];*/
             db.CloseConnection();
+            
 
 
             /*
@@ -42,7 +42,7 @@ namespace VMS
              4. knappen videresender deg til fagsiden hvor vi henter ut den nye session variabelen og setter fagsiden til den fagkoden
              5. Legg knappene i to kolonner
              6. Design knappene store og pene muligens trykkbare paneler?
-             
+
              */
         }
     }

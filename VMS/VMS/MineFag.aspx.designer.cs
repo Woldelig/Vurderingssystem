@@ -13,6 +13,33 @@ namespace VMS {
     public partial class MineFag {
         
         /// <summary>
+        /// FagkodeLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FagkodeLbl;
+        
+        /// <summary>
+        /// FagnavnLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label FagnavnLbl;
+        
+        /// <summary>
+        /// ForleserLbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ForleserLbl;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
