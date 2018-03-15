@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,23 @@ namespace VMS
             {
                 Response.Redirect("velkomstside.aspx", true);
             }
+            Database db = new Database();
+
+            String sql = "SELECT f.fagkode FROM student as s, fag as f WHERE s.studentid = @Studentid and s.studieretning = f.studieretning";
+            var cmd = db.SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+            List<String> studentendsFagkoder = new List<string>();
+            db.OpenConnection();
+            MySqlDataReader leser = cmd.ExecuteReader();
+            int i = 0;
+            while (leser.Read())
+            {
+                studentendsFagkoder.Add(Convert.ToString(leser[i]));
+                i++;
+            }
+            Label1.Text = studentendsFagkoder[0]+ studentendsFagkoder[1];
+            db.CloseConnection();
+
 
             /*
              TODO

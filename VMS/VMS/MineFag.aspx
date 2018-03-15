@@ -6,6 +6,9 @@
             <div class="helediven">
                 <a href="fagside.aspx"><div> F<br />U<br />N</div></a>
             </div>
+            <div class="col-md-4">
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            </div>
         </div>
     </div>
 </asp:Content>
