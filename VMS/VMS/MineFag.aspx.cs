@@ -17,21 +17,27 @@ namespace VMS
                 Response.Redirect("velkomstside.aspx", true);
             }
             Database db = new Database();
-
-            String sql = "SELECT f.fagkode FROM student as s, fag as f WHERE s.studentid = @Studentid and s.studieretning = f.studieretning";
+            String sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
             var cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
-            List<String> studentendsFagkoder = new List<string>();
+            List<String> sqlResultat = new List<string>();
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
-            /*while (leser.Read())
+            while (leser.Read())
             {
-                studentendsFagkoder.Add(Convert.ToString(leser[i]));
-                i++;
+                for (int i = 0; i < leser.FieldCount; i++)
+                {
+                    sqlResultat.Add(Convert.ToString(leser[i]));
+                }
             }
-            Label1.Text = studentendsFagkoder[0]+ studentendsFagkoder[1];*/
+            leser.Close();
             db.CloseConnection();
             
+            //deler på 3 fordi et fag består av 3 verdier i denne sammenhengen
+            int antallFag = sqlResultat.Count()/3;
+            FagkodeLbl.Text = "Fagkode: " + sqlResultat[j];
+            FagnavnLbl.Text = "Fagnavn: " + sqlResultat[j];
+            ForleserLbl.Text = "Foreleser: " + sqlResultat[j];
 
 
             /*
