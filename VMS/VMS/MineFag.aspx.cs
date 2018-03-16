@@ -52,6 +52,8 @@ namespace VMS
                 faginfo[arrayIndexTilsvarerRadIdb, 2] = leser.GetString(2);
                 arrayIndexTilsvarerRadIdb++;
             }
+            leser.Close();
+            db.CloseConnection();
             StringBuilder sb = new StringBuilder();
             int lblNr = 1;
 
@@ -62,7 +64,7 @@ namespace VMS
                 String lbl2 = "FagnavnLbl" + lblNr;
                 String lbl3 = "ForeleserLbl" + lblNr;
 
-                sb.AppendFormat("<div class ='{6}'>"+
+                sb.AppendFormat(
                     "<div class='Row'>" +
                         "<div class='col-md-4'>" +
                             "<div class='divKnappBorder'>" +
@@ -73,10 +75,11 @@ namespace VMS
                                         "<span ID='{2}' style='color:Black'>{5}</span><br />" +
                                     "</div>" +
                                 "</a>" +
-                            "</ div >" +
-                        "</ div >" +
-                    "</ div >" +
-                    "</ div >" +
+                            "</div >" +
+                        "</div >" +
+                    "</div >" +
+                    "<br />" +
+                    "<br />" +
                     "<br />" +
                     "<br />" +
                     "<br />"
@@ -84,15 +87,14 @@ namespace VMS
 
                 //testsomething.InnerHtml = sb.ToString();
                 //PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
+                //Ovenfor er to andre metoder vi kunne ha brukt
+
+                //lit er forkortelsen for literal kontroll vi skriver ut stringbuilderen sin tekst til
                 lit.Text = sb.ToString();
-
-
             }
 
 
-            leser.Close();
 
-            db.CloseConnection();
             //FagkodeLbl.Text = "Fagkode: " + faginfo[0, 0];
             //FagnavnLbl.Text = "Fagnavn: " + faginfo[0, 1];
             //ForeleserLbl.Text = "Foreleser: " + faginfo[0, 2];
