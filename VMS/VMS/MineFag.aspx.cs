@@ -1,7 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -22,47 +24,69 @@ namespace VMS
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             List<String> sqlResultat = new List<string>();
             db.OpenConnection();
+            DataTable dt = new DataTable();
             MySqlDataReader leser = cmd.ExecuteReader();
-            String[,] faginfo = new String[3, 3];
-            leser.Read();
-            for (int i = 0, j = 0, h = 1,k = 2; i < 1; i++, j += 3, h += 3, k += 3)
+            MySqlDataReader leserForÅTelleRader = leser;
+            //dt.Load(leserForÅTelleRader);
+            String[,] faginfo = new String[10, 3];
+
+            int arrayIndexTilsvarerRadIdb = 0;
+            while (leser.Read())
             {
-                faginfo[i,0] = leser[j].ToString();
-                faginfo[i,1] = leser[h].ToString();
-                faginfo[i,2] = leser[k].ToString();
-            }/*
-            faginfo[0, 0] = leser[0].ToString();
-            faginfo[0, 1] = leser[1].ToString();
-            faginfo[0, 2] = leser[2].ToString();*/
+                faginfo[arrayIndexTilsvarerRadIdb, 0] = leser.GetString(0);
+                faginfo[arrayIndexTilsvarerRadIdb, 1] = leser.GetString(1);
+                faginfo[arrayIndexTilsvarerRadIdb, 2] = leser.GetString(2);
+                arrayIndexTilsvarerRadIdb++;
+            }
+            Label1.Text = "Verdi: " + faginfo[1, 0];
+            Label2.Text = "Verdi: " + faginfo[1, 1];
+            Label3.Text = "Verdi: " + faginfo[1, 2];
+            StringBuilder sb = new StringBuilder();
+            int lblNr = 1;
+            //foreach (DataRow rad in dt.Rows)
+            //{
+
+                String lbl1 = "FagkodeLbl" + lblNr;
+                String lbl2 = "FagnavnLbl" + lblNr;
+                String lbl3 = "ForeleserLbl" + lblNr;
+
+                sb.AppendFormat("" +
+                    "<div class='Row'>" +
+                        "<div class='col-md-4'>" +
+                            "<div class='divKnappBorder'>" +
+                                "<a href='fagside.aspx' style='text-decoration: none'>" +
+                                    "<div>" +
+                                        "<span ID='{0}' style='color:Black;font-weight:bold;'>{3}</span><br />" +
+                                        "<span ID='{1}' style='color:Black'>{4}</span><br />" +
+                                        "<span ID='{2}' style='color:Black'>{5}</span><br />" +
+                                    "</div>" +
+                                "</a>" +
+                            "</ div >" +
+                        "</ div >" +
+                    "</ div >", lbl1, lbl2, lbl3, "Fagkode: " + faginfo[1, 0], "Fagnavn: " + faginfo[1, 1], "Foreleser: " + faginfo[1, 2]);
+                testsomething.InnerHtml = sb.ToString();
+           // }
+
             leser.Close();
-                /* while (leser.Read())
-                 {
-                     for (int i = 0; i < leser.FieldCount; i++)
-                     {
-                         sqlResultat.Add(Convert.ToString(leser[i]));
-                     }
-                 }
-                 Label1.Text = leser.FieldCount.ToString();
-                 leser.Close();*/
-                db.CloseConnection();
+
+            db.CloseConnection();
             //deler på 3 fordi et fag består av 3 verdier i denne sammenhengen
-            int antallFag = sqlResultat.Count()/3;
-            FagkodeLbl.Text = "Fagkode: " + faginfo[0,0];
-            FagnavnLbl.Text = "Fagnavn: " + faginfo[0,1];
-            ForleserLbl.Text = "Foreleser: " + faginfo[0,2];
+            int antallFag = sqlResultat.Count() / 3;
+            FagkodeLbl.Text = "Fagkode: " + faginfo[0, 0];
+            FagnavnLbl.Text = "Fagnavn: " + faginfo[0, 1];
+            ForeleserLbl.Text = "Foreleser: " + faginfo[0, 2];
 
-            testsomething.InnerHtml = "<a href='fagside.aspx' style='text-decoration: none'><div><asp:Label ID='FagkodeLbl1' runat='server' Text='Label' ForeColor='Black' Font-Bold='true'></asp:Label><br /><asp:Label ID='FagnavnLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /><asp:Label ID='ForleserLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /></div> </a>";
-            try
-            {
-            FagkodeLbl1.Text = "Fagkode: " + faginfo[1, 0];
-            FagnavnLbl1.Text = "Fagnavn: " + faginfo[1, 1];
-            ForleserLbl1.Text = "Foreleser: " + faginfo[1, 2];
+            //testsomething.InnerHtml = "<a href='fagside.aspx' style='text-decoration: none'><div><asp:Label ID='FagkodeLbl1' runat='server' Text='Label' ForeColor='Black' Font-Bold='true'></asp:Label><br /><asp:Label ID='FagnavnLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /><asp:Label ID='ForleserLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /></div> </a>";
 
-            }
-            catch (Exception)
-            {
-                
-            }
+
+
+
+
+
+
+
+
+
             /*
              TODO
              1. Hente ut fag

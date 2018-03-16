@@ -11,23 +11,25 @@
                     <div>
                         <asp:Label ID="FagkodeLbl" runat="server" Text="Label" ForeColor="Black" Font-Bold="true"></asp:Label><br />
                         <asp:Label ID="FagnavnLbl" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
-                        <asp:Label ID="ForleserLbl" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
+                        <asp:Label ID="ForeleserLbl" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
                     </div>
                 </a>
             </div>
         </div>
     </div>
-    <div class="Row">
-        <div class="col-md-4">
-            <div class="divKnappBorder">
-                <div id="testsomething" runat="server">
-                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                </div>
-            </div>
-        </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="testsomething" runat="server">
     </div>
     <br />
     <br />
+                        <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
+                        <asp:Label ID="Label2" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
+                        <asp:Label ID="Label3" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
+
     <br />
     <br />
     <br />
