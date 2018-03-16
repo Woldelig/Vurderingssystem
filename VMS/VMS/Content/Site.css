@@ -30,7 +30,7 @@ textarea {
     }
 }
 
-/*egendefinert class*/
+/*egendefinert cssklasse vi bruker for å style div element på MineFag*/
 .divKnappBorder {
     border-style: groove;
     border-radius: 5px;

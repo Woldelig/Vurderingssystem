@@ -36,7 +36,6 @@ namespace VMS
             leser.Close();
             db.CloseConnection();
 
-
             
             sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
             cmd = db.SqlCommand(sql);
@@ -44,7 +43,13 @@ namespace VMS
             db.OpenConnection();
             leser = cmd.ExecuteReader();
             String[,] faginfo = new String[antallRader, 3];
+            /*Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
+             * siden vi er usikre på hvor mange rader vi skal ha blir dette definert ved hjelp av en egen spørring som teller
+             * resultatet. Kolonner er definert som 3 fordi det er kun 3 kolonner vi bruker. Vi selecter egentlig 4 kolonner
+             * men vi bruker concat funksjonen i mysql for å slå sammen fornavn og etternavnet til foreleseren
+             */
 
+            //Her leses verdiene i et jagged array
             int arrayIndexTilsvarerRadIdb = 0;
             while (leser.Read())
             {
@@ -55,22 +60,23 @@ namespace VMS
             }
             leser.Close();
             db.CloseConnection();
+
+            //Vi bruker stringbuilder til å bygge vår html
             StringBuilder sb = new StringBuilder();
-            int lblNr = 1;
+            int spanNr = 1;
             
             //I denne for loopen blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
-            //
             for (int i = 0; i < antallRader; i++)
             {
-                String lbl1 = "FagkodeLbl" + lblNr;
-                String lbl2 = "FagnavnLbl" + lblNr;
-                String lbl3 = "ForeleserLbl" + lblNr;
+                String span1 = "FagkodeLbl" + spanNr;
+                String span2 = "FagnavnLbl" + spanNr;
+                String span3 = "ForeleserLbl" + spanNr;
 
                 sb.AppendFormat(
                     "<div class='Row'>" +
                         "<div class='col-md-4'>" +
                             "<div class='divKnappBorder'>" +
-                                "<a href='fagside.aspx?{3}' style='text-decoration: none'>" +
+                                "<a href='fagside.aspx?{6}' style='text-decoration: none'>" +
                                     "<div>" +
                                         "<span ID='{0}' style='color:Black;font-weight:bold;'>{3}</span><br />" +
                                         "<span ID='{1}' style='color:Black'>{4}</span><br />" +
@@ -85,7 +91,9 @@ namespace VMS
                     "<br />" +
                     "<br />" +
                     "<br />"
-                    , lbl1, lbl2, lbl3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], i);
+                    , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i,0]);
+                //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
+
 
                 //testsomething.InnerHtml = sb.ToString();
                 //PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });

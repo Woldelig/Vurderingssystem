@@ -7,6 +7,7 @@
     </p>
     <asp:Label ID="fagkodeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="fagkode"></asp:Label>
     <br />
+    <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="fagkode"></asp:Label>
     <br />
     <br />
     <div class="Row">
