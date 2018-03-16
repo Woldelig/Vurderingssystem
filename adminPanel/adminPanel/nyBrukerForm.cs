@@ -44,8 +44,21 @@ namespace adminPanel
                     //Huske å legge inn det hasha passordet og saltet
                     // i databasen, det må også skrives en sjekker
                     Hasher hasher = new Hasher();
-                   string hash = hasher.PassordHasher(Passord.Text);
-                    Console.WriteLine("test: " + hash);
+                    string [] hash = hasher.PassordHasher(Passord.Text);
+                    query = "INSERT INTO fromlogin (bruker, passord, salt, fornavn, etternavn, brukertype) VALUES (@Brukernavn, @Passord, @Salt, @Fornavn, @Etternavn, 2;";
+                    var mySqlCommandInsert = db.SqlCommand(query);
+                    mySqlCommandInsert.Parameters.AddWithValue("@Brukernavn", Brukernavn.Text);
+                    mySqlCommandInsert.Parameters.AddWithValue("@Passord", hash[0]);
+                    mySqlCommandInsert.Parameters.AddWithValue("@Salt", hash[1]);
+                    mySqlCommandInsert.Parameters.AddWithValue("@Fornavn", fornavn.Text);
+                    mySqlCommandInsert.Parameters.AddWithValue("@Etternavn", etternavn.Text);
+                    int resultat= mySqlCommandInsert.ExecuteNonQuery();
+                    if(resultat < 0)
+                    {
+                        Console.WriteLine("Noe gikk galt! Kunne ikke legge til data i databasen!");
+                    }
+                    db.CloseConnection();
+                    
                 }
             }
             catch (MySqlException DBException)

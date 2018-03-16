@@ -10,23 +10,21 @@ namespace adminPanel
 
     public class Hasher
     {
-       /* public Hasher(string passord)
+        /*public Hasher(string passord)
         {
            PassordHasher(passord);
         }*/
-
-        public string PassordHasher(string passord)
+        
+        public string[] PassordHasher(string passord)
         {
             PasswordWithSaltHasher pwHasher = new PasswordWithSaltHasher();
             HashWithSaltResult hashResultSha256 = pwHasher.HashWithSalt(passord, 64, SHA256.Create());
-
-            Console.WriteLine("SHA256:");
-            Console.WriteLine("Salt: " + hashResultSha256.Salt);
-            Console.WriteLine("Hash: " + hashResultSha256.Digest);
-            Console.WriteLine(hashResultSha256.Salt + hashResultSha256.Digest);
-            string salt = hashResultSha256.Salt;
             string hashpassord = hashResultSha256.Digest;
-            return salt + hashpassord;
+            string salt = hashResultSha256.Salt;
+            string [] hash = new string[2];
+            hash[0] = hashpassord;
+            hash[1] = salt;
+            return hash; 
         }
     }
     class PasswordWithSaltHasher 
