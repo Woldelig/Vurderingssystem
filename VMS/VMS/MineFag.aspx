@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Mine fag</h1>
-    <div class="Row">
-    </div>
+    <%--<div class="Row">
+    </div>--%>
     <div class="Row">
         <div class="col-md-4">
             <div class="divKnappBorder">
@@ -17,13 +17,13 @@
             </div>
         </div>
     </div>
+    <div id="testsomething" runat="server"></div>
+    <br />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
     <br />
     <br />
     <br />
     <br />
-    <br />
-    <div id="testsomething" runat="server">
-    </div>
     <br />
     <br />
                         <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />

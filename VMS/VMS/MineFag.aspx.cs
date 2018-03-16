@@ -18,17 +18,31 @@ namespace VMS
             {
                 Response.Redirect("velkomstside.aspx", true);
             }
+            /*
+             * Vi må kjøre to spørringer her. Vi må vite antall rader som kommer ut for å lage arrayet
+             * Problemet er blitt stilt før på stack uten løsninger. Og klone datareader objektet er jo en mulighet
+             * men da er det mye mer hensiktmessig og kun kjøre en ekstra spørring
+                https://stackoverflow.com/questions/37726983/clone-sqldatareader-to-get-number-of-rows
+             */
+
             Database db = new Database();
-            String sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
+            String sql = "SELECT COUNT(*) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
             var cmd = db.SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+            db.OpenConnection();
+            MySqlDataReader leser = cmd.ExecuteReader();
+            leser.Read();
+            int antallRader = leser.GetInt32(0);
+            leser.Close();
+            db.CloseConnection();
+            Label1.Text = antallRader.ToString();
+            sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
+            cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             List<String> sqlResultat = new List<string>();
             db.OpenConnection();
-            DataTable dt = new DataTable();
-            MySqlDataReader leser = cmd.ExecuteReader();
-            MySqlDataReader leserForÅTelleRader = leser;
-            //dt.Load(leserForÅTelleRader);
-            String[,] faginfo = new String[10, 3];
+            leser = cmd.ExecuteReader();
+            String[,] faginfo = new String[antallRader, 3];
 
             int arrayIndexTilsvarerRadIdb = 0;
             while (leser.Read())
@@ -38,14 +52,12 @@ namespace VMS
                 faginfo[arrayIndexTilsvarerRadIdb, 2] = leser.GetString(2);
                 arrayIndexTilsvarerRadIdb++;
             }
-            Label1.Text = "Verdi: " + faginfo[1, 0];
-            Label2.Text = "Verdi: " + faginfo[1, 1];
-            Label3.Text = "Verdi: " + faginfo[1, 2];
             StringBuilder sb = new StringBuilder();
             int lblNr = 1;
-            //foreach (DataRow rad in dt.Rows)
-            //{
 
+
+            for (int i = 0; i < antallRader; i++)
+            {
                 String lbl1 = "FagkodeLbl" + lblNr;
                 String lbl2 = "FagnavnLbl" + lblNr;
                 String lbl3 = "ForeleserLbl" + lblNr;
@@ -63,29 +75,22 @@ namespace VMS
                                 "</a>" +
                             "</ div >" +
                         "</ div >" +
-                    "</ div >", lbl1, lbl2, lbl3, "Fagkode: " + faginfo[1, 0], "Fagnavn: " + faginfo[1, 1], "Foreleser: " + faginfo[1, 2]);
-                testsomething.InnerHtml = sb.ToString();
-           // }
+                    "</ div >" +
+                    "<br />" +
+                    "<br />" +
+                    "<br />"
+                    , lbl1, lbl2, lbl3, "Fagkode: " + faginfo[1, 0], "Fagnavn: " + faginfo[1, 1], "Foreleser: " + faginfo[1, 2]);
+                PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
+
+            }
+
 
             leser.Close();
 
             db.CloseConnection();
-            //deler på 3 fordi et fag består av 3 verdier i denne sammenhengen
-            int antallFag = sqlResultat.Count() / 3;
-            FagkodeLbl.Text = "Fagkode: " + faginfo[0, 0];
-            FagnavnLbl.Text = "Fagnavn: " + faginfo[0, 1];
-            ForeleserLbl.Text = "Foreleser: " + faginfo[0, 2];
-
-            //testsomething.InnerHtml = "<a href='fagside.aspx' style='text-decoration: none'><div><asp:Label ID='FagkodeLbl1' runat='server' Text='Label' ForeColor='Black' Font-Bold='true'></asp:Label><br /><asp:Label ID='FagnavnLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /><asp:Label ID='ForleserLbl1' runat='server' Text='Label' ForeColor='Black'></asp:Label><br /></div> </a>";
-
-
-
-
-
-
-
-
-
+            //FagkodeLbl.Text = "Fagkode: " + faginfo[0, 0];
+            //FagnavnLbl.Text = "Fagnavn: " + faginfo[0, 1];
+            //ForeleserLbl.Text = "Foreleser: " + faginfo[0, 2];
 
             /*
              TODO
