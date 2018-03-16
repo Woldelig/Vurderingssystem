@@ -35,11 +35,12 @@ namespace VMS
             int antallRader = leser.GetInt32(0);
             leser.Close();
             db.CloseConnection();
-            Label1.Text = antallRader.ToString();
+
+
+            
             sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
             cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
-            List<String> sqlResultat = new List<string>();
             db.OpenConnection();
             leser = cmd.ExecuteReader();
             String[,] faginfo = new String[antallRader, 3];
@@ -56,8 +57,9 @@ namespace VMS
             db.CloseConnection();
             StringBuilder sb = new StringBuilder();
             int lblNr = 1;
-
-
+            
+            //I denne for loopen blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
+            //
             for (int i = 0; i < antallRader; i++)
             {
                 String lbl1 = "FagkodeLbl" + lblNr;
@@ -68,7 +70,7 @@ namespace VMS
                     "<div class='Row'>" +
                         "<div class='col-md-4'>" +
                             "<div class='divKnappBorder'>" +
-                                "<a href='fagside.aspx' style='text-decoration: none'>" +
+                                "<a href='fagside.aspx?{3}' style='text-decoration: none'>" +
                                     "<div>" +
                                         "<span ID='{0}' style='color:Black;font-weight:bold;'>{3}</span><br />" +
                                         "<span ID='{1}' style='color:Black'>{4}</span><br />" +
@@ -92,23 +94,6 @@ namespace VMS
                 //lit er forkortelsen for literal kontroll vi skriver ut stringbuilderen sin tekst til
                 lit.Text = sb.ToString();
             }
-
-
-
-            //FagkodeLbl.Text = "Fagkode: " + faginfo[0, 0];
-            //FagnavnLbl.Text = "Fagnavn: " + faginfo[0, 1];
-            //ForeleserLbl.Text = "Foreleser: " + faginfo[0, 2];
-
-            /*
-             TODO
-             1. Hente ut fag
-             2. Legge til fag i knapper
-             3. Lage en session variabel som blir hentet når man trykker på knappen
-             4. knappen videresender deg til fagsiden hvor vi henter ut den nye session variabelen og setter fagsiden til den fagkoden
-             5. Legg knappene i to kolonner
-             6. Design knappene store og pene muligens trykkbare paneler?
-
-             */
         }
     }
 }

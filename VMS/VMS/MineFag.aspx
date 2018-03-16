@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Mine fag</h1>
     <%--<div class="Row">
-    </div>--%>
-   <%-- <div class="Row">
+    </div>
+   <div class="Row">
         <div class="col-md-4">
             <div class="divKnappBorder">
                 <a href="fagside.aspx" style="text-decoration: none">
@@ -16,17 +16,10 @@
                 </a>
             </div>
         </div>
-    </div>--%>
-    <div id="testsomething" runat="server"></div>
-    <br />
+    </div>
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-    <br />
-    <br />
+    <div id="testsomething" runat="server"></div>
+        Alt over er bare for å vise hvordan ting var før, når det var hardkodet og for å vise hvordan man kan bruke metoder fra server siden til å skrive til html--%>
     <br />
     <asp:panel ID="panel1" runat="server"><asp:Literal ID="lit" runat="server"></asp:Literal></asp:panel>
-
-    <br />
-    <br />
-    <br />
-                        <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
 </asp:Content>

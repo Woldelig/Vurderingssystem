@@ -34,4 +34,5 @@ textarea {
 .divKnappBorder {
     border-style: groove;
     border-radius: 5px;
+    background-color: beige;
 }
