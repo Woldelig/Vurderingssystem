@@ -62,7 +62,7 @@ namespace VMS
                 String lbl2 = "FagnavnLbl" + lblNr;
                 String lbl3 = "ForeleserLbl" + lblNr;
 
-                sb.AppendFormat("" +
+                sb.AppendFormat("<div class ='{6}'>"+
                     "<div class='Row'>" +
                         "<div class='col-md-4'>" +
                             "<div class='divKnappBorder'>" +
@@ -76,11 +76,16 @@ namespace VMS
                             "</ div >" +
                         "</ div >" +
                     "</ div >" +
+                    "</ div >" +
                     "<br />" +
                     "<br />" +
                     "<br />"
-                    , lbl1, lbl2, lbl3, "Fagkode: " + faginfo[1, 0], "Fagnavn: " + faginfo[1, 1], "Foreleser: " + faginfo[1, 2]);
-                PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
+                    , lbl1, lbl2, lbl3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], i);
+
+                //testsomething.InnerHtml = sb.ToString();
+                //PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
+                lit.Text = sb.ToString();
+
 
             }
 

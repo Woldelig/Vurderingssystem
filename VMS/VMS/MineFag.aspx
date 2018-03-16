@@ -4,7 +4,7 @@
     <h1>Mine fag</h1>
     <%--<div class="Row">
     </div>--%>
-    <div class="Row">
+   <%-- <div class="Row">
         <div class="col-md-4">
             <div class="divKnappBorder">
                 <a href="fagside.aspx" style="text-decoration: none">
@@ -16,21 +16,17 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>--%>
     <div id="testsomething" runat="server"></div>
     <br />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
     <br />
     <br />
     <br />
-    <br />
-    <br />
-    <br />
-                        <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
-                        <asp:Label ID="Label2" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
-                        <asp:Label ID="Label3" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
+    <asp:panel ID="panel1" runat="server"><asp:Literal ID="lit" runat="server"></asp:Literal></asp:panel>
 
     <br />
     <br />
     <br />
+                        <asp:Label ID="Label1" runat="server" Text="Label" ForeColor="Black"></asp:Label><br />
 </asp:Content>
