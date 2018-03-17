@@ -134,6 +134,7 @@
     <Content Include="Content\star.gif" />
     <Content Include="fagside.aspx" />
     <Content Include="innlogging.aspx" />
+    <Content Include="MineFag.aspx" />
     <Content Include="MineVurderinger.aspx" />
     <Content Include="Hjelp.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="innlogging.aspx.designer.cs">
       <DependentUpon>innlogging.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MineFag.aspx.cs">
+      <DependentUpon>MineFag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MineFag.aspx.designer.cs">
+      <DependentUpon>MineFag.aspx</DependentUpon>
     </Compile>
     <Compile Include="MineVurderinger.aspx.cs">
       <DependentUpon>MineVurderinger.aspx</DependentUpon>
