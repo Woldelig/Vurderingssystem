@@ -103,7 +103,7 @@ namespace VMS
             }
             db.CloseConnection();
 
-            sql = "INSERT INTO vurderingshistorikk(skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
+            sql = "INSERT INTO pågåendevurdering(skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
             cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Skjemaid", skjemaid);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
