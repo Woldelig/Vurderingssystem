@@ -17,12 +17,19 @@ namespace adminPanel
         {
             InitializeComponent();
             FeilmeldingLbl.Text = "";
+            AvsluttVurderingFeilmeldingLbl.Text = "";
+
             //Event handlers blir definert under. Mye lettere å håndtere de her enn i design. Spesielt hvis man skal endre navn.
-            GodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(GodkjennNyttSemesterLbl_MouseDown);
-            IkkeGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(IkkeGodkjennNyttSemesterLbl_MouseDown);
-            ValideringsTextBox.AllowDrop = true;
-            ValideringsTextBox.DragEnter += new DragEventHandler(ValideringsTextBox_DragEnter);
-            ValideringsTextBox.DragDrop += new DragEventHandler(ValideringsTextBox_DragDrop);
+            NyTabellGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(NyTabellGodkjennNyttSemesterLbl_MouseDown);
+            NyTabellIkkeGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(NyTabellIkkeGodkjennNyttSemesterLbl_MouseDown);
+            GodkjennAvsluttVurderingLbl.MouseDown += new MouseEventHandler(GodkjennAvsluttVurderingLbl_MouseDown);
+            IkkeGodkjennAvsluttVurderingLbl.MouseDown += new MouseEventHandler(IkkeGodkjennAvsluttVurderingLbl_MouseDown);
+            NyTabellValideringsTextBox.AllowDrop = true;
+            NyTabellValideringsTextBox.DragEnter += new DragEventHandler(NyTabellValideringsTextBox_DragEnter);
+            NyTabellValideringsTextBox.DragDrop += new DragEventHandler(NyTabellValideringsTextBox_DragDrop);
+            GodkjennAvsluttVurderingTextbox.AllowDrop = true;
+            GodkjennAvsluttVurderingTextbox.DragEnter += new DragEventHandler(GodkjennAvsluttVurderingTextbox_DragEnter);
+            GodkjennAvsluttVurderingTextbox.DragDrop += new DragEventHandler(GodkjennAvsluttVurderingTextbox_DragDrop);
 
             //Her lages tooltip for å hjelpe brukeren. Tallene representerer tid
             ToolTip tooltip1 = new ToolTip();
@@ -35,25 +42,42 @@ namespace adminPanel
             tooltip1.SetToolTip(this.TabellNavnLbl, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
             tooltip1.SetToolTip(this.StartNyttSemesterBtn, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
             tooltip1.SetToolTip(this.TabellNavnTextbox, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
-            tooltip1.SetToolTip(this.GodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne handlingen.");
-            tooltip1.SetToolTip(this.IkkeGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne ikke handlingen.");
+            tooltip1.SetToolTip(this.NyTabellGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne handlingen.");
+            tooltip1.SetToolTip(this.NyTabellIkkeGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne ikke handlingen.");
         }
-        private void GodkjennNyttSemesterLbl_MouseDown(object sender,MouseEventArgs e)
+        private void NyTabellGodkjennNyttSemesterLbl_MouseDown(object sender,MouseEventArgs e)
         {
-            DoDragDrop(GodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
+            DoDragDrop(NyTabellGodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
         }
-        private void IkkeGodkjennNyttSemesterLbl_MouseDown(object sender, MouseEventArgs e)
+        private void NyTabellIkkeGodkjennNyttSemesterLbl_MouseDown(object sender, MouseEventArgs e)
         {
-            DoDragDrop(IkkeGodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
+            DoDragDrop(NyTabellIkkeGodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
         }
-        private void ValideringsTextBox_DragEnter(object sender, DragEventArgs e)
+        private void IkkeGodkjennAvsluttVurderingLbl_MouseDown(object sender, MouseEventArgs e)
+        {
+            DoDragDrop(IkkeGodkjennAvsluttVurderingLbl.Text, DragDropEffects.Copy);
+        }
+        private void GodkjennAvsluttVurderingLbl_MouseDown(object sender, MouseEventArgs e)
+        {
+            DoDragDrop(GodkjennAvsluttVurderingLbl.Text, DragDropEffects.Copy);
+        }
+        private void NyTabellValideringsTextBox_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text)) e.Effect = DragDropEffects.Copy;
             else e.Effect = DragDropEffects.None;
         }
-        private void ValideringsTextBox_DragDrop(object sender, DragEventArgs e)
+        private void NyTabellValideringsTextBox_DragDrop(object sender, DragEventArgs e)
         {
-            ValideringsTextBox.Text = (String)e.Data.GetData(DataFormats.Text);
+            NyTabellValideringsTextBox.Text = (String)e.Data.GetData(DataFormats.Text);
+        }
+        private void GodkjennAvsluttVurderingTextbox_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text)) e.Effect = DragDropEffects.Copy;
+            else e.Effect = DragDropEffects.None;
+        }
+        private void GodkjennAvsluttVurderingTextbox_DragDrop(object sender, DragEventArgs e)
+        {
+            GodkjennAvsluttVurderingTextbox.Text = (String)e.Data.GetData(DataFormats.Text);
         }
 
         private void HjelpBtn_Click(object sender, EventArgs e)
@@ -74,7 +98,7 @@ namespace adminPanel
             {
                 FeilmeldingLbl.Text = "Tekstboksen må ha et navn";
             }
-            else if (ValideringsTextBox.Text != "Godkjenn")
+            else if (NyTabellValideringsTextBox.Text != "Godkjenn")
             {
                 FeilmeldingLbl.Text = "Du må godkjenne handlingen med valideringsteksboksen!";
             }
@@ -96,7 +120,7 @@ namespace adminPanel
                 db.CloseConnection();
 
 
-                cmd = db.SqlCommand("nytt_semester_prosedyre");
+                cmd = db.SqlCommand("lagre_pågående_evaluerings_resultater");
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@ny_tabell", TabellNavnTextbox.Text).Direction = ParameterDirection.Input;
                 db.OpenConnection();
@@ -112,6 +136,31 @@ namespace adminPanel
                 }
                 db.CloseConnection();
             }
+        }
+
+        private void AvsluttVurderingBtn_Click(object sender, EventArgs e)
+        {
+            AvsluttVurderingFeilmeldingLbl.ForeColor = Color.Red;
+            if (GodkjennAvsluttVurderingTextbox.Text != "Godkjenn")
+            {
+                AvsluttVurderingFeilmeldingLbl.Text = "Du må godkjenne handlingen med valideringsteksboksen!";
+                return;
+            }
+            Database db = new Database();
+            var cmd = db.SqlCommand("avslutt_evaluering");
+            cmd.CommandType = CommandType.StoredProcedure;
+            db.OpenConnection();
+            try
+            {
+                cmd.ExecuteNonQuery();
+                AvsluttVurderingFeilmeldingLbl.ForeColor = Color.Black;
+                AvsluttVurderingFeilmeldingLbl.Text = "Vurderingen er nå avsluttet.";
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            db.CloseConnection();
         }
     }
 }
