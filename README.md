@@ -3,7 +3,7 @@ Prototype for APP2000
 
 ### ASP.NET
 - [x] Legge inn session for ASP delen
-- [ ] Ha noe som simulerer brukerinnlogging
+- [x] Ha noe som simulerer brukerinnlogging
 - [x] Stjernerating
 - [x] Vurderingsskjema delen   
 - [ ]  Legge til thread på vurderingsskjema som tar tiden på brukern (etter 10 min kan de få en advarsel)
@@ -14,7 +14,7 @@ Prototype for APP2000
 - [ ] Lage FAQ for asp.net
 - [ ] Legge inn div info på asp.net
 - [ ] Session redirect hvis du ikke har tilgang til siden
-- [ ] Lag mine fag
+- [x] Lag mine fag
 - [ ] Lag min vurderinger
 - [x] Fagside try catch - divide by zero - Hvis databasen er tom
 - [ ] Fiks gapet i navbar
@@ -66,7 +66,7 @@ Prototype for APP2000
 
 
 ### Forslag
-- [ ] ny Tabell pågående vurdering
+- [x] ny Tabell pågående vurdering
 - [ ] Legg til mulighet for å kunne ta vurdering for flere fag
 - [ ] Finn en bruk for threads/ multithreading
 
