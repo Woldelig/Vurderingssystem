@@ -30,9 +30,16 @@ textarea {
     }
 }
 
-/*egendefinert cssklasse vi bruker for å style div element på MineFag*/
+/*egendefinert cssklasse vi bruker for å style div element på MineFag og mine vurderinger*/
 .divKnappBorder {
     border-style: groove;
     border-radius: 5px;
     background-color: beige;
+}
+
+/*egendefinert cssklasse vi bruker på mine vurderinger*/
+.divBorder {
+    border-style: groove;
+    border-radius: 5px;
+    background-color: lightgrey;
 }
