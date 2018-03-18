@@ -55,6 +55,69 @@ namespace VMS
             leser.Close();
             db.CloseConnection();
 
+
+            /*
+             * Under sjekker vi om studenten har tatt en vurdering som er lagret i vurderingshistorikk
+             * vi sjekker dette så han ikke skal kunne ta en vurdering mer enn en gang
+             */
+            sql = "SELECT COUNT(fagkode), fagkode FROM vurderingshistorikk WHERE studentid = @Studentid GROUP BY fagkode";
+            cmd = db.SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+            db.OpenConnection();
+            leser = cmd.ExecuteReader();
+            leser.Read();
+            int antallRaderIVurderingshistorikk = leser.GetInt32(0);
+            leser.Close();
+            String[] fagkodeIVurderingshistorikk = null;
+            if (antallRaderIVurderingshistorikk != 0)
+            {
+                sql = "SELECT fagkode FROM vurderingshistorikk WHERE studentid = @Studentid";
+                cmd = db.SqlCommand(sql);
+                cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+                leser = cmd.ExecuteReader();
+                fagkodeIVurderingshistorikk = new String[antallRaderIVurderingshistorikk];
+                int i = 0;
+                while (leser.Read())
+                {
+                    fagkodeIVurderingshistorikk[i] = leser.GetString(0);
+                    i++;
+                }
+            }
+            db.CloseConnection();
+
+            /*
+            * Under sjekker vi om studenten har tatt en vurdering som er lagret i pågåendevurdering
+            * vi sjekker dette så han ikke skal kunne ta en vurdering mer enn en gang
+            */
+            sql = "SELECT COUNT(*)FROM pågåendevurdering WHERE studentid = @Studentid";
+            cmd = db.SqlCommand(sql);
+            cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+            db.OpenConnection();
+            leser = cmd.ExecuteReader();
+            leser.Read();
+            int antallRaderIpågåendevurdering = leser.GetInt32(0);
+            leser.Close();
+            String[] fagkoderIPågåendevurdering = null;
+            if (antallRaderIpågåendevurdering != 0)
+            {
+                sql = "SELECT fagkode FROM pågåendevurdering WHERE studentid = @Studentid";
+                cmd = db.SqlCommand(sql);
+                cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+                leser = cmd.ExecuteReader();
+                fagkoderIPågåendevurdering = new String[antallRaderIpågåendevurdering];
+                int i = 0;
+                while (leser.Read())
+                {
+                    fagkoderIPågåendevurdering[i] = leser.GetString(0);
+                    i++;
+                }
+            }
+            db.CloseConnection();
+
+            Label1.Text = fagkodeIVurderingshistorikk + antallRaderIVurderingshistorikk.ToString();
+            Label2.Text = fagkoderIPågåendevurdering[0] + fagkoderIPågåendevurdering[1] + fagkoderIPågåendevurdering[2];
+
+
             StringBuilder sb = new StringBuilder();
             int spanNr = 1;
 
