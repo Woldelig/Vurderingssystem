@@ -19,7 +19,10 @@ namespace VMS
             }
             
             Database db = new Database();
-            String sql = "SELECT COUNT(*) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
+            String sql = "SELECT COUNT(*) FROM student as s, fag, foreleser as f " +
+                "WHERE s.studentid = @Studentid " +
+                "AND s.studieretning = fag.studieretning " +
+                "AND f.foreleserid = fag.foreleserid";
             var cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             db.OpenConnection();
@@ -30,7 +33,11 @@ namespace VMS
             db.CloseConnection();
 
 
-            sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) FROM student as s, fag, foreleser as f WHERE s.studentid = @Studentid and s.studieretning = fag.studieretning and f.foreleserid = fag.foreleserid";
+            sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) " +
+                "FROM student as s, fag, foreleser as f " +
+                "WHERE s.studentid = @Studentid " +
+                "AND s.studieretning = fag.studieretning " +
+                "AND f.foreleserid = fag.foreleserid";
             cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             db.OpenConnection();
