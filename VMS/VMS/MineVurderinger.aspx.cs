@@ -18,6 +18,7 @@ namespace VMS
                 Response.Redirect("velkomstside.aspx", true);
             }
 
+            //Under får vi ut hvor mange rader med fag studenten har. Dette trenger vi for å lage et array             
             Database db = new Database();
             String sql = "SELECT COUNT(*) FROM student as s, fag, foreleser as f " +
                 "WHERE s.studentid = @Studentid " +
@@ -32,7 +33,7 @@ namespace VMS
             leser.Close();
             db.CloseConnection();
 
-
+            //Her hentes all faginfo ut fra databasen
             sql = "SELECT fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) " +
                 "FROM student as s, fag, foreleser as f " +
                 "WHERE s.studentid = @Studentid " +
@@ -44,6 +45,7 @@ namespace VMS
             leser = cmd.ExecuteReader();
             String[,] faginfo = new String[antallRaderMedFag, 3];
 
+            //Her legges database infoen inn i et Jagged array
             int arrayIndexTilsvarerRadIdb = 0;
             while (leser.Read())
             {
@@ -59,6 +61,8 @@ namespace VMS
             /*
              * Under sjekker vi om studenten har tatt en vurdering som er lagret i vurderingshistorikk
              * vi sjekker dette så han ikke skal kunne ta en vurdering mer enn en gang
+             * * Arrayene blir laget utifra hvor mange rader som blir funnet i den første sql spørringen
+            * hvis det ikke blir funnet noen rader har brukeren ikke utført en vurdering som blir sjekket i en if setning under
              */
             sql = "SELECT COUNT(*) FROM vurderingshistorikk WHERE studentid = @Studentid";
             cmd = db.SqlCommand(sql);
@@ -68,6 +72,8 @@ namespace VMS
             leser.Read();
             int antallRaderIVurderingshistorikk = leser.GetInt32(0);
             leser.Close();
+
+
             String[] fagkodeIVurderingshistorikk = null;
             if (antallRaderIVurderingshistorikk > 0)
             {
@@ -89,6 +95,8 @@ namespace VMS
             /*
             * Under sjekker vi om studenten har tatt en vurdering som er lagret i pågåendevurdering
             * vi sjekker dette så han ikke skal kunne ta en vurdering mer enn en gang
+            * Arrayene blir laget utifra hvor mange rader som blir funnet i den første sql spørringen
+            * hvis det ikke blir funnet noen rader har brukeren ikke utført en vurdering som blir sjekket i en if setning under
             */
             sql = "SELECT COUNT(*)FROM pågåendevurdering WHERE studentid = @Studentid";
             cmd = db.SqlCommand(sql);
@@ -99,6 +107,7 @@ namespace VMS
             int antallRaderIpågåendevurdering = leser.GetInt32(0);
             leser.Close();
             String[] fagkoderIPågåendevurdering = null;
+
             if (antallRaderIpågåendevurdering > 0)
             {
                 sql = "SELECT fagkode FROM pågåendevurdering WHERE studentid = @Studentid";
@@ -118,7 +127,9 @@ namespace VMS
 
             /*
              * Under kopierer vi ut infoen om fagene som det allerede er tatt vurdering på og legger det inn i et annet array
-             * vi må splitte opp informasjonen på denne måten for at kunne vise brukeren hvilke fag man kan ta en vurdering i
+             * vi må splitte opp informasjonen på denne måten for at kunne vise brukeren hvilke fag man kan ta en vurdering
+             * Vi fyller også på arrayet med tomme verdier der hvor fagkoden ikke er lik. Dette er nødvendig siden vi bruker
+             * en metode som heter Equals() senere for forgrenning logikk
              */
             String[,] faginfoForVurderteFag = null;
             if (antallRaderIpågåendevurdering + antallRaderIVurderingshistorikk > 0)
@@ -132,16 +143,11 @@ namespace VMS
                         if (faginfo[i, 0].Contains(fagkoderIPågåendevurdering[j]))
                         {
                             faginfoForVurderteFag[i, 0] = faginfo[i, 0];
-                            faginfoForVurderteFag[i, 1] = faginfo[i, 1];
-                            faginfoForVurderteFag[i, 2] = faginfo[i, 2];
-                            //faginfo = faginfo.Where((source, index) => index != i).ToArray(); Denne linjen ville ha fjernet hele index i, men den funker ikke på jagged arrays
 
                         }
                         else
                         {
                             faginfoForVurderteFag[i, 0] = "";
-                            faginfoForVurderteFag[i, 1] = "";
-                            faginfoForVurderteFag[i, 2] = "";
                         }
                     }
                     totalIndexenTilFaginfoForVurdertefag++;
@@ -153,40 +159,62 @@ namespace VMS
                         if (faginfo[i, 0].Contains(fagkodeIVurderingshistorikk[j]))
                         {
                             faginfoForVurderteFag[i, 0] = faginfo[i, 0];
-                            faginfoForVurderteFag[i, 1] = faginfo[i, 1];
-                            faginfoForVurderteFag[i, 2] = faginfo[i, 2];
                         }
                         else
                         {
                             faginfoForVurderteFag[i, 0] = "";
-                            faginfoForVurderteFag[i, 1] = "";
-                            faginfoForVurderteFag[i, 2] = "";
                         }
                     }
                     totalIndexenTilFaginfoForVurdertefag++;
                 }
             }
 
-
-            Label1.Text = faginfo[0, 0];
-            Label2.Text = faginfoForVurderteFag[0, 0];
             StringBuilder sb = new StringBuilder();
             int spanNr = 1;
 
-            //I denne for loopen blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
+            /*
+             * Her blir det laget bokser hvor faginfo står. De boksene som brukeren ikke har tatt en vurdering i
+             * vil være klikkebare og sende brukeren til et vurderingsskjema. Hvis brukeren har tatt en vurdering i faget
+             * vil boksen være grå og ikke mulig å trykke på
+             */
             for (int i = 0; i < antallRaderMedFag; i++)
             {
                 String span1 = "FagkodeLbl" + spanNr;
                 String span2 = "FagnavnLbl" + spanNr;
                 String span3 = "ForeleserLbl" + spanNr;
 
-                if (!faginfo[i, 0].Equals(faginfoForVurderteFag[i, 0]))
+                //Denne if setningen sjekker om et array er null, hvis dette spesifikke arrayet er null har brukeren ikke tatt noen vurderinger
+                if (faginfoForVurderteFag == null)
+                {
+                    sb.AppendFormat(
+                        "<div class='Row'>" +
+                        "<div class='col-md-4'>" +
+                            "<div class='divKnappBorder'>" +
+                                "<a href='Vurderingsskjema.aspx?{6}' style='text-decoration: none'>" +
+                                    "<div>" +
+                                        "<span ID='{0}' style='color:Black;font-weight:bold;'>{3}</span><br />" +
+                                        "<span ID='{1}' style='color:Black'>{4}</span><br />" +
+                                        "<span ID='{2}' style='color:Black'>{5}</span><br />" +
+                                    "</div>" +
+                                "</a>" +
+                            "</div >" +
+                        "</div >" +
+                    "</div >" +
+                    "<br />" +
+                    "<br />" +
+                    "<br />" +
+                    "<br />" +
+                    "<br />"
+                        , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i, 0]);
+                    //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
+                }
+                else if (!faginfo[i, 0].Equals(faginfoForVurderteFag[i, 0]))
                 {
                     sb.AppendFormat(
                     "<div class='Row'>" +
                         "<div class='col-md-4'>" +
                             "<div class='divKnappBorder'>" +
-                                "<a href='fagside.aspx?{6}' style='text-decoration: none'>" +
+                                "<a href='Vurderingsskjema.aspx?{6}' style='text-decoration: none'>" +
                                     "<div>" +
                                         "<span ID='{0}' style='color:Black;font-weight:bold;'>{3}</span><br />" +
                                         "<span ID='{1}' style='color:Black'>{4}</span><br />" +
@@ -227,10 +255,7 @@ namespace VMS
                         , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i, 0]);
                     //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
                 }
-
-
-
-                //lit er forkortelsen for literal kontroll vi skriver ut stringbuilderen sin tekst til
+                //lit er forkortelsen for Literal dette er en kontrollklasse vi skriver ut stringbuilderen sin tekst til
                 lit.Text = sb.ToString();
             }
         }
