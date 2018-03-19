@@ -59,6 +59,8 @@ namespace adminPanel
                         button.Top = row * 50;
                         button.Width = 145;
                         button.Height = 50;
+                        button.MouseDown += new MouseEventHandler(button_MouseDown);
+                        button.Click += new EventHandler(Button_Click);
                         MyCoursesPanel.Controls.Add(button);
                         column++;
                     }
@@ -71,6 +73,16 @@ namespace adminPanel
             }
             
 
+        }
+        protected void Button_Click(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            label1.Text = button.Name;
+        }
+        private void button_MouseDown(object sender, MouseEventArgs e)
+        {
+            Button button = sender as Button;
+            DoDragDrop(button.Name, DragDropEffects.Copy);
         }
     }
 }

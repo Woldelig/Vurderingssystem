@@ -40,21 +40,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelValideringsLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Panel1OverskriftLbl = new System.Windows.Forms.Label();
-            this.AvsluttVurderingBtn = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.Panel2overskriftLbl = new System.Windows.Forms.Label();
+            this.AvsluttVurderingFeilmeldingLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.GodkjennAvsluttVurderingLbl = new System.Windows.Forms.Label();
             this.GodkjennAvsluttVurderingTextbox = new System.Windows.Forms.TextBox();
             this.ValideringsInfoAvsluttLbl = new System.Windows.Forms.Label();
             this.IkkeGodkjennAvsluttVurderingLbl = new System.Windows.Forms.Label();
-            this.AvsluttVurderingFeilmeldingLbl = new System.Windows.Forms.Label();
+            this.Panel1OverskriftLbl = new System.Windows.Forms.Label();
+            this.AvsluttVurderingBtn = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.Panel2overskriftLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabellNavnTextbox
@@ -178,53 +178,14 @@
             this.panel2.Size = new System.Drawing.Size(417, 443);
             this.panel2.TabIndex = 13;
             // 
-            // Panel1OverskriftLbl
+            // AvsluttVurderingFeilmeldingLbl
             // 
-            this.Panel1OverskriftLbl.AutoSize = true;
-            this.Panel1OverskriftLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Panel1OverskriftLbl.Location = new System.Drawing.Point(3, 28);
-            this.Panel1OverskriftLbl.Name = "Panel1OverskriftLbl";
-            this.Panel1OverskriftLbl.Size = new System.Drawing.Size(351, 24);
-            this.Panel1OverskriftLbl.TabIndex = 14;
-            this.Panel1OverskriftLbl.Text = "Her kan du avslutte pågående vurdering:";
-            // 
-            // AvsluttVurderingBtn
-            // 
-            this.AvsluttVurderingBtn.BackColor = System.Drawing.Color.Gold;
-            this.AvsluttVurderingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AvsluttVurderingBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.AvsluttVurderingBtn.Location = new System.Drawing.Point(21, 331);
-            this.AvsluttVurderingBtn.Name = "AvsluttVurderingBtn";
-            this.AvsluttVurderingBtn.Size = new System.Drawing.Size(333, 73);
-            this.AvsluttVurderingBtn.TabIndex = 0;
-            this.AvsluttVurderingBtn.Text = "Avslutt pågående vurdering";
-            this.AvsluttVurderingBtn.UseVisualStyleBackColor = false;
-            this.AvsluttVurderingBtn.Click += new System.EventHandler(this.AvsluttVurderingBtn_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel3.Controls.Add(this.Panel2overskriftLbl);
-            this.panel3.Controls.Add(this.StartNyttSemesterBtn);
-            this.panel3.Controls.Add(this.TabellNavnTextbox);
-            this.panel3.Controls.Add(this.PanelValideringsLbl);
-            this.panel3.Controls.Add(this.TabellNavnLbl);
-            this.panel3.Controls.Add(this.panel1);
-            this.panel3.Controls.Add(this.FeilmeldingLbl);
-            this.panel3.Location = new System.Drawing.Point(550, 124);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(417, 443);
-            this.panel3.TabIndex = 14;
-            // 
-            // Panel2overskriftLbl
-            // 
-            this.Panel2overskriftLbl.AutoSize = true;
-            this.Panel2overskriftLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Panel2overskriftLbl.Location = new System.Drawing.Point(3, 28);
-            this.Panel2overskriftLbl.Name = "Panel2overskriftLbl";
-            this.Panel2overskriftLbl.Size = new System.Drawing.Size(406, 24);
-            this.Panel2overskriftLbl.TabIndex = 13;
-            this.Panel2overskriftLbl.Text = "Her kan du lagre vurdering som en egen tabell:\r\n";
+            this.AvsluttVurderingFeilmeldingLbl.AutoSize = true;
+            this.AvsluttVurderingFeilmeldingLbl.Location = new System.Drawing.Point(23, 416);
+            this.AvsluttVurderingFeilmeldingLbl.Name = "AvsluttVurderingFeilmeldingLbl";
+            this.AvsluttVurderingFeilmeldingLbl.Size = new System.Drawing.Size(35, 13);
+            this.AvsluttVurderingFeilmeldingLbl.TabIndex = 17;
+            this.AvsluttVurderingFeilmeldingLbl.Text = "label2";
             // 
             // label1
             // 
@@ -289,14 +250,53 @@
             this.IkkeGodkjennAvsluttVurderingLbl.TabIndex = 7;
             this.IkkeGodkjennAvsluttVurderingLbl.Text = "Ikke godkjenn";
             // 
-            // AvsluttVurderingFeilmeldingLbl
+            // Panel1OverskriftLbl
             // 
-            this.AvsluttVurderingFeilmeldingLbl.AutoSize = true;
-            this.AvsluttVurderingFeilmeldingLbl.Location = new System.Drawing.Point(23, 416);
-            this.AvsluttVurderingFeilmeldingLbl.Name = "AvsluttVurderingFeilmeldingLbl";
-            this.AvsluttVurderingFeilmeldingLbl.Size = new System.Drawing.Size(35, 13);
-            this.AvsluttVurderingFeilmeldingLbl.TabIndex = 17;
-            this.AvsluttVurderingFeilmeldingLbl.Text = "label2";
+            this.Panel1OverskriftLbl.AutoSize = true;
+            this.Panel1OverskriftLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Panel1OverskriftLbl.Location = new System.Drawing.Point(3, 28);
+            this.Panel1OverskriftLbl.Name = "Panel1OverskriftLbl";
+            this.Panel1OverskriftLbl.Size = new System.Drawing.Size(295, 20);
+            this.Panel1OverskriftLbl.TabIndex = 14;
+            this.Panel1OverskriftLbl.Text = "Her kan du avslutte pågående vurdering:";
+            // 
+            // AvsluttVurderingBtn
+            // 
+            this.AvsluttVurderingBtn.BackColor = System.Drawing.Color.Gold;
+            this.AvsluttVurderingBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AvsluttVurderingBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.AvsluttVurderingBtn.Location = new System.Drawing.Point(21, 331);
+            this.AvsluttVurderingBtn.Name = "AvsluttVurderingBtn";
+            this.AvsluttVurderingBtn.Size = new System.Drawing.Size(333, 73);
+            this.AvsluttVurderingBtn.TabIndex = 0;
+            this.AvsluttVurderingBtn.Text = "Avslutt pågående vurdering";
+            this.AvsluttVurderingBtn.UseVisualStyleBackColor = false;
+            this.AvsluttVurderingBtn.Click += new System.EventHandler(this.AvsluttVurderingBtn_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel3.Controls.Add(this.Panel2overskriftLbl);
+            this.panel3.Controls.Add(this.StartNyttSemesterBtn);
+            this.panel3.Controls.Add(this.TabellNavnTextbox);
+            this.panel3.Controls.Add(this.PanelValideringsLbl);
+            this.panel3.Controls.Add(this.TabellNavnLbl);
+            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.FeilmeldingLbl);
+            this.panel3.Location = new System.Drawing.Point(550, 124);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(417, 443);
+            this.panel3.TabIndex = 14;
+            // 
+            // Panel2overskriftLbl
+            // 
+            this.Panel2overskriftLbl.AutoSize = true;
+            this.Panel2overskriftLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Panel2overskriftLbl.Location = new System.Drawing.Point(3, 28);
+            this.Panel2overskriftLbl.Name = "Panel2overskriftLbl";
+            this.Panel2overskriftLbl.Size = new System.Drawing.Size(413, 20);
+            this.Panel2overskriftLbl.TabIndex = 13;
+            this.Panel2overskriftLbl.Text = "Her kan du lagre pågående vurdering som en egen tabell:\r\n";
             // 
             // NyttSemester
             // 
@@ -311,10 +311,10 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
