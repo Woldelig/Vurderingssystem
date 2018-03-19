@@ -13,25 +13,20 @@ namespace VMS
         {
             if (Session["logginn"] == null || Session["studentID"] == null)
             {
+
                 Response.Redirect("velkomstside.aspx", true);
             }
             else
             {
                 //Setter StudentID inn i labelen
                 StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
-                //Setter StudentID inn i labelen
-                try
-                {
-                    StudIDLabel.Text = "StudentID: " + Session["studentID"].ToString();
-                }
-                catch (Exception)
-                {
-                    StudIDLabel.Text = "StudentID: Ingen session registrert";
-                }
             }
-
-
-
+            //Hvis det ikke er en bruker innlogget fjernes noen elementer fra forsiden
+            if (Session["logginn"].Equals(0))
+            {
+                minefagDiv.InnerHtml = "";
+                minevurderingerDiv.InnerHtml = "";
+            }
         }
     }
 }
