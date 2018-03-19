@@ -34,7 +34,7 @@
             this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.MyCoursesPanel = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ChartFeilmldLbl = new System.Windows.Forms.Label();
             this.FagkodeNr1 = new System.Windows.Forms.TextBox();
             this.FagkodeNr2 = new System.Windows.Forms.TextBox();
             this.Fagkode1lbl = new System.Windows.Forms.Label();
@@ -83,14 +83,14 @@
             this.InfoPanel.Size = new System.Drawing.Size(435, 144);
             this.InfoPanel.TabIndex = 2;
             // 
-            // label1
+            // ChartFeilmldLbl
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(122, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.ChartFeilmldLbl.AutoSize = true;
+            this.ChartFeilmldLbl.Location = new System.Drawing.Point(708, 598);
+            this.ChartFeilmldLbl.Name = "ChartFeilmldLbl";
+            this.ChartFeilmldLbl.Size = new System.Drawing.Size(83, 13);
+            this.ChartFeilmldLbl.TabIndex = 3;
+            this.ChartFeilmldLbl.Text = "chart feilmelding";
             // 
             // FagkodeNr1
             // 
@@ -195,7 +195,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.spmLbl);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ChartFeilmldLbl);
             this.Controls.Add(this.spmListeboks);
             this.Controls.Add(this.InfoPanel);
             this.Controls.Add(this.MyCoursesPanel);
@@ -216,7 +216,7 @@
         private System.Windows.Forms.Label MyCoursesHeader;
         private System.Windows.Forms.Panel MyCoursesPanel;
         private System.Windows.Forms.Panel InfoPanel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ChartFeilmldLbl;
         private System.Windows.Forms.Label SammenlignLbl;
         private System.Windows.Forms.Label Fagkode1lbl;
         private System.Windows.Forms.Label FagkodeNr2Lbl;
