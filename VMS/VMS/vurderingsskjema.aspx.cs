@@ -16,14 +16,30 @@ namespace VMS
         //session må gi oss en studentid, med den kan vi få tak i studieretning og fagkode som gir
         //oss tilgangen til skjemaene.
         Database db = new Database();
+        String sidensFagkode = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
+            if (Session["logginn"] == null || Session["studentID"] == null)
+            {
+                Response.Redirect("velkomstside.aspx", true);
+            }
+
+
+            //Hvis noen blir redirected til fagsiden med et parameter vil fagsiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
+            String uformatertQueryString = Request.Url.Query;
+            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty);
+            //StringQuery inneholder et spørsmålstegn som vi her fjerner
+            if (formatertQueryString != "" || formatertQueryString == null)
+            {
+                sidensFagkode = formatertQueryString;
+            }
+            String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND v.fagkode = @Fagkode AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
             //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
             //Denne setningen får tak i spørsmålene ved hjelp av betingelser på kryss av tabeller
             var cmd = db.SqlCommand(query);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+            cmd.Parameters.AddWithValue("@Fagkode", sidensFagkode);
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
 
@@ -76,8 +92,7 @@ namespace VMS
             }
 
             String skjemaid = null;
-            String fagkode = null;
-            String sql = "SELECT skjemaid, f.fagkode FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
+            String sql = "SELECT skjemaid FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
             var cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             db.OpenConnection();
@@ -85,7 +100,6 @@ namespace VMS
             while (leser.Read())
             {
                 skjemaid = leser[0].ToString();
-                fagkode = leser[1].ToString();
             }
             db.CloseConnection();
 
@@ -93,7 +107,7 @@ namespace VMS
             cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Skjemaid", skjemaid);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
-            cmd.Parameters.AddWithValue("@Fagkode", fagkode);
+            cmd.Parameters.AddWithValue("@Fagkode", sidensFagkode);
             cmd.Parameters.AddWithValue("@Spm1rating", spm1);
             cmd.Parameters.AddWithValue("@Spm2rating", spm2);
             cmd.Parameters.AddWithValue("@Spm3rating", spm3);
@@ -108,7 +122,7 @@ namespace VMS
             cmd.ExecuteNonQuery();
             db.CloseConnection();
 
-            suksessLbl.Text = "Takk for at at du svarte på våre spørsmål. Du vil nå bli sendt til forsiden.";
+            suksessLbl.Text = "Takk for at at du svarte på våre spørsmål. Du vil nå bli sendt tilbake til mine vurderinger.";
             Response.AddHeader("REFRESH", "4;URL=MineVurderinger.aspx");
             //Sender brukeren til mineVurderinger etter 4 sekunder
         }
