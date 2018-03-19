@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.MyCoursesPanel = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
@@ -37,7 +40,13 @@
             this.Fagkode1lbl = new System.Windows.Forms.Label();
             this.FagkodeNr2Lbl = new System.Windows.Forms.Label();
             this.SammenlignLbl = new System.Windows.Forms.Label();
+            this.SammenlignFagBtn = new System.Windows.Forms.Button();
+            this.SammenlignFeilmldLbl = new System.Windows.Forms.Label();
+            this.spmListeboks = new System.Windows.Forms.ListBox();
+            this.spmLbl = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.InfoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // MyCoursesHeader
@@ -62,6 +71,8 @@
             // InfoPanel
             // 
             this.InfoPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.InfoPanel.Controls.Add(this.SammenlignFeilmldLbl);
+            this.InfoPanel.Controls.Add(this.SammenlignFagBtn);
             this.InfoPanel.Controls.Add(this.SammenlignLbl);
             this.InfoPanel.Controls.Add(this.Fagkode1lbl);
             this.InfoPanel.Controls.Add(this.FagkodeNr2Lbl);
@@ -69,7 +80,7 @@
             this.InfoPanel.Controls.Add(this.FagkodeNr1);
             this.InfoPanel.Location = new System.Drawing.Point(518, 85);
             this.InfoPanel.Name = "InfoPanel";
-            this.InfoPanel.Size = new System.Drawing.Size(435, 116);
+            this.InfoPanel.Size = new System.Drawing.Size(435, 144);
             this.InfoPanel.TabIndex = 2;
             // 
             // label1
@@ -85,6 +96,7 @@
             // 
             this.FagkodeNr1.Location = new System.Drawing.Point(72, 78);
             this.FagkodeNr1.Name = "FagkodeNr1";
+            this.FagkodeNr1.ReadOnly = true;
             this.FagkodeNr1.Size = new System.Drawing.Size(100, 20);
             this.FagkodeNr1.TabIndex = 0;
             // 
@@ -92,6 +104,7 @@
             // 
             this.FagkodeNr2.Location = new System.Drawing.Point(241, 78);
             this.FagkodeNr2.Name = "FagkodeNr2";
+            this.FagkodeNr2.ReadOnly = true;
             this.FagkodeNr2.Size = new System.Drawing.Size(100, 20);
             this.FagkodeNr2.TabIndex = 1;
             // 
@@ -123,11 +136,67 @@
             this.SammenlignLbl.TabIndex = 4;
             this.SammenlignLbl.Text = "Trykk eller dra over fagkodene som skal sammenlignes";
             // 
+            // SammenlignFagBtn
+            // 
+            this.SammenlignFagBtn.Location = new System.Drawing.Point(166, 104);
+            this.SammenlignFagBtn.Name = "SammenlignFagBtn";
+            this.SammenlignFagBtn.Size = new System.Drawing.Size(75, 37);
+            this.SammenlignFagBtn.TabIndex = 6;
+            this.SammenlignFagBtn.Text = "Sammenlign";
+            this.SammenlignFagBtn.UseVisualStyleBackColor = true;
+            this.SammenlignFagBtn.Click += new System.EventHandler(this.SammenlignFagBtn_Click);
+            // 
+            // SammenlignFeilmldLbl
+            // 
+            this.SammenlignFeilmldLbl.AutoSize = true;
+            this.SammenlignFeilmldLbl.Location = new System.Drawing.Point(247, 116);
+            this.SammenlignFeilmldLbl.Name = "SammenlignFeilmldLbl";
+            this.SammenlignFeilmldLbl.Size = new System.Drawing.Size(35, 13);
+            this.SammenlignFeilmldLbl.TabIndex = 4;
+            this.SammenlignFeilmldLbl.Text = "label2";
+            // 
+            // spmListeboks
+            // 
+            this.spmListeboks.FormattingEnabled = true;
+            this.spmListeboks.Location = new System.Drawing.Point(789, 248);
+            this.spmListeboks.Name = "spmListeboks";
+            this.spmListeboks.Size = new System.Drawing.Size(164, 108);
+            this.spmListeboks.TabIndex = 4;
+            this.spmListeboks.SelectedIndexChanged += new System.EventHandler(this.spmListeboks_SelectedIndexChanged);
+            // 
+            // spmLbl
+            // 
+            this.spmLbl.AutoSize = true;
+            this.spmLbl.Location = new System.Drawing.Point(786, 232);
+            this.spmLbl.Name = "spmLbl";
+            this.spmLbl.Size = new System.Drawing.Size(167, 13);
+            this.spmLbl.TabIndex = 6;
+            this.spmLbl.Text = "Velg spørsmål du vil sammenligne:";
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(17, 235);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(673, 376);
+            this.chart1.TabIndex = 7;
+            this.chart1.Text = "chart1";
+            // 
             // MyCourses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.spmLbl);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.spmListeboks);
             this.Controls.Add(this.InfoPanel);
             this.Controls.Add(this.MyCoursesPanel);
             this.Controls.Add(this.MyCoursesHeader);
@@ -136,6 +205,7 @@
             this.Load += new System.EventHandler(this.MyCourses_Load);
             this.InfoPanel.ResumeLayout(false);
             this.InfoPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,5 +222,10 @@
         private System.Windows.Forms.Label FagkodeNr2Lbl;
         private System.Windows.Forms.TextBox FagkodeNr2;
         private System.Windows.Forms.TextBox FagkodeNr1;
+        private System.Windows.Forms.Button SammenlignFagBtn;
+        private System.Windows.Forms.Label SammenlignFeilmldLbl;
+        private System.Windows.Forms.ListBox spmListeboks;
+        private System.Windows.Forms.Label spmLbl;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
