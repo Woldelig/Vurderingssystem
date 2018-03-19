@@ -15,7 +15,7 @@ Prototype for APP2000
 - [ ] Legge inn div info på asp.net
 - [ ] Session redirect hvis du ikke har tilgang til siden
 - [x] Lag mine fag
-- [ ] Lag min vurderinger
+- [x] Lag min vurderinger
 - [x] Fagside try catch - divide by zero - Hvis databasen er tom
 - [ ] Fiks gapet i navbar
 - [ ] Sett opp størrelser på siden
