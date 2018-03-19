@@ -35,32 +35,34 @@ namespace adminPanel
             {
 
                 db.OpenConnection();
-                string query = "SELECT * FROM formlogin WHERE bruker = @Brukernavn;";
+                string query = "SELECT passord FROM formlogin WHERE bruker = @Brukernavn;";
 
                 var mySqlCommand = db.SqlCommand(query);
 
                 mySqlCommand.Parameters.AddWithValue("@Brukernavn", Username.Text);//Hindrer SQLinjection
+                
 
                 MySqlDataReader reader = mySqlCommand.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
-                if (reader.HasRows) //Sjekker om det finnes rader
+                if (!reader.HasRows) //Sjekker om det finnes rader
                 {
-                    while (reader.Read())//Så lenge det er rader igjen så printer vi ut innholdet
+                    HelpText.Text = "Brukernavnet eller passordet er feil!";
+                } else
+                {
+                    Hasher hash = new Hasher();
+                    string hashpw = "";
+                    while (reader.Read())
                     {
-                        Console.WriteLine(reader.GetString("bruker"));//Skriver ut brukernavnet
-                        Console.WriteLine(reader.GetString("passord"));//Skriver ut passordet
-                        Console.WriteLine(reader.GetString("brukertype"));//Skriver ut brukertypen
-
-                        //Det er her vi må sjekke det hasha passordet
-                        if (reader.GetString("passord") == Password.Text)
-                        {
-                            UserInfo.Username = reader.GetString("bruker");
-                            DialogResult = DialogResult.OK;
-                            this.Dispose();
-                        }
-                        else
-                        {
-                            HelpText.Text = "Brukernavnet eller passordet er feil!";
-                        }
+                        hashpw = reader.GetString("passord");
+                    }
+                    //Sjekker om passordet er riktig
+                    if (!hash.SjekkHash(Password.Text, hashpw))
+                    {
+                        HelpText.Text = "Feil passord!";
+                    } else
+                    {
+                        UserInfo.Username = Username.Text;
+                        DialogResult = DialogResult.OK;
+                        this.Dispose();
                     }
                 }
                 reader.Close();//Stenger MySqlDataReader-objektet

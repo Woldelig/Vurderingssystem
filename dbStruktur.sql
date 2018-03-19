@@ -74,8 +74,7 @@ CREATE TABLE vurderingshistorikk(
 
 CREATE TABLE formlogin(
     bruker VARCHAR(64) PRIMARY KEY,
-    passord VARCHAR(44),
-    salt VARCHAR(88),
+    passord VARCHAR(48),
     fornavn VARCHAR(64),
     etternavn VARCHAR(64),
     brukertype INT(1)
