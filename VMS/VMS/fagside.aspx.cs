@@ -135,8 +135,8 @@ namespace VMS
             }
             else
             {
-
-                pensumLbl.Text = "Det er for lite data om denne fagkoden til at det kan vises på denne siden.";
+                pensumLbl.ForeColor = System.Drawing.Color.Red;
+                pensumLbl.Text = "Det er ikke foretatt en fagvurdering i dette faget. Prøv igjen senere.";
 
                 //Kodesnutten under trenger vi for å skjule rateit. Uten den vil stjernene vises
                 spm1Div.InnerHtml = "";
@@ -144,6 +144,11 @@ namespace VMS
                 spm3Div.InnerHtml = "";
                 spm4Div.InnerHtml = "";
                 spm5Div.InnerHtml = "";
+
+                kvalitetLbl.Text = "";
+                vanskelighetsgradLbl.Text = "";
+                pensumFormidlingLbl.Text = "";
+                fagRelevantLbl.Text = "";
             }
         }
 
