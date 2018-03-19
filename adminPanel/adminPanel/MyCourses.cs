@@ -17,7 +17,7 @@ namespace adminPanel
         {
             InitializeComponent();
         }
-
+        int antallGangerKnappenErTrykket = 0;
         private void MyCourses_Load(object sender, EventArgs e)
         {
             Database db = new Database();
@@ -26,8 +26,7 @@ namespace adminPanel
             int row = 0; //10
             int column = 0; //3
             string fagkode = "";
-
-
+            
             try
             {
                 db.OpenConnection();
@@ -59,7 +58,6 @@ namespace adminPanel
                         button.Top = row * 50;
                         button.Width = 145;
                         button.Height = 50;
-                        button.MouseDown += new MouseEventHandler(button_MouseDown);
                         button.Click += new EventHandler(Button_Click);
                         MyCoursesPanel.Controls.Add(button);
                         column++;
@@ -71,18 +69,23 @@ namespace adminPanel
 
                 Console.WriteLine("Feilmelding: ", DBexception);
             }
-            
+
 
         }
         protected void Button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
             label1.Text = button.Name;
-        }
-        private void button_MouseDown(object sender, MouseEventArgs e)
-        {
-            Button button = sender as Button;
-            DoDragDrop(button.Name, DragDropEffects.Copy);
+            if (antallGangerKnappenErTrykket == 0)
+            {
+                FagkodeNr1.Text = button.Text;
+                antallGangerKnappenErTrykket++;
+            }
+            else
+            {
+                FagkodeNr2.Text = button.Text;
+                antallGangerKnappenErTrykket--;
+            }
         }
     }
 }
