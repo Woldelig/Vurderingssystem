@@ -22,7 +22,7 @@ namespace VMS
         {
             if (Session["logginn"] == null || Session["studentID"] == null)
             {
-                Response.Redirect("velkomstside.aspx", true);
+                Response.Redirect("Default.aspx", true);
             }
 
 
@@ -33,6 +33,10 @@ namespace VMS
             if (formatertQueryString != "" || formatertQueryString == null)
             {
                 sidensFagkode = formatertQueryString;
+            }
+            else
+            {
+                Response.Redirect("velkomstside.aspx", true);
             }
             String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND v.fagkode = @Fagkode AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
             //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
@@ -92,9 +96,10 @@ namespace VMS
             }
 
             String skjemaid = null;
-            String sql = "SELECT skjemaid FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
+            String sql = "SELECT skjemaid FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND v.fagkode = @Fagkode AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
             var cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
+            cmd.Parameters.AddWithValue("@Fagkode", sidensFagkode);
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
             while (leser.Read())
