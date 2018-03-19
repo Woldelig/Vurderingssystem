@@ -33,7 +33,6 @@ namespace adminPanel
 
             //Her lages tooltip for å hjelpe brukeren. Tallene representerer tid
             ToolTip tooltip1 = new ToolTip();
-            tooltip1.AutoPopDelay = 1500;
             tooltip1.InitialDelay = 700;
             tooltip1.ReshowDelay = 500;
             tooltip1.ShowAlways = true;
@@ -44,6 +43,7 @@ namespace adminPanel
             tooltip1.SetToolTip(this.TabellNavnTextbox, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
             tooltip1.SetToolTip(this.NyTabellGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne handlingen.");
             tooltip1.SetToolTip(this.NyTabellIkkeGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne ikke handlingen.");
+            tooltip1.SetToolTip(this.AvsluttVurderingBtn, "Avslutter pågående vurdering.");
         }
         private void NyTabellGodkjennNyttSemesterLbl_MouseDown(object sender,MouseEventArgs e)
         {
