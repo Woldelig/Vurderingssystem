@@ -36,7 +36,7 @@
     <br />
     <div class="Row">
         <div class="col-md-4"><asp:Label ID="studieretningLbl" runat="server" Text="Studie: It og informasjonssystemer"></asp:Label></div>
-        <div class="col-md-4"><asp:Label ID="vasnkelighetsgradLbl" runat="server" Text="Vanskelighetsgrad:"></asp:Label></div>
+        <div class="col-md-4"><asp:Label ID="vanskelighetsgradLbl" runat="server" Text="Vanskelighetsgrad:"></asp:Label></div>
         <div class="col-md-2" id="spm3Div" runat="server">
             <input type="range" runat="server" id="spm3RatingStjerne" min="0" max="5" value="0" step="0.1" ClientIDMode="static">
             <div class="rateit" data-rateit-mode="font" data-rateit-resetable="false" data-rateit-readonly="true" style="font-size: 30px" data-rateit-backingfld="#spm3RatingStjerne"></div>
