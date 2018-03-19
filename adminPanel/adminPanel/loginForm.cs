@@ -33,7 +33,6 @@ namespace adminPanel
             Database db = new Database();//Oppretter database-objekt
             try
             {
-
                 db.OpenConnection();
                 string query = "SELECT passord FROM formlogin WHERE bruker = @Brukernavn;";
 
@@ -41,7 +40,6 @@ namespace adminPanel
 
                 mySqlCommand.Parameters.AddWithValue("@Brukernavn", Username.Text);//Hindrer SQLinjection
                 
-
                 MySqlDataReader reader = mySqlCommand.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
                 if (!reader.HasRows) //Sjekker om det finnes rader
                 {
@@ -211,17 +209,18 @@ namespace adminPanel
         //Bruker Multithreading
         private void nyBrukerBtn_Click(object sender, EventArgs e)
         {
-
-
-            ThreadStart testThreadStart = new ThreadStart(new LoginForm().testThread);
-            Thread testThread = new Thread(testThreadStart);
-            testThread.Start();
-
-           // Application.Run(new nyBrukerForm());
+            ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().nyThread);
+            Thread thread = new Thread(nyBrukerThread);
+            thread.Start();
         }
-        public void testThread()
+        public void nyThread()
         {
             Application.Run(new nyBrukerForm());
+        }
+
+        private void LoginForm_Activated(object sender, EventArgs e)
+        {
+            Username.Text = UserInfo.Username;
         }
     }
 }

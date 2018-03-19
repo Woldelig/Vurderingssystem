@@ -236,6 +236,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Innlogging for VMS";
+            this.Activated += new System.EventHandler(this.LoginForm_Activated);
             this.LoginBoarder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

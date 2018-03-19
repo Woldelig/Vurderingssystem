@@ -42,6 +42,10 @@
             this.etternavn = new System.Windows.Forms.TextBox();
             this.fornavnLbl = new System.Windows.Forms.Label();
             this.etternavnLbl = new System.Windows.Forms.Label();
+            this.opprettetLbl = new System.Windows.Forms.Label();
+            this.nyBrukerLogginn = new System.Windows.Forms.Button();
+            this.FeltFeilmeldingLbl = new System.Windows.Forms.Label();
+            this.passordFeilmeldingLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Brukernavn
@@ -67,22 +71,30 @@
             // 
             // LagBrukerBtn
             // 
+            this.LagBrukerBtn.BackColor = System.Drawing.Color.SteelBlue;
+            this.LagBrukerBtn.FlatAppearance.BorderSize = 0;
+            this.LagBrukerBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LagBrukerBtn.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LagBrukerBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.LagBrukerBtn.Location = new System.Drawing.Point(34, 405);
             this.LagBrukerBtn.Name = "LagBrukerBtn";
             this.LagBrukerBtn.Size = new System.Drawing.Size(75, 23);
             this.LagBrukerBtn.TabIndex = 3;
             this.LagBrukerBtn.Text = "Lag Bruker";
-            this.LagBrukerBtn.UseVisualStyleBackColor = true;
+            this.LagBrukerBtn.UseVisualStyleBackColor = false;
             this.LagBrukerBtn.Click += new System.EventHandler(this.LagBrukerBtn_Click);
             // 
             // AvsluttBtn
             // 
+            this.AvsluttBtn.BackColor = System.Drawing.Color.SteelBlue;
+            this.AvsluttBtn.FlatAppearance.BorderSize = 0;
+            this.AvsluttBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AvsluttBtn.Location = new System.Drawing.Point(244, 405);
             this.AvsluttBtn.Name = "AvsluttBtn";
             this.AvsluttBtn.Size = new System.Drawing.Size(75, 23);
             this.AvsluttBtn.TabIndex = 4;
             this.AvsluttBtn.Text = "Avslutt";
-            this.AvsluttBtn.UseVisualStyleBackColor = true;
+            this.AvsluttBtn.UseVisualStyleBackColor = false;
             this.AvsluttBtn.Click += new System.EventHandler(this.AvsluttBtn_Click);
             // 
             // nyBrukerLbl
@@ -176,12 +188,66 @@
             this.etternavnLbl.TabIndex = 13;
             this.etternavnLbl.Text = "Etternavn";
             // 
+            // opprettetLbl
+            // 
+            this.opprettetLbl.AutoSize = true;
+            this.opprettetLbl.Font = new System.Drawing.Font("Century Gothic", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.opprettetLbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.opprettetLbl.Location = new System.Drawing.Point(56, 101);
+            this.opprettetLbl.Name = "opprettetLbl";
+            this.opprettetLbl.Size = new System.Drawing.Size(255, 36);
+            this.opprettetLbl.TabIndex = 14;
+            this.opprettetLbl.Text = "Bruker opprettet!";
+            // 
+            // nyBrukerLogginn
+            // 
+            this.nyBrukerLogginn.BackColor = System.Drawing.Color.SteelBlue;
+            this.nyBrukerLogginn.FlatAppearance.BorderSize = 0;
+            this.nyBrukerLogginn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nyBrukerLogginn.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nyBrukerLogginn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.nyBrukerLogginn.Location = new System.Drawing.Point(88, 204);
+            this.nyBrukerLogginn.Name = "nyBrukerLogginn";
+            this.nyBrukerLogginn.Size = new System.Drawing.Size(176, 64);
+            this.nyBrukerLogginn.TabIndex = 15;
+            this.nyBrukerLogginn.Text = "Logg Inn";
+            this.nyBrukerLogginn.UseVisualStyleBackColor = false;
+            this.nyBrukerLogginn.Click += new System.EventHandler(this.nyBrukerLogginn_Click);
+            // 
+            // FeltFeilmeldingLbl
+            // 
+            this.FeltFeilmeldingLbl.AutoSize = true;
+            this.FeltFeilmeldingLbl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.FeltFeilmeldingLbl.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FeltFeilmeldingLbl.ForeColor = System.Drawing.Color.Red;
+            this.FeltFeilmeldingLbl.Location = new System.Drawing.Point(78, 374);
+            this.FeltFeilmeldingLbl.Name = "FeltFeilmeldingLbl";
+            this.FeltFeilmeldingLbl.Size = new System.Drawing.Size(192, 21);
+            this.FeltFeilmeldingLbl.TabIndex = 16;
+            this.FeltFeilmeldingLbl.Text = "Alle feltene må fylles ut!";
+            // 
+            // passordFeilmeldingLbl
+            // 
+            this.passordFeilmeldingLbl.AutoSize = true;
+            this.passordFeilmeldingLbl.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.passordFeilmeldingLbl.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passordFeilmeldingLbl.ForeColor = System.Drawing.Color.Red;
+            this.passordFeilmeldingLbl.Location = new System.Drawing.Point(78, 297);
+            this.passordFeilmeldingLbl.Name = "passordFeilmeldingLbl";
+            this.passordFeilmeldingLbl.Size = new System.Drawing.Size(178, 20);
+            this.passordFeilmeldingLbl.TabIndex = 17;
+            this.passordFeilmeldingLbl.Text = "Passordene er ikke like!";
+            // 
             // nyBrukerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(19)))), ((int)(((byte)(45)))));
-            this.ClientSize = new System.Drawing.Size(359, 440);
+            this.ClientSize = new System.Drawing.Size(359, 478);
+            this.Controls.Add(this.passordFeilmeldingLbl);
+            this.Controls.Add(this.FeltFeilmeldingLbl);
+            this.Controls.Add(this.nyBrukerLogginn);
+            this.Controls.Add(this.opprettetLbl);
             this.Controls.Add(this.etternavnLbl);
             this.Controls.Add(this.fornavnLbl);
             this.Controls.Add(this.etternavn);
@@ -198,6 +264,7 @@
             this.Controls.Add(this.Brukernavn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "nyBrukerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "nyBrukerForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -220,5 +287,9 @@
         private System.Windows.Forms.TextBox etternavn;
         private System.Windows.Forms.Label fornavnLbl;
         private System.Windows.Forms.Label etternavnLbl;
+        private System.Windows.Forms.Label opprettetLbl;
+        private System.Windows.Forms.Button nyBrukerLogginn;
+        private System.Windows.Forms.Label FeltFeilmeldingLbl;
+        private System.Windows.Forms.Label passordFeilmeldingLbl;
     }
 }
