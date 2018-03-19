@@ -22,17 +22,20 @@ namespace adminPanel
         private void MyCourses_Load(object sender, EventArgs e)
         {
             Database db = new Database();
-            String sql = "SELECT fagkode FROM fag;";
+            String sql = "SELECT DISTINCT fagkode FROM vurderingshistorikk;";
             var mySqlCommand = db.SqlCommand(sql);
             int row = 0; //10
             int column = 0; //3
             String fagkode = "";
 
-
+            ChartFeilmldLbl.Text = "";
             SammenlignFeilmldLbl.Text = "";
             spmLbl.Hide();
             spmListeboks.Hide();
             chart1.Hide();
+            printBtn.Hide();
+            lagreChartBtn.Hide();
+
 
 
             try
@@ -83,7 +86,6 @@ namespace adminPanel
         protected void Button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            ChartFeilmldLbl.Text = button.Name;
             if (antallGangerKnappenErTrykket == 0)
             {
                 FagkodeNr1.Text = button.Text;
@@ -133,10 +135,11 @@ namespace adminPanel
             {
                 var cmdForFagkode1 = db.SqlCommand("");
                 var cmdForFagkode2 = db.SqlCommand("");
-                switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
+                //Her velges hvilket spørsmål som skal sammenlignes
+                switch (spmListeboks.SelectedIndex)
                 {
                     case 0:
-                        cmdForFagkode1.CommandText = "hent_spm1_verdier"; //Legger til commandtext i cmd objektet
+                        cmdForFagkode1.CommandText = "hent_spm1_verdier";
                         cmdForFagkode2.CommandText = "hent_spm1_verdier";
                         break;
 
@@ -175,8 +178,8 @@ namespace adminPanel
 
 
                 //Prosedyre info for fagkodenr 2
-                cmdForFagkode2.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
-                String fagkodeForFagkodeNr2 = FagkodeNr1.Text; //Valgt fagkode blir hentet ut og plassert som inn parameter
+                cmdForFagkode2.CommandType = CommandType.StoredProcedure;
+                String fagkodeForFagkodeNr2 = FagkodeNr2.Text;
                 cmdForFagkode2.Parameters.AddWithValue("@in_fagkode", fagkodeForFagkodeNr2).Direction = ParameterDirection.Input;
                 cmdForFagkode2.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                 cmdForFagkode2.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
@@ -184,6 +187,7 @@ namespace adminPanel
                 cmdForFagkode2.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                 cmdForFagkode2.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
 
+                //Henter ut variablene fra prosedyren til fagkodenr 1
                 db.OpenConnection();
                 cmdForFagkode1.ExecuteNonQuery();
                 int fagkodeNr1Stjerne1 = (int)cmdForFagkode1.Parameters["@out_verdi1"].Value;
@@ -191,7 +195,10 @@ namespace adminPanel
                 int fagkodeNr1Stjerne3 = (int)cmdForFagkode1.Parameters["@out_verdi3"].Value;
                 int fagkodeNr1Stjerne4 = (int)cmdForFagkode1.Parameters["@out_verdi4"].Value;
                 int fagkodeNr1Stjerne5 = (int)cmdForFagkode1.Parameters["@out_verdi5"].Value;
+                db.CloseConnection();
 
+                //Henter ut variablene fra prosedyren til fagkodenr 2
+                db.OpenConnection();
                 cmdForFagkode2.ExecuteNonQuery();
                 int fagkodeNr2Stjerne1 = (int)cmdForFagkode2.Parameters["@out_verdi1"].Value;
                 int fagkodeNr2Stjerne2 = (int)cmdForFagkode2.Parameters["@out_verdi2"].Value;
@@ -200,19 +207,23 @@ namespace adminPanel
                 int fagkodeNr2Stjerne5 = (int)cmdForFagkode2.Parameters["@out_verdi5"].Value;
                 db.CloseConnection();
 
+
                 String seriesname1 = FagkodeNr1.Text;
                 String seriesname2 = FagkodeNr2.Text;
                 chart1.Series.Clear();
                 chart1.Legends.Clear();
+
+                //Legger til data for fagkode 1
                 chart1.Series.Add(seriesname1);
-                chart1.Series[seriesname1].BorderWidth = 3; //Setter tykkelsen på linjen
+                chart1.Series[seriesname1].BorderWidth = 3;
                 chart1.Series[seriesname1].ChartType = SeriesChartType.Line;
                 chart1.Series[seriesname1].Points.AddXY("1 Stjerne", fagkodeNr1Stjerne1);
                 chart1.Series[seriesname1].Points.AddXY("2 Stjerner", fagkodeNr1Stjerne2);
                 chart1.Series[seriesname1].Points.AddXY("3 Stjerner", fagkodeNr1Stjerne3);
                 chart1.Series[seriesname1].Points.AddXY("4 Stjerner", fagkodeNr1Stjerne4);
                 chart1.Series[seriesname1].Points.AddXY("5 Stjerner", fagkodeNr1Stjerne5);
-
+                
+                //Legger til data for fagkodenr 2
                 chart1.Series.Add(seriesname2);
                 chart1.Series[seriesname2].BorderWidth = 3;
                 chart1.Series[seriesname2].ChartType = SeriesChartType.Line;
@@ -222,13 +233,17 @@ namespace adminPanel
                 chart1.Series[seriesname2].Points.AddXY("4 Stjerner", fagkodeNr2Stjerne4);
                 chart1.Series[seriesname2].Points.AddXY("5 Stjerner", fagkodeNr2Stjerne5);
 
+                //Setter farge på linjene
                 for (int i = 0; i < 5; i++)
                 {
                     chart1.Series[seriesname1].Points[i].Color = Color.Blue;
                     chart1.Series[seriesname2].Points[i].Color = Color.Green;
                 }
 
+                ChartFeilmldLbl.Text = "";
                 chart1.Show();
+                printBtn.Show();
+                lagreChartBtn.Show();
 
             }
             catch (Exception ex)
@@ -236,6 +251,48 @@ namespace adminPanel
                 ChartFeilmldLbl.ForeColor = Color.Red;
                 ChartFeilmldLbl.Text = "Fagkoden mangler vurderinger kontakt databaseadministratoren";
                 Console.WriteLine(ex);
+            }
+        }
+
+        private void printBtn_Click(object sender, EventArgs e)
+        {
+            this.chart1.Printing.PrintPreview();
+        }
+
+        private void lagreChartBtn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog lagreFilDialog = new SaveFileDialog();
+            lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
+            lagreFilDialog.Title = "Lagre diagram som bilde fil";
+            lagreFilDialog.FileName = "diagram.png";                    //filnavnet blir diagram.png
+
+            DialogResult dialogResultat = lagreFilDialog.ShowDialog();
+            lagreFilDialog.RestoreDirectory = true;
+
+            if (dialogResultat == DialogResult.OK && lagreFilDialog.FileName != "") //Sjekker at dialogen er godkjent og at det er navn på filen
+            {
+                try
+                {
+                    if (lagreFilDialog.CheckPathExists) //Denne kan byttes om til switch hvis vi ønsker flere filtyper
+                    {
+                        if (lagreFilDialog.FilterIndex == 1)    //Indexen starter på 1
+                        {
+                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
+                        }
+                        else if (lagreFilDialog.FilterIndex == 2)
+                        {
+                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Filsti finnes ikke.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
         }
     }
