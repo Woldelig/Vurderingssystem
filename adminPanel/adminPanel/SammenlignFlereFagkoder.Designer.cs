@@ -42,6 +42,7 @@
             this.ClearDiagramBtn = new System.Windows.Forms.Button();
             this.UpdateDiagramBtn = new System.Windows.Forms.Button();
             this.ResetListboxBtn = new System.Windows.Forms.Button();
+            this.FeilmldLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,10 +164,20 @@
             this.ResetListboxBtn.UseVisualStyleBackColor = false;
             this.ResetListboxBtn.Click += new System.EventHandler(this.ResetListboxBtn_Click);
             // 
+            // FeilmldLbl
+            // 
+            this.FeilmldLbl.AutoSize = true;
+            this.FeilmldLbl.Location = new System.Drawing.Point(809, 597);
+            this.FeilmldLbl.Name = "FeilmldLbl";
+            this.FeilmldLbl.Size = new System.Drawing.Size(70, 13);
+            this.FeilmldLbl.TabIndex = 16;
+            this.FeilmldLbl.Text = "feilmeldingLbl";
+            // 
             // SammenlignFlereFagkoder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FeilmldLbl);
             this.Controls.Add(this.ResetListboxBtn);
             this.Controls.Add(this.UpdateDiagramBtn);
             this.Controls.Add(this.ClearDiagramBtn);
@@ -183,6 +194,7 @@
             this.Load += new System.EventHandler(this.SammenlignFlereFagkoder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -199,5 +211,6 @@
         private System.Windows.Forms.Button ClearDiagramBtn;
         private System.Windows.Forms.Button UpdateDiagramBtn;
         private System.Windows.Forms.Button ResetListboxBtn;
+        private System.Windows.Forms.Label FeilmldLbl;
     }
 }

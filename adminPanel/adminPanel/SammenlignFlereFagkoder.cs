@@ -29,6 +29,8 @@ namespace adminPanel
             lagreChartBtn.Hide();
             ClearDiagramBtn.Hide();
             UpdateDiagramBtn.Hide();
+            FeilmldLbl.Text = "";
+            FeilmldLbl.ForeColor = Color.Red;
 
             String query = "SELECT DISTINCT fagkode FROM vurderingshistorikk;";
             var cmd = db.SqlCommand(query);
