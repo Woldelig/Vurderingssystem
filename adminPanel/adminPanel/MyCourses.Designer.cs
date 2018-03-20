@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.MyCoursesPanel = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
-            this.ChartFeilmldLbl = new System.Windows.Forms.Label();
-            this.FagkodeNr1 = new System.Windows.Forms.TextBox();
-            this.FagkodeNr2 = new System.Windows.Forms.TextBox();
+            this.SammenlignFeilmldLbl = new System.Windows.Forms.Label();
+            this.SammenlignFagBtn = new System.Windows.Forms.Button();
+            this.SammenlignLbl = new System.Windows.Forms.Label();
             this.Fagkode1lbl = new System.Windows.Forms.Label();
             this.FagkodeNr2Lbl = new System.Windows.Forms.Label();
-            this.SammenlignLbl = new System.Windows.Forms.Label();
-            this.SammenlignFagBtn = new System.Windows.Forms.Button();
-            this.SammenlignFeilmldLbl = new System.Windows.Forms.Label();
+            this.FagkodeNr2 = new System.Windows.Forms.TextBox();
+            this.FagkodeNr1 = new System.Windows.Forms.TextBox();
+            this.ChartFeilmldLbl = new System.Windows.Forms.Label();
             this.spmListeboks = new System.Windows.Forms.ListBox();
             this.spmLbl = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -67,7 +67,7 @@
             this.MyCoursesPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.MyCoursesPanel.Location = new System.Drawing.Point(61, 85);
             this.MyCoursesPanel.Name = "MyCoursesPanel";
-            this.MyCoursesPanel.Size = new System.Drawing.Size(435, 500);
+            this.MyCoursesPanel.Size = new System.Drawing.Size(435, 144);
             this.MyCoursesPanel.TabIndex = 1;
             // 
             // InfoPanel
@@ -85,30 +85,35 @@
             this.InfoPanel.Size = new System.Drawing.Size(435, 144);
             this.InfoPanel.TabIndex = 2;
             // 
-            // ChartFeilmldLbl
+            // SammenlignFeilmldLbl
             // 
-            this.ChartFeilmldLbl.AutoSize = true;
-            this.ChartFeilmldLbl.Location = new System.Drawing.Point(708, 598);
-            this.ChartFeilmldLbl.Name = "ChartFeilmldLbl";
-            this.ChartFeilmldLbl.Size = new System.Drawing.Size(83, 13);
-            this.ChartFeilmldLbl.TabIndex = 3;
-            this.ChartFeilmldLbl.Text = "chart feilmelding";
+            this.SammenlignFeilmldLbl.AutoSize = true;
+            this.SammenlignFeilmldLbl.Location = new System.Drawing.Point(247, 116);
+            this.SammenlignFeilmldLbl.Name = "SammenlignFeilmldLbl";
+            this.SammenlignFeilmldLbl.Size = new System.Drawing.Size(35, 13);
+            this.SammenlignFeilmldLbl.TabIndex = 4;
+            this.SammenlignFeilmldLbl.Text = "label2";
             // 
-            // FagkodeNr1
+            // SammenlignFagBtn
             // 
-            this.FagkodeNr1.Location = new System.Drawing.Point(72, 78);
-            this.FagkodeNr1.Name = "FagkodeNr1";
-            this.FagkodeNr1.ReadOnly = true;
-            this.FagkodeNr1.Size = new System.Drawing.Size(100, 20);
-            this.FagkodeNr1.TabIndex = 0;
+            this.SammenlignFagBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SammenlignFagBtn.Location = new System.Drawing.Point(166, 104);
+            this.SammenlignFagBtn.Name = "SammenlignFagBtn";
+            this.SammenlignFagBtn.Size = new System.Drawing.Size(75, 37);
+            this.SammenlignFagBtn.TabIndex = 6;
+            this.SammenlignFagBtn.Text = "Sammenlign";
+            this.SammenlignFagBtn.UseVisualStyleBackColor = false;
+            this.SammenlignFagBtn.Click += new System.EventHandler(this.SammenlignFagBtn_Click);
             // 
-            // FagkodeNr2
+            // SammenlignLbl
             // 
-            this.FagkodeNr2.Location = new System.Drawing.Point(241, 78);
-            this.FagkodeNr2.Name = "FagkodeNr2";
-            this.FagkodeNr2.ReadOnly = true;
-            this.FagkodeNr2.Size = new System.Drawing.Size(100, 20);
-            this.FagkodeNr2.TabIndex = 1;
+            this.SammenlignLbl.AutoSize = true;
+            this.SammenlignLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SammenlignLbl.Location = new System.Drawing.Point(17, 13);
+            this.SammenlignLbl.Name = "SammenlignLbl";
+            this.SammenlignLbl.Size = new System.Drawing.Size(392, 20);
+            this.SammenlignLbl.TabIndex = 4;
+            this.SammenlignLbl.Text = "Trykk eller dra over fagkodene som skal sammenlignes";
             // 
             // Fagkode1lbl
             // 
@@ -128,35 +133,30 @@
             this.FagkodeNr2Lbl.TabIndex = 5;
             this.FagkodeNr2Lbl.Text = "Fagkode";
             // 
-            // SammenlignLbl
+            // FagkodeNr2
             // 
-            this.SammenlignLbl.AutoSize = true;
-            this.SammenlignLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SammenlignLbl.Location = new System.Drawing.Point(17, 13);
-            this.SammenlignLbl.Name = "SammenlignLbl";
-            this.SammenlignLbl.Size = new System.Drawing.Size(392, 20);
-            this.SammenlignLbl.TabIndex = 4;
-            this.SammenlignLbl.Text = "Trykk eller dra over fagkodene som skal sammenlignes";
+            this.FagkodeNr2.Location = new System.Drawing.Point(241, 78);
+            this.FagkodeNr2.Name = "FagkodeNr2";
+            this.FagkodeNr2.ReadOnly = true;
+            this.FagkodeNr2.Size = new System.Drawing.Size(100, 20);
+            this.FagkodeNr2.TabIndex = 1;
             // 
-            // SammenlignFagBtn
+            // FagkodeNr1
             // 
-            this.SammenlignFagBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.SammenlignFagBtn.Location = new System.Drawing.Point(166, 104);
-            this.SammenlignFagBtn.Name = "SammenlignFagBtn";
-            this.SammenlignFagBtn.Size = new System.Drawing.Size(75, 37);
-            this.SammenlignFagBtn.TabIndex = 6;
-            this.SammenlignFagBtn.Text = "Sammenlign";
-            this.SammenlignFagBtn.UseVisualStyleBackColor = false;
-            this.SammenlignFagBtn.Click += new System.EventHandler(this.SammenlignFagBtn_Click);
+            this.FagkodeNr1.Location = new System.Drawing.Point(72, 78);
+            this.FagkodeNr1.Name = "FagkodeNr1";
+            this.FagkodeNr1.ReadOnly = true;
+            this.FagkodeNr1.Size = new System.Drawing.Size(100, 20);
+            this.FagkodeNr1.TabIndex = 0;
             // 
-            // SammenlignFeilmldLbl
+            // ChartFeilmldLbl
             // 
-            this.SammenlignFeilmldLbl.AutoSize = true;
-            this.SammenlignFeilmldLbl.Location = new System.Drawing.Point(247, 116);
-            this.SammenlignFeilmldLbl.Name = "SammenlignFeilmldLbl";
-            this.SammenlignFeilmldLbl.Size = new System.Drawing.Size(35, 13);
-            this.SammenlignFeilmldLbl.TabIndex = 4;
-            this.SammenlignFeilmldLbl.Text = "label2";
+            this.ChartFeilmldLbl.AutoSize = true;
+            this.ChartFeilmldLbl.Location = new System.Drawing.Point(708, 598);
+            this.ChartFeilmldLbl.Name = "ChartFeilmldLbl";
+            this.ChartFeilmldLbl.Size = new System.Drawing.Size(83, 13);
+            this.ChartFeilmldLbl.TabIndex = 3;
+            this.ChartFeilmldLbl.Text = "chart feilmelding";
             // 
             // spmListeboks
             // 
@@ -178,16 +178,16 @@
             // 
             // chart1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(17, 235);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart1.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(673, 376);
             this.chart1.TabIndex = 7;
             this.chart1.Text = "chart1";

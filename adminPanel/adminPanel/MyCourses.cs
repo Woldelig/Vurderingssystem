@@ -115,9 +115,7 @@ namespace adminPanel
             }
             SammenlignFeilmldLbl.Text = "";
 
-            //Fjerner alle fagkodene fra 
-            MyCoursesPanel.Controls.Clear();
-            MyCoursesPanel.Hide();
+            
 
 
             for (int i = 1; i < 6; i++)//Populerer listeboksen. Øk loopen for flere spørsmål.
@@ -130,6 +128,10 @@ namespace adminPanel
 
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Fjerner alle fagkodene fra 
+            MyCoursesPanel.Controls.Clear();
+            MyCoursesPanel.Hide();
+
             Database db = new Database();
             try
             {
@@ -215,6 +217,7 @@ namespace adminPanel
 
                 //Legger til data for fagkode 1
                 chart1.Series.Add(seriesname1);
+                chart1.Legends.Add("Legende");
                 chart1.Series[seriesname1].BorderWidth = 3;
                 chart1.Series[seriesname1].ChartType = SeriesChartType.Line;
                 chart1.Series[seriesname1].Points.AddXY("1 Stjerne", fagkodeNr1Stjerne1);
@@ -234,11 +237,11 @@ namespace adminPanel
                 chart1.Series[seriesname2].Points.AddXY("5 Stjerner", fagkodeNr2Stjerne5);
 
                 //Setter farge på linjene
-                for (int i = 0; i < 5; i++)
+                /*for (int i = 0; i < 5; i++)
                 {
                     chart1.Series[seriesname1].Points[i].Color = Color.Blue;
                     chart1.Series[seriesname2].Points[i].Color = Color.Green;
-                }
+                }*/
 
                 ChartFeilmldLbl.Text = "";
                 chart1.Show();
