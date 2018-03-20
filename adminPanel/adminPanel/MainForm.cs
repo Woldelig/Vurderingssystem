@@ -172,6 +172,7 @@ namespace adminPanel
             SchemaBtn.BackColor = Color.LightSlateGray;
             SqlBtn.BackColor = Color.LightSlateGray;
             NyttSemesterBtn.BackColor = Color.LightSlateGray;
+            SammenlignFlereFagBtn.BackColor = Color.LightSlateGray;
 
             ((Control)sender).BackColor = Color.FromArgb(86, 99, 112);
         }
@@ -262,5 +263,25 @@ namespace adminPanel
         {
             NyttSemesterBtn.ForeColor = Color.Black;
         }
+        private void SammenlignFlereFagBtn_Click_1(object sender, EventArgs e)
+        {
+            ButtonToggle(sender);
+
+            foreach (Control ctrl in ContainerPanel.Controls)
+            {
+                ctrl.Dispose();
+            }
+            ContainerPanel.Controls.Add(new SammenlignFlereFagkoder());
+        }
+        private void SammenlignFlereFagBtn_MouseEnter(object sender, EventArgs e)
+        {
+            SammenlignFlereFagBtn.ForeColor = Color.FromArgb(70, 130, 180);
+        }
+
+        private void SammenlignFlereFagBtn_MouseLeave(object sender, EventArgs e)
+        {
+            SammenlignFlereFagBtn.ForeColor = Color.Black;
+        }
+
     }
 }
