@@ -34,7 +34,7 @@ Prototype for APP2000
 - [ ] Korrektur
 
 ### WF
-- [ ] Finn ut hva vi skal gjøre med mine fag
+- [x] Finn ut hva vi skal gjøre med mine fag, endret til sammenlign fag
 - [ ] Test ut nye farger på WF
 - [ ] Lage tooltip for elementer
 - [ ] Lag bedre design på start ny vurdering semester
