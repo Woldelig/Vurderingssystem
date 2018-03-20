@@ -37,7 +37,11 @@ namespace adminPanel
                 FagkodeListbox.Items.Add(dr["Fagkode"].ToString());
             }
             db.CloseConnection();
-            
+
+            for (int i = 1; i < 6; i++)//Populerer listeboksen. Øk loopen for flere spørsmål.
+            {                           //Hvis den økes må det lages flere prosedyrer i db og legges til i switchen under
+                SpmListeboks.Items.Add("Spørsmål " + i);
+            }
         }
 
         private void Fra1Til2Btn_Click(object sender, EventArgs e)
@@ -66,6 +70,11 @@ namespace adminPanel
             {
                 kilde.Items.Remove(kilde.SelectedItems[0]);
             }
+        }
+
+        private void SpmListeboks_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

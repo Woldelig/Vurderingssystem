@@ -32,12 +32,13 @@
             this.FagkodeSammenlignesListebox = new System.Windows.Forms.ListBox();
             this.Fra1Til2Btn = new System.Windows.Forms.Button();
             this.Fra2Til1Btn = new System.Windows.Forms.Button();
+            this.SpmListeboks = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // FagkodeListbox
             // 
             this.FagkodeListbox.FormattingEnabled = true;
-            this.FagkodeListbox.Location = new System.Drawing.Point(134, 94);
+            this.FagkodeListbox.Location = new System.Drawing.Point(61, 43);
             this.FagkodeListbox.Name = "FagkodeListbox";
             this.FagkodeListbox.Size = new System.Drawing.Size(120, 95);
             this.FagkodeListbox.TabIndex = 0;
@@ -45,14 +46,14 @@
             // FagkodeSammenlignesListebox
             // 
             this.FagkodeSammenlignesListebox.FormattingEnabled = true;
-            this.FagkodeSammenlignesListebox.Location = new System.Drawing.Point(411, 94);
+            this.FagkodeSammenlignesListebox.Location = new System.Drawing.Point(311, 43);
             this.FagkodeSammenlignesListebox.Name = "FagkodeSammenlignesListebox";
             this.FagkodeSammenlignesListebox.Size = new System.Drawing.Size(120, 95);
             this.FagkodeSammenlignesListebox.TabIndex = 1;
             // 
             // Fra1Til2Btn
             // 
-            this.Fra1Til2Btn.Location = new System.Drawing.Point(295, 94);
+            this.Fra1Til2Btn.Location = new System.Drawing.Point(206, 43);
             this.Fra1Til2Btn.Name = "Fra1Til2Btn";
             this.Fra1Til2Btn.Size = new System.Drawing.Size(75, 23);
             this.Fra1Til2Btn.TabIndex = 2;
@@ -62,7 +63,7 @@
             // 
             // Fra2Til1Btn
             // 
-            this.Fra2Til1Btn.Location = new System.Drawing.Point(295, 166);
+            this.Fra2Til1Btn.Location = new System.Drawing.Point(206, 115);
             this.Fra2Til1Btn.Name = "Fra2Til1Btn";
             this.Fra2Til1Btn.Size = new System.Drawing.Size(75, 23);
             this.Fra2Til1Btn.TabIndex = 3;
@@ -70,10 +71,20 @@
             this.Fra2Til1Btn.UseVisualStyleBackColor = true;
             this.Fra2Til1Btn.Click += new System.EventHandler(this.Fra2Til1Btn_Click);
             // 
+            // SpmListeboks
+            // 
+            this.SpmListeboks.FormattingEnabled = true;
+            this.SpmListeboks.Location = new System.Drawing.Point(577, 43);
+            this.SpmListeboks.Name = "SpmListeboks";
+            this.SpmListeboks.Size = new System.Drawing.Size(120, 95);
+            this.SpmListeboks.TabIndex = 4;
+            this.SpmListeboks.SelectedIndexChanged += new System.EventHandler(this.SpmListeboks_SelectedIndexChanged);
+            // 
             // SammenlignFlereFagkoder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.SpmListeboks);
             this.Controls.Add(this.Fra2Til1Btn);
             this.Controls.Add(this.Fra1Til2Btn);
             this.Controls.Add(this.FagkodeSammenlignesListebox);
@@ -91,5 +102,6 @@
         private System.Windows.Forms.ListBox FagkodeSammenlignesListebox;
         private System.Windows.Forms.Button Fra1Til2Btn;
         private System.Windows.Forms.Button Fra2Til1Btn;
+        private System.Windows.Forms.ListBox SpmListeboks;
     }
 }

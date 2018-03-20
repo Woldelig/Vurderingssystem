@@ -128,133 +128,142 @@ namespace adminPanel
 
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Fjerner alle fagkodene fra 
-            MyCoursesPanel.Controls.Clear();
-            MyCoursesPanel.Hide();
-
-            Database db = new Database();
+            //Må ha try catch siden denne metoden reagerer på index change. Hvis du velger noe som ikke er element ville den ha gitt en feilmelding
             try
             {
-                var cmdForFagkode1 = db.SqlCommand("");
-                var cmdForFagkode2 = db.SqlCommand("");
-                //Her velges hvilket spørsmål som skal sammenlignes
-                switch (spmListeboks.SelectedIndex)
+                //Fjerner alle fagkodene fra 
+                MyCoursesPanel.Controls.Clear();
+                MyCoursesPanel.Hide();
+
+                Database db = new Database();
+                try
                 {
-                    case 0:
-                        cmdForFagkode1.CommandText = "hent_spm1_verdier";
-                        cmdForFagkode2.CommandText = "hent_spm1_verdier";
-                        break;
+                    var cmdForFagkode1 = db.SqlCommand("");
+                    var cmdForFagkode2 = db.SqlCommand("");
+                    //Her velges hvilket spørsmål som skal sammenlignes
+                    switch (spmListeboks.SelectedIndex)
+                    {
+                        case 0:
+                            cmdForFagkode1.CommandText = "hent_spm1_verdier";
+                            cmdForFagkode2.CommandText = "hent_spm1_verdier";
+                            break;
 
-                    case 1:
-                        cmdForFagkode1.CommandText = "hent_spm2_verdier";
-                        cmdForFagkode2.CommandText = "hent_spm2_verdier";
-                        break;
+                        case 1:
+                            cmdForFagkode1.CommandText = "hent_spm2_verdier";
+                            cmdForFagkode2.CommandText = "hent_spm2_verdier";
+                            break;
 
-                    case 2:
-                        cmdForFagkode1.CommandText = "hent_spm3_verdier";
-                        cmdForFagkode2.CommandText = "hent_spm3_verdier";
-                        break;
+                        case 2:
+                            cmdForFagkode1.CommandText = "hent_spm3_verdier";
+                            cmdForFagkode2.CommandText = "hent_spm3_verdier";
+                            break;
 
-                    case 3:
-                        cmdForFagkode1.CommandText = "hent_spm4_verdier";
-                        cmdForFagkode2.CommandText = "hent_spm4_verdier";
-                        break;
+                        case 3:
+                            cmdForFagkode1.CommandText = "hent_spm4_verdier";
+                            cmdForFagkode2.CommandText = "hent_spm4_verdier";
+                            break;
 
-                    case 4:
-                        cmdForFagkode1.CommandText = "hent_spm5_verdier";
-                        cmdForFagkode2.CommandText = "hent_spm5_verdier";
-                        break;
-                    default:
-                        break;
+                        case 4:
+                            cmdForFagkode1.CommandText = "hent_spm5_verdier";
+                            cmdForFagkode2.CommandText = "hent_spm5_verdier";
+                            break;
+                        default:
+                            break;
+                    }
+
+                    //Prosedyre info for fagkodenr 1
+                    cmdForFagkode1.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
+                    String fagkodeForFagkodeNr1 = FagkodeNr1.Text; //Valgt fagkode blir hentet ut og plassert som inn parameter
+                    cmdForFagkode1.Parameters.AddWithValue("@in_fagkode", fagkodeForFagkodeNr1).Direction = ParameterDirection.Input;
+                    cmdForFagkode1.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode1.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode1.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode1.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode1.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+
+
+                    //Prosedyre info for fagkodenr 2
+                    cmdForFagkode2.CommandType = CommandType.StoredProcedure;
+                    String fagkodeForFagkodeNr2 = FagkodeNr2.Text;
+                    cmdForFagkode2.Parameters.AddWithValue("@in_fagkode", fagkodeForFagkodeNr2).Direction = ParameterDirection.Input;
+                    cmdForFagkode2.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode2.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode2.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode2.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                    cmdForFagkode2.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+
+                    //Henter ut variablene fra prosedyren til fagkodenr 1
+                    db.OpenConnection();
+                    cmdForFagkode1.ExecuteNonQuery();
+                    int fagkodeNr1Stjerne1 = (int)cmdForFagkode1.Parameters["@out_verdi1"].Value;
+                    int fagkodeNr1Stjerne2 = (int)cmdForFagkode1.Parameters["@out_verdi2"].Value;
+                    int fagkodeNr1Stjerne3 = (int)cmdForFagkode1.Parameters["@out_verdi3"].Value;
+                    int fagkodeNr1Stjerne4 = (int)cmdForFagkode1.Parameters["@out_verdi4"].Value;
+                    int fagkodeNr1Stjerne5 = (int)cmdForFagkode1.Parameters["@out_verdi5"].Value;
+                    db.CloseConnection();
+
+                    //Henter ut variablene fra prosedyren til fagkodenr 2
+                    db.OpenConnection();
+                    cmdForFagkode2.ExecuteNonQuery();
+                    int fagkodeNr2Stjerne1 = (int)cmdForFagkode2.Parameters["@out_verdi1"].Value;
+                    int fagkodeNr2Stjerne2 = (int)cmdForFagkode2.Parameters["@out_verdi2"].Value;
+                    int fagkodeNr2Stjerne3 = (int)cmdForFagkode2.Parameters["@out_verdi3"].Value;
+                    int fagkodeNr2Stjerne4 = (int)cmdForFagkode2.Parameters["@out_verdi4"].Value;
+                    int fagkodeNr2Stjerne5 = (int)cmdForFagkode2.Parameters["@out_verdi5"].Value;
+                    db.CloseConnection();
+
+
+                    String seriesname1 = FagkodeNr1.Text;
+                    String seriesname2 = FagkodeNr2.Text;
+                    chart1.Series.Clear();
+                    chart1.Legends.Clear();
+
+                    //Legger til data for fagkode 1
+                    chart1.Series.Add(seriesname1);
+                    chart1.Legends.Add("Legende");
+                    chart1.Series[seriesname1].BorderWidth = 3;
+                    chart1.Series[seriesname1].ChartType = SeriesChartType.Line;
+                    chart1.Series[seriesname1].Points.AddXY("1 Stjerne", fagkodeNr1Stjerne1);
+                    chart1.Series[seriesname1].Points.AddXY("2 Stjerner", fagkodeNr1Stjerne2);
+                    chart1.Series[seriesname1].Points.AddXY("3 Stjerner", fagkodeNr1Stjerne3);
+                    chart1.Series[seriesname1].Points.AddXY("4 Stjerner", fagkodeNr1Stjerne4);
+                    chart1.Series[seriesname1].Points.AddXY("5 Stjerner", fagkodeNr1Stjerne5);
+
+                    //Legger til data for fagkodenr 2
+                    chart1.Series.Add(seriesname2);
+                    chart1.Series[seriesname2].BorderWidth = 3;
+                    chart1.Series[seriesname2].ChartType = SeriesChartType.Line;
+                    chart1.Series[seriesname2].Points.AddXY("1 Stjerne", fagkodeNr2Stjerne1);
+                    chart1.Series[seriesname2].Points.AddXY("2 Stjerner", fagkodeNr2Stjerne2);
+                    chart1.Series[seriesname2].Points.AddXY("3 Stjerner", fagkodeNr2Stjerne3);
+                    chart1.Series[seriesname2].Points.AddXY("4 Stjerner", fagkodeNr2Stjerne4);
+                    chart1.Series[seriesname2].Points.AddXY("5 Stjerner", fagkodeNr2Stjerne5);
+
+                    //Setter farge på linjene
+                    /*for (int i = 0; i < 5; i++)
+                    {
+                        chart1.Series[seriesname1].Points[i].Color = Color.Blue;
+                        chart1.Series[seriesname2].Points[i].Color = Color.Green;
+                    }*/
+
+                    ChartFeilmldLbl.Text = "";
+                    chart1.Show();
+                    printBtn.Show();
+                    lagreChartBtn.Show();
+
                 }
-
-                //Prosedyre info for fagkodenr 1
-                cmdForFagkode1.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
-                String fagkodeForFagkodeNr1 = FagkodeNr1.Text; //Valgt fagkode blir hentet ut og plassert som inn parameter
-                cmdForFagkode1.Parameters.AddWithValue("@in_fagkode", fagkodeForFagkodeNr1).Direction = ParameterDirection.Input;
-                cmdForFagkode1.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode1.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode1.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode1.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode1.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-
-
-                //Prosedyre info for fagkodenr 2
-                cmdForFagkode2.CommandType = CommandType.StoredProcedure;
-                String fagkodeForFagkodeNr2 = FagkodeNr2.Text;
-                cmdForFagkode2.Parameters.AddWithValue("@in_fagkode", fagkodeForFagkodeNr2).Direction = ParameterDirection.Input;
-                cmdForFagkode2.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode2.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode2.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode2.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-                cmdForFagkode2.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-
-                //Henter ut variablene fra prosedyren til fagkodenr 1
-                db.OpenConnection();
-                cmdForFagkode1.ExecuteNonQuery();
-                int fagkodeNr1Stjerne1 = (int)cmdForFagkode1.Parameters["@out_verdi1"].Value;
-                int fagkodeNr1Stjerne2 = (int)cmdForFagkode1.Parameters["@out_verdi2"].Value;
-                int fagkodeNr1Stjerne3 = (int)cmdForFagkode1.Parameters["@out_verdi3"].Value;
-                int fagkodeNr1Stjerne4 = (int)cmdForFagkode1.Parameters["@out_verdi4"].Value;
-                int fagkodeNr1Stjerne5 = (int)cmdForFagkode1.Parameters["@out_verdi5"].Value;
-                db.CloseConnection();
-
-                //Henter ut variablene fra prosedyren til fagkodenr 2
-                db.OpenConnection();
-                cmdForFagkode2.ExecuteNonQuery();
-                int fagkodeNr2Stjerne1 = (int)cmdForFagkode2.Parameters["@out_verdi1"].Value;
-                int fagkodeNr2Stjerne2 = (int)cmdForFagkode2.Parameters["@out_verdi2"].Value;
-                int fagkodeNr2Stjerne3 = (int)cmdForFagkode2.Parameters["@out_verdi3"].Value;
-                int fagkodeNr2Stjerne4 = (int)cmdForFagkode2.Parameters["@out_verdi4"].Value;
-                int fagkodeNr2Stjerne5 = (int)cmdForFagkode2.Parameters["@out_verdi5"].Value;
-                db.CloseConnection();
-
-
-                String seriesname1 = FagkodeNr1.Text;
-                String seriesname2 = FagkodeNr2.Text;
-                chart1.Series.Clear();
-                chart1.Legends.Clear();
-
-                //Legger til data for fagkode 1
-                chart1.Series.Add(seriesname1);
-                chart1.Legends.Add("Legende");
-                chart1.Series[seriesname1].BorderWidth = 3;
-                chart1.Series[seriesname1].ChartType = SeriesChartType.Line;
-                chart1.Series[seriesname1].Points.AddXY("1 Stjerne", fagkodeNr1Stjerne1);
-                chart1.Series[seriesname1].Points.AddXY("2 Stjerner", fagkodeNr1Stjerne2);
-                chart1.Series[seriesname1].Points.AddXY("3 Stjerner", fagkodeNr1Stjerne3);
-                chart1.Series[seriesname1].Points.AddXY("4 Stjerner", fagkodeNr1Stjerne4);
-                chart1.Series[seriesname1].Points.AddXY("5 Stjerner", fagkodeNr1Stjerne5);
-                
-                //Legger til data for fagkodenr 2
-                chart1.Series.Add(seriesname2);
-                chart1.Series[seriesname2].BorderWidth = 3;
-                chart1.Series[seriesname2].ChartType = SeriesChartType.Line;
-                chart1.Series[seriesname2].Points.AddXY("1 Stjerne", fagkodeNr2Stjerne1);
-                chart1.Series[seriesname2].Points.AddXY("2 Stjerner", fagkodeNr2Stjerne2);
-                chart1.Series[seriesname2].Points.AddXY("3 Stjerner", fagkodeNr2Stjerne3);
-                chart1.Series[seriesname2].Points.AddXY("4 Stjerner", fagkodeNr2Stjerne4);
-                chart1.Series[seriesname2].Points.AddXY("5 Stjerner", fagkodeNr2Stjerne5);
-
-                //Setter farge på linjene
-                /*for (int i = 0; i < 5; i++)
+                catch (Exception ex)
                 {
-                    chart1.Series[seriesname1].Points[i].Color = Color.Blue;
-                    chart1.Series[seriesname2].Points[i].Color = Color.Green;
-                }*/
-
-                ChartFeilmldLbl.Text = "";
-                chart1.Show();
-                printBtn.Show();
-                lagreChartBtn.Show();
-
+                    ChartFeilmldLbl.ForeColor = Color.Red;
+                    ChartFeilmldLbl.Text = "Fagkoden mangler vurderinger kontakt databaseadministratoren";
+                    Console.WriteLine(ex);
+                }
             }
             catch (Exception ex)
             {
-                ChartFeilmldLbl.ForeColor = Color.Red;
-                ChartFeilmldLbl.Text = "Fagkoden mangler vurderinger kontakt databaseadministratoren";
                 Console.WriteLine(ex);
             }
+            
         }
 
         private void printBtn_Click(object sender, EventArgs e)

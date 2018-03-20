@@ -56,7 +56,7 @@ namespace adminPanel
             spmListeboks.Items.Clear();//Fjerner elementer i listeboks. Må gjøres hvis klassekode byttes
             for (int i = 1; i < 11; i++)//Populerer listeboksen. Øk loopen for flere spørsmål.
             {                           //Hvis den økes må det lages flere prosedyrer i db og legges til i switchen under
-                spmListeboks.Items.Add("Spørsmål "+i);
+                spmListeboks.Items.Add("Spørsmål " + i);
             }
             spmListeboks.Show();
             spmLbl.Show();
@@ -67,7 +67,7 @@ namespace adminPanel
             diagramListeboks.Items.Clear(); //Fjerner elementer i listeboksen
             diagramListeboks.Show();
             diagramLbl.Show();
-            String[] diagramTyper = { "Kakediagram", "Stolpediagram", "Linjediagram", "Radardiagram"}; //Legg til flere diagrammer her når vi er i gang
+            String[] diagramTyper = { "Kakediagram", "Stolpediagram", "Linjediagram", "Radardiagram" }; //Legg til flere diagrammer her når vi er i gang
 
             foreach (String diagram in diagramTyper)
             {
@@ -77,154 +77,161 @@ namespace adminPanel
 
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            clearListeboxBtn.Show();
-            printBtn.Show();
-            lagreChartBtn.Show();
-
-            var cmd = db.SqlCommand(""); //Lager cmd objektet, sender tomstreng så vi får laget objektet
-            
-            switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
-            {
-                case 0:
-                    cmd.CommandText = "hent_spm1_verdier"; //Legger til commandtext i cmd objektet
-                    break;
-
-                case 1:
-                    cmd.CommandText = "hent_spm2_verdier";
-                    break;
-
-                case 2:
-                    cmd.CommandText = "hent_spm3_verdier";
-                    break;
-
-                case 3:
-                    cmd.CommandText = "hent_spm4_verdier";
-                    break;
-
-                case 4:
-                    cmd.CommandText = "hent_spm5_verdier";
-                    break;
-
-                case 5:
-                    cmd.CommandText = "hent_spm6_verdier";
-                    break;
-
-                case 6:
-                    cmd.CommandText = "hent_spm7_verdier";
-                    break;
-
-                case 7:
-                    cmd.CommandText = "hent_spm8_verdier";
-                    break;
-
-                case 8:
-                    cmd.CommandText = "hent_spm9_verdier";
-                    break;
-
-                case 9:
-                    cmd.CommandText = "hent_spm10_verdier";
-                    break;
-
-                default:
-                    break;
-            }
-
-            cmd.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
-            String fagkode = fagkodeListeboks.SelectedItem.ToString(); //Valgt fagkode blir hentet ut og plassert som inn parameter
-            cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
-            cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output; 
-            cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-            cmd.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-            cmd.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-            cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
-            //På linjene over blir inn og ut parametere definert. Ut parametere får datatype (int). Og deretter blir parameter retning definert
-            //dette kan også gjøres på 2 linjer.
-            
-            db.OpenConnection();
-            cmd.ExecuteNonQuery();
-            int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
-            int stjerne2 = (int)cmd.Parameters["@out_verdi2"].Value;
-            int stjerne3 = (int)cmd.Parameters["@out_verdi3"].Value;
-            int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
-            int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
-            db.CloseConnection();
-
-
-            //Her sjekker vi om det faktisk er data relatert til diagrammet, hvis ikke skrives det ut en feilmelding og det vises ingen diagram
-            if (stjerne1 == 0 && stjerne2 == 0 && stjerne3 == 0 && stjerne4 == 0 && stjerne5 == 0)
-            {
-                FeilmeldingsLbl.ForeColor = Color.Red;
-                FeilmeldingsLbl.Text = "Denne fagkoden eller spørsmålet har ikke fått inn nok vurderinger til å lage et diagram.";
-                chart1.Hide();
-                return;
-            }
-            FeilmeldingsLbl.Text = "";
-            //Hvis forrige diagram hadde en feilmelding blir den fjernet på her.
-
-            chart1.Series.Clear();
-            string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
             try
             {
-                bool diagramSkalHaFarger = false;
-                //hvis variabelen over settes til true vil det legges til egendefinerte farger på diagrammet
-                switch (diagramListeboks.SelectedItem.ToString())
+                clearListeboxBtn.Show();
+                printBtn.Show();
+                lagreChartBtn.Show();
+
+                var cmd = db.SqlCommand(""); //Lager cmd objektet, sender tomstreng så vi får laget objektet
+
+                switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
                 {
-                    case "Kakediagram":
-                        //De to første linjene "tømmer" chart1 sin Series og Legends,
-                        //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
-                        chart1.Series.Clear();
-                        chart1.Legends.Clear();
-                        chart1.Series.Add(seriesname);
-                        chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
-                        chart1.Legends.Add("Legende");
-                        chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
-                        chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
-                        chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
-                        diagramSkalHaFarger = true;
+                    case 0:
+                        cmd.CommandText = "hent_spm1_verdier"; //Legger til commandtext i cmd objektet
                         break;
 
-                    case "Stolpediagram":
-                        chart1.Series.Clear();
-                        chart1.Legends.Clear();
-                        chart1.Series.Add(seriesname);
-                        chart1.Series[seriesname].ChartType = SeriesChartType.Column;
-                        diagramSkalHaFarger = true;
+                    case 1:
+                        cmd.CommandText = "hent_spm2_verdier";
                         break;
 
-                    case "Linjediagram":
-                        chart1.Series.Clear();
-                        chart1.Legends.Clear();
-                        chart1.Series.Add(seriesname);
-                        chart1.Series[seriesname].BorderWidth = 3; //Setter tykkelsen på linjen
-                        chart1.Series[seriesname].ChartType = SeriesChartType.Line;
+                    case 2:
+                        cmd.CommandText = "hent_spm3_verdier";
                         break;
 
-                    case "Radardiagram":
-                        chart1.Series.Clear();
-                        chart1.Legends.Clear();
-                        chart1.Series.Add(seriesname);
-                        chart1.Series[seriesname].ChartType = SeriesChartType.Radar;
+                    case 3:
+                        cmd.CommandText = "hent_spm4_verdier";
+                        break;
+
+                    case 4:
+                        cmd.CommandText = "hent_spm5_verdier";
+                        break;
+
+                    case 5:
+                        cmd.CommandText = "hent_spm6_verdier";
+                        break;
+
+                    case 6:
+                        cmd.CommandText = "hent_spm7_verdier";
+                        break;
+
+                    case 7:
+                        cmd.CommandText = "hent_spm8_verdier";
+                        break;
+
+                    case 8:
+                        cmd.CommandText = "hent_spm9_verdier";
+                        break;
+
+                    case 9:
+                        cmd.CommandText = "hent_spm10_verdier";
                         break;
 
                     default:
                         break;
                 }
-                chart1.Series[seriesname].Points.AddXY("1 Stjerne", stjerne1);
-                chart1.Series[seriesname].Points.AddXY("2 Stjerner", stjerne2);
-                chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
-                chart1.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
-                chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
-                if (diagramSkalHaFarger)
+
+                cmd.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
+                String fagkode = fagkodeListeboks.SelectedItem.ToString(); //Valgt fagkode blir hentet ut og plassert som inn parameter
+                cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
+                cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@out_verdi3", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
+                //På linjene over blir inn og ut parametere definert. Ut parametere får datatype (int). Og deretter blir parameter retning definert
+                //dette kan også gjøres på 2 linjer.
+
+                db.OpenConnection();
+                cmd.ExecuteNonQuery();
+                int stjerne1 = (int)cmd.Parameters["@out_verdi1"].Value;
+                int stjerne2 = (int)cmd.Parameters["@out_verdi2"].Value;
+                int stjerne3 = (int)cmd.Parameters["@out_verdi3"].Value;
+                int stjerne4 = (int)cmd.Parameters["@out_verdi4"].Value;
+                int stjerne5 = (int)cmd.Parameters["@out_verdi5"].Value;
+                db.CloseConnection();
+
+
+                //Her sjekker vi om det faktisk er data relatert til diagrammet, hvis ikke skrives det ut en feilmelding og det vises ingen diagram
+                if (stjerne1 == 0 && stjerne2 == 0 && stjerne3 == 0 && stjerne4 == 0 && stjerne5 == 0)
                 {
-                //Under blir det satt at det vises prosenter i figuren i tillegg til at farger velges
-                chart1.Series[seriesname].Label = "#PERCENT{P0}";
-                chart1.Series[seriesname].Points[0].Color = Color.Green;
-                chart1.Series[seriesname].Points[1].Color = Color.Red;
-                chart1.Series[seriesname].Points[2].Color = Color.LightBlue;
-                chart1.Series[seriesname].Points[3].Color = Color.Peru;
-                chart1.Series[seriesname].Points[4].Color = Color.Yellow;
+                    FeilmeldingsLbl.ForeColor = Color.Red;
+                    FeilmeldingsLbl.Text = "Denne fagkoden eller spørsmålet har ikke fått inn nok vurderinger til å lage et diagram.";
+                    chart1.Hide();
+                    return;
                 }
-                chart1.Show();
+                FeilmeldingsLbl.Text = "";
+                //Hvis forrige diagram hadde en feilmelding blir den fjernet på her.
+
+                chart1.Series.Clear();
+                string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
+                try
+                {
+                    bool diagramSkalHaFarger = false;
+                    //hvis variabelen over settes til true vil det legges til egendefinerte farger på diagrammet
+                    switch (diagramListeboks.SelectedItem.ToString())
+                    {
+                        case "Kakediagram":
+                            //De to første linjene "tømmer" chart1 sin Series og Legends,
+                            //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
+                            chart1.Series.Clear();
+                            chart1.Legends.Clear();
+                            chart1.Series.Add(seriesname);
+                            chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
+                            chart1.Legends.Add("Legende");
+                            chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
+                            chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
+                            chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
+                            diagramSkalHaFarger = true;
+                            break;
+
+                        case "Stolpediagram":
+                            chart1.Series.Clear();
+                            chart1.Legends.Clear();
+                            chart1.Series.Add(seriesname);
+                            chart1.Series[seriesname].ChartType = SeriesChartType.Column;
+                            diagramSkalHaFarger = true;
+                            break;
+
+                        case "Linjediagram":
+                            chart1.Series.Clear();
+                            chart1.Legends.Clear();
+                            chart1.Series.Add(seriesname);
+                            chart1.Series[seriesname].BorderWidth = 3; //Setter tykkelsen på linjen
+                            chart1.Series[seriesname].ChartType = SeriesChartType.Line;
+                            break;
+
+                        case "Radardiagram":
+                            chart1.Series.Clear();
+                            chart1.Legends.Clear();
+                            chart1.Series.Add(seriesname);
+                            chart1.Series[seriesname].ChartType = SeriesChartType.Radar;
+                            break;
+
+                        default:
+                            break;
+                    }
+                    chart1.Series[seriesname].Points.AddXY("1 Stjerne", stjerne1);
+                    chart1.Series[seriesname].Points.AddXY("2 Stjerner", stjerne2);
+                    chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
+                    chart1.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
+                    chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
+                    if (diagramSkalHaFarger)
+                    {
+                        //Under blir det satt at det vises prosenter i figuren i tillegg til at farger velges
+                        chart1.Series[seriesname].Label = "#PERCENT{P0}";
+                        chart1.Series[seriesname].Points[0].Color = Color.Green;
+                        chart1.Series[seriesname].Points[1].Color = Color.Red;
+                        chart1.Series[seriesname].Points[2].Color = Color.LightBlue;
+                        chart1.Series[seriesname].Points[3].Color = Color.Peru;
+                        chart1.Series[seriesname].Points[4].Color = Color.Yellow;
+                    }
+                    chart1.Show();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
             }
             catch (Exception ex)
             {
@@ -248,10 +255,10 @@ namespace adminPanel
         {
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
-            lagreFilDialog.Title = "Lagre diagram som bilde fil";       
+            lagreFilDialog.Title = "Lagre diagram som bilde fil";
             lagreFilDialog.FileName = "diagram.png";                    //filnavnet blir diagram.png
 
-            DialogResult dialogResultat = lagreFilDialog.ShowDialog(); 
+            DialogResult dialogResultat = lagreFilDialog.ShowDialog();
             lagreFilDialog.RestoreDirectory = true;
 
             if (dialogResultat == DialogResult.OK && lagreFilDialog.FileName != "") //Sjekker at dialogen er godkjent og at det er navn på filen
