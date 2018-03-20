@@ -230,5 +230,24 @@ namespace adminPanel
         {
             SpmListeboks_SelectedIndexChanged(null , new EventArgs());
         }
+
+        private void ResetListboxBtn_Click(object sender, EventArgs e)
+        {
+            /*
+             * Denne knappen fjerner alle elementer i FagkodeSammenlignesListebox
+             * og legger dem tilbake i FagkodeListbox
+             */
+            ListBox.ObjectCollection elementer = FagkodeSammenlignesListebox.Items;
+
+            foreach (var item in elementer)
+            {
+                FagkodeListbox.Items.Add(item);
+            }
+
+            while (FagkodeSammenlignesListebox.Items.Count > 0)
+            {
+                FagkodeSammenlignesListebox.Items.Remove(FagkodeSammenlignesListebox.Items[0]);
+            }
+        }
     }
 }
