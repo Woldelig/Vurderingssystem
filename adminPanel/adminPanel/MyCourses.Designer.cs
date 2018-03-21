@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.MyCoursesPanel = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
@@ -42,13 +45,16 @@
             this.FagkodeNr2 = new System.Windows.Forms.TextBox();
             this.FagkodeNr1 = new System.Windows.Forms.TextBox();
             this.ChartFeilmldLbl = new System.Windows.Forms.Label();
-            this.spmListeboks = new System.Windows.Forms.ListBox();
-            this.spmLbl = new System.Windows.Forms.Label();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.printBtn = new System.Windows.Forms.Button();
-            this.lagreChartBtn = new System.Windows.Forms.Button();
+            this.FagkodeDiagram1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.SkrivUtDiagram1Btn = new System.Windows.Forms.Button();
+            this.LagreDiagram1Btn = new System.Windows.Forms.Button();
+            this.FagkodeDiagram2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.LagreDiagram2Btn = new System.Windows.Forms.Button();
+            this.SkrivUtDiagram2Btn = new System.Windows.Forms.Button();
+            this.ChartFeilmld2Lbl = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram2)).BeginInit();
             this.SuspendLayout();
             // 
             // MyCoursesHeader
@@ -57,7 +63,7 @@
             this.MyCoursesHeader.Font = new System.Drawing.Font("Century Gothic", 27.75F);
             this.MyCoursesHeader.Location = new System.Drawing.Point(0, 0);
             this.MyCoursesHeader.Name = "MyCoursesHeader";
-            this.MyCoursesHeader.Size = new System.Drawing.Size(1008, 82);
+            this.MyCoursesHeader.Size = new System.Drawing.Size(1008, 48);
             this.MyCoursesHeader.TabIndex = 0;
             this.MyCoursesHeader.Text = "Mine Fag";
             this.MyCoursesHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -65,7 +71,7 @@
             // MyCoursesPanel
             // 
             this.MyCoursesPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.MyCoursesPanel.Location = new System.Drawing.Point(61, 85);
+            this.MyCoursesPanel.Location = new System.Drawing.Point(63, 51);
             this.MyCoursesPanel.Name = "MyCoursesPanel";
             this.MyCoursesPanel.Size = new System.Drawing.Size(435, 144);
             this.MyCoursesPanel.TabIndex = 1;
@@ -80,7 +86,7 @@
             this.InfoPanel.Controls.Add(this.FagkodeNr2Lbl);
             this.InfoPanel.Controls.Add(this.FagkodeNr2);
             this.InfoPanel.Controls.Add(this.FagkodeNr1);
-            this.InfoPanel.Location = new System.Drawing.Point(518, 85);
+            this.InfoPanel.Location = new System.Drawing.Point(513, 51);
             this.InfoPanel.Name = "InfoPanel";
             this.InfoPanel.Size = new System.Drawing.Size(435, 144);
             this.InfoPanel.TabIndex = 2;
@@ -152,78 +158,109 @@
             // ChartFeilmldLbl
             // 
             this.ChartFeilmldLbl.AutoSize = true;
-            this.ChartFeilmldLbl.Location = new System.Drawing.Point(708, 598);
+            this.ChartFeilmldLbl.Location = new System.Drawing.Point(212, 252);
             this.ChartFeilmldLbl.Name = "ChartFeilmldLbl";
             this.ChartFeilmldLbl.Size = new System.Drawing.Size(83, 13);
             this.ChartFeilmldLbl.TabIndex = 3;
             this.ChartFeilmldLbl.Text = "chart feilmelding";
             // 
-            // spmListeboks
+            // FagkodeDiagram1
             // 
-            this.spmListeboks.FormattingEnabled = true;
-            this.spmListeboks.Location = new System.Drawing.Point(789, 248);
-            this.spmListeboks.Name = "spmListeboks";
-            this.spmListeboks.Size = new System.Drawing.Size(164, 108);
-            this.spmListeboks.TabIndex = 4;
-            this.spmListeboks.SelectedIndexChanged += new System.EventHandler(this.spmListeboks_SelectedIndexChanged);
+            chartArea5.Name = "ChartArea1";
+            this.FagkodeDiagram1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.FagkodeDiagram1.Legends.Add(legend5);
+            this.FagkodeDiagram1.Location = new System.Drawing.Point(3, 271);
+            this.FagkodeDiagram1.Name = "FagkodeDiagram1";
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.FagkodeDiagram1.Series.Add(series5);
+            this.FagkodeDiagram1.Size = new System.Drawing.Size(495, 353);
+            this.FagkodeDiagram1.TabIndex = 7;
+            this.FagkodeDiagram1.Text = "chart1";
             // 
-            // spmLbl
+            // SkrivUtDiagram1Btn
             // 
-            this.spmLbl.AutoSize = true;
-            this.spmLbl.Location = new System.Drawing.Point(786, 232);
-            this.spmLbl.Name = "spmLbl";
-            this.spmLbl.Size = new System.Drawing.Size(167, 13);
-            this.spmLbl.TabIndex = 6;
-            this.spmLbl.Text = "Velg spørsmål du vil sammenligne:";
+            this.SkrivUtDiagram1Btn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SkrivUtDiagram1Btn.Location = new System.Drawing.Point(110, 211);
+            this.SkrivUtDiagram1Btn.Name = "SkrivUtDiagram1Btn";
+            this.SkrivUtDiagram1Btn.Size = new System.Drawing.Size(96, 54);
+            this.SkrivUtDiagram1Btn.TabIndex = 9;
+            this.SkrivUtDiagram1Btn.Text = "Skriv ut diagram";
+            this.SkrivUtDiagram1Btn.UseVisualStyleBackColor = false;
+            this.SkrivUtDiagram1Btn.Click += new System.EventHandler(this.SkrivUtDiagram1Btn_Click);
             // 
-            // chart1
+            // LagreDiagram1Btn
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(17, 235);
-            this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(673, 376);
-            this.chart1.TabIndex = 7;
-            this.chart1.Text = "chart1";
+            this.LagreDiagram1Btn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LagreDiagram1Btn.Location = new System.Drawing.Point(8, 211);
+            this.LagreDiagram1Btn.Name = "LagreDiagram1Btn";
+            this.LagreDiagram1Btn.Size = new System.Drawing.Size(96, 54);
+            this.LagreDiagram1Btn.TabIndex = 10;
+            this.LagreDiagram1Btn.Text = "Lagre diagram";
+            this.LagreDiagram1Btn.UseVisualStyleBackColor = false;
+            this.LagreDiagram1Btn.Click += new System.EventHandler(this.LagreDiagram1Btn_Click);
             // 
-            // printBtn
+            // FagkodeDiagram2
             // 
-            this.printBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.printBtn.Location = new System.Drawing.Point(789, 422);
-            this.printBtn.Name = "printBtn";
-            this.printBtn.Size = new System.Drawing.Size(96, 54);
-            this.printBtn.TabIndex = 9;
-            this.printBtn.Text = "Skriv ut diagram";
-            this.printBtn.UseVisualStyleBackColor = false;
-            this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
+            chartArea6.Name = "ChartArea1";
+            this.FagkodeDiagram2.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.FagkodeDiagram2.Legends.Add(legend6);
+            this.FagkodeDiagram2.Location = new System.Drawing.Point(513, 274);
+            this.FagkodeDiagram2.Name = "FagkodeDiagram2";
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.FagkodeDiagram2.Series.Add(series6);
+            this.FagkodeDiagram2.Size = new System.Drawing.Size(495, 353);
+            this.FagkodeDiagram2.TabIndex = 11;
+            this.FagkodeDiagram2.Text = "chart2";
             // 
-            // lagreChartBtn
+            // LagreDiagram2Btn
             // 
-            this.lagreChartBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.lagreChartBtn.Location = new System.Drawing.Point(789, 362);
-            this.lagreChartBtn.Name = "lagreChartBtn";
-            this.lagreChartBtn.Size = new System.Drawing.Size(96, 54);
-            this.lagreChartBtn.TabIndex = 10;
-            this.lagreChartBtn.Text = "Lagre diagram";
-            this.lagreChartBtn.UseVisualStyleBackColor = false;
-            this.lagreChartBtn.Click += new System.EventHandler(this.lagreChartBtn_Click);
+            this.LagreDiagram2Btn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LagreDiagram2Btn.Location = new System.Drawing.Point(806, 214);
+            this.LagreDiagram2Btn.Name = "LagreDiagram2Btn";
+            this.LagreDiagram2Btn.Size = new System.Drawing.Size(96, 54);
+            this.LagreDiagram2Btn.TabIndex = 12;
+            this.LagreDiagram2Btn.Text = "Lagre diagram";
+            this.LagreDiagram2Btn.UseVisualStyleBackColor = false;
+            this.LagreDiagram2Btn.Click += new System.EventHandler(this.LagreDiagram2Btn_Click);
+            // 
+            // SkrivUtDiagram2Btn
+            // 
+            this.SkrivUtDiagram2Btn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.SkrivUtDiagram2Btn.Location = new System.Drawing.Point(909, 214);
+            this.SkrivUtDiagram2Btn.Name = "SkrivUtDiagram2Btn";
+            this.SkrivUtDiagram2Btn.Size = new System.Drawing.Size(96, 54);
+            this.SkrivUtDiagram2Btn.TabIndex = 13;
+            this.SkrivUtDiagram2Btn.Text = "Skriv ut diagram";
+            this.SkrivUtDiagram2Btn.UseVisualStyleBackColor = false;
+            this.SkrivUtDiagram2Btn.Click += new System.EventHandler(this.SkrivUtDiagram2Btn_Click);
+            // 
+            // ChartFeilmld2Lbl
+            // 
+            this.ChartFeilmld2Lbl.AutoSize = true;
+            this.ChartFeilmld2Lbl.Location = new System.Drawing.Point(567, 255);
+            this.ChartFeilmld2Lbl.Name = "ChartFeilmld2Lbl";
+            this.ChartFeilmld2Lbl.Size = new System.Drawing.Size(83, 13);
+            this.ChartFeilmld2Lbl.TabIndex = 14;
+            this.ChartFeilmld2Lbl.Text = "chart feilmelding";
             // 
             // MyCourses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lagreChartBtn);
-            this.Controls.Add(this.printBtn);
-            this.Controls.Add(this.chart1);
-            this.Controls.Add(this.spmLbl);
+            this.Controls.Add(this.ChartFeilmld2Lbl);
+            this.Controls.Add(this.SkrivUtDiagram2Btn);
+            this.Controls.Add(this.LagreDiagram2Btn);
+            this.Controls.Add(this.FagkodeDiagram2);
+            this.Controls.Add(this.LagreDiagram1Btn);
+            this.Controls.Add(this.SkrivUtDiagram1Btn);
+            this.Controls.Add(this.FagkodeDiagram1);
             this.Controls.Add(this.ChartFeilmldLbl);
-            this.Controls.Add(this.spmListeboks);
             this.Controls.Add(this.InfoPanel);
             this.Controls.Add(this.MyCoursesPanel);
             this.Controls.Add(this.MyCoursesHeader);
@@ -232,7 +269,8 @@
             this.Load += new System.EventHandler(this.MyCourses_Load);
             this.InfoPanel.ResumeLayout(false);
             this.InfoPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,10 +289,12 @@
         private System.Windows.Forms.TextBox FagkodeNr1;
         private System.Windows.Forms.Button SammenlignFagBtn;
         private System.Windows.Forms.Label SammenlignFeilmldLbl;
-        private System.Windows.Forms.ListBox spmListeboks;
-        private System.Windows.Forms.Label spmLbl;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.Button printBtn;
-        private System.Windows.Forms.Button lagreChartBtn;
+        private System.Windows.Forms.DataVisualization.Charting.Chart FagkodeDiagram1;
+        private System.Windows.Forms.Button SkrivUtDiagram1Btn;
+        private System.Windows.Forms.Button LagreDiagram1Btn;
+        private System.Windows.Forms.DataVisualization.Charting.Chart FagkodeDiagram2;
+        private System.Windows.Forms.Button LagreDiagram2Btn;
+        private System.Windows.Forms.Button SkrivUtDiagram2Btn;
+        private System.Windows.Forms.Label ChartFeilmld2Lbl;
     }
 }

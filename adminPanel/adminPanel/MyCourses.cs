@@ -29,13 +29,15 @@ namespace adminPanel
             int column = 0; //3
             String fagkode = "";
 
+            ChartFeilmld2Lbl.Text = "";
             ChartFeilmldLbl.Text = "";
             SammenlignFeilmldLbl.Text = "";
-            spmLbl.Hide();
-            spmListeboks.Hide();
-            chart1.Hide();
-            printBtn.Hide();
-            lagreChartBtn.Hide();
+            FagkodeDiagram1.Hide();
+            FagkodeDiagram2.Hide();
+            SkrivUtDiagram1Btn.Hide();
+            SkrivUtDiagram2Btn.Hide();
+            LagreDiagram1Btn.Hide();
+            LagreDiagram2Btn.Hide();
 
 
 
@@ -116,11 +118,35 @@ namespace adminPanel
             }
             SammenlignFeilmldLbl.Text = "";
 
-            String fagkode = FagkodeNr1.Text;
+            String fagkode1 = FagkodeNr1.Text;
+            String fagkode2 = FagkodeNr2.Text;
+            try
+            {
+                LagDiagram(FagkodeDiagram1, fagkode1);
+                LagDiagram(FagkodeDiagram2, fagkode2);
+                SkrivUtDiagram1Btn.Show();
+                SkrivUtDiagram2Btn.Show();
+                LagreDiagram1Btn.Show();
+                LagreDiagram2Btn.Show();
+            }
+            catch (Exception)
+            {
+                ChartFeilmld2Lbl.ForeColor = Color.Red;
+                ChartFeilmldLbl.ForeColor = Color.Red;
+                ChartFeilmld2Lbl.Text = "Noe gikk galt, prøv igjen senere.";
+                ChartFeilmldLbl.Text = "Noe gikk galt, prøv igjen senere.";
+            }
+           
+
+
+        }
+        private void LagDiagram (Chart diagramNavn, String fagkode)
+        {
             String seriesname = "";
 
-            chart1.Series.Clear();
-            chart1.Legends.Clear();
+            diagramNavn.Series.Clear();
+            diagramNavn.Legends.Clear();
+            diagramNavn.Titles.Clear();
             String[] ProsedyreNavnArray = new String[] { "hent_spm1_verdier", "hent_spm2_verdier", "hent_spm3_verdier", "hent_spm4_verdier", "hent_spm5_verdier" };
             String[] SpørsmålNr = new String[] { "Spørsmål 1", "Spørsmål 2", "Spørsmål 3", "Spørsmål 4", "Spørsmål 5" };
             for (int i = 0; i < ProsedyreNavnArray.Length; i++)
@@ -128,104 +154,24 @@ namespace adminPanel
                 int[] prosedyreSvar = ProsedyreUtfører(fagkode, ProsedyreNavnArray[i]);
                 seriesname = SpørsmålNr[i];
                 //Legger til data for fagkode 1
-                chart1.Series.Add(seriesname);
-                if (i == 0) { chart1.Legends.Add("Legende"); }
-                chart1.Series[seriesname].BorderWidth = 3;
-                chart1.Series[seriesname].ChartType = SeriesChartType.Line;
-                chart1.Series[seriesname].Points.AddXY("1 Stjerne", prosedyreSvar[0]);
-                chart1.Series[seriesname].Points.AddXY("2 Stjerner", prosedyreSvar[1]);
-                chart1.Series[seriesname].Points.AddXY("3 Stjerner", prosedyreSvar[2]);
-                chart1.Series[seriesname].Points.AddXY("4 Stjerner", prosedyreSvar[3]);
-                chart1.Series[seriesname].Points.AddXY("5 Stjerner", prosedyreSvar[4]);
-
-                ChartFeilmldLbl.Text = "";
-                chart1.Show();
-                printBtn.Show();
-                lagreChartBtn.Show();
-
+                diagramNavn.Series.Add(seriesname);
+                if (i == 0)
+                {
+                    diagramNavn.Legends.Add("Legende");
+                    Title tittel = diagramNavn.Titles.Add(fagkode);
+                    tittel.Font = new Font("Verdana", 16, FontStyle.Bold);
+                }
+                diagramNavn.Series[seriesname].BorderWidth = 3;
+                diagramNavn.Series[seriesname].ChartType = SeriesChartType.Line;
+                diagramNavn.Series[seriesname].Points.AddXY("1 Stjerne", prosedyreSvar[0]);
+                diagramNavn.Series[seriesname].Points.AddXY("2 Stjerner", prosedyreSvar[1]);
+                diagramNavn.Series[seriesname].Points.AddXY("3 Stjerner", prosedyreSvar[2]);
+                diagramNavn.Series[seriesname].Points.AddXY("4 Stjerner", prosedyreSvar[3]);
+                diagramNavn.Series[seriesname].Points.AddXY("5 Stjerner", prosedyreSvar[4]);
+                diagramNavn.Show();
             }
         }
 
-        private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Må ha try catch siden denne metoden reagerer på index change. Hvis du velger noe som ikke er element ville den ha gitt en feilmelding
-            try
-            {
-                //Fjerner alle fagkodene fra 
-                MyCoursesPanel.Controls.Clear();
-                MyCoursesPanel.Hide();
-
-                Database db = new Database();
-                try
-                {
-                    var cmdForFagkode1 = db.SqlCommand("");
-                    var cmdForFagkode2 = db.SqlCommand("");
-                    //Her velges hvilket spørsmål som skal sammenlignes
-                    switch (spmListeboks.SelectedIndex)
-                    {
-                        case 0:
-                            cmdForFagkode1.CommandText = "hent_spm1_verdier";
-                            cmdForFagkode2.CommandText = "hent_spm1_verdier";
-
-                            break;
-
-                        case 1:
-                            cmdForFagkode1.CommandText = "hent_spm2_verdier";
-                            cmdForFagkode2.CommandText = "hent_spm2_verdier";
-                            break;
-
-                        case 2:
-                            cmdForFagkode1.CommandText = "hent_spm3_verdier";
-                            cmdForFagkode2.CommandText = "hent_spm3_verdier";
-                            break;
-
-                        case 3:
-                            cmdForFagkode1.CommandText = "hent_spm4_verdier";
-                            cmdForFagkode2.CommandText = "hent_spm4_verdier";
-                            break;
-
-                        case 4:
-                            cmdForFagkode1.CommandText = "hent_spm5_verdier";
-                            cmdForFagkode2.CommandText = "hent_spm5_verdier";
-                            break;
-                        default:
-                            break;
-                    }
-
-
-                    
-
-
-
-
-
-
-
-
-
-                    //Setter farge på linjene
-                    /*for (int i = 0; i < 5; i++)
-                    {
-                        chart1.Series[seriesname1].Points[i].Color = Color.Blue;
-                        chart1.Series[seriesname2].Points[i].Color = Color.Green;
-                    }*/
-
-                    
-
-                }
-                catch (Exception ex)
-                {
-                    ChartFeilmldLbl.ForeColor = Color.Red;
-                    ChartFeilmldLbl.Text = "Fagkoden mangler vurderinger kontakt databaseadministratoren";
-                    Console.WriteLine(ex);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
-
-        }
         private int[] ProsedyreUtfører(String fagkode, String prosedyrenavn)
         {
             /*
@@ -256,12 +202,8 @@ namespace adminPanel
             return prosedyreSvar;
         }
 
-        private void printBtn_Click(object sender, EventArgs e)
-        {
-            this.chart1.Printing.PrintPreview();
-        }
-
-        private void lagreChartBtn_Click(object sender, EventArgs e)
+       
+        private void LagreDiagram (Chart diagramSomSkalLagres)
         {
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
@@ -279,11 +221,11 @@ namespace adminPanel
                     {
                         if (lagreFilDialog.FilterIndex == 1)    //Indexen starter på 1
                         {
-                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
+                            diagramSomSkalLagres.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
                         }
                         else if (lagreFilDialog.FilterIndex == 2)
                         {
-                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
+                            diagramSomSkalLagres.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
                         }
                     }
                     else
@@ -296,6 +238,34 @@ namespace adminPanel
                     Console.WriteLine(ex);
                 }
             }
+        }
+        private void SkrivUtDiagram (Chart diagramSomSkalSkrivesUt)
+        {
+            diagramSomSkalSkrivesUt.Printing.PrintPreview();
+        }
+     
+
+        private void LagreDiagram1Btn_Click(object sender, EventArgs e)
+        {
+            LagreDiagram(FagkodeDiagram1);
+
+        }
+
+        private void LagreDiagram2Btn_Click(object sender, EventArgs e)
+        {
+            LagreDiagram(FagkodeDiagram2);
+
+        }
+
+        private void SkrivUtDiagram2Btn_Click(object sender, EventArgs e)
+        {
+            SkrivUtDiagram(FagkodeDiagram2);
+
+        }
+        private void SkrivUtDiagram1Btn_Click(object sender, EventArgs e)
+        {
+            SkrivUtDiagram(FagkodeDiagram1);
+
         }
     }
 }
