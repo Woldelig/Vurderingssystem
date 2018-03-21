@@ -20,7 +20,7 @@ Prototype for APP2000
 - [ ] Fiks gapet i navbar
 - [ ] Sett opp størrelser på siden
 - [ ] Varsel for session timeout?
-- [ ] Velkomstsside kan være mine fag eller mine vurderinger?
+- [X] Velkomstsside kan være mine fag eller mine vurderinger?
 
 ***
 - [ ] Logo for vms
@@ -34,7 +34,8 @@ Prototype for APP2000
 - [ ] Korrektur
 
 ### WF
-- [x] Finn ut hva vi skal gjøre med mine fag, endret til sammenlign fag
+- [x] Mine fag endret til sammenlign fag og sammenlign alle fag.
+- [ ] Må finne på noen bedre navn på sammenlign fag, evt dropdown liste for de
 - [ ] Test ut nye farger på WF
 - [ ] Lage tooltip for elementer
 - [ ] Lag bedre design på start ny vurdering semester
