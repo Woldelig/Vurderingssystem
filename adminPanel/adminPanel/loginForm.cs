@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
@@ -32,34 +33,34 @@ namespace adminPanel
             Database db = new Database();//Oppretter database-objekt
             try
             {
-
                 db.OpenConnection();
-                string query = "SELECT * FROM formlogin WHERE bruker = @Brukernavn;";
+                string query = "SELECT passord FROM formlogin WHERE bruker = @Brukernavn;";
 
                 var mySqlCommand = db.SqlCommand(query);
 
                 mySqlCommand.Parameters.AddWithValue("@Brukernavn", Username.Text);//Hindrer SQLinjection
-
+                
                 MySqlDataReader reader = mySqlCommand.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
-                if (reader.HasRows) //Sjekker om det finnes rader
+                if (!reader.HasRows) //Sjekker om det finnes rader
                 {
-                    while (reader.Read())//Så lenge det er rader igjen så printer vi ut innholdet
+                    HelpText.Text = "Brukernavnet eller passordet er feil!";
+                } else
+                {
+                    Hasher hash = new Hasher();
+                    string hashpw = "";
+                    while (reader.Read())
                     {
-                        Console.WriteLine(reader.GetString("bruker"));//Skriver ut brukernavnet
-                        Console.WriteLine(reader.GetString("passord"));//Skriver ut passordet
-                        Console.WriteLine(reader.GetString("brukertype"));//Skriver ut brukertypen
-
-                        //Det er her vi må sjekke det hasha passordet
-                        if (reader.GetString("passord") == Password.Text)
-                        {
-                            UserInfo.Username = reader.GetString("bruker");
-                            DialogResult = DialogResult.OK;
-                            this.Dispose();
-                        }
-                        else
-                        {
-                            HelpText.Text = "Brukernavnet eller passordet er feil!";
-                        }
+                        hashpw = reader.GetString("passord");
+                    }
+                    //Sjekker om passordet er riktig
+                    if (!hash.SjekkHash(Password.Text, hashpw))
+                    {
+                        HelpText.Text = "Feil passord!";
+                    } else
+                    {
+                        UserInfo.Username = Username.Text;
+                        DialogResult = DialogResult.OK;
+                        this.Dispose();
                     }
                 }
                 reader.Close();//Stenger MySqlDataReader-objektet
@@ -183,6 +184,43 @@ namespace adminPanel
         private void ShutdownBtn_MouseLeave(object sender, EventArgs e)
         {
             ShutdownBtn.ForeColor = Color.Black;
+        }
+
+        private void nyBrukerBtn_MouseLeave(object sender, EventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.SteelBlue;
+        }
+
+        private void nyBrukerBtn_MouseEnter(object sender, EventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.FromArgb(37, 69, 95);
+        }
+
+        private void nyBrukerBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.FromArgb(120, 163, 201);
+        }
+
+        private void nyBrukerBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            nyBrukerBtn.ForeColor = Color.SteelBlue;
+        }
+
+        //Bruker Multithreading
+        private void nyBrukerBtn_Click(object sender, EventArgs e)
+        {
+            ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().nyThread);
+            Thread thread = new Thread(nyBrukerThread);
+            thread.Start();
+        }
+        public void nyThread()
+        {
+            Application.Run(new nyBrukerForm());
+        }
+
+        private void LoginForm_Activated(object sender, EventArgs e)
+        {
+            Username.Text = UserInfo.Username;
         }
     }
 }

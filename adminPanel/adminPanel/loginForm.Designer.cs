@@ -40,6 +40,7 @@
             this.UsernameLbl = new System.Windows.Forms.Label();
             this.PasswordLbl = new System.Windows.Forms.Label();
             this.BoarderDivider = new System.Windows.Forms.Panel();
+            this.nyBrukerBtn = new System.Windows.Forms.Label();
             this.LoginBoarder.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -198,12 +199,29 @@
             this.BoarderDivider.Size = new System.Drawing.Size(359, 1);
             this.BoarderDivider.TabIndex = 9;
             // 
+            // nyBrukerBtn
+            // 
+            this.nyBrukerBtn.AutoSize = true;
+            this.nyBrukerBtn.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nyBrukerBtn.ForeColor = System.Drawing.Color.SteelBlue;
+            this.nyBrukerBtn.Location = new System.Drawing.Point(130, 445);
+            this.nyBrukerBtn.Name = "nyBrukerBtn";
+            this.nyBrukerBtn.Size = new System.Drawing.Size(101, 24);
+            this.nyBrukerBtn.TabIndex = 10;
+            this.nyBrukerBtn.Text = "Ny Bruker";
+            this.nyBrukerBtn.Click += new System.EventHandler(this.nyBrukerBtn_Click);
+            this.nyBrukerBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.nyBrukerBtn_MouseDown);
+            this.nyBrukerBtn.MouseEnter += new System.EventHandler(this.nyBrukerBtn_MouseEnter);
+            this.nyBrukerBtn.MouseLeave += new System.EventHandler(this.nyBrukerBtn_MouseLeave);
+            this.nyBrukerBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.nyBrukerBtn_MouseUp);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(19)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(359, 478);
+            this.Controls.Add(this.nyBrukerBtn);
             this.Controls.Add(this.BoarderDivider);
             this.Controls.Add(this.PasswordLbl);
             this.Controls.Add(this.UsernameLbl);
@@ -218,6 +236,7 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Innlogging for VMS";
+            this.Activated += new System.EventHandler(this.LoginForm_Activated);
             this.LoginBoarder.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -238,6 +257,7 @@
         private System.Windows.Forms.Button ExitBtn;
         private System.Windows.Forms.Button MinimizeBtn;
         private System.Windows.Forms.Panel BoarderDivider;
+        private System.Windows.Forms.Label nyBrukerBtn;
     }
 }
 
