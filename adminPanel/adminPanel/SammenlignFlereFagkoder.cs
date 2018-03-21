@@ -149,7 +149,11 @@ namespace adminPanel
 
                 chart1.Legends.Clear();
                 chart1.Series.Clear();
+                chart1.Titles.Clear();
                 chart1.Legends.Add("Legende");
+                Title tittel = chart1.Titles.Add(SpmListeboks.SelectedItem.ToString());
+                tittel.Font = new Font("Verdana", 16, FontStyle.Bold);
+
                 /* 
                  * Loopen går for så mange fagkoder det er i listeboksen
                  * og legger til nye linjer på diagrammet og fagkoden til i legenden

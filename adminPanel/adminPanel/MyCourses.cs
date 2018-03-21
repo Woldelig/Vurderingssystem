@@ -89,6 +89,12 @@ namespace adminPanel
         protected void Button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
+
+            /*
+             * Hvis det ikke er trykket på noen knapper vil fagkoden legges inn i den første tekstboksen.
+             * Hvilken tekstboks fagkoden blir lagt inn i kommer an på variabelen som blir testet i If setningen
+             * denne øker og trekkes fra for hver gang en knapp blir trykket så den bytter tekstboks vær gang
+             */
             if (antallGangerKnappenErTrykket == 0)
             {
                 FagkodeNr1.Text = button.Text;
@@ -122,6 +128,7 @@ namespace adminPanel
             String fagkode2 = FagkodeNr2.Text;
             try
             {
+                //Kaller på en metode som lager diagram basert på parameter
                 LagDiagram(FagkodeDiagram1, fagkode1);
                 LagDiagram(FagkodeDiagram2, fagkode2);
                 SkrivUtDiagram1Btn.Show();
@@ -142,11 +149,17 @@ namespace adminPanel
         }
         private void LagDiagram (Chart diagramNavn, String fagkode)
         {
-            String seriesname = "";
+            /*
+             * Denne metoden lager diagram basert på parameter. Parameter 1 er navnet på diagrammet og parameter 2 er fagkoden
+             * først blir series, legend og title tømt så man kan bytte fagkoder uten at noe henger igjen fra en tidligere sammenligning
+             * Arrayene under passer på at alle spørsmål hentes ut og at de får blir lagt til i riktig serie (seriesname variabelen)
+             */
 
             diagramNavn.Series.Clear();
             diagramNavn.Legends.Clear();
             diagramNavn.Titles.Clear();
+
+            String seriesname = "";
             String[] ProsedyreNavnArray = new String[] { "hent_spm1_verdier", "hent_spm2_verdier", "hent_spm3_verdier", "hent_spm4_verdier", "hent_spm5_verdier" };
             String[] SpørsmålNr = new String[] { "Spørsmål 1", "Spørsmål 2", "Spørsmål 3", "Spørsmål 4", "Spørsmål 5" };
             for (int i = 0; i < ProsedyreNavnArray.Length; i++)
@@ -205,6 +218,9 @@ namespace adminPanel
        
         private void LagreDiagram (Chart diagramSomSkalLagres)
         {
+            /*
+             * Denne metoden lagrer diagrammet som blir sendt inn som parameter
+             */
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
             lagreFilDialog.Title = "Lagre diagram som bilde fil";
@@ -241,6 +257,9 @@ namespace adminPanel
         }
         private void SkrivUtDiagram (Chart diagramSomSkalSkrivesUt)
         {
+            /*
+             * Denne metoden skriver ut det diagrammet som blir sendt inn som parameter
+             */
             diagramSomSkalSkrivesUt.Printing.PrintPreview();
         }
      

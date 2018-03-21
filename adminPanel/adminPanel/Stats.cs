@@ -164,6 +164,7 @@ namespace adminPanel
                 //Hvis forrige diagram hadde en feilmelding blir den fjernet på her.
 
                 chart1.Series.Clear();
+                chart1.Titles.Clear();
                 string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
                 try
                 {
@@ -211,6 +212,9 @@ namespace adminPanel
                         default:
                             break;
                     }
+                    //Setter en tittel på diagrammet
+                    Title tittel = chart1.Titles.Add(fagkode + ": " + spmListeboks.SelectedItem);
+                    tittel.Font = new Font("Verdana", 16, FontStyle.Bold);
                     chart1.Series[seriesname].Points.AddXY("1 Stjerne", stjerne1);
                     chart1.Series[seriesname].Points.AddXY("2 Stjerner", stjerne2);
                     chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
