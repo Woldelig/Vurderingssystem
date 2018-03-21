@@ -230,7 +230,7 @@ namespace adminPanel
 
         private void UpdateDiagramBtn_Click(object sender, EventArgs e)
         {
-            SpmListeboks_SelectedIndexChanged(null , new EventArgs());
+            SpmListeboks_SelectedIndexChanged(null, new EventArgs());
         }
 
         private void ResetListboxBtn_Click(object sender, EventArgs e)
@@ -249,6 +249,25 @@ namespace adminPanel
             while (FagkodeSammenlignesListebox.Items.Count > 0)
             {
                 FagkodeSammenlignesListebox.Items.Remove(FagkodeSammenlignesListebox.Items[0]);
+            }
+        }
+
+        private void LeggTilAlleBtn_Click(object sender, EventArgs e)
+        {
+            /*
+             * Denne knappen fjerner alle elementer i FagkodeListebox
+             * og legger dem i FagkodeSammenlignesListebox
+             */
+            ListBox.ObjectCollection elementer = FagkodeListbox.Items;
+
+            foreach (var item in elementer)
+            {
+                FagkodeSammenlignesListebox.Items.Add(item);
+            }
+
+            while (FagkodeListbox.Items.Count > 0)
+            {
+                FagkodeListbox.Items.Remove(FagkodeListbox.Items[0]);
             }
         }
     }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.FagkodeListbox = new System.Windows.Forms.ListBox();
             this.FagkodeSammenlignesListebox = new System.Windows.Forms.ListBox();
             this.Fra1Til2Btn = new System.Windows.Forms.Button();
@@ -43,6 +43,10 @@
             this.UpdateDiagramBtn = new System.Windows.Forms.Button();
             this.ResetListboxBtn = new System.Windows.Forms.Button();
             this.FeilmldLbl = new System.Windows.Forms.Label();
+            this.LeggTilAlleBtn = new System.Windows.Forms.Button();
+            this.FagkodeListeboxLbl = new System.Windows.Forms.Label();
+            this.FagkodeSammenligensLbl = new System.Windows.Forms.Label();
+            this.SpmListeboxLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +55,7 @@
             this.FagkodeListbox.FormattingEnabled = true;
             this.FagkodeListbox.Location = new System.Drawing.Point(61, 43);
             this.FagkodeListbox.Name = "FagkodeListbox";
-            this.FagkodeListbox.Size = new System.Drawing.Size(120, 108);
+            this.FagkodeListbox.Size = new System.Drawing.Size(139, 108);
             this.FagkodeListbox.TabIndex = 0;
             // 
             // FagkodeSammenlignesListebox
@@ -59,13 +63,13 @@
             this.FagkodeSammenlignesListebox.FormattingEnabled = true;
             this.FagkodeSammenlignesListebox.Location = new System.Drawing.Point(311, 43);
             this.FagkodeSammenlignesListebox.Name = "FagkodeSammenlignesListebox";
-            this.FagkodeSammenlignesListebox.Size = new System.Drawing.Size(120, 108);
+            this.FagkodeSammenlignesListebox.Size = new System.Drawing.Size(139, 108);
             this.FagkodeSammenlignesListebox.TabIndex = 1;
             // 
             // Fra1Til2Btn
             // 
             this.Fra1Til2Btn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Fra1Til2Btn.Location = new System.Drawing.Point(206, 43);
+            this.Fra1Til2Btn.Location = new System.Drawing.Point(218, 43);
             this.Fra1Til2Btn.Name = "Fra1Til2Btn";
             this.Fra1Til2Btn.Size = new System.Drawing.Size(75, 23);
             this.Fra1Til2Btn.TabIndex = 2;
@@ -76,7 +80,7 @@
             // Fra2Til1Btn
             // 
             this.Fra2Til1Btn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Fra2Til1Btn.Location = new System.Drawing.Point(206, 128);
+            this.Fra2Til1Btn.Location = new System.Drawing.Point(218, 128);
             this.Fra2Til1Btn.Name = "Fra2Til1Btn";
             this.Fra2Til1Btn.Size = new System.Drawing.Size(75, 23);
             this.Fra2Til1Btn.TabIndex = 3;
@@ -95,16 +99,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(61, 197);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(718, 413);
             this.chart1.TabIndex = 5;
             this.chart1.Text = "chart1";
@@ -156,11 +160,11 @@
             // ResetListboxBtn
             // 
             this.ResetListboxBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ResetListboxBtn.Location = new System.Drawing.Point(206, 87);
+            this.ResetListboxBtn.Location = new System.Drawing.Point(218, 99);
             this.ResetListboxBtn.Name = "ResetListboxBtn";
             this.ResetListboxBtn.Size = new System.Drawing.Size(75, 23);
             this.ResetListboxBtn.TabIndex = 15;
-            this.ResetListboxBtn.Text = "Reset";
+            this.ResetListboxBtn.Text = "Fjern alle";
             this.ResetListboxBtn.UseVisualStyleBackColor = false;
             this.ResetListboxBtn.Click += new System.EventHandler(this.ResetListboxBtn_Click);
             // 
@@ -173,10 +177,52 @@
             this.FeilmldLbl.TabIndex = 16;
             this.FeilmldLbl.Text = "feilmeldingLbl";
             // 
+            // LeggTilAlleBtn
+            // 
+            this.LeggTilAlleBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.LeggTilAlleBtn.Location = new System.Drawing.Point(218, 70);
+            this.LeggTilAlleBtn.Name = "LeggTilAlleBtn";
+            this.LeggTilAlleBtn.Size = new System.Drawing.Size(75, 23);
+            this.LeggTilAlleBtn.TabIndex = 17;
+            this.LeggTilAlleBtn.Text = "Legg til alle";
+            this.LeggTilAlleBtn.UseVisualStyleBackColor = false;
+            this.LeggTilAlleBtn.Click += new System.EventHandler(this.LeggTilAlleBtn_Click);
+            // 
+            // FagkodeListeboxLbl
+            // 
+            this.FagkodeListeboxLbl.AutoSize = true;
+            this.FagkodeListeboxLbl.Location = new System.Drawing.Point(58, 27);
+            this.FagkodeListeboxLbl.Name = "FagkodeListeboxLbl";
+            this.FagkodeListeboxLbl.Size = new System.Drawing.Size(55, 13);
+            this.FagkodeListeboxLbl.TabIndex = 18;
+            this.FagkodeListeboxLbl.Text = "Fagkoder:";
+            // 
+            // FagkodeSammenligensLbl
+            // 
+            this.FagkodeSammenligensLbl.AutoSize = true;
+            this.FagkodeSammenligensLbl.Location = new System.Drawing.Point(308, 27);
+            this.FagkodeSammenligensLbl.Name = "FagkodeSammenligensLbl";
+            this.FagkodeSammenligensLbl.Size = new System.Drawing.Size(146, 13);
+            this.FagkodeSammenligensLbl.TabIndex = 19;
+            this.FagkodeSammenligensLbl.Text = "Fagkoder som sammenlignes:";
+            // 
+            // SpmListeboxLbl
+            // 
+            this.SpmListeboxLbl.AutoSize = true;
+            this.SpmListeboxLbl.Location = new System.Drawing.Point(574, 27);
+            this.SpmListeboxLbl.Name = "SpmListeboxLbl";
+            this.SpmListeboxLbl.Size = new System.Drawing.Size(53, 13);
+            this.SpmListeboxLbl.TabIndex = 20;
+            this.SpmListeboxLbl.Text = "Spørsmål:";
+            // 
             // SammenlignFlereFagkoder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.SpmListeboxLbl);
+            this.Controls.Add(this.FagkodeSammenligensLbl);
+            this.Controls.Add(this.FagkodeListeboxLbl);
+            this.Controls.Add(this.LeggTilAlleBtn);
             this.Controls.Add(this.FeilmldLbl);
             this.Controls.Add(this.ResetListboxBtn);
             this.Controls.Add(this.UpdateDiagramBtn);
@@ -212,5 +258,9 @@
         private System.Windows.Forms.Button UpdateDiagramBtn;
         private System.Windows.Forms.Button ResetListboxBtn;
         private System.Windows.Forms.Label FeilmldLbl;
+        private System.Windows.Forms.Button LeggTilAlleBtn;
+        private System.Windows.Forms.Label FagkodeListeboxLbl;
+        private System.Windows.Forms.Label FagkodeSammenligensLbl;
+        private System.Windows.Forms.Label SpmListeboxLbl;
     }
 }
