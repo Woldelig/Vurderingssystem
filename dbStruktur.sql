@@ -6,6 +6,7 @@ DROP TABLE vurderingsskjema;
 DROP TABLE vurderingshistorikk;
 DROP TABLE formlogin;
 DROP TABLE innloggingshistorikk;
+DROP TABLE pågåendevurdering;
 
 CREATE TABLE studier(
     studieretning VARCHAR(128) PRIMARY KEY,
