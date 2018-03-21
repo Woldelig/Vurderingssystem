@@ -3,9 +3,23 @@
 -- call historikk_prosedyre("tabbelnavnSkalher");
 -- Over er eksempler på hvordan man kaller på prosedyrer
 
-DROP PROCEDURE IF EXISTS nytt_semester_prosedyre;
+DROP PROCEDURE IF EXISTS avslutt_evaluering;
 DELIMITER $$
-CREATE PROCEDURE nytt_semester_prosedyre
+CREATE PROCEDURE avslutt_evaluering()
+BEGIN
+    INSERT INTO vurderingshistorikk(skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10)
+    	SELECT skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM pågåendevurdering;
+    
+    DELETE FROM pågåendevurdering;
+END$$
+DELIMITER ;
+
+
+
+
+DROP PROCEDURE IF EXISTS lagre_pågående_evaluerings_resultater;
+DELIMITER $$
+CREATE PROCEDURE lagre_pågående_evaluerings_resultater
 (
     IN ny_tabell VARCHAR(64)
 )
@@ -14,7 +28,6 @@ BEGIN
     PREPARE stmt FROM @Sql;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;
-    DELETE FROM vurderingshistorikk;
 END$$
 DELIMITER ;
 

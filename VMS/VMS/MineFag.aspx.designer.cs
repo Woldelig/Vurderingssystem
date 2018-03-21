@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class About {
+    public partial class MineFag {
         
         /// <summary>
         /// panel1 control.

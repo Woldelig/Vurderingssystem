@@ -20,6 +20,16 @@ namespace VMS
          */
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Hvis noen blir redirected til fagsiden med et parameter vil fagsiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
+            String uformatertQueryString = Request.Url.Query;
+            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty);
+            //StringQuery inneholder et spørsmålstegn som vi her fjerner
+
+            if (formatertQueryString != "" || formatertQueryString == null)
+            {
+                sidensFagkode = formatertQueryString;
+            }
+
             int foreleserId; //Denne trenger vi for å få informasjon om foreleser
 
             String query = "SELECT * FROM fag WHERE fagkode = @SidensFagkode";
@@ -125,8 +135,8 @@ namespace VMS
             }
             else
             {
-
-                pensumLbl.Text = "Det er for lite data om denne fagkoden til at det kan vises på denne siden.";
+                pensumLbl.ForeColor = System.Drawing.Color.Red;
+                pensumLbl.Text = "Det er ikke foretatt en fagvurdering i dette faget. Prøv igjen senere.";
 
                 //Kodesnutten under trenger vi for å skjule rateit. Uten den vil stjernene vises
                 spm1Div.InnerHtml = "";
@@ -134,6 +144,11 @@ namespace VMS
                 spm3Div.InnerHtml = "";
                 spm4Div.InnerHtml = "";
                 spm5Div.InnerHtml = "";
+
+                kvalitetLbl.Text = "";
+                vanskelighetsgradLbl.Text = "";
+                pensumFormidlingLbl.Text = "";
+                fagRelevantLbl.Text = "";
             }
         }
 

@@ -22,6 +22,33 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label StudIDLabel;
         
         /// <summary>
+        /// ingenSessionDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ingenSessionDiv;
+        
+        /// <summary>
+        /// minefagDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl minefagDiv;
+        
+        /// <summary>
+        /// minevurderingerDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl minevurderingerDiv;
+        
+        /// <summary>
         /// Master property.
         /// </summary>
         /// <remarks>

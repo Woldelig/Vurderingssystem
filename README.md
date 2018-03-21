@@ -3,7 +3,7 @@ Prototype for APP2000
 
 ### ASP.NET
 - [x] Legge inn session for ASP delen
-- [ ] Ha noe som simulerer brukerinnlogging
+- [x] Ha noe som simulerer brukerinnlogging
 - [x] Stjernerating
 - [x] Vurderingsskjema delen   
 - [ ]  Legge til thread på vurderingsskjema som tar tiden på brukern (etter 10 min kan de få en advarsel)
@@ -14,8 +14,8 @@ Prototype for APP2000
 - [ ] Lage FAQ for asp.net
 - [ ] Legge inn div info på asp.net
 - [ ] Session redirect hvis du ikke har tilgang til siden
-- [ ] Lag mine fag
-- [ ] Lag min vurderinger
+- [x] Lag mine fag
+- [x] Lag min vurderinger
 - [x] Fagside try catch - divide by zero - Hvis databasen er tom
 - [ ] Fiks gapet i navbar
 - [ ] Sett opp størrelser på siden
@@ -34,7 +34,7 @@ Prototype for APP2000
 - [ ] Korrektur
 
 ### WF
-- [ ] Finn ut hva vi skal gjøre med mine fag
+- [x] Finn ut hva vi skal gjøre med mine fag, endret til sammenlign fag
 - [ ] Test ut nye farger på WF
 - [ ] Lage tooltip for elementer
 - [ ] Lag bedre design på start ny vurdering semester
@@ -45,7 +45,7 @@ Prototype for APP2000
 - [x] Lage en prosedyre som kopierer alt i vurderingshistorikk og legger det inn i en ny tabell (navn kan feks være et input parameter). deretter la prosedyren slette alt som er i vurderingshistorikk. Legg til den funksjonen i admin panel. 
 - [x] Legge til knapp for å lagre til xml,pdf (evt andre filformater) på SQL editoren i WF
 - [ ] Velkomstsskjerm, legge inn noe i området som nå er lilla og inneholder teksten "aner ikke hva som skal her"
-- [ ] Legge til flere diagramtyper på se statistikk
+- [x] Legge til flere diagramtyper på se statistikk
 - [ ] Finne løsning på avatar bilde (url i db?)
 - [ ] Passord hash!
   
@@ -57,11 +57,8 @@ Prototype for APP2000
 ### Rapport
 - [ ] Gantt for rapport
 - [ ] Oppdatere ER diagram (kan avvente til vi er sikre på at db strukturen er ferdig)
-- [ ] UML, sekvensdiagrammer for å vise hvordan feks vurdering fungerer. Viktig når vi skal vise fram for håvard/stine
-  
-  
-  
-
+- [ ] UML, sekvensdiagrammer for å vise hvordan feks vurdering fungerer. Viktig når vi skal vise fram for håvard/stine  
+***
 - [ ] Korrektur
   
   
@@ -69,7 +66,7 @@ Prototype for APP2000
 
 
 ### Forslag
-- [ ] ny Tabell pågående vurdering
+- [x] ny Tabell pågående vurdering
 - [ ] Legg til mulighet for å kunne ta vurdering for flere fag
 - [ ] Finn en bruk for threads/ multithreading
 
