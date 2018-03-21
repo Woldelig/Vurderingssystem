@@ -16,15 +16,18 @@ namespace adminPanel
     {
         private bool mouseDown;
         private Point lastLocation;
- 
+
         public MainForm()
         {
             InitializeComponent();
         }
+        ContextMenuStrip contextMenuStrip1 = new ContextMenuStrip();
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             HomeBtn.PerformClick();
+
+            contextMenuStrip1.ItemClicked += new ToolStripItemClickedEventHandler(contextMenuStrip1_ItemClicked);
         }
 
         private void LogoPanel_MouseDown(object sender, MouseEventArgs e)
@@ -73,7 +76,7 @@ namespace adminPanel
         {
             ButtonToggle(sender);//Sender knappen til metoden ButtonToggel for å kunne vise brukeren hvor hen befinner seg i applikasjonen
 
-            foreach(Control ctrl in ContainerPanel.Controls)
+            foreach (Control ctrl in ContainerPanel.Controls)
             {
                 ctrl.Dispose();//Fjerner alle de componentene fra tidligere valgt side
             }
@@ -81,7 +84,7 @@ namespace adminPanel
         }
 
         private void CoursesBtn_Click(object sender, EventArgs e)
-        { 
+        {
             ButtonToggle(sender);
 
             foreach (Control ctrl in ContainerPanel.Controls)
@@ -282,6 +285,34 @@ namespace adminPanel
         {
             SammenlignFlereFagBtn.ForeColor = Color.Black;
         }
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Sammenlign 2 fag")
+            {
+                foreach (Control ctrl in ContainerPanel.Controls)
+                {
+                    ctrl.Dispose();
+                }
+                ContainerPanel.Controls.Add(new MyCourses());
+            }
+            else if (e.ClickedItem.Text == "Sammenlign mer enn 2 fag")
+            {
+                foreach (Control ctrl in ContainerPanel.Controls)
+                {
+                    ctrl.Dispose();
+                }
+                ContainerPanel.Controls.Add(new SammenlignFlereFagkoder());
+            }
+        }
 
+        private void SammenlignFagForgrenningBtn_Click(object sender, EventArgs e)
+        {
+
+            contextMenuStrip1.Items.Clear();
+            contextMenuStrip1.Items.Add("Sammenlign 2 fag");
+            contextMenuStrip1.Items.Add("Sammenlign mer enn 2 fag");
+
+            contextMenuStrip1.Show(SammenlignFagForgrenningBtn, new Point(0, SammenlignFagForgrenningBtn.Height));
+        }
     }
 }

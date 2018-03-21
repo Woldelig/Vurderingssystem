@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ControllPanel = new System.Windows.Forms.Panel();
+            this.SammenlignFlereFagBtn = new System.Windows.Forms.Button();
             this.NyttSemesterBtn = new System.Windows.Forms.Button();
             this.ShutdownBtn = new System.Windows.Forms.Button();
             this.SqlBtn = new System.Windows.Forms.Button();
@@ -42,7 +43,7 @@
             this.ExitBtn = new System.Windows.Forms.Button();
             this.LogoLbl = new System.Windows.Forms.Label();
             this.ContainerPanel = new System.Windows.Forms.Panel();
-            this.SammenlignFlereFagBtn = new System.Windows.Forms.Button();
+            this.SammenlignFagForgrenningBtn = new System.Windows.Forms.Button();
             this.ControllPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             // ControllPanel
             // 
             this.ControllPanel.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ControllPanel.Controls.Add(this.SammenlignFagForgrenningBtn);
             this.ControllPanel.Controls.Add(this.SammenlignFlereFagBtn);
             this.ControllPanel.Controls.Add(this.NyttSemesterBtn);
             this.ControllPanel.Controls.Add(this.ShutdownBtn);
@@ -63,6 +65,24 @@
             this.ControllPanel.Name = "ControllPanel";
             this.ControllPanel.Size = new System.Drawing.Size(191, 627);
             this.ControllPanel.TabIndex = 0;
+            // 
+            // SammenlignFlereFagBtn
+            // 
+            this.SammenlignFlereFagBtn.BackColor = System.Drawing.Color.LightSlateGray;
+            this.SammenlignFlereFagBtn.FlatAppearance.BorderSize = 0;
+            this.SammenlignFlereFagBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.SammenlignFlereFagBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.SammenlignFlereFagBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SammenlignFlereFagBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
+            this.SammenlignFlereFagBtn.Location = new System.Drawing.Point(0, 318);
+            this.SammenlignFlereFagBtn.Name = "SammenlignFlereFagBtn";
+            this.SammenlignFlereFagBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.SammenlignFlereFagBtn.Size = new System.Drawing.Size(191, 52);
+            this.SammenlignFlereFagBtn.TabIndex = 5;
+            this.SammenlignFlereFagBtn.Text = "Sammenlign flere fag";
+            this.SammenlignFlereFagBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SammenlignFlereFagBtn.UseVisualStyleBackColor = false;
+            this.SammenlignFlereFagBtn.Click += new System.EventHandler(this.SammenlignFlereFagBtn_Click_1);
             // 
             // NyttSemesterBtn
             // 
@@ -284,23 +304,15 @@
             this.ContainerPanel.Size = new System.Drawing.Size(1008, 627);
             this.ContainerPanel.TabIndex = 2;
             // 
-            // SammenlignFlereFagBtn
+            // SammenlignFagForgrenningBtn
             // 
-            this.SammenlignFlereFagBtn.BackColor = System.Drawing.Color.LightSlateGray;
-            this.SammenlignFlereFagBtn.FlatAppearance.BorderSize = 0;
-            this.SammenlignFlereFagBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.SammenlignFlereFagBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.SammenlignFlereFagBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SammenlignFlereFagBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.SammenlignFlereFagBtn.Location = new System.Drawing.Point(0, 318);
-            this.SammenlignFlereFagBtn.Name = "SammenlignFlereFagBtn";
-            this.SammenlignFlereFagBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.SammenlignFlereFagBtn.Size = new System.Drawing.Size(191, 52);
-            this.SammenlignFlereFagBtn.TabIndex = 5;
-            this.SammenlignFlereFagBtn.Text = "Sammenlign flere fag";
-            this.SammenlignFlereFagBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SammenlignFlereFagBtn.UseVisualStyleBackColor = false;
-            this.SammenlignFlereFagBtn.Click += new System.EventHandler(this.SammenlignFlereFagBtn_Click_1);
+            this.SammenlignFagForgrenningBtn.Location = new System.Drawing.Point(44, 420);
+            this.SammenlignFagForgrenningBtn.Name = "SammenlignFagForgrenningBtn";
+            this.SammenlignFagForgrenningBtn.Size = new System.Drawing.Size(75, 23);
+            this.SammenlignFagForgrenningBtn.TabIndex = 6;
+            this.SammenlignFagForgrenningBtn.Text = "button1";
+            this.SammenlignFagForgrenningBtn.UseVisualStyleBackColor = true;
+            this.SammenlignFagForgrenningBtn.Click += new System.EventHandler(this.SammenlignFagForgrenningBtn_Click);
             // 
             // MainForm
             // 
@@ -340,5 +352,6 @@
         private System.Windows.Forms.Button LogOutBtn;
         private System.Windows.Forms.Button NyttSemesterBtn;
         private System.Windows.Forms.Button SammenlignFlereFagBtn;
+        private System.Windows.Forms.Button SammenlignFagForgrenningBtn;
     }
 }
