@@ -303,16 +303,21 @@ namespace adminPanel
                 }
                 ContainerPanel.Controls.Add(new SammenlignFlereFagkoder());
             }
-        }
+        }       
 
-        private void SammenlignFagForgrenningBtn_Click(object sender, EventArgs e)
+        private void SammenlignFagForgrenningBtn_Click_1(object sender, EventArgs e)
         {
-
             contextMenuStrip1.Items.Clear();
             contextMenuStrip1.Items.Add("Sammenlign 2 fag");
             contextMenuStrip1.Items.Add("Sammenlign mer enn 2 fag");
 
             contextMenuStrip1.Show(SammenlignFagForgrenningBtn, new Point(0, SammenlignFagForgrenningBtn.Height));
+            contextMenuStrip1.BackColor = Color.LightSlateGray;
+            contextMenuStrip1.DefaultDropDownDirection = ToolStripDropDownDirection.Right;
+        }
+        private void contextMenuStrip1_MouseEnter(object sender, EventArgs e)
+        {
+            ForeColor = Color.FromArgb(70, 130, 180);
         }
     }
 }
