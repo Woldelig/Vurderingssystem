@@ -16,11 +16,9 @@ namespace adminPanel
         public nyBrukerForm()
         {
             InitializeComponent();
-            NyBrukerFeilmelding.Hide();
+            Feilmelding.Hide();
             nyBrukerLogginn.Hide();
             opprettetLbl.Hide();
-            FeltFeilmeldingLbl.Hide();
-            passordFeilmeldingLbl.Hide();
         }
 
         private void AvsluttBtn_Click(object sender, EventArgs e)
@@ -33,26 +31,41 @@ namespace adminPanel
             Database db = new Database();
             if (Brukernavn.Text == "" || fornavn.Text == "" || etternavn.Text == "" || Passord.Text == "" || Passord2.Text == "")
             {
-                FeltFeilmeldingLbl.Show();
+                foreach (Control c in Controls)
+                {
+                    if (c is TextBox)
+                    {
+                        if (c.Text == "")
+                        {
+                            c.BackColor = Color.Red;
+                            Feilmelding.Text = "Alle felt må fylles ut!";
+                            Feilmelding.Show();
+                        }
+                    }
+                }
             }
             else if (Passord.Text != Passord2.Text)
             {
-                passordFeilmeldingLbl.Show();
+                Feilmelding.Text = "Passordene må være like!";
+                Feilmelding.Show();
+                Passord2.BackColor = Color.Red;
             }
             else
             {
                 try
                 {
-                    FeltFeilmeldingLbl.Hide();
-                    passordFeilmeldingLbl.Hide();
+                    Feilmelding.Hide();
                     db.OpenConnection();
                     string query = "SELECT bruker FROM formlogin WHERE bruker = @Brukernavn;";
                     var mySqlCommand = db.SqlCommand(query);
                     mySqlCommand.Parameters.AddWithValue("@Brukernavn", Brukernavn.Text);
                     MySqlDataReader reader = mySqlCommand.ExecuteReader();
+
                     if (reader.HasRows)
                     {
-                        NyBrukerFeilmelding.Show();
+                        Feilmelding.Text = "Brukeren finnes allerede!";
+                        Feilmelding.Show();
+                        Brukernavn.BackColor = Color.Red;
                         db.CloseConnection();
                     }
                     else
@@ -76,6 +89,24 @@ namespace adminPanel
                             Console.WriteLine("Noe gikk galt! Kunne ikke legge til data i databasen!");
                         }
                         db.CloseConnection();
+
+                        nyBrukerLbl.Hide();
+                        BrukernavnLbl.Hide();
+                        Brukernavn.Hide();
+                        fornavn.Hide();
+                        fornavnLbl.Hide();
+                        etternavn.Hide();
+                        etternavnLbl.Hide();
+                        nyttPassordLbl.Hide();
+                        Passord.Hide();
+                        nyttPassordLbl2.Hide();
+                        Passord2.Hide();
+                        LagBrukerBtn.Hide();
+                        AvsluttBtn.Hide();
+                        Feilmelding.Hide();
+
+                        nyBrukerLogginn.Show();
+                        opprettetLbl.Show();
                     }
                 }
                 catch (MySqlException DBException)
@@ -84,23 +115,6 @@ namespace adminPanel
                     //Under testing og debugging skriver vi til konsollen.
                     //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
                 }
-                nyBrukerLbl.Hide();
-                BrukernavnLbl.Hide();
-                Brukernavn.Hide();
-                fornavn.Hide();
-                fornavnLbl.Hide();
-                etternavn.Hide();
-                etternavnLbl.Hide();
-                nyttPassordLbl.Hide();
-                Passord.Hide();
-                nyttPassordLbl2.Hide();
-                Passord2.Hide();
-                LagBrukerBtn.Hide();
-                AvsluttBtn.Hide();
-                NyBrukerFeilmelding.Hide();
-
-                nyBrukerLogginn.Show();
-                opprettetLbl.Show();
             }
         }
 
@@ -108,6 +122,36 @@ namespace adminPanel
         {
             UserInfo.Username = Brukernavn.Text;
             this.Dispose();
+        }
+
+        private void nyBrukerForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Passord_MouseDown(object sender, MouseEventArgs e)
+        {
+            Passord.BackColor = SystemColors.Window;
+        }
+
+        private void Passord2_MouseDown(object sender, MouseEventArgs e)
+        {
+            Passord2.BackColor = SystemColors.Window;
+        }
+
+        private void Brukernavn_MouseDown(object sender, MouseEventArgs e)
+        {
+            Brukernavn.BackColor = SystemColors.Window;
+        }
+
+        private void fornavn_MouseDown(object sender, MouseEventArgs e)
+        {
+            fornavn.BackColor = SystemColors.Window;
+        }
+
+        private void etternavn_MouseDown(object sender, MouseEventArgs e)
+        {
+            etternavn.BackColor = SystemColors.Window;
         }
     }
 }
