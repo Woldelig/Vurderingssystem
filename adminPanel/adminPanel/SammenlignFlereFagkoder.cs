@@ -58,12 +58,14 @@ namespace adminPanel
 
         private void Fra1Til2Btn_Click(object sender, EventArgs e)
         {
+            //Kaller på en metode som flytter et listeboks item fra fagkodelistebx til FagkodeSammenlignesListebox
             FlyttListeboksItems(FagkodeListbox, FagkodeSammenlignesListebox);
         }
 
 
         private void Fra2Til1Btn_Click(object sender, EventArgs e)
         {
+            //Kaller på en metode som flytter et listeboks item fra FagkodeSammenlignesListebox til fagkodelitebx
             FlyttListeboksItems(FagkodeSammenlignesListebox, FagkodeListbox);
         }
         private void FlyttListeboksItems(ListBox kilde, ListBox destinasjon)
@@ -115,6 +117,10 @@ namespace adminPanel
 
         private void SpmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (SpmListeboks.SelectedItem == null)
+            {
+                return;
+            }
             try
             {
                 printBtn.Show();

@@ -24,7 +24,7 @@ namespace adminPanel
         private void Schema_Load(object sender, EventArgs e)
         {
             lagreSkjemaBtn.Hide();
-            skjemaListeboks.Hide();
+            SkjemaListeboks.Hide();
             GjemController(); //Gjemmer unna alle textbokser og labels
         }
 
@@ -127,38 +127,44 @@ namespace adminPanel
 
         private void EndreSkjemaBtn_Click(object sender, EventArgs e)
         {
-            skjemaListeboks.Items.Clear();
+            SkjemaListeboks.Items.Clear();
             nyttSkjema = false;
             listboksLbl.Show();
-            skjemaListeboks.Show();
+            SkjemaListeboks.Show();
             String query = "SELECT fagkode FROM vurderingsskjema;";
             db.OpenConnection();
             var cmd = db.SqlCommand(query);
             MySqlDataReader leser = cmd.ExecuteReader();
             while (leser.Read())
             {
-                skjemaListeboks.Items.Add(leser["fagkode"].ToString());
+                SkjemaListeboks.Items.Add(leser["fagkode"].ToString());
 
                 //Linjen under sjekkerom standard skjemaet kommer inn i listeboksen. Og fjerner den hvis den kommer der
-                if (skjemaListeboks.Items.Contains("standard"))
+                if (SkjemaListeboks.Items.Contains("standard"))
                 {
-                    skjemaListeboks.Items.Remove("standard");
+                    SkjemaListeboks.Items.Remove("standard");
                 }
             }
             db.CloseConnection();
         }
 
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void SkjemaListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (SkjemaListeboks.SelectedItem == null)
+            {
+                return;
+            }
+
+
             lagreSkjemaBtn.Show();
             HvisController();
             listboksLbl.Hide();
-            skjemaListeboks.Hide();
+            SkjemaListeboks.Hide();
             try
             {
                 String skjemaIdQuery = "SELECT skjemaid FROM vurderingsskjema WHERE fagkode = @Fagkode;";
                 var cmdSkjemaId = db.SqlCommand(skjemaIdQuery);
-                cmdSkjemaId.Parameters.AddWithValue("@Fagkode", skjemaListeboks.SelectedItem.ToString());
+                cmdSkjemaId.Parameters.AddWithValue("@Fagkode", SkjemaListeboks.SelectedItem.ToString());
                 db.OpenConnection();
                 MySqlDataReader skjemaIdleser = cmdSkjemaId.ExecuteReader();
                 while (skjemaIdleser.Read())
@@ -171,7 +177,7 @@ namespace adminPanel
 
                 String query = "SELECT fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE fagkode = @Fagkode";
                 var cmd = db.SqlCommand(query);
-                cmd.Parameters.AddWithValue("@Fagkode", skjemaListeboks.SelectedItem.ToString());
+                cmd.Parameters.AddWithValue("@Fagkode", SkjemaListeboks.SelectedItem.ToString());
                 db.OpenConnection();
                 MySqlDataReader leser = cmd.ExecuteReader();
                 Console.WriteLine(valgtSkjemaId);
