@@ -54,7 +54,7 @@
             this.resultatLbl = new System.Windows.Forms.Label();
             this.lagNyttSkjemaBtn = new System.Windows.Forms.Button();
             this.endreSkjemaBtn = new System.Windows.Forms.Button();
-            this.skjemaListeboks = new System.Windows.Forms.ListBox();
+            this.SkjemaListeboks = new System.Windows.Forms.ListBox();
             this.listboksLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -287,15 +287,15 @@
             this.endreSkjemaBtn.UseVisualStyleBackColor = false;
             this.endreSkjemaBtn.Click += new System.EventHandler(this.EndreSkjemaBtn_Click);
             // 
-            // skjemaListeboks
+            // SkjemaListeboks
             // 
-            this.skjemaListeboks.FormattingEnabled = true;
-            this.skjemaListeboks.Location = new System.Drawing.Point(43, 202);
-            this.skjemaListeboks.Margin = new System.Windows.Forms.Padding(2);
-            this.skjemaListeboks.Name = "skjemaListeboks";
-            this.skjemaListeboks.Size = new System.Drawing.Size(238, 69);
-            this.skjemaListeboks.TabIndex = 29;
-            this.skjemaListeboks.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
+            this.SkjemaListeboks.FormattingEnabled = true;
+            this.SkjemaListeboks.Location = new System.Drawing.Point(43, 202);
+            this.SkjemaListeboks.Margin = new System.Windows.Forms.Padding(2);
+            this.SkjemaListeboks.Name = "SkjemaListeboks";
+            this.SkjemaListeboks.Size = new System.Drawing.Size(238, 69);
+            this.SkjemaListeboks.TabIndex = 29;
+            this.SkjemaListeboks.SelectedIndexChanged += new System.EventHandler(this.SkjemaListeboks_SelectedIndexChanged);
             // 
             // listboksLbl
             // 
@@ -312,7 +312,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.listboksLbl);
-            this.Controls.Add(this.skjemaListeboks);
+            this.Controls.Add(this.SkjemaListeboks);
             this.Controls.Add(this.endreSkjemaBtn);
             this.Controls.Add(this.lagNyttSkjemaBtn);
             this.Controls.Add(this.resultatLbl);
@@ -374,7 +374,7 @@
         private System.Windows.Forms.Label resultatLbl;
         private System.Windows.Forms.Button lagNyttSkjemaBtn;
         private System.Windows.Forms.Button endreSkjemaBtn;
-        private System.Windows.Forms.ListBox skjemaListeboks;
+        private System.Windows.Forms.ListBox SkjemaListeboks;
         private System.Windows.Forms.Label listboksLbl;
     }
 }

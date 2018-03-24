@@ -53,9 +53,19 @@ namespace adminPanel
 
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            spmListeboks.Items.Clear();//Fjerner elementer i listeboks. Må gjøres hvis klassekode byttes
-            for (int i = 1; i < 11; i++)//Populerer listeboksen. Øk loopen for flere spørsmål.
-            {                           //Hvis den økes må det lages flere prosedyrer i db og legges til i switchen under
+            //Denne sjekken gjør at brukeren må trykke på en verdi for å få programmet til å fortsette
+            //hvis denne sjekken ikke er der kan han bare trykke på det hvite området
+            if (fagkodeListeboks.SelectedItem == null)
+            {
+                return;
+            }
+
+            //Fjerner elementer i listeboks.Må gjøres hvis klassekode byttes
+            //Populerer listeboksen. Øk loopen for flere spørsmål.
+            //Hvis den økes må det lages flere prosedyrer i db og legges til i switchen under
+            spmListeboks.Items.Clear();
+            for (int i = 1; i < 11; i++)
+            {
                 spmListeboks.Items.Add("Spørsmål " + i);
             }
             spmListeboks.Show();
@@ -64,10 +74,16 @@ namespace adminPanel
 
         private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            diagramListeboks.Items.Clear(); //Fjerner elementer i listeboksen
+            if (spmListeboks.SelectedItem == null)
+            {
+                return;
+            }
+            //Fjerner elementer i listeboksen
+            diagramListeboks.Items.Clear();
             diagramListeboks.Show();
             diagramLbl.Show();
-            String[] diagramTyper = { "Kakediagram", "Stolpediagram", "Linjediagram", "Radardiagram" }; //Legg til flere diagrammer her når vi er i gang
+            //Arrayet her inneholder de typer diagram vi kan vise frem
+            String[] diagramTyper = { "Kakediagram", "Stolpediagram", "Linjediagram", "Radardiagram" };
 
             foreach (String diagram in diagramTyper)
             {
@@ -77,18 +93,25 @@ namespace adminPanel
 
         private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (diagramListeboks.SelectedItem == null)
+            {
+                return;
+            }
             try
             {
                 clearListeboxBtn.Show();
                 printBtn.Show();
                 lagreChartBtn.Show();
 
-                var cmd = db.SqlCommand(""); //Lager cmd objektet, sender tomstreng så vi får laget objektet
+                //Lager cmd objektet, sender tomstreng så vi får laget objektet
+                var cmd = db.SqlCommand("");
 
-                switch (spmListeboks.SelectedIndex) //Her legger vi inn hvilken prosedyre vi kaller på
+                //Her legger vi inn hvilken prosedyre vi kaller på
+                switch (spmListeboks.SelectedIndex)
                 {
                     case 0:
-                        cmd.CommandText = "hent_spm1_verdier"; //Legger til commandtext i cmd objektet
+                        //Legger til commandtext i cmd objektet
+                        cmd.CommandText = "hent_spm1_verdier"; 
                         break;
 
                     case 1:
@@ -130,9 +153,11 @@ namespace adminPanel
                     default:
                         break;
                 }
+                //Setter at cmd sender en stored procedure - prosedyre
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.CommandType = CommandType.StoredProcedure; //Setter at cmd sender en stored procedure - prosedyre
-                String fagkode = fagkodeListeboks.SelectedItem.ToString(); //Valgt fagkode blir hentet ut og plassert som inn parameter
+                //Valgt fagkode blir hentet ut og plassert som inn parameter
+                String fagkode = fagkodeListeboks.SelectedItem.ToString();
                 cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
                 cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
@@ -180,9 +205,13 @@ namespace adminPanel
                             chart1.Series.Add(seriesname);
                             chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
                             chart1.Legends.Add("Legende");
-                            chart1.Legends[0].Docking = Docking.Bottom; //Legger boksen på bunnen
-                            chart1.Legends[0].Alignment = StringAlignment.Center;   //midtstiller boksen og strings i den
-                            chart1.Legends[0].BorderColor = Color.Black;    //setter sort farge rundt
+
+                            //Legger boksen på bunnen
+                            chart1.Legends[0].Docking = Docking.Bottom;
+
+                            //midtstiller boksen og strings i den
+                            chart1.Legends[0].Alignment = StringAlignment.Center;
+                            chart1.Legends[0].BorderColor = Color.Black;
                             diagramSkalHaFarger = true;
                             break;
 
@@ -198,7 +227,9 @@ namespace adminPanel
                             chart1.Series.Clear();
                             chart1.Legends.Clear();
                             chart1.Series.Add(seriesname);
-                            chart1.Series[seriesname].BorderWidth = 3; //Setter tykkelsen på linjen
+
+                            //Setter tykkelsen på linjen
+                            chart1.Series[seriesname].BorderWidth = 3;
                             chart1.Series[seriesname].ChartType = SeriesChartType.Line;
                             break;
 
