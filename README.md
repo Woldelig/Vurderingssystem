@@ -69,5 +69,5 @@ Prototype for APP2000
 ### Forslag
 - [x] ny Tabell pågående vurdering
 - [ ] Legg til mulighet for å kunne ta vurdering for flere fag
-- [ ] Finn en bruk for threads/ multithreading
+- [x] Finn en bruk for threads/ multithreading -- Brukes i loginForm.cs
 
