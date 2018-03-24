@@ -48,7 +48,7 @@ Prototype for APP2000
 - [ ] Velkomstsskjerm, legge inn noe i området som nå er lilla og inneholder teksten "aner ikke hva som skal her"
 - [x] Legge til flere diagramtyper på se statistikk
 - [ ] Finne løsning på avatar bilde (url i db?)
-- [ ] Passord hash!
+- [x] Passord hash!
   
   ***
 - [ ] Feilsøking/validering
