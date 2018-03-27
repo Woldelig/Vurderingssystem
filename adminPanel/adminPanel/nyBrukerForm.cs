@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace adminPanel
 {
     public partial class nyBrukerForm : Form
@@ -19,6 +20,14 @@ namespace adminPanel
             Feilmelding.Hide();
             nyBrukerLogginn.Hide();
             opprettetLbl.Hide();
+            if (FormPosition.Pos == new Point(0,0))
+            {
+               this.StartPosition = FormStartPosition.CenterScreen;
+            } else
+            {
+                this.Location = FormPosition.Pos;
+            }
+            
         }
 
         private void AvsluttBtn_Click(object sender, EventArgs e)
@@ -122,11 +131,6 @@ namespace adminPanel
         {
             UserInfo.Username = Brukernavn.Text;
             this.Dispose();
-        }
-
-        private void nyBrukerForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void Passord_MouseDown(object sender, MouseEventArgs e)

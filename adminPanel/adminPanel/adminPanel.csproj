@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database.cs" />
+    <Compile Include="FormPosition.cs" />
     <Compile Include="Hasher.cs" />
     <Compile Include="Home.cs">
       <SubType>UserControl</SubType>

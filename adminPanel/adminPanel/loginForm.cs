@@ -18,6 +18,7 @@ namespace adminPanel
         private bool mouseDown;
         private Point lastLocation;
 
+
         public LoginForm()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace adminPanel
             Password.Text = "Passord";
             Username.ForeColor = Color.FromArgb(52, 52, 52);
             Password.ForeColor = Color.FromArgb(52, 52, 52);
+            //FormPosition.Pos = this.Location;
         }
 
         private void Login()
@@ -147,6 +149,7 @@ namespace adminPanel
             {
                 //Kunne flytte på vinduet ved å klikke og dra i LoginBoarder
                 this.Location = new Point((this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+                FormPosition.Pos = this.Location;
                 this.Update();
             }
         }
@@ -211,7 +214,14 @@ namespace adminPanel
         {
             ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().nyThread);
             Thread thread = new Thread(nyBrukerThread);
-            thread.Start();
+            //Sjekker om det allerede finnes en thread
+            //FUNKER IKKE HELT ENDAAA
+            if (!thread.IsAlive)
+            {
+                //Hvis ikke starter vi den
+                thread.Start();
+            }
+
         }
         public void nyThread()
         {
