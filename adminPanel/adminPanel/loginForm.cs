@@ -18,7 +18,6 @@ namespace adminPanel
         private bool mouseDown;
         private Point lastLocation;
 
-
         public LoginForm()
         {
             InitializeComponent();
@@ -27,7 +26,6 @@ namespace adminPanel
             Password.Text = "Passord";
             Username.ForeColor = Color.FromArgb(52, 52, 52);
             Password.ForeColor = Color.FromArgb(52, 52, 52);
-            //FormPosition.Pos = this.Location;
         }
 
         private void Login()
@@ -212,17 +210,31 @@ namespace adminPanel
         //Bruker Multithreading
         private void nyBrukerBtn_Click(object sender, EventArgs e)
         {
-            ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().nyThread);
-            Thread thread = new Thread(nyBrukerThread);
-            //Sjekker om det allerede finnes en thread
-            //FUNKER IKKE HELT ENDAAA
-            if (!thread.IsAlive)
+            //Sjekker om det allerede finnes en nyBrukerForm
+            //Hvis ikke starter vi en ny thread
+            if (!SjekkForm())
             {
-                //Hvis ikke starter vi den
-                thread.Start();
+                new Multithread().StartThread();
             }
-
         }
+
+        //En sjekker som går igjennom alle åpne form
+        private bool SjekkForm()
+        {
+            //Går igjennom alle åpne forms
+            foreach (Form form in Application.OpenForms)
+            {
+                //Hvis nyBrukerForm er en av disse betyr det at den er åpen
+                if (typeof(nyBrukerForm).Name == form.Name)
+                {
+                    return true;
+                }
+            }
+            //Returnerer false om den ikke finner formen
+            return false;
+        }
+
+        //Kjører nyBrukerForm
         public void nyThread()
         {
             Application.Run(new nyBrukerForm());

@@ -32,6 +32,8 @@ namespace adminPanel
 
         private void AvsluttBtn_Click(object sender, EventArgs e)
         {
+            //Stopper threaden og nyBrukerForm
+            new Multithread().StopThread();
             this.Dispose();
         }
 

@@ -79,6 +79,7 @@
     <Compile Include="MalForm.Designer.cs">
       <DependentUpon>MalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Multithread.cs" />
     <Compile Include="MyCourses.cs">
       <SubType>UserControl</SubType>
     </Compile>
