@@ -251,6 +251,8 @@ namespace adminPanel
                     chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
                     chart1.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
                     chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
+
+                    
                     if (diagramSkalHaFarger)
                     {
                         //Under blir det satt at det vises prosenter i figuren i tillegg til at farger velges
@@ -260,6 +262,13 @@ namespace adminPanel
                         chart1.Series[seriesname].Points[2].Color = Color.LightBlue;
                         chart1.Series[seriesname].Points[3].Color = Color.Peru;
                         chart1.Series[seriesname].Points[4].Color = Color.Yellow;
+
+                        chart1.Series[seriesname].Points[0].LegendText = "1 Stjerne";
+                        chart1.Series[seriesname].Points[1].LegendText = "2 Stjerner";
+                        chart1.Series[seriesname].Points[2].LegendText = "3 Stjerner";
+                        chart1.Series[seriesname].Points[3].LegendText = "4 Stjerner";
+                        chart1.Series[seriesname].Points[4].LegendText = "5 Stjerner";
+
                     }
                     chart1.Show();
                 }
