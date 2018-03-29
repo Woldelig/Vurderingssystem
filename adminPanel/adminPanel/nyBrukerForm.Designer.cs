@@ -250,9 +250,8 @@
             this.Controls.Add(this.Brukernavn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "nyBrukerForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "nyBrukerForm";
-            this.Load += new System.EventHandler(this.nyBrukerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

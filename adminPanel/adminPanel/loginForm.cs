@@ -147,6 +147,7 @@ namespace adminPanel
             {
                 //Kunne flytte på vinduet ved å klikke og dra i LoginBoarder
                 this.Location = new Point((this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+                FormPosition.Pos = this.Location;
                 this.Update();
             }
         }
@@ -209,10 +210,31 @@ namespace adminPanel
         //Bruker Multithreading
         private void nyBrukerBtn_Click(object sender, EventArgs e)
         {
-            ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().nyThread);
-            Thread thread = new Thread(nyBrukerThread);
-            thread.Start();
+            //Sjekker om det allerede finnes en nyBrukerForm
+            //Hvis ikke starter vi en ny thread
+            if (!SjekkForm())
+            {
+                new Multithread().StartThread();
+            }
         }
+
+        //En sjekker som går igjennom alle åpne form
+        private bool SjekkForm()
+        {
+            //Går igjennom alle åpne forms
+            foreach (Form form in Application.OpenForms)
+            {
+                //Hvis nyBrukerForm er en av disse betyr det at den er åpen
+                if (typeof(nyBrukerForm).Name == form.Name)
+                {
+                    return true;
+                }
+            }
+            //Returnerer false om den ikke finner formen
+            return false;
+        }
+
+        //Kjører nyBrukerForm
         public void nyThread()
         {
             Application.Run(new nyBrukerForm());
