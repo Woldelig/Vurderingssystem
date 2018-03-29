@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Web.UI.DataVisualization.Charting;
+using System.Drawing;
 
 namespace VMS
 {
@@ -126,12 +127,25 @@ namespace VMS
                 Title tittel = diagram.Titles.Add(diagramTittel);
                 tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold); //Her setter vi skrifttype ol.
 
-                diagram.Series[seriesname].Points.AddXY("Svært misfornøyd", prosedyreSvarSpm1[1]);
-                diagram.Series[seriesname].Points.AddXY("Litt misfornøyd", prosedyreSvarSpm1[2]);
-                diagram.Series[seriesname].Points.AddXY("Hverken/eller", prosedyreSvarSpm1[3]);
-                diagram.Series[seriesname].Points.AddXY("Litt fornøyd", prosedyreSvarSpm1[4]);
-                diagram.Series[seriesname].Points.AddXY("Meget fornøyd", prosedyreSvarSpm1[5]);
-                //Teksten er den som vises på selve diagrammet
+                diagram.Legends.Add("Legende");
+                diagram.Legends[0].Alignment = StringAlignment.Center;
+                diagram.Legends[0].BorderColor = Color.Black;
+
+                diagram.Series[seriesname].Label = "#PERCENT{P0}";
+                diagram.Series[seriesname].Points.AddXY(0, prosedyreSvarSpm1[1]);
+                diagram.Series[seriesname].Points.AddXY(1, prosedyreSvarSpm1[2]);
+                diagram.Series[seriesname].Points.AddXY(2, prosedyreSvarSpm1[3]);
+                diagram.Series[seriesname].Points.AddXY(3, prosedyreSvarSpm1[4]);
+                diagram.Series[seriesname].Points.AddXY(4, prosedyreSvarSpm1[5]);
+                
+                //Teksten under er den som kommer opp i legend.
+                diagram.Series[seriesname].Points[0].LegendText = "Svært misfornøyd";
+                diagram.Series[seriesname].Points[1].LegendText = "Litt misfornøyd";
+                diagram.Series[seriesname].Points[2].LegendText = "Hverken/eller";
+                diagram.Series[seriesname].Points[3].LegendText = "Litt fornøyd";
+                diagram.Series[seriesname].Points[4].LegendText = "Meget fornøyd";
+
+                
             }
             else
             {

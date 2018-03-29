@@ -70,7 +70,7 @@
     <br />
     <br />
     <br />
-        <asp:Chart ID="diagram" runat="server" Height="400px" Width="400px">
+        <asp:Chart ID="diagram" runat="server" Height="500px" Width="500px">
             <Series>
                 <asp:Series ChartType="Pie" Name="Series1">
                 </asp:Series>
