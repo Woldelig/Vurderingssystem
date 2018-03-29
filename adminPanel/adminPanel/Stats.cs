@@ -263,6 +263,8 @@ namespace adminPanel
                         chart1.Series[seriesname].Points[3].Color = Color.Peru;
                         chart1.Series[seriesname].Points[4].Color = Color.Yellow;
 
+
+                        //Her legges overskrifter manuelt til i legend, dette må gjøres hvis vi skal ha prosenter
                         chart1.Series[seriesname].Points[0].LegendText = "1 Stjerne";
                         chart1.Series[seriesname].Points[1].LegendText = "2 Stjerner";
                         chart1.Series[seriesname].Points[2].LegendText = "3 Stjerner";
