@@ -30,10 +30,11 @@ namespace VMS
             }
             db.CloseConnection();
 
-            //String [] FagkoderArray = fagkoder.ToArray();
-            //Label1.Text = FagkoderArray[0];
-
-
+            /*
+             * Clienscriptmanager gjør at vi kan lage et script server side,
+             * dette gjør det enkelt å bruke variabler på kryss av C# og js.
+             * RegisterStartupScript gjør at scriptet vil bli startet mens siden blir åpnet
+             */
             ClientScriptManager cs = Page.ClientScript;
             StringBuilder sb = new StringBuilder();
             sb.Append("<script>");
@@ -46,8 +47,6 @@ namespace VMS
             sb.Append("$('#SearchTxt').autocomplete({ source: availableTags});});");
             sb.Append("</script>");
             cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
-
-
 
             try
             {
