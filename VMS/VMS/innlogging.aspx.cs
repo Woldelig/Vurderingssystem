@@ -15,8 +15,6 @@ namespace VMS
             {
                 StudentID.Text = "00000";
             }
-            Session["logginn"] = 0;
-
             this.Master.loggutBtnShow = false;
         }
         
@@ -32,8 +30,6 @@ namespace VMS
             }
             else
             {
-                //Setter innlogging til 1
-                Session["logginn"] = 1;
                 //Setter studentID inn i sessionvariabelen
                 Session["studentID"] = parsedStudID;
                 //Sender brukeren videre til velkomstsiden

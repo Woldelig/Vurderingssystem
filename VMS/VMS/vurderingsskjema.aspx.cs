@@ -20,7 +20,7 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["logginn"] == null || Session["studentID"] == null)
+            if (Session["studentID"] == null)
             {
                 Response.Redirect("Default.aspx", true);
             }
