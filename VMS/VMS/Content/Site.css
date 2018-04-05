@@ -11,11 +11,11 @@ body {
     padding-right: 15px;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
+/* Set widths on the form SearchTxts since otherwise they're 100% wide */
+SearchTxt,
 select,
 textarea {
-   /* max-width: 280px;*/
+    /* max-width: 280px;*/
 }
 
 
@@ -44,6 +44,27 @@ textarea {
     background-color: lightgrey;
 }
 /*Fjerner js melding som har ekstra hjelpetekst for autocomplete*/
+
 .ui-helper-hidden-accessible {
     display: none;
 }
+/*Border radius må være der!. Eller blir søkefeltet merkelig pga navbar. Padding gjør at navbar ikke overlappet med resultater*/
+.ui-menu {
+    position: relative;
+    list-style: none;
+    background-color: white;
+    border-radius: 18px;
+    width: 214px;
+    font-size: 18px;
+    padding: 15px 0;
+    border: solid 1px grey;
+}
+
+    .ui-menu .ui-menu-item {
+        padding-left: 15px;
+        padding-right: 10px;
+    }
+
+        .ui-menu .ui-menu-item:hover {
+            background-color: darkgrey;
+        }
