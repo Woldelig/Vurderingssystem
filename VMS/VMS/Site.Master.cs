@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 namespace VMS
 {
@@ -16,16 +19,34 @@ namespace VMS
             Database db = new Database();
             String query = "SELECT fagkode FROM fag";
             var cmd = db.SqlCommand(query);
-            db.OpenConnection();
-            MySqlDataReader leser = cmd.ExecuteReader();
             List<String> fagkoder = new List<string>();
-            while (leser.Read())
+            db.OpenConnection();
+            using (MySqlDataReader leser = cmd.ExecuteReader())
             {
-                fagkoder.Add(leser["fagkode"].ToString());
+                while (leser.Read())
+                {
+                    fagkoder.Add(leser["fagkode"].ToString());
+                }
             }
             db.CloseConnection();
-            Label1.Text = fagkoder[0];
 
+            //String [] FagkoderArray = fagkoder.ToArray();
+            //Label1.Text = FagkoderArray[0];
+
+
+            ClientScriptManager cs = Page.ClientScript;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<script>");
+            sb.Append("$(function () {");
+            sb.Append("var availableTags = new Array;");
+            foreach (String fagkode in fagkoder)
+            {
+                sb.Append("availableTags.push('" + fagkode + "');");
+            }
+            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags });});");
+            sb.Append("</script>");
+
+            cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
 
 
 
