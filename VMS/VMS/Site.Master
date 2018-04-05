@@ -58,9 +58,9 @@
                     </ul>
                     <div class="navbar-form">
                         <div class="input-group col-xs-4">
-                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="SearchTxt" runat="server" AutoCompleteType="Search"></asp:TextBox>
                             <div class="input-group-btn">
-                                <asp:Button CssClass="btn btn-default" ID="Button1" runat="server" Text="Søk" />
+                                <asp:Button CssClass="btn btn-default" ID="SearchBtn" runat="server" Text="Søk" />
                             </div>
                         </div>
                     </div>
@@ -74,6 +74,7 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Vurderingssystem</p>

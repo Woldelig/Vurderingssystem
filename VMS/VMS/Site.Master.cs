@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,22 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Database db = new Database();
+            String query = "SELECT fagkode FROM fag";
+            var cmd = db.SqlCommand(query);
+            db.OpenConnection();
+            MySqlDataReader leser = cmd.ExecuteReader();
+            List<String> fagkoder = new List<string>();
+            while (leser.Read())
+            {
+                fagkoder.Add(leser["fagkode"].ToString());
+            }
+            db.CloseConnection();
+            Label1.Text = fagkoder[0];
+
+
+
+
             try
             {
                 if (!SjekkInnlogging())
