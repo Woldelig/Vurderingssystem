@@ -62,7 +62,7 @@
                         <div class="input-group col-xs-4">
                             <asp:TextBox CssClass="form-control" ID="SearchTxt" runat="server"></asp:TextBox>
                             <div class="input-group-btn">
-                                <asp:Button CssClass="btn btn-default" ID="SearchBtn" runat="server" Text="Søk" />
+                                <asp:Button CssClass="btn btn-default" ID="SearchBtn" runat="server" Text="Søk" OnClick="SearchBtn_Click" />
                             </div>
                         </div>
                     </div>

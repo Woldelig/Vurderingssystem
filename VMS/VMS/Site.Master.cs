@@ -13,13 +13,13 @@ namespace VMS
 {
     public partial class SiteMaster : MasterPage
     {
+        List<String> fagkoder = new List<string>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             Database db = new Database();
             String query = "SELECT fagkode FROM fag";
             var cmd = db.SqlCommand(query);
-            List<String> fagkoder = new List<string>();
             db.OpenConnection();
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
@@ -110,6 +110,19 @@ namespace VMS
             } else if(loggutBtn.Text == "Logg inn")
             {
                 Response.Redirect("velkomstside.aspx", true);
+            }
+        }
+
+        protected void SearchBtn_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(SearchTxt.Text))
+            {
+                return;
+            }
+            else if (fagkoder.Contains(SearchTxt.Text))
+            {
+                String url = "fagside.aspx?"+SearchTxt.Text;
+                Response.Redirect(url, true);
             }
         }
     }
