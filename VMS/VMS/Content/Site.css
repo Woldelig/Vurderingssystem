@@ -43,3 +43,7 @@ textarea {
     border-radius: 5px;
     background-color: lightgrey;
 }
+/*Fjerner js melding som har ekstra hjelpetekst for autocomplete*/
+.ui-helper-hidden-accessible {
+    display: none;
+}

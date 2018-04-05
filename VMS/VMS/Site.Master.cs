@@ -43,9 +43,8 @@ namespace VMS
             {
                 sb.Append("availableTags.push('" + fagkode + "');");
             }
-            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags });});");
+            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags});});");
             sb.Append("</script>");
-
             cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
 
 
