@@ -1,55 +1,62 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+
 
 namespace VMS
 {
     public partial class SiteMaster : MasterPage
     {
+        List<String> fagkoder = new List<string>();
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            //Hvis man ikke er logget inn blir knapper skjult
+            if (Session["studentID"] == null)
             {
-                if (!SjekkInnlogging())
-                {
-                    minefag.Visible = false;
-                    minevurderinger.Visible = false;
-                    loggutBtn.Text = "Logg inn";
-
-                }
-
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-        private Boolean SjekkInnlogging()
-        {
-            if((int)Session["logginn"] == 1)
-            {
-                return true;
+                minefag.Style["visibility"] = "hidden";
+                minevurderinger.Style["visibility"] = "hidden";
+                loggutBtn.Style["visibility"] = "hidden";
             }
             else
             {
-                return false;
+                LoggInnNavbarBtn.Style["visibility"] = "hidden";
             }
-        }
 
-        public string loggutBtnText
-        {
-            get
+            Database db = new Database();
+            String query = "SELECT fagkode FROM fag";
+            var cmd = db.SqlCommand(query);
+            db.OpenConnection();
+            using (MySqlDataReader leser = cmd.ExecuteReader())
             {
-                return loggutBtn.Text;
+                while (leser.Read())
+                {
+                    fagkoder.Add(leser["fagkode"].ToString());
+                }
             }
-            set
+            db.CloseConnection();
+
+            /*
+             * Clienscriptmanager gjør at vi kan lage et script server side,
+             * dette gjør det enkelt å bruke variabler på kryss av C# og js.
+             * RegisterStartupScript gjør at scriptet vil bli startet mens siden blir åpnet
+             */
+            ClientScriptManager cs = Page.ClientScript;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<script>");
+            sb.Append("$(function () {");
+            sb.Append("var availableTags = new Array;");
+            foreach (String fagkode in fagkoder)
             {
-                loggutBtn.Text = value;
+                sb.Append("availableTags.push('" + fagkode + "');");
             }
+            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags});});");
+            sb.Append("</script>");
+            cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
         }
 
         public Boolean loggutBtnShow
@@ -66,13 +73,20 @@ namespace VMS
 
         protected void loggutBtn_Click(object sender, EventArgs e)
         {
-            if (loggutBtn.Text == "Logg ut")
+            Session.Abandon();
+            Response.Redirect("velkomstside.aspx", true);
+        }
+
+        protected void SearchBtn_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrWhiteSpace(SearchTxt.Text))
             {
-                Session["logginn"] = 0;
-                Response.Redirect("velkomstside.aspx", true);
-            } else if(loggutBtn.Text == "Logg inn")
+                return;
+            }
+            else if (fagkoder.Contains(SearchTxt.Text))
             {
-                Response.Redirect("velkomstside.aspx", true);
+                String url = "fagside.aspx?"+SearchTxt.Text;
+                Response.Redirect(url, true);
             }
         }
     }

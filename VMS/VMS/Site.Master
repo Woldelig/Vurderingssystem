@@ -40,6 +40,8 @@
         </asp:ScriptManager>
     <!-- Egne scripts -->
     <script src="Scripts/jquery.rateit.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -58,14 +60,15 @@
                     </ul>
                     <div class="navbar-form">
                         <div class="input-group col-xs-4">
-                            <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server"></asp:TextBox>
+                            <asp:TextBox CssClass="form-control" ID="SearchTxt" runat="server"></asp:TextBox>
                             <div class="input-group-btn">
-                                <asp:Button CssClass="btn btn-default" ID="Button1" runat="server" Text="Søk" />
+                                <asp:Button CssClass="btn btn-default" ID="SearchBtn" runat="server" Text="Søk" OnClick="SearchBtn_Click" />
                             </div>
                         </div>
                     </div>
                     <div class="navbar-header">
                         <asp:button type="button" class="btn btn-success pull-right" ID="loggutBtn" runat="server" Text="Logg ut" OnClick="loggutBtn_Click" />
+                        <asp:button type="button" class="btn btn-success pull-right" ID="LoggInnNavbarBtn" runat="server" Text="Logg inn" PostBackUrl="~/velkomstside.aspx" />
                         
                     </div>
                 </div>
@@ -74,7 +77,6 @@
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
-            <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Vurderingssystem</p>
             </footer>

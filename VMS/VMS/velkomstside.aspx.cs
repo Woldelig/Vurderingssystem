@@ -13,20 +13,10 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Jallaløsning - men vi skal jo ikke ha modal uansett
-            //Prøver å få programmet til å trykke på logg-innknappen av seg selv
-            //Sliter med javascript
-            if (Page.IsPostBack)
-            {
-                string s = "<script> document.getElementById(\"LoginBtn\").click();</script>";
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "script", s);
-            }
-
-
-            Session["logginn"] = 0;
             this.Master.loggutBtnShow = false;
+            //Gjør logginn knappen usynlig på logginn siden så vi ikke for dobbelt med logg inn knapper
+            ((Button)this.Master.FindControl("LoggInnNavbarBtn")).Visible = false;
         }
-
 
         protected void Logginn_Click(object sender, EventArgs e)
         {
@@ -41,8 +31,6 @@ namespace VMS
             }
             else
             {
-                //Setter innlogging til 1
-                Session["logginn"] = 1;
                 //Setter studentID inn i sessionvariabelen
                 Session["studentID"] = parsedStudID;
                 //Sender brukeren videre til velkomstsiden
@@ -52,8 +40,6 @@ namespace VMS
 
         protected void continue_Click(object sender, EventArgs e)
         {
-            Session["logginn"] = 0;
-            Session["studentID"] = "Ukjent";
             Response.Redirect("Default.aspx", true);
         }
     }
