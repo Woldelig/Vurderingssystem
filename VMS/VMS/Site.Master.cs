@@ -10,8 +10,10 @@ namespace VMS
 {
     public partial class SiteMaster : MasterPage
     {
-        List<String> fagkoder = new List<string>();
-        
+        private List<String> autoCompleteResultatListe = new List<string>();
+        List<String> resultatListeUtenDuplikater;
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,12 +37,16 @@ namespace VMS
             {
                 while (leser.Read())
                 {
-                    fagkoder.Add(leser["fagkode"].ToString());
-                    fagkoder.Add(leser["fagnavn"].ToString());
-                    fagkoder.Add(leser["navn"].ToString());
+                    autoCompleteResultatListe.Add(leser["fagkode"].ToString());
+                    autoCompleteResultatListe.Add(leser["fagnavn"].ToString());
+                    autoCompleteResultatListe.Add(leser["navn"].ToString());
                 }
             }
             db.CloseConnection();
+
+            //Må lage en ny liste uten duplikater. Ellers vil foreleser med flere fag kommer flere ganger i søkefeltet
+            resultatListeUtenDuplikater = autoCompleteResultatListe.Distinct().ToList();
+
 
             /*
              * Clienscriptmanager gjør at vi kan lage et script server side,
@@ -52,11 +58,11 @@ namespace VMS
             sb.Append("<script>");
             sb.Append("$(function () {");
             sb.Append("var availableTags = new Array;");
-            foreach (String fagkode in fagkoder)
+            foreach (String resultat in resultatListeUtenDuplikater)
             {
-                sb.Append("availableTags.push('" + fagkode + "');");
+                sb.Append("availableTags.push('" + resultat + "');");
             }
-            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags});});");
+            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags });});");
             sb.Append("</script>");
             cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
         }
@@ -85,7 +91,7 @@ namespace VMS
             {
                 return;
             }
-            else if (fagkoder.Contains(SearchTxt.Text))
+            else if (autoCompleteResultatListe.Contains(SearchTxt.Text))
             {
                 String url = "fagside.aspx?"+SearchTxt.Text;
                 Response.Redirect(url, true);
