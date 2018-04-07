@@ -28,7 +28,7 @@ namespace VMS
             }
 
             Database db = new Database();
-            String query = "SELECT fagkode FROM fag";
+            String query = "SELECT fag.fagkode, fag.fagnavn, CONCAT(foreleser.fornavn, ' ', foreleser.etternavn) as navn FROM fag, foreleser WHERE foreleser.foreleserid = fag.foreleserid";
             var cmd = db.SqlCommand(query);
             db.OpenConnection();
             using (MySqlDataReader leser = cmd.ExecuteReader())
@@ -36,6 +36,8 @@ namespace VMS
                 while (leser.Read())
                 {
                     fagkoder.Add(leser["fagkode"].ToString());
+                    fagkoder.Add(leser["fagnavn"].ToString());
+                    fagkoder.Add(leser["navn"].ToString());
                 }
             }
             db.CloseConnection();
