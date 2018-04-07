@@ -19,13 +19,12 @@ namespace VMS
             public String Fagkode { get; set; }
             public String Fagnavn { get; set; }
             public String ForeleserNavn { get; set; }
-            
+
         }
 
         private List<Faginfo> faginfoListe = new List<Faginfo>();
         private List<String> søkeResultatListe = new List<String>();
         private List<String> søkeResultatlisteUtenDuplikat;
-
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -58,7 +57,9 @@ namespace VMS
                     x = leser["fagkode"].ToString();
                     y = leser["fagnavn"].ToString();
                     z = leser["navn"].ToString();
+
                     faginfoListe.Add(new Faginfo() { Fagkode = x, Fagnavn = y, ForeleserNavn = z });
+
                     søkeResultatListe.Add(x);
                     søkeResultatListe.Add(z);
                     søkeResultatListe.Add(y);
