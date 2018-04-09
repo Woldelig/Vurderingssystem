@@ -12,7 +12,7 @@ namespace VMS
     public partial class ForeleserSide : System.Web.UI.Page
     {
         private Database db = new Database();
-        private String sidensForleserId = "666";
+        private String sidensForeleser = "SteveJobs";
 
         private List<ForeleserInfo> foreleserInfoListe = new List<ForeleserInfo>();
         /*
@@ -22,18 +22,20 @@ namespace VMS
         {
             //Hvis noen blir redirected til forelesersiden med et parameter vil forelsersiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
-            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty);
-            //StringQuery inneholder et spørsmålstegn som vi her fjerner
+
+            //Under blir ?, % og '20' fjernet fra strengen. De kommer fordi det var mellomrom i parameter som ble sendt med query stringen
+            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%", String.Empty).Replace("20", String.Empty);
+            
 
             if (formatertQueryString != "" || formatertQueryString == null)
             {
-                sidensForleserId = formatertQueryString;
+                sidensForeleser = formatertQueryString;
             }
 
             //Henter ut navn, fagkode, fagnavn, fakultet, studieretning
-            String query = "SELECT CONCAT(f.fornavn, ' ', f.etternavn) as navn, fag.fagkode, fag.fagnavn, fag.studieretning, s.fakultet from foreleser as f, fag, studier as s WHERE f.foreleserid = @SidensForeleser AND fag.foreleserid = f.foreleserid AND fag.studieretning = s.studieretning";
+            String query = "SELECT CONCAT(f.fornavn, ' ', f.etternavn) as navn, fag.fagkode, fag.fagnavn, fag.studieretning, s.fakultet from foreleser as f, fag, studier as s WHERE CONCAT(f.fornavn, f.etternavn) = @SidensForeleser AND fag.foreleserid = f.foreleserid AND fag.studieretning = s.studieretning";
             var cmd = db.SqlCommand(query);
-            cmd.Parameters.AddWithValue("@SidensForeleser", sidensForleserId);
+            cmd.Parameters.AddWithValue("@SidensForeleser", sidensForeleser);
 
             db.OpenConnection();
             String foreleserNavn = null;
@@ -43,7 +45,8 @@ namespace VMS
                 if (!leser.HasRows)
                 {
                     //Hvis sql feilet/ugyldig parameter til siden blir man sendt til default.aspx
-                    Server.Transfer("Default.aspx");
+                    //Server.Transfer("Default.aspx");
+                    Response.Write(sidensForeleser);
                 }
                 while (leser.Read())
                 {
