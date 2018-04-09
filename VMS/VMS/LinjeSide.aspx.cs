@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -20,10 +21,13 @@ namespace VMS
             //Hvis noen blir redirected til forelesersiden med et parameter vil forelsersiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
 
-            //Under blir ?, % og '20' fjernet fra strengen. De kommer fordi det var mellomrom i parameter som ble sendt med query stringen
-            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty);//.Replace("%", String.Empty).Replace("20", String.Empty);
-
-
+            /*
+             * Under fjernes ? fra tekststrengen %20 blir gjort om til mellomrom og %C3%B8 blir gjort om til ø.
+             * + blir gjort om til mellomrom, dette er fordi hvis man går frem og tilbake mellomsøke resultater er at mellomrommet 
+             * blir gjort om til + tegn
+             */
+            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%20", " ").Replace("%C3%B8", "ø").Replace("+", " ");
+            
             if (formatertQueryString != "" || formatertQueryString == null)
             {
                 sidensStudielinje = formatertQueryString;
@@ -56,7 +60,21 @@ namespace VMS
             }
             db.CloseConnection();
 
+
             studielinjeLbl.Text = studieNavn;
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var info in studieInfoListe)
+            {
+                sb.Append(
+                    "<tr>" +
+                        "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagnavn + "</a></td>" +
+                        "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagkode + "</a></td>" +
+                        "<td>" + info.Fakultet + "</td>" +
+                    "</tr>");
+            }
+            tableBody.InnerHtml = sb.ToString();
+
         }
 
         private class StudieInfo
