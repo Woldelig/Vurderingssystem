@@ -53,8 +53,17 @@ namespace VMS
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
             studieretningLbl.Text = "Studieretning: " + leser[3].ToString();
             String forkurs = leser[4].ToString();
-            if (leser[4].ToString() != ""){ forkursLbl.Text = "Forkurs: " + leser[4].ToString();} else { forkursLbl.Text = ""; }
-            //Linjen over sjekker om det finnes forkurs. Hvis det finnes settes det inn i label, hvis ikke forblir labelen tom
+
+            //Her sjekkes det om forkurs finnes, hvis det gjør det skrives det til label som en link til forkurset
+            if (forkurs != "")
+            {
+                forkursLbl.Text = "Forkurs: " + forkurs;
+                forkursLbl.Text = "Forkurs: <a href = 'fagside.aspx?" + forkurs + "'>" + forkurs + "</a>";
+            }
+            else
+            {
+                forkursLbl.Text = "";
+            }
             leser.Close();
             db.CloseConnection();
 
@@ -68,7 +77,8 @@ namespace VMS
             String foreleserNavn = leser[0].ToString() + " " + leser[1].ToString(); //Setter sammen fornavn og etternavn fra databasen
             leser.Close();
             db.CloseConnection();
-            foreleserLbl.Text = "Foreleser: " + foreleserNavn;
+            //foreleserLbl.Text = "Foreleser: " + foreleserNavn;
+            foreleserLbl.Text = "Foreleser: <a href = 'foreleserside.aspx?" + foreleserNavn + "'>" + foreleserNavn + "</a>";
 
 
             //Her kaller vi på prosedyren for spm1, kaller på den her pga dataen skal brukes flere steder

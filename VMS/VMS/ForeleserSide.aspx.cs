@@ -45,8 +45,7 @@ namespace VMS
                 if (!leser.HasRows)
                 {
                     //Hvis sql feilet/ugyldig parameter til siden blir man sendt til default.aspx
-                    //Server.Transfer("Default.aspx");
-                    Response.Write(sidensForeleser);
+                    Server.Transfer("Default.aspx");
                 }
                 while (leser.Read())
                 {
