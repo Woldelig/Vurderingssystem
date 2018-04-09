@@ -133,6 +133,7 @@
     <Content Include="Content\rateit.css" />
     <Content Include="Content\star.gif" />
     <Content Include="fagside.aspx" />
+    <Content Include="ForeleserSide.aspx" />
     <Content Include="innlogging.aspx" />
     <Content Include="MineFag.aspx" />
     <Content Include="MineVurderinger.aspx" />
@@ -198,6 +199,13 @@
     </Compile>
     <Compile Include="fagside.aspx.designer.cs">
       <DependentUpon>fagside.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ForeleserSide.aspx.cs">
+      <DependentUpon>ForeleserSide.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForeleserSide.aspx.designer.cs">
+      <DependentUpon>ForeleserSide.aspx</DependentUpon>
     </Compile>
     <Compile Include="innlogging.aspx.cs">
       <DependentUpon>innlogging.aspx</DependentUpon>
