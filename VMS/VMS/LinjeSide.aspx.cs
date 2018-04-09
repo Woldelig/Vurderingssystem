@@ -27,7 +27,7 @@ namespace VMS
              * blir gjort om til + tegn
              */
             String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%20", " ").Replace("%C3%B8", "ø").Replace("+", " ");
-            
+
             if (formatertQueryString != "" || formatertQueryString == null)
             {
                 sidensStudielinje = formatertQueryString;

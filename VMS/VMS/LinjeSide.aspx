@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LinjeSide.aspx.cs" Inherits="VMS.LinjeSide" %>
+﻿<%@ Page Title="Studielinje" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LinjeSide.aspx.cs" Inherits="VMS.LinjeSide" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="studielinjeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text=""></asp:Label>

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="innlogging.aspx.cs" Inherits="VMS.innlogging" %>
+﻿<%@ Page Title="Logg inn til VMS" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="innlogging.aspx.cs" Inherits="VMS.innlogging" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class ="loginID">

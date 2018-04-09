@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ForeleserSide.aspx.cs" Inherits="VMS.ForeleserSide" %>
+﻿<%@ Page Title="Foreleser" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ForeleserSide.aspx.cs" Inherits="VMS.ForeleserSide" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <asp:Label ID="foreleserLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text=""></asp:Label>
@@ -6,7 +6,7 @@
     <br />
     <br />
     <div class="Row">
-        <table Class="table table-hover">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Fagkode</th>
@@ -16,7 +16,6 @@
                 </tr>
             </thead>
             <tbody id="tableBody" runat="server">
-                
             </tbody>
         </table>
     </div>
