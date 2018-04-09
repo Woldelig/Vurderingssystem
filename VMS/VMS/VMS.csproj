@@ -135,6 +135,7 @@
     <Content Include="fagside.aspx" />
     <Content Include="ForeleserSide.aspx" />
     <Content Include="innlogging.aspx" />
+    <Content Include="LinjeSide.aspx" />
     <Content Include="MineFag.aspx" />
     <Content Include="MineVurderinger.aspx" />
     <Content Include="Hjelp.aspx" />
@@ -213,6 +214,13 @@
     </Compile>
     <Compile Include="innlogging.aspx.designer.cs">
       <DependentUpon>innlogging.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LinjeSide.aspx.cs">
+      <DependentUpon>LinjeSide.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LinjeSide.aspx.designer.cs">
+      <DependentUpon>LinjeSide.aspx</DependentUpon>
     </Compile>
     <Compile Include="MineFag.aspx.cs">
       <DependentUpon>MineFag.aspx</DependentUpon>
