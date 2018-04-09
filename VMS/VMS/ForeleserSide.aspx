@@ -6,17 +6,12 @@
     <br />
     <br />
     <div class="Row">
-        <div class="col-md-4">
-            <asp:Label ID="fakultetLbl" runat="server" Text="Fakultet: Handelshøyskolen"></asp:Label></div>
-        <div class="col-md-4">
-            <asp:Label ID="studieretningLbl" runat="server" Text="Linje: It og Informasjonssytemer"></asp:Label></div>
-    </div>
-    <div class="Row">
         <table Class="table table-hover">
             <thead>
                 <tr>
                     <th>Fagkode</th>
                     <th>Fagnavn</th>
+                    <th>Studielinje</th>
                     <th>Fakultet</th>
                 </tr>
             </thead>

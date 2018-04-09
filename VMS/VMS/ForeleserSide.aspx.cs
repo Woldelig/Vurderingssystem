@@ -70,8 +70,8 @@ namespace VMS
             {
                 sb.Append(
                     "<tr>" +
-                        "<td>" + info.Fagkode + "</td>" +
-                        "<td>" + info.Fagnavn + "</td>" +
+                        "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>"+ info.Fagkode + "</a></td>" +
+                        "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagnavn + "</a></td>" +
                         "<td>" + info.Studieretning + "</td>" +
                         "<td>" + info.Fakultet + "</td>" +
                     "</tr>");

@@ -22,24 +22,6 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label foreleserLbl;
         
         /// <summary>
-        /// fakultetLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label fakultetLbl;
-        
-        /// <summary>
-        /// studieretningLbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label studieretningLbl;
-        
-        /// <summary>
         /// tableBody control.
         /// </summary>
         /// <remarks>
