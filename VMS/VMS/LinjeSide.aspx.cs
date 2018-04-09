@@ -18,7 +18,7 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Hvis noen blir redirected til forelesersiden med et parameter vil forelsersiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
+            //Hvis noen blir redirected til forelesersiden med et parameter vil forelesersiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
 
             /*
