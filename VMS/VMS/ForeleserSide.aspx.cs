@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,6 +14,7 @@ namespace VMS
         private Database db = new Database();
         private String sidensForleserId = "666";
 
+        private List<ForeleserInfo> foreleserInfoListe = new List<ForeleserInfo>();
         /*
          * Setter en standard foreleserId så det alltid vil vises noe informasjon
          */
@@ -34,6 +36,7 @@ namespace VMS
             cmd.Parameters.AddWithValue("@SidensForeleser", sidensForleserId);
 
             db.OpenConnection();
+            String foreleserNavn = null;
 
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
@@ -42,7 +45,47 @@ namespace VMS
                     //Hvis sql feilet/ugyldig parameter til siden blir man sendt til default.aspx
                     Server.Transfer("Default.aspx");
                 }
+                while (leser.Read())
+                {
+                    foreleserNavn = leser["navn"].ToString();
+
+                    //Lager et foreleserinfoobjekt og legger det i en liste
+                    foreleserInfoListe.Add(new ForeleserInfo()
+                    {
+                        Fagkode = leser["fagkode"].ToString(),
+                        Fagnavn = leser["fagnavn"].ToString(),
+                        Fakultet = leser["fakultet"].ToString(),
+                        Studieretning = leser["studieretning"].ToString()
+                    });
+                }
+
             }
+            db.CloseConnection();
+
+            foreleserLbl.Text = "Foreleser: " + foreleserNavn;
+            //Må ha et stringbuilder objekt, eller så vil innerHtml skrive over de tidligere loopene
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var info in foreleserInfoListe)
+            {
+                sb.Append(
+                    "<tr>" +
+                        "<td>" + info.Fagkode + "</td>" +
+                        "<td>" + info.Fagnavn + "</td>" +
+                        "<td>" + info.Studieretning + "</td>" +
+                        "<td>" + info.Fakultet + "</td>" +
+                    "</tr>");
+            }
+            tableBody.InnerHtml = sb.ToString();
+        }
+
+
+        private class ForeleserInfo
+        {
+            public String Fagkode { get; set; }
+            public String Fagnavn { get; set; }
+            public String Studieretning { get; set; }
+            public String Fakultet { get; set; }
         }
     }
 }
