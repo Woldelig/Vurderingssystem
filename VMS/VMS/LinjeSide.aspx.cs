@@ -23,8 +23,8 @@ namespace VMS
 
             /*
              * Under fjernes ? fra tekststrengen %20 blir gjort om til mellomrom og %C3%B8 blir gjort om til ø.
-             * + blir gjort om til mellomrom, dette er fordi hvis man går frem og tilbake mellomsøke resultater er at mellomrommet 
-             * blir gjort om til + tegn
+             * + blir gjort om til mellomrom, dette er fordi hvis man går frem og tilbake mellom søkeresultater er at mellomrommet 
+             * blir gjort om til + tegn i urlen
              */
             String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%20", " ").Replace("%C3%B8", "ø").Replace("+", " ");
 
