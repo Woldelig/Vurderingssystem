@@ -61,7 +61,7 @@ namespace VMS
             db.CloseConnection();
 
 
-            studielinjeLbl.Text = studieNavn;
+            studielinjeLbl.Text = "Studielinje: " + studieNavn;
             StringBuilder sb = new StringBuilder();
 
             foreach (var info in studieInfoListe)
@@ -70,7 +70,7 @@ namespace VMS
                     "<tr>" +
                         "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagnavn + "</a></td>" +
                         "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagkode + "</a></td>" +
-                        "<td>" + info.Fakultet + "</td>" +
+                        "<td><a href = 'fakultet.aspx?" + info.Fakultet + "'>" + info.Fakultet + "</a></td>" +
                     "</tr>");
             }
             tableBody.InnerHtml = sb.ToString();

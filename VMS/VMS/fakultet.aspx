@@ -9,10 +9,10 @@
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <th>Grad</th>
                     <th>Studielinje</th>
                     <th>Fagnavn</th>
                     <th>Fagkode</th>
-                    <th>Grad</th>
                 </tr>
             </thead>
             <tbody id="tableBody" runat="server">

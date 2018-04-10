@@ -60,7 +60,7 @@ namespace VMS
             }
             db.CloseConnection();
 
-            fakultetLbl.Text = fakultetNavn;
+            fakultetLbl.Text = "Fakultet: " + fakultetNavn;
 
             StringBuilder sb = new StringBuilder();
 

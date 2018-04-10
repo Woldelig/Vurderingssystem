@@ -33,7 +33,7 @@ namespace VMS
 
             int foreleserId; //Denne trenger vi for å få informasjon om foreleser
 
-            String query = "SELECT * FROM fag WHERE fagkode = @SidensFagkode";
+            String query = "SELECT f.*, s.fakultet FROM fag as f, studier as s  WHERE f.fagkode = @SidensFagkode AND f.studieretning = s.studieretning";
             var cmd = db.SqlCommand(query);
             cmd.Parameters.AddWithValue("@SidensFagkode", sidensFagkode);
 
@@ -53,6 +53,7 @@ namespace VMS
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
             studieretningLbl.Text = "Studieretning: <a href = 'linjeside.aspx?" + leser[3].ToString() + "'>" + leser[3].ToString() + "</a>";
             String forkurs = leser[4].ToString();
+            fakultetLbl.Text = "Fakultet: <a href = 'fakultet.aspx?" + leser[5].ToString() + "'>" + leser[5].ToString() + "</a>";
 
             //Her sjekkes det om forkurs finnes, hvis det gjør det skrives det til label som en link til forkurset
             if (forkurs != "")
