@@ -123,7 +123,7 @@ INSERT INTO foreleser(foreleserid, fornavn, etternavn) VALUES
 INSERT INTO fag(fagkode, fagnavn, foreleserid, studieretning, forkurs) VALUES
 ('DAT1000', 'Database', 313, 'It og Informasjonssystemer', ''),
 ('OBJ2000', 'SWIFT', 666, 'Dataingeniør', ''),
-('OBJ2100', 'Objective C', 666, 'Dataingeniør', 'OBJ200'),
+('OBJ2100', 'Objective C', 666, 'Dataingeniør', 'OBJ2000'),
 ('MAR1000', 'Markedsføringsledelse', 1337, 'Regnskapsfører', ''),
 ('WIN1100', 'Windows bootcamp', 111, 'It og Informasjonssystemer','');
 

@@ -19,7 +19,6 @@ namespace VMS
             public String Fagkode { get; set; }
             public String Fagnavn { get; set; }
             public String ForeleserNavn { get; set; }
-
         }
 
         private List<Faginfo> faginfoListe = new List<Faginfo>();
@@ -117,15 +116,25 @@ namespace VMS
              * Brukeren blir deretter sendt til fagsiden med fagkoden til faget han søkte på
              */
             String søkestreng = SearchTxt.Text;
-            Faginfo resultat = faginfoListe.Find(x => x.Fagkode == søkestreng || x.Fagnavn == søkestreng || x.ForeleserNavn == søkestreng);
+
+            //fagkode og fagnavn leder til samme side, derfor den godtar enten fagkode eller fagnavn
+            Faginfo fagkodeResultat = faginfoListe.Find(x => x.Fagkode == søkestreng || x.Fagnavn == søkestreng);
+            Faginfo foreleserResultat = faginfoListe.Find(x => x.ForeleserNavn == søkestreng);
+
             if (String.IsNullOrWhiteSpace(SearchTxt.Text))
             {
                 return;
             }
-            else if (resultat != null)
+            else if (fagkodeResultat != null)
             {
-                String fagkode = resultat.Fagkode;
+                String fagkode = fagkodeResultat.Fagkode;
                 String url = "fagside.aspx?" + fagkode;
+                Response.Redirect(url, true);
+            }
+            else if (foreleserResultat != null)
+            {
+                String foreleser = foreleserResultat.ForeleserNavn;
+                String url = "foreleserside.aspx?" + foreleser;
                 Response.Redirect(url, true);
             }
         }
