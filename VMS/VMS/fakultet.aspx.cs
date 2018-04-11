@@ -14,22 +14,18 @@ namespace VMS
         private Database db = new Database();
         private String sidensFakultet = "Handelshøyskolen";
         private List<FakultetInfo> fakultetInfoListe = new List<FakultetInfo>();
-
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             //Hvis noen blir redirected til forelesersiden med et parameter vil forelesersiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
 
-            /*
-             * Under fjernes ? fra tekststrengen %20 blir gjort om til mellomrom og %C3%B8 blir gjort om til ø.
-             * + blir gjort om til mellomrom, dette er fordi hvis man går frem og tilbake mellom søkeresultater er at mellomrommet 
-             * blir gjort om til + tegn i urlen
-             */
-            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%20", " ").Replace("%C3%B8", "ø").Replace("+", " ");
+            //Kaller på en static klasse som formaterer stringen
+            String formatertString = FormaterQueryString.FormaterString(uformatertQueryString);
 
-            if (formatertQueryString != "" || formatertQueryString == null)
+            if (formatertString != "" || formatertString == null)
             {
-                sidensFakultet = formatertQueryString;
+                sidensFakultet = formatertString;
             }
 
             String query = "SELECT s.fakultet, s.grad, s.studieretning, f.fagkode, f.fagnavn FROM studier as s, fag as f WHERE s.fakultet = @SidensFakultet AND f.studieretning = s.studieretning";

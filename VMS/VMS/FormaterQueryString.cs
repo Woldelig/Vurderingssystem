@@ -5,9 +5,16 @@ using System.Web;
 
 namespace VMS
 {
-    public class FormaterQueryString
+    public static class FormaterQueryString
     {
-        Dictionary<String, String> ugyldigeTegn = new Dictionary<string, string>()
+        /*
+         * Denne klassen har som formål og formatere query strings.
+         * Man må formatere de fordi for eksempel mellomrom i url blir tegnsatt
+         * til %20 eller +. Derfor har denne klassen en Dictionary
+         * som bytter om tegnene %C3%A6 til æ. Dette er noe vi må gjøre for at 
+         * vi skal kunne sende korrekte database spørringer.
+         */
+        private static Dictionary<String, String> ugyldigeTegn = new Dictionary<string, string>()
         {
             {"?", String.Empty },
             {"%20", " " },
@@ -20,11 +27,11 @@ namespace VMS
             {"%C3%98", "Ø" }
         };
 
-        public String FormaterString(String streng)
+        public static String FormaterString(String streng)
         {
-            foreach (var keyValuePar in ugyldigeTegn)
+            foreach (KeyValuePair<String, String> byttOm in ugyldigeTegn)
             {
-                streng.Replace(keyValuePar.Key, keyValuePar.Value);
+                streng = streng.Replace(byttOm.Key, byttOm.Value);
             }
             return streng;
         }
