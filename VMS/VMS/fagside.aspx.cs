@@ -23,8 +23,10 @@ namespace VMS
         {
             //Hvis noen blir redirected til fagsiden med et parameter vil fagsiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
-            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty);
+            FormaterQueryString formaterString = new FormaterQueryString();
+            String formatertQueryString = formaterString.FormaterString(uformatertQueryString);
             //StringQuery inneholder et spørsmålstegn som vi her fjerner
+
 
             if (formatertQueryString != "" || formatertQueryString == null)
             {
