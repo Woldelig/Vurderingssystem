@@ -1,0 +1,25 @@
+﻿<%@ Page Title="Fakultet" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="fakultet.aspx.cs" Inherits="VMS.fakultet" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Label ID="fakultetLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text=""></asp:Label>
+    <br />
+    <br />
+    <br />
+    <div class="Row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Grad</th>
+                    <th>Studielinje</th>
+                    <th>Fagnavn</th>
+                    <th>Fagkode</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody" runat="server">
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <br />
+    <br />
+</asp:Content>

@@ -157,13 +157,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm3RatingLbl;
         
         /// <summary>
-        /// forkursLbl control.
+        /// fakultetLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label forkursLbl;
+        protected global::System.Web.UI.WebControls.Label fakultetLbl;
         
         /// <summary>
         /// pensumFormidlingLbl control.
@@ -202,13 +202,13 @@ namespace VMS {
         protected global::System.Web.UI.WebControls.Label spm4RatingLbl;
         
         /// <summary>
-        /// placeholder control.
+        /// forkursLbl control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label placeholder;
+        protected global::System.Web.UI.WebControls.Label forkursLbl;
         
         /// <summary>
         /// fagRelevantLbl control.

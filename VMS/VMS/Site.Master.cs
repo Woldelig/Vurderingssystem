@@ -20,6 +20,7 @@ namespace VMS
             public String Fagnavn { get; set; }
             public String ForeleserNavn { get; set; }
             public String Studieretning { get; set; }
+            public String Fakultet { get; set; }
         }
 
         private List<Faginfo> faginfoListe = new List<Faginfo>();
@@ -41,7 +42,7 @@ namespace VMS
             }
 
             Database db = new Database();
-            String query = "SELECT s.studieretning, fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) as navn FROM fag, foreleser as f, studier as s WHERE f.foreleserid = fag.foreleserid AND fag.studieretning = s.studieretning";
+            String query = "SELECT s.studieretning, s.fakultet, fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) as navn FROM fag, foreleser as f, studier as s WHERE f.foreleserid = fag.foreleserid AND fag.studieretning = s.studieretning";
             var cmd = db.SqlCommand(query);
             db.OpenConnection();
             using (MySqlDataReader leser = cmd.ExecuteReader())
@@ -49,22 +50,24 @@ namespace VMS
                 /*
                  * Siden DataReader objektet kun kan leses en gang må det mellomlagres i string a,b,c,d
                  * Dette er fordi vi trenger 2 typer lister. En liste som inneholder alt uten rekkefølge som
-                 * skal brukes i autocomplete funksjonen. Og en egendefinert liste klasse som vi trenger struktur på
+                 * skal brukes i autocomplete funksjonen. Og en egendefinert liste klasse som vi trenger struktur på.
                  */
-                String a, b, c, d;
+                String a, b, c, d, f;
                 while (leser.Read())
                 {
                     a = leser["fagkode"].ToString();
                     b = leser["fagnavn"].ToString();
                     c = leser["navn"].ToString();
                     d = leser["studieretning"].ToString();
+                    f = leser["fakultet"].ToString();
 
-                    faginfoListe.Add(new Faginfo() { Fagkode = a, Fagnavn = b, ForeleserNavn = c, Studieretning = d });
+                    faginfoListe.Add(new Faginfo() { Fagkode = a, Fagnavn = b, ForeleserNavn = c, Studieretning = d, Fakultet = f });
 
                     søkeResultatListe.Add(a);
                     søkeResultatListe.Add(b);
                     søkeResultatListe.Add(c);
                     søkeResultatListe.Add(d);
+                    søkeResultatListe.Add(f);
                 }
             }
             db.CloseConnection();
@@ -124,6 +127,7 @@ namespace VMS
             Faginfo fagkodeResultat = faginfoListe.Find(x => x.Fagkode == søkestreng || x.Fagnavn == søkestreng);
             Faginfo foreleserResultat = faginfoListe.Find(x => x.ForeleserNavn == søkestreng);
             Faginfo studieResultat = faginfoListe.Find(x => x.Studieretning == søkestreng);
+            Faginfo fakultetResultat = faginfoListe.Find(x => x.Fakultet == søkestreng);
 
             if (String.IsNullOrWhiteSpace(SearchTxt.Text))
             {
@@ -145,6 +149,12 @@ namespace VMS
             {
                 String studieretning = studieResultat.Studieretning;
                 String url = "linjeside.aspx?" + studieretning;
+                Response.Redirect(url, true);
+            }
+            else if (fakultetResultat != null)
+            {
+                String fakultet = fakultetResultat.Fakultet;
+                String url = "fakultet.aspx?" + fakultet;
                 Response.Redirect(url, true);
             }
         }

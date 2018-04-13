@@ -9,12 +9,11 @@ using System.Web.UI.WebControls;
 
 namespace VMS
 {
-    public partial class LinjeSide : System.Web.UI.Page
+    public partial class fakultet : System.Web.UI.Page
     {
         private Database db = new Database();
-        private String sidensStudielinje = "Dataingeniør";
-        private List<StudieInfo> studieInfoListe = new List<StudieInfo>();
-
+        private String sidensFakultet = "Handelshøyskolen";
+        private List<FakultetInfo> fakultetInfoListe = new List<FakultetInfo>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,16 +29,16 @@ namespace VMS
 
             if (formatertQueryString != "" || formatertQueryString == null)
             {
-                sidensStudielinje = formatertQueryString;
+                sidensFakultet = formatertQueryString;
             }
 
-            String query = "SELECT f.studieretning, f.fagnavn, f.fagkode, s.fakultet FROM fag as f, studier as s WHERE f.studieretning = @SidensStudielinje AND f.studieretning = s.studieretning";
+            String query = "SELECT s.fakultet, s.grad, s.studieretning, f.fagkode, f.fagnavn FROM studier as s, fag as f WHERE s.fakultet = @SidensFakultet AND f.studieretning = s.studieretning";
             var cmd = db.SqlCommand(query);
-            cmd.Parameters.AddWithValue("@SidensStudielinje", sidensStudielinje);
+            cmd.Parameters.AddWithValue("@SidensFakultet", sidensFakultet);
 
             db.OpenConnection();
-            String studieNavn = null;
 
+            String fakultetNavn = null;
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
                 if (!leser.HasRows)
@@ -49,39 +48,41 @@ namespace VMS
                 }
                 while (leser.Read())
                 {
-                    studieNavn = leser["studieretning"].ToString();
-                    studieInfoListe.Add(new StudieInfo()
+                    fakultetNavn = leser["fakultet"].ToString();
+                    fakultetInfoListe.Add(new FakultetInfo()
                     {
-                        Fagnavn = leser["fagnavn"].ToString(),
                         Fagkode = leser["fagkode"].ToString(),
-                        Fakultet = leser["fakultet"].ToString()
+                        Fagnavn = leser["fagnavn"].ToString(),
+                        Studielinje = leser["studieretning"].ToString(),
+                        Grad = leser["grad"].ToString()
                     });
                 }
             }
             db.CloseConnection();
 
+            fakultetLbl.Text = "Fakultet: " + fakultetNavn;
 
-            studielinjeLbl.Text = "Studielinje: " + studieNavn;
             StringBuilder sb = new StringBuilder();
 
-            foreach (var info in studieInfoListe)
+            foreach (var info in fakultetInfoListe)
             {
                 sb.Append(
                     "<tr>" +
+                        "<td>" + info.Grad + "</td>" +
+                        "<td><a href = 'linjeside.aspx?" + info.Studielinje + "'>" + info.Studielinje + "</a></td>"+
                         "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagnavn + "</a></td>" +
                         "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagkode + "</a></td>" +
-                        "<td><a href = 'fakultet.aspx?" + info.Fakultet + "'>" + info.Fakultet + "</a></td>" +
                     "</tr>");
             }
             tableBody.InnerHtml = sb.ToString();
-
         }
 
-        private class StudieInfo
+        private class FakultetInfo
         {
             public String Fagnavn { get; set; }
             public String Fagkode { get; set; }
-            public String Fakultet { get; set; }
+            public String Studielinje { get; set; }
+            public String Grad { get; set; }
         }
     }
 }
