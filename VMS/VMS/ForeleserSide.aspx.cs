@@ -12,7 +12,7 @@ namespace VMS
     public partial class ForeleserSide : System.Web.UI.Page
     {
         private Database db = new Database();
-        private String sidensForeleser = "SteveJobs";
+        private String sidensForeleser = "Steve Jobs";
 
         private List<ForeleserInfo> foreleserInfoListe = new List<ForeleserInfo>();
         /*
@@ -23,9 +23,12 @@ namespace VMS
             //Hvis noen blir redirected til forelesersiden med et parameter vil forelsersiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
 
-            //Under blir ?, % og '20' fjernet fra strengen. De kommer fordi det var mellomrom i parameter som ble sendt med query stringen
-            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%", String.Empty).Replace("20", String.Empty);
-            
+            /*
+             * Under fjernes ? fra tekststrengen %20 blir gjort om til mellomrom. + blir gjort om til mellomrom,
+             * dette er fordi hvis man går frem og tilbake mellom søkeresultatene er at mellomrommet 
+             * blir gjort om til + tegni urlen 
+             */
+            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty).Replace("%20", " ").Replace("+", " ");
 
             if (formatertQueryString != "" || formatertQueryString == null)
             {
@@ -33,7 +36,7 @@ namespace VMS
             }
 
             //Henter ut navn, fagkode, fagnavn, fakultet, studieretning
-            String query = "SELECT CONCAT(f.fornavn, ' ', f.etternavn) as navn, fag.fagkode, fag.fagnavn, fag.studieretning, s.fakultet from foreleser as f, fag, studier as s WHERE CONCAT(f.fornavn, f.etternavn) = @SidensForeleser AND fag.foreleserid = f.foreleserid AND fag.studieretning = s.studieretning";
+            String query = "SELECT CONCAT(f.fornavn, ' ', f.etternavn) as navn, fag.fagkode, fag.fagnavn, fag.studieretning, s.fakultet from foreleser as f, fag, studier as s WHERE CONCAT(f.fornavn, ' ', f.etternavn) = @SidensForeleser AND fag.foreleserid = f.foreleserid AND fag.studieretning = s.studieretning";
             var cmd = db.SqlCommand(query);
             cmd.Parameters.AddWithValue("@SidensForeleser", sidensForeleser);
 
@@ -74,7 +77,7 @@ namespace VMS
                     "<tr>" +
                         "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>"+ info.Fagkode + "</a></td>" +
                         "<td><a href = 'fagside.aspx?" + info.Fagkode + "'>" + info.Fagnavn + "</a></td>" +
-                        "<td>" + info.Studieretning + "</td>" +
+                        "<td><a href = 'linjeside.aspx?" + info.Studieretning +"'>"+ info.Studieretning + "</a></td>" +
                         "<td>" + info.Fakultet + "</td>" +
                     "</tr>");
             }

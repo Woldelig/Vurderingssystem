@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="velkomstside.aspx.cs" Inherits="VMS.velkomstside" %>
+﻿<%@ Page Title="Velkommen til VMS" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="velkomstside.aspx.cs" Inherits="VMS.velkomstside" %>
 <%@ MasterType VirtualPath="~/Site.Master" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <h1>Velkommen til vurderingssystemet!</h1>

@@ -51,13 +51,12 @@ namespace VMS
             foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere. Samtidig som verdien blir castet til int
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
-            studieretningLbl.Text = "Studieretning: " + leser[3].ToString();
+            studieretningLbl.Text = "Studieretning: <a href = 'linjeside.aspx?" + leser[3].ToString() + "'>" + leser[3].ToString() + "</a>";
             String forkurs = leser[4].ToString();
 
             //Her sjekkes det om forkurs finnes, hvis det gjør det skrives det til label som en link til forkurset
             if (forkurs != "")
             {
-                forkursLbl.Text = "Forkurs: " + forkurs;
                 forkursLbl.Text = "Forkurs: <a href = 'fagside.aspx?" + forkurs + "'>" + forkurs + "</a>";
             }
             else

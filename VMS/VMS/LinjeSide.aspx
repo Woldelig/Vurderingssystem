@@ -1,7 +1,7 @@
-﻿<%@ Page Title="Foreleser" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ForeleserSide.aspx.cs" Inherits="VMS.ForeleserSide" %>
+﻿<%@ Page Title="Studielinje" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="LinjeSide.aspx.cs" Inherits="VMS.LinjeSide" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:Label ID="foreleserLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text=""></asp:Label>
+    <asp:Label ID="studielinjeLbl" runat="server" Font-Bold="True" Font-Size="XX-Large" Text=""></asp:Label>
     <br />
     <br />
     <br />
@@ -9,9 +9,8 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Fagkode</th>
                     <th>Fagnavn</th>
-                    <th>Studielinje</th>
+                    <th>Fagkode</th>
                     <th>Fakultet</th>
                 </tr>
             </thead>
