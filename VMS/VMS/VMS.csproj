@@ -216,6 +216,7 @@
     <Compile Include="ForeleserSide.aspx.designer.cs">
       <DependentUpon>ForeleserSide.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FormaterQueryString.cs" />
     <Compile Include="innlogging.aspx.cs">
       <DependentUpon>innlogging.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -23,8 +23,8 @@ namespace VMS
         {
             //Hvis noen blir redirected til fagsiden med et parameter vil fagsiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
             String uformatertQueryString = Request.Url.Query;
-            String formatertQueryString = uformatertQueryString.Replace("?", String.Empty);
-            //StringQuery inneholder et spørsmålstegn som vi her fjerner
+            String formatertQueryString = FormaterQueryString.FormaterString(uformatertQueryString);
+
 
             if (formatertQueryString != "" || formatertQueryString == null)
             {
@@ -44,8 +44,8 @@ namespace VMS
 
             if (!leser.HasRows)
             {
-                Server.Transfer("Default.aspx");
                 //Hvis fagkoden ikke inneholder informasjon eller er feil sender serveren deg til default
+                Server.Transfer("Default.aspx");
             }
             leser.Read();
             foreleserId = (int)leser[2]; //her henter vi ut foreleser id, så vi får hentet ut all info om personen senere. Samtidig som verdien blir castet til int
