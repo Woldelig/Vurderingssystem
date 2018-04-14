@@ -218,19 +218,25 @@ namespace adminPanel
                         case "Stolpediagram":
                             chart1.Series.Clear();
                             chart1.Legends.Clear();
+                            chart1.ChartAreas.Clear();
                             chart1.Series.Add(seriesname);
                             chart1.Series[seriesname].ChartType = SeriesChartType.Column;
+                            chart1.ChartAreas.Add("ChartArea");
+                            chart1.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
                             diagramSkalHaFarger = true;
                             break;
 
                         case "Linjediagram":
                             chart1.Series.Clear();
                             chart1.Legends.Clear();
+                            chart1.ChartAreas.Clear();
                             chart1.Series.Add(seriesname);
 
                             //Setter tykkelsen på linjen
                             chart1.Series[seriesname].BorderWidth = 3;
                             chart1.Series[seriesname].ChartType = SeriesChartType.Line;
+                            chart1.ChartAreas.Add("ChartArea");
+                            chart1.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
                             break;
 
                         case "Radardiagram":

@@ -158,6 +158,8 @@ namespace adminPanel
             diagramNavn.Series.Clear();
             diagramNavn.Legends.Clear();
             diagramNavn.Titles.Clear();
+            diagramNavn.ChartAreas.Clear();
+
 
             String seriesname = "";
             String[] ProsedyreNavnArray = new String[] { "hent_spm1_verdier", "hent_spm2_verdier", "hent_spm3_verdier", "hent_spm4_verdier", "hent_spm5_verdier" };
@@ -173,6 +175,8 @@ namespace adminPanel
                     diagramNavn.Legends.Add("Legende");
                     Title tittel = diagramNavn.Titles.Add(fagkode);
                     tittel.Font = new Font("Verdana", 16, FontStyle.Bold);
+                    diagramNavn.ChartAreas.Add("ChartArea");
+                    diagramNavn.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
                 }
                 diagramNavn.Series[seriesname].BorderWidth = 3;
                 diagramNavn.Series[seriesname].ChartType = SeriesChartType.Line;
