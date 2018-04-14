@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.ControllPanel = new System.Windows.Forms.Panel();
+            this.SammengligningLbl = new System.Windows.Forms.Label();
+            this.SammenlignFlereFagBtn = new System.Windows.Forms.Button();
             this.NyttSemesterBtn = new System.Windows.Forms.Button();
             this.ShutdownBtn = new System.Windows.Forms.Button();
             this.SqlBtn = new System.Windows.Forms.Button();
@@ -42,7 +44,6 @@
             this.ExitBtn = new System.Windows.Forms.Button();
             this.LogoLbl = new System.Windows.Forms.Label();
             this.ContainerPanel = new System.Windows.Forms.Panel();
-            this.SammenlignFlereFagBtn = new System.Windows.Forms.Button();
             this.ControllPanel.SuspendLayout();
             this.LogoPanel.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             // ControllPanel
             // 
             this.ControllPanel.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ControllPanel.Controls.Add(this.SammengligningLbl);
             this.ControllPanel.Controls.Add(this.SammenlignFlereFagBtn);
             this.ControllPanel.Controls.Add(this.NyttSemesterBtn);
             this.ControllPanel.Controls.Add(this.ShutdownBtn);
@@ -64,6 +66,34 @@
             this.ControllPanel.Size = new System.Drawing.Size(191, 627);
             this.ControllPanel.TabIndex = 0;
             // 
+            // SammengligningLbl
+            // 
+            this.SammengligningLbl.AutoSize = true;
+            this.SammengligningLbl.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SammengligningLbl.Location = new System.Drawing.Point(3, 269);
+            this.SammengligningLbl.Name = "SammengligningLbl";
+            this.SammengligningLbl.Size = new System.Drawing.Size(155, 23);
+            this.SammengligningLbl.TabIndex = 6;
+            this.SammengligningLbl.Text = "Sammenligning";
+            // 
+            // SammenlignFlereFagBtn
+            // 
+            this.SammenlignFlereFagBtn.BackColor = System.Drawing.Color.LightSlateGray;
+            this.SammenlignFlereFagBtn.FlatAppearance.BorderSize = 0;
+            this.SammenlignFlereFagBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.SammenlignFlereFagBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
+            this.SammenlignFlereFagBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SammenlignFlereFagBtn.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SammenlignFlereFagBtn.Location = new System.Drawing.Point(0, 348);
+            this.SammenlignFlereFagBtn.Name = "SammenlignFlereFagBtn";
+            this.SammenlignFlereFagBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.SammenlignFlereFagBtn.Size = new System.Drawing.Size(191, 52);
+            this.SammenlignFlereFagBtn.TabIndex = 5;
+            this.SammenlignFlereFagBtn.Text = "Mer enn to fag";
+            this.SammenlignFlereFagBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SammenlignFlereFagBtn.UseVisualStyleBackColor = false;
+            this.SammenlignFlereFagBtn.Click += new System.EventHandler(this.SammenlignFlereFagBtn_Click_1);
+            // 
             // NyttSemesterBtn
             // 
             this.NyttSemesterBtn.BackColor = System.Drawing.Color.LightSlateGray;
@@ -72,7 +102,7 @@
             this.NyttSemesterBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.NyttSemesterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NyttSemesterBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.NyttSemesterBtn.Location = new System.Drawing.Point(0, 260);
+            this.NyttSemesterBtn.Location = new System.Drawing.Point(0, 214);
             this.NyttSemesterBtn.Name = "NyttSemesterBtn";
             this.NyttSemesterBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.NyttSemesterBtn.Size = new System.Drawing.Size(191, 52);
@@ -109,7 +139,7 @@
             this.SqlBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.SqlBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SqlBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.SqlBtn.Location = new System.Drawing.Point(0, 208);
+            this.SqlBtn.Location = new System.Drawing.Point(0, 162);
             this.SqlBtn.Name = "SqlBtn";
             this.SqlBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.SqlBtn.Size = new System.Drawing.Size(191, 52);
@@ -148,7 +178,7 @@
             this.StatsBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.StatsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatsBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.StatsBtn.Location = new System.Drawing.Point(0, 104);
+            this.StatsBtn.Location = new System.Drawing.Point(0, 58);
             this.StatsBtn.Name = "StatsBtn";
             this.StatsBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.StatsBtn.Size = new System.Drawing.Size(191, 52);
@@ -168,7 +198,7 @@
             this.SchemaBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.SchemaBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SchemaBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.SchemaBtn.Location = new System.Drawing.Point(0, 156);
+            this.SchemaBtn.Location = new System.Drawing.Point(0, 110);
             this.SchemaBtn.Name = "SchemaBtn";
             this.SchemaBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.SchemaBtn.Size = new System.Drawing.Size(191, 52);
@@ -186,13 +216,13 @@
             this.CoursesBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.CoursesBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.CoursesBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CoursesBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.CoursesBtn.Location = new System.Drawing.Point(0, 52);
+            this.CoursesBtn.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoursesBtn.Location = new System.Drawing.Point(0, 302);
             this.CoursesBtn.Name = "CoursesBtn";
             this.CoursesBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.CoursesBtn.Size = new System.Drawing.Size(191, 52);
             this.CoursesBtn.TabIndex = 2;
-            this.CoursesBtn.Text = "Sammenlign fag";
+            this.CoursesBtn.Text = "To fag";
             this.CoursesBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CoursesBtn.UseVisualStyleBackColor = true;
             this.CoursesBtn.Click += new System.EventHandler(this.CoursesBtn_Click);
@@ -284,24 +314,6 @@
             this.ContainerPanel.Size = new System.Drawing.Size(1008, 627);
             this.ContainerPanel.TabIndex = 2;
             // 
-            // SammenlignFlereFagBtn
-            // 
-            this.SammenlignFlereFagBtn.BackColor = System.Drawing.Color.LightSlateGray;
-            this.SammenlignFlereFagBtn.FlatAppearance.BorderSize = 0;
-            this.SammenlignFlereFagBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.SammenlignFlereFagBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
-            this.SammenlignFlereFagBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SammenlignFlereFagBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.SammenlignFlereFagBtn.Location = new System.Drawing.Point(0, 318);
-            this.SammenlignFlereFagBtn.Name = "SammenlignFlereFagBtn";
-            this.SammenlignFlereFagBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.SammenlignFlereFagBtn.Size = new System.Drawing.Size(191, 52);
-            this.SammenlignFlereFagBtn.TabIndex = 5;
-            this.SammenlignFlereFagBtn.Text = "Sammenlign flere fag";
-            this.SammenlignFlereFagBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.SammenlignFlereFagBtn.UseVisualStyleBackColor = false;
-            this.SammenlignFlereFagBtn.Click += new System.EventHandler(this.SammenlignFlereFagBtn_Click_1);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,6 +329,7 @@
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ControllPanel.ResumeLayout(false);
+            this.ControllPanel.PerformLayout();
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -340,5 +353,6 @@
         private System.Windows.Forms.Button LogOutBtn;
         private System.Windows.Forms.Button NyttSemesterBtn;
         private System.Windows.Forms.Button SammenlignFlereFagBtn;
+        private System.Windows.Forms.Label SammengligningLbl;
     }
 }

@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.MyCoursesHeader = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.MyCoursesPanel = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
             this.SammenlignFeilmldLbl = new System.Windows.Forms.Label();
@@ -52,21 +51,11 @@
             this.LagreDiagram2Btn = new System.Windows.Forms.Button();
             this.SkrivUtDiagram2Btn = new System.Windows.Forms.Button();
             this.ChartFeilmld2Lbl = new System.Windows.Forms.Label();
+            this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // MyCoursesHeader
-            // 
-            this.MyCoursesHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MyCoursesHeader.Font = new System.Drawing.Font("Century Gothic", 27.75F);
-            this.MyCoursesHeader.Location = new System.Drawing.Point(0, 0);
-            this.MyCoursesHeader.Name = "MyCoursesHeader";
-            this.MyCoursesHeader.Size = new System.Drawing.Size(1008, 48);
-            this.MyCoursesHeader.TabIndex = 0;
-            this.MyCoursesHeader.Text = "Mine Fag";
-            this.MyCoursesHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MyCoursesPanel
             // 
@@ -166,16 +155,16 @@
             // 
             // FagkodeDiagram1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.FagkodeDiagram1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.FagkodeDiagram1.Legends.Add(legend5);
+            chartArea3.Name = "ChartArea1";
+            this.FagkodeDiagram1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.FagkodeDiagram1.Legends.Add(legend3);
             this.FagkodeDiagram1.Location = new System.Drawing.Point(3, 271);
             this.FagkodeDiagram1.Name = "FagkodeDiagram1";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.FagkodeDiagram1.Series.Add(series5);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.FagkodeDiagram1.Series.Add(series3);
             this.FagkodeDiagram1.Size = new System.Drawing.Size(495, 353);
             this.FagkodeDiagram1.TabIndex = 7;
             this.FagkodeDiagram1.Text = "chart1";
@@ -204,16 +193,16 @@
             // 
             // FagkodeDiagram2
             // 
-            chartArea6.Name = "ChartArea1";
-            this.FagkodeDiagram2.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.FagkodeDiagram2.Legends.Add(legend6);
+            chartArea4.Name = "ChartArea1";
+            this.FagkodeDiagram2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.FagkodeDiagram2.Legends.Add(legend4);
             this.FagkodeDiagram2.Location = new System.Drawing.Point(513, 274);
             this.FagkodeDiagram2.Name = "FagkodeDiagram2";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.FagkodeDiagram2.Series.Add(series6);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.FagkodeDiagram2.Series.Add(series4);
             this.FagkodeDiagram2.Size = new System.Drawing.Size(495, 353);
             this.FagkodeDiagram2.TabIndex = 11;
             this.FagkodeDiagram2.Text = "chart2";
@@ -249,6 +238,17 @@
             this.ChartFeilmld2Lbl.TabIndex = 14;
             this.ChartFeilmld2Lbl.Text = "chart feilmelding";
             // 
+            // MyCoursesHeader
+            // 
+            this.MyCoursesHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MyCoursesHeader.Font = new System.Drawing.Font("Century Gothic", 27.75F);
+            this.MyCoursesHeader.Location = new System.Drawing.Point(0, 0);
+            this.MyCoursesHeader.Name = "MyCoursesHeader";
+            this.MyCoursesHeader.Size = new System.Drawing.Size(1008, 48);
+            this.MyCoursesHeader.TabIndex = 0;
+            this.MyCoursesHeader.Text = "Sammenlign to fag";
+            this.MyCoursesHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MyCourses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,8 +277,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label MyCoursesHeader;
         private System.Windows.Forms.Panel MyCoursesPanel;
         private System.Windows.Forms.Panel InfoPanel;
         private System.Windows.Forms.Label ChartFeilmldLbl;
@@ -296,5 +294,6 @@
         private System.Windows.Forms.Button LagreDiagram2Btn;
         private System.Windows.Forms.Button SkrivUtDiagram2Btn;
         private System.Windows.Forms.Label ChartFeilmld2Lbl;
+        private System.Windows.Forms.Label MyCoursesHeader;
     }
 }
