@@ -1,6 +1,7 @@
 # Vurderingssystem
 Prototype for APP2000
 
+- [ ] Må legge til private/protected på det meste, da kan vi skrive i rapporten at vi har høy innkapsling/tenker mye på sikkerhet
 ### ASP.NET
 - [x] Legge inn session for ASP delen
 - [x] Ha noe som simulerer brukerinnlogging
