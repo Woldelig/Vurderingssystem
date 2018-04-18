@@ -18,11 +18,14 @@ namespace VMS
             {
                 Response.Redirect("velkomstside.aspx", true);
             }
+
             /*
-             * Vi må kjøre to spørringer her. Vi må vite antall rader som kommer ut for å lage arrayet
-             * Problemet er blitt stilt før på stack uten løsninger. Og klone datareader objektet er jo en mulighet
-             * men da er det mye mer hensiktmessig og kun kjøre en ekstra spørring
-                https://stackoverflow.com/questions/37726983/clone-sqldatareader-to-get-number-of-rows
+             * Her starter vi må å kjøre en SQL spørring medCOUNT.
+             * Vi trenger denne tellingen for å instansiere vårt
+             * multidimensjonelle array. Dette arrayet kommer til å 
+             * tilsvare en tabell. Vi bruker array istedenfor DataTable,
+             * dette er fordi vi kommer til å utføre en del operasjoner på arrayet
+             * som hadde vært veldig vanskelig på DataTable og array er generelt raskere
              */
 
             Database db = new Database();
@@ -94,10 +97,15 @@ namespace VMS
                     , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i,0]);
                 //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
 
-
-                //testsomething.InnerHtml = sb.ToString();
-                //PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
-                //Ovenfor er to andre metoder vi kunne ha brukt
+                /*
+                 * testsomething.InnerHtml = sb.ToString();
+                 * PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
+                 * 
+                 * De to linjene ovenfor er to andre måter vi prøvde å bruke. Begge fungerer men vi
+                 * valgte og bruke Literal. I html koden ville linjene ovenfor kunne ha skrevet ut til disse:
+                 * <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                 * <div id="testsomething" runat="server"></div>
+                 */
 
                 //lit er forkortelsen for literal kontroll vi skriver ut stringbuilderen sin tekst til
                 lit.Text = sb.ToString();
