@@ -11,6 +11,15 @@ namespace VMS
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            /*
+             * Hvis det ikke er en bruker som er logget inn,
+             * vil all html som er skrevet inn i mineFagDiv og 
+             * minevurderingerDiv fjernes og ny html vil bli skrevet 
+             * inn i ingenSessionDiv.
+             * 
+             * Htmlen som står i minefagDiv og minevurderingDiv
+             * står skrevet i Default.aspx
+             */
             if (Session["studentID"] == null)
             {
                 StudIDLabel.Text = "";
