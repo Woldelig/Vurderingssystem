@@ -18,12 +18,21 @@ namespace VMS
                 Response.Redirect("velkomstside.aspx", true);
             }
 
-            //Under får vi ut hvor mange rader med fag studenten har. Dette trenger vi for å lage et array             
+            /*
+             * Her starter vi må å kjøre en SQL spørring med COUNT.
+             * Vi trenger denne tellingen for å instansiere vårt
+             * multidimensjonelle array. Dette arrayet kommer til å 
+             * tilsvare en tabell. Vi bruker array istedenfor DataTable,
+             * dette er fordi vi kommer til å utføre en del operasjoner på arrayet
+             * som hadde vært veldig vanskelig på DataTable og array er generelt raskere
+             */
+
             Database db = new Database();
             String sql = "SELECT COUNT(*) FROM student as s, fag, foreleser as f " +
                 "WHERE s.studentid = @Studentid " +
                 "AND s.studieretning = fag.studieretning " +
                 "AND f.foreleserid = fag.foreleserid";
+
             var cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             db.OpenConnection();
@@ -60,9 +69,9 @@ namespace VMS
 
             /*
              * Under sjekker vi om studenten har tatt en vurdering som er lagret i vurderingshistorikk
-             * vi sjekker dette så han ikke skal kunne ta en vurdering mer enn en gang
-             * * Arrayene blir laget utifra hvor mange rader som blir funnet i den første sql spørringen
-            * hvis det ikke blir funnet noen rader har brukeren ikke utført en vurdering som blir sjekket i en if setning under
+             * vi sjekker dette så han ikke skal kunne bli sendt til vurderingsiden.
+             * Arrayene blir laget utifra hvor mange rader som blir funnet i den første sql spørringen
+             * hvis det ikke blir funnet noen rader har brukeren ikke utført en vurdering som blir sjekket i en if setning under
              */
             sql = "SELECT COUNT(*) FROM vurderingshistorikk WHERE studentid = @Studentid";
             cmd = db.SqlCommand(sql);
@@ -183,7 +192,17 @@ namespace VMS
                 String span2 = "FagnavnLbl" + spanNr;
                 String span3 = "ForeleserLbl" + spanNr;
 
-                //Denne if setningen sjekker om et array er null, hvis dette spesifikke arrayet er null har brukeren ikke tatt noen vurderinger
+                /*
+                 * Denne if setning blir utført når en student ikke har utført noen
+                 * vurderinger. Else if blir utført hvis en student har noen tilgjengelige
+                 * vurderinger. Og Else blir utført hvis vurderinger er tatt.
+                 * 
+                 * Html som blir produsert i forgreningen under vil Lage knapper som fører til
+                 * vurderingsskjema og legge til en div klasse feks divKnappBorder. Dette er en 
+                 * klasse i CSS filen som vil gi en styling. For fag uten vurdering vil denne se ut som 
+                 * en knapp og kan trykkes på. For fag hvor en vurdering er tatt, vil denne
+                 * knappen være grå og kan ikke trykkes på
+                 */
                 if (faginfoForVurderteFag == null)
                 {
                     sb.AppendFormat(
@@ -208,6 +227,10 @@ namespace VMS
                         , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i, 0]);
                     //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
                 }
+                /*
+                * Denne if setningen blir true hvis studenten ikke har utført en vurdering 
+                * i et spesifikt fag. Og html blir formatert som en link til vurderingsskjema
+                */
                 else if (!faginfo[i, 0].Equals(faginfoForVurderteFag[i, 0]))
                 {
                     sb.AppendFormat(
@@ -231,8 +254,11 @@ namespace VMS
                     "<br />"
                     , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i, 0]);
                     //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
-
                 }
+                /*
+                 * Denne blir utført hvis det er en student som
+                 * har utført noen vurderinger men ikke alle.
+                 */
                 else
                 {
                     sb.AppendFormat(

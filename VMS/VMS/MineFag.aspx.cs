@@ -20,7 +20,7 @@ namespace VMS
             }
 
             /*
-             * Her starter vi må å kjøre en SQL spørring medCOUNT.
+             * Her starter vi må å kjøre en SQL spørring med COUNT.
              * Vi trenger denne tellingen for å instansiere vårt
              * multidimensjonelle array. Dette arrayet kommer til å 
              * tilsvare en tabell. Vi bruker array istedenfor DataTable,
