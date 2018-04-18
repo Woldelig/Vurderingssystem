@@ -12,24 +12,26 @@ namespace VMS
 {
     public partial class vurderingsskjema : System.Web.UI.Page
     {
-        //Denne siden skal ikke være tilgjengelig med mindre du er student med gyldig session
-        //session må gi oss en studentid, med den kan vi få tak i studieretning og fagkode som gir
-        //oss tilgangen til skjemaene.
-        Database db = new Database();
-        String sidensFagkode = "";
+        private Database db = new Database();
+        private String sidensFagkode = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Sjekker om en bruker er logget inn
             if (Session["studentID"] == null)
             {
                 Response.Redirect("Default.aspx", true);
             }
-
-
-            //Hvis noen blir redirected til fagsiden med et parameter vil fagsiden bytte om fagkoden til parameteret ved hjelp av en stringQuery
+            
+            /*
+             * Under henter vi ut en string query. Denne inneholder
+             * fagkoden siden skal vise. Denne kommer enten fra søk eller en lenke.
+             * Denne blir formatert ved hjelp av formaterQueryString metoden deretter
+             * brukes den i en SQL spørring
+             */
             String uformatertQueryString = Request.Url.Query;
             String formatertQueryString = FormaterQueryString.FormaterString(uformatertQueryString);
-            //StringQuery inneholder et spørsmålstegn som vi her fjerner
+
             if (formatertQueryString != "" || formatertQueryString == null)
             {
                 sidensFagkode = formatertQueryString;
@@ -38,15 +40,22 @@ namespace VMS
             {
                 Response.Redirect("velkomstside.aspx", true);
             }
+
+            /*
+             * På denne siden får vi tak i fagkoden til faget som skal vurderes
+             * fra string query. Den blir sendt med nå en student trykker på
+             * knappen for vurdering på MineVurderinger.aspx
+             */
+
             String query = "SELECT spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM student as s, fag as f, vurderingsskjema as v WHERE s.studentid = @Studentid AND v.fagkode = @Fagkode AND s.studieretning = f.studieretning AND v.fagkode = f.fagkode";
-            //betingelsen må endres! den er satt til 1 kun for testing!!!!!!!!!!!!!
-            //Denne setningen får tak i spørsmålene ved hjelp av betingelser på kryss av tabeller
+
             var cmd = db.SqlCommand(query);
             cmd.Parameters.AddWithValue("@Studentid", Session["studentID"].ToString());
             cmd.Parameters.AddWithValue("@Fagkode", sidensFagkode);
             db.OpenConnection();
             MySqlDataReader leser = cmd.ExecuteReader();
 
+            //Arrayet blir satt til 10 siden det kun er 10 spørsmål per vurderingsskjema
             String[] skjemaSpm = new String[10];
             while (leser.Read())
             {
@@ -56,6 +65,11 @@ namespace VMS
                 }
             }
             db.CloseConnection();
+
+            /*
+             * Her bruker vi foreach loop for å fylle på spørsmålsteksten til
+             * labelene på asp.net siden.
+             */
             Label[] spmLabel = new Label[10] { spm1Lbl, spm2Lbl, spm3Lbl, spm4Lbl, spm5Lbl, spm6Lbl, spm7Lbl, spm8Lbl, spm9Lbl, spm10Lbl };
             int spmIndex = 0;
             foreach (Label lbl in spmLabel)
@@ -108,6 +122,12 @@ namespace VMS
             }
             db.CloseConnection();
 
+            /*
+             * Her blir svarene fra vurderinsskjemaet sendt inn til databasen.
+             * Etter svarene er sendt inn blir det skrevet en tekststreng til en label
+             * som sier at testen er fullført. Og etter ca 4 sekunder blir studenten sendt
+             * tilbake til MineVurderinger.aspx
+             */
             sql = "INSERT INTO pågåendevurdering(skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
             cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Skjemaid", skjemaid);

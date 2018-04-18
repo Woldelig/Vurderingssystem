@@ -226,6 +226,7 @@ namespace VMS
                     "<br />"
                         , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i, 0]);
                     //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
+                    //{6} inneholder fagkoden som blir sendt med som parameter: href='Vurderingsskjema.aspx?{6}'
                 }
                 /*
                 * Denne if setningen blir true hvis studenten ikke har utført en vurdering 
