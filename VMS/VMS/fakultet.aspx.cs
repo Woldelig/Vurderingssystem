@@ -12,8 +12,9 @@ namespace VMS
     public partial class fakultet : System.Web.UI.Page
     {
         private Database db = new Database();
-        private String sidensFakultet = "Handelshøyskolen";
         private List<FakultetInfo> fakultetInfoListe = new List<FakultetInfo>();
+        private String sidensFakultet = "Handelshøyskolen";
+        //Setter et standard fakultet for nettsiden
       
         protected void Page_Load(object sender, EventArgs e)
         {
