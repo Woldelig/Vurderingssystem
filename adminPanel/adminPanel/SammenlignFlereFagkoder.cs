@@ -14,6 +14,11 @@ namespace adminPanel
 {
     public partial class SammenlignFlereFagkoder : UserControl
     {
+        /*
+         * Her har vi mulighet til å sammenligne et av de 5
+         * standardiserte spørsmålene mot hverandre i så mange
+         * fagkoder som det finnes.
+         */
         public SammenlignFlereFagkoder()
         {
             InitializeComponent();
@@ -128,6 +133,7 @@ namespace adminPanel
                 ClearDiagramBtn.Show();
                 UpdateDiagramBtn.Show();
                 String seriesname;
+
                 switch (SpmListeboks.SelectedIndex)
                 {
                     case 0:
