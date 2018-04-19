@@ -27,9 +27,14 @@ namespace adminPanel
             Database db = new Database();
             String sql = sqlTxt.Text;
             String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE", "CALL" };
-            //Ord som vi ikke vil ha i spørringen, store bokstaver siden vi bruker toUpper
-
-            foreach (string ord in fyOrd)  //Her foreacher vi alle ordene i fyOrd for å se om sql spørringen inneholder ulovlige kommandoer
+            /*
+             * Dette arrayet inneholder ord som ikke kan godtas i SQL spørringer pga av sikkerhet.
+             * 
+             * I foreachen under blir SQL spørringen til brukeren sammenlignet opp
+             * mot array med fyOrd ved hjelp av Contains() metoden. Vi har også brukt 
+             * toUpper for at ordene som sammenlignes begge er i store bokstaver
+             */
+            foreach (string ord in fyOrd) 
             {
                 if (sql.ToUpperInvariant().Contains(ord.ToString()))
                 {
@@ -41,7 +46,7 @@ namespace adminPanel
             try
             {
                 db.OpenConnection();
-                var da = db.DataAdapter(sql); //Kaller på egenlagd metode som returnerer dataadapter
+                var da = db.DataAdapter(sql); //Kaller på egenlagd metode i Database.cs som returnerer dataadapter
                 MySqlCommandBuilder sqlBygger = new MySqlCommandBuilder(da);
                 DataSet ds = new DataSet();
                 da.Fill(ds); //Data adapteret fyller på datasetet
@@ -60,9 +65,11 @@ namespace adminPanel
 
         private void LagreXmlBtn_Click(object sender, EventArgs e)
         {
-            //Datagridview objektet blir kastet over til et datatable objekt
-            //deretter lager vi et fildialog objekt
-            //helt til slutt skriver vi ut datatable som xml og angir filnavnet brukeren taster i fildialogen
+            /*
+             * Datagridview objektet blir castet over til et datatable objekt
+             * deretter lager vi et fildialog objekt
+             * helt til slutt skriver vi ut datatable som xml og angir filnavnet brukeren taster i fildialogen
+             */
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "XML | *.xml";
@@ -81,6 +88,10 @@ namespace adminPanel
 
         private void LagreCsvBtn_Click(object sender, EventArgs e)
         {
+            /*
+             * Denne metoden lar oss lagre SQL spørringen til brukeren
+             * som en CSV fil
+             */
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "CSV | *.csv";
@@ -114,6 +125,7 @@ namespace adminPanel
                         {
                             sw.Write(",");
                             //sw.Write(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator);
+
                             //Denne linjen ville gitt oss et semikolon siden dette er seperatoren vi bruker i europa.
                             //den finnger ut hvilken seperator den skal sette basert på "kulturen" til din datamaskin
                             //linjen er bare med for å vise at dette er en mulighet
