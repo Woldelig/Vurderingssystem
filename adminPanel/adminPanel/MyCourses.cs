@@ -20,15 +20,22 @@ namespace adminPanel
         }
         Database db = new Database();
 
+        //Denne variabelen blir brukt til validering. Mer informasjon finner du i Button_Click metoden under
         int antallGangerKnappenErTrykket = 0;
         private void MyCourses_Load(object sender, EventArgs e)
         {
             String sql = "SELECT DISTINCT fagkode FROM vurderingshistorikk;";
             var mySqlCommand = db.SqlCommand(sql);
+            /*
+             * Her defineres variabler som brukes til
+             * å holde styr på hvor mange knapper 
+             * vi skal ha per rad
+             */
             int row = 0; //10
             int column = 0; //3
             String fagkode = "";
 
+            //Her gjemmer vi bort elementer som ikke trenger å være synlig
             ChartFeilmld2Lbl.Text = "";
             ChartFeilmldLbl.Text = "";
             SammenlignFeilmldLbl.Text = "";
@@ -40,7 +47,11 @@ namespace adminPanel
             LagreDiagram2Btn.Hide();
 
 
-
+            /*
+             * Under blir det generert en knapp til vær unike
+             * fagkode som er i databasen. Brukeren kan da trykke på to
+             * uliker fagkoder som da blir sammenlignet.
+             */
             try
             {
                 db.OpenConnection();
@@ -91,9 +102,11 @@ namespace adminPanel
             Button button = sender as Button;
 
             /*
-             * Hvis det ikke er trykket på noen knapper vil fagkoden legges inn i den første tekstboksen.
-             * Hvilken tekstboks fagkoden blir lagt inn i kommer an på variabelen som blir testet i If setningen
-             * denne øker og trekkes fra for hver gang en knapp blir trykket så den bytter tekstboks vær gang
+             * Hvis det ikke er trykket på noen knapper vil fagkoden legges inn i den første tekstboksen og variabelen
+             * antallGangerKnappenErtrykket vil øke med en, dette gjør at neste gang en knapp trykkes vil denne
+             * fagkoden legges i neste tekstboks. Når en fagkode legges i tekstboks nummer 2 vil variabelen bli
+             * satt tilbake til 0. Dette gir en flytt i programmet så man bare trenger å trykke på fagkodene for å 
+             * fylle på tekstboksene for sammenligning.
              */
             if (antallGangerKnappenErTrykket == 0)
             {
@@ -109,7 +122,7 @@ namespace adminPanel
 
         private void SammenlignFagBtn_Click(object sender, EventArgs e)
         {
-            //Sjekker om brukeren har valgt to fagkoder, og avbryter operasjonen hvis det ikke er det
+            //Sjekker om brukeren har valgt ulike to fagkoder, og avbryter operasjonen hvis det ikke er det
             if (String.IsNullOrWhiteSpace(FagkodeNr1.Text) || String.IsNullOrWhiteSpace(FagkodeNr2.Text))
             {
                 SammenlignFeilmldLbl.ForeColor = Color.Red;
@@ -160,7 +173,12 @@ namespace adminPanel
             diagramNavn.Titles.Clear();
             diagramNavn.ChartAreas.Clear();
 
-
+            /*
+             * Her har vi lagt inn alle prosedyrenavnene som et tekstarray fordi
+             * vi skal ha ut verdiene til alle de 5 første spørsmålene i en vurdering.
+             * For loopen vil deretter kalle på metoden ProsedyreUtører som vil legge 
+             * inn alle spørsmålsverdiene som vær sin linje i dette linjediagrammet.
+             */
             String seriesname = "";
             String[] ProsedyreNavnArray = new String[] { "hent_spm1_verdier", "hent_spm2_verdier", "hent_spm3_verdier", "hent_spm4_verdier", "hent_spm5_verdier" };
             String[] SpørsmålNr = new String[] { "Spørsmål 1", "Spørsmål 2", "Spørsmål 3", "Spørsmål 4", "Spørsmål 5" };
@@ -170,6 +188,8 @@ namespace adminPanel
                 seriesname = SpørsmålNr[i];
                 //Legger til data for fagkode 1
                 diagramNavn.Series.Add(seriesname);
+
+                //Linjene i denne if setningen skal kun kjøres en gang. Linjene setter font, tittel og lignende.
                 if (i == 0)
                 {
                     diagramNavn.Legends.Add("Legende");
@@ -192,9 +212,8 @@ namespace adminPanel
         private int[] ProsedyreUtfører(String fagkode, String prosedyrenavn)
         {
             /*
-             * Metoden utfører en prosedyre basert på parameter. Og returnerer et in array
-             * prosedyrenavn blir valgt fra en switch mens fagkoden kommer fra en listeboks
-             * som henter disse ut fra DB
+             * Metoden utfører en prosedyre basert på parameter. Og returnerer et int array
+             * prosedyrenavn og fagkode blir sendt inn som parameter
              */
             var cmdForFagkode = db.SqlCommand("");
             cmdForFagkode.CommandText = prosedyrenavn;
