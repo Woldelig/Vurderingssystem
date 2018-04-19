@@ -19,7 +19,7 @@ namespace adminPanel
             InitializeComponent();
         }
 
-        Database db = new Database();
+         private Database db = new Database();
 
         private void Stats_Load(object sender, EventArgs e)
         {
@@ -32,16 +32,18 @@ namespace adminPanel
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             da.Fill(ds);
-            dt = ds.Tables[0]; //plassering 0 fordi den kun henter ut en rad. i foreachen blir den splittet opp per rad og lagt inn en og en i listeboksen
+            //plassering 0 fordi den kun henter ut en rad. i foreachen blir den splittet opp per rad og lagt inn en og en i listeboksen
+            dt = ds.Tables[0];
 
-            foreach (DataRow dr in dt.Rows)  //Her brukes datarow fordi vi skal ha ut rader
+            //Her brukes datarow fordi vi skal ha ut rader
+            foreach (DataRow dr in dt.Rows)
             {
                 fagkodeListeboks.Items.Add(dr["Fagkode"].ToString());
             }
-            //https://softwareengineering.stackexchange.com/questions/142065/creating-database-connections-do-it-once-or-for-each-query
             db.CloseConnection();
 
-            spmListeboks.Hide();    //Gjemmer listeboksene og knapper til de har et bruksområde
+            //Gjemmer listeboksene og knapper til de har et bruksområde
+            spmListeboks.Hide();    
             diagramListeboks.Hide();
             chart1.Hide();
             spmLbl.Hide();
@@ -53,16 +55,20 @@ namespace adminPanel
 
         private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Denne sjekken gjør at brukeren må trykke på en verdi for å få programmet til å fortsette
-            //hvis denne sjekken ikke er der kan han bare trykke på det hvite området
+            /*
+             * Denne sjekken gjør at brukeren må trykke på en verdi for å få programmet til å fortsette
+             * hvis denne sjekken ikke er der kan han bare trykke på det hvite området
+             */
+
             if (fagkodeListeboks.SelectedItem == null)
             {
                 return;
             }
 
-            //Fjerner elementer i listeboks.Må gjøres hvis klassekode byttes
-            //Populerer listeboksen. Øk loopen for flere spørsmål.
-            //Hvis den økes må det lages flere prosedyrer i db og legges til i switchen under
+            /*
+             * Fjerner elementer i listeboks. Dette må gjøres brukeren endrer fagkoden.
+             * Listeboksen blir populert med en for loop.
+             */
             spmListeboks.Items.Clear();
             for (int i = 1; i < 11; i++)
             {
@@ -82,7 +88,8 @@ namespace adminPanel
             diagramListeboks.Items.Clear();
             diagramListeboks.Show();
             diagramLbl.Show();
-            //Arrayet her inneholder de typer diagram vi kan vise frem
+
+            //Arrayet inneholder de typer diagram vi kan vise frem
             String[] diagramTyper = { "Kakediagram", "Stolpediagram", "Linjediagram", "Radardiagram" };
 
             foreach (String diagram in diagramTyper)
@@ -156,8 +163,10 @@ namespace adminPanel
                 //Setter at cmd sender en stored procedure - prosedyre
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                //Valgt fagkode blir hentet ut og plassert som inn parameter
+
                 String fagkode = fagkodeListeboks.SelectedItem.ToString();
+                
+                //Valgt fagkode blir hentet ut og plassert som inn parameter
                 cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
                 cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@out_verdi2", MySqlDbType.Int32).Direction = ParameterDirection.Output;
@@ -165,7 +174,6 @@ namespace adminPanel
                 cmd.Parameters.AddWithValue("@out_verdi4", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                 cmd.Parameters.AddWithValue("@out_verdi5", MySqlDbType.Int32).Direction = ParameterDirection.Output;
                 //På linjene over blir inn og ut parametere definert. Ut parametere får datatype (int). Og deretter blir parameter retning definert
-                //dette kan også gjøres på 2 linjer.
 
                 db.OpenConnection();
                 cmd.ExecuteNonQuery();
@@ -177,7 +185,7 @@ namespace adminPanel
                 db.CloseConnection();
 
 
-                //Her sjekker vi om det faktisk er data relatert til diagrammet, hvis ikke skrives det ut en feilmelding og det vises ingen diagram
+                //Her sjekker vi om vi har fått ut noe data, hvis ikke skrives det ut en feilmelding
                 if (stjerne1 == 0 && stjerne2 == 0 && stjerne3 == 0 && stjerne4 == 0 && stjerne5 == 0)
                 {
                     FeilmeldingsLbl.ForeColor = Color.Red;
@@ -190,7 +198,7 @@ namespace adminPanel
 
                 chart1.Series.Clear();
                 chart1.Titles.Clear();
-                string seriesname = "seriesName"; //Av en eller annen grunn heter den dette overalt på stackoverflow så følger det
+                string seriesname = "seriesName";
                 try
                 {
                     bool diagramSkalHaFarger = false;
@@ -206,10 +214,10 @@ namespace adminPanel
                             chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
                             chart1.Legends.Add("Legende");
 
-                            //Legger boksen på bunnen
+                            //Legger legends på bunnen av diagramet
                             chart1.Legends[0].Docking = Docking.Bottom;
 
-                            //midtstiller boksen og strings i den
+                            //midtstiller strings som er i legend
                             chart1.Legends[0].Alignment = StringAlignment.Center;
                             chart1.Legends[0].BorderColor = Color.Black;
                             diagramSkalHaFarger = true;
