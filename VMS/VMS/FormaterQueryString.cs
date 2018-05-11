@@ -30,7 +30,7 @@ namespace VMS
         public static String FormaterString(String streng)
         {
             /*
-             * Her sjekkes den vært par opp mot tekststrengen.
+             * <FIX> Her sjekkes den (hvert) par opp mot tekststrengen.
              * Hvis en nøkkel matcher blir verdien byttet om mot verdien
              */
             foreach (KeyValuePair<String, String> byttOm in ugyldigeTegn)
