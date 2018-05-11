@@ -42,7 +42,10 @@
     <script src="Scripts/jquery.rateit.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+        <!-- Nedenfor lages det en navigasjonslinje som kollapser hvis nettsiden ikke får plass til alt på en side.
+            Navigasjonslinjen inneholder noen knapper som skjules hvis det ikke er logget inn en bruker.
+            Den inneholder også et søkefelt og noen inn- og utloggingsknapper.
+         -->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -74,6 +77,7 @@
                 </div>
             </div>
         </div>
+        <!-- Her kommer undersidene inn -->
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
