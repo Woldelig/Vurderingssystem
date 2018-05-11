@@ -46,13 +46,13 @@ namespace VMS
             db.OpenConnection();
             leser = cmd.ExecuteReader();
             String[,] faginfo = new String[antallRader, 3];
-            /*Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
+            /* Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
              * siden vi er usikre på hvor mange rader vi skal ha blir dette definert ved hjelp av en egen spørring som teller
              * resultatet. Kolonner er definert som 3 fordi det er kun 3 kolonner vi bruker. Vi selecter egentlig 4 kolonner
-             * men vi bruker concat funksjonen i mysql for å slå sammen fornavn og etternavnet til foreleseren
+             * men vi bruker concat-funksjonen i mysql for å slå sammen fornavn og etternavnet til foreleseren.
              */
 
-            //Her leses verdiene i et jagged array
+            //Her leses verdiene inn i et jagged array
             int arrayIndexTilsvarerRadIdb = 0;
             while (leser.Read())
             {
@@ -68,7 +68,7 @@ namespace VMS
             StringBuilder sb = new StringBuilder();
             int spanNr = 1;
             
-            //I denne for loopen blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
+            //I denne for løkken blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
             for (int i = 0; i < antallRader; i++)
             {
                 String span1 = "FagkodeLbl" + spanNr;
@@ -101,7 +101,7 @@ namespace VMS
                  * testsomething.InnerHtml = sb.ToString();
                  * PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
                  * 
-                 * De to linjene ovenfor er to andre måter vi prøvde å bruke. Begge fungerer men vi
+                 * De to linjene ovenfor er to andre tilnærminger vi forsøkte å bruke. Begge fungerer, men vi
                  * valgte og bruke Literal. I html koden ville linjene ovenfor kunne ha skrevet ut til disse:
                  * <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                  * <div id="testsomething" runat="server"></div>
