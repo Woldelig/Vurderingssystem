@@ -193,7 +193,7 @@ namespace VMS
                 String span3 = "ForeleserLbl" + spanNr;
 
                 /*
-                 * Denne if setning blir utført når en student ikke har utført noen
+                 * Denne if-setning blir utført når en student ikke har utført noen
                  * vurderinger. Else if blir utført hvis en student har noen tilgjengelige
                  * vurderinger. Og Else blir utført hvis vurderinger er tatt.
                  * 
@@ -229,7 +229,7 @@ namespace VMS
                     //{6} inneholder fagkoden som blir sendt med som parameter: href='Vurderingsskjema.aspx?{6}'
                 }
                 /*
-                * Denne if setningen blir true hvis studenten ikke har utført en vurdering 
+                * Denne if-setningen blir true hvis studenten ikke har utført en vurdering 
                 * i et spesifikt fag. Og html blir formatert som en link til vurderingsskjema
                 */
                 else if (!faginfo[i, 0].Equals(faginfoForVurderteFag[i, 0]))
@@ -258,7 +258,7 @@ namespace VMS
                 }
                 /*
                  * Denne blir utført hvis det er en student som
-                 * har utført noen vurderinger men ikke alle.
+                 * har utført noen vurderinger, men ikke alle.
                  */
                 else
                 {
