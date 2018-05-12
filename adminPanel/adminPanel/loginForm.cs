@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data;
 using MySql.Data.MySqlClient;
 
 namespace adminPanel
@@ -21,7 +13,8 @@ namespace adminPanel
         public LoginForm()
         {
             InitializeComponent();
-            HelpText.ForeColor = System.Drawing.Color.Red; // Setter feilmeldingene på loginForm til rød
+            // Setter feilmeldingene på loginForm til rød
+            HelpText.ForeColor = System.Drawing.Color.Red;
             Username.Text = "Brukernavn";
             Password.Text = "Passord";
             Username.ForeColor = Color.FromArgb(52, 52, 52);
@@ -30,18 +23,21 @@ namespace adminPanel
 
         private void Login()
         {
-            Database db = new Database();//Oppretter database-objekt
+            // Oppretter database-objekt
+            Database db = new Database();
             try
             {
                 db.OpenConnection();
                 string query = "SELECT passord FROM formlogin WHERE bruker = @Brukernavn;";
 
                 var mySqlCommand = db.SqlCommand(query);
+                // Hindrer SQL-injection
+                mySqlCommand.Parameters.AddWithValue("@Brukernavn", Username.Text);
 
-                mySqlCommand.Parameters.AddWithValue("@Brukernavn", Username.Text);//Hindrer SQLinjection
-                
-                MySqlDataReader reader = mySqlCommand.ExecuteReader(); //Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
-                if (!reader.HasRows) //Sjekker om det finnes rader
+                // Bruker ExecuteReader-metoden til å returnere resulatet til MySqlDataReader-objektet
+                MySqlDataReader reader = mySqlCommand.ExecuteReader();
+                // Sjekker om det finnes rader
+                if (!reader.HasRows)
                 {
                     HelpText.Text = "Brukernavnet eller passordet er feil!";
                 } else
@@ -52,7 +48,7 @@ namespace adminPanel
                     {
                         hashpw = reader.GetString("passord");
                     }
-                    //Sjekker om passordet er riktig
+                    // Sjekker om passordet er riktig
                     if (!hash.SjekkHash(Password.Text, hashpw))
                     {
                         HelpText.Text = "Feil passord!";
@@ -63,20 +59,25 @@ namespace adminPanel
                         this.Dispose();
                     }
                 }
-                reader.Close();//Stenger MySqlDataReader-objektet
-                db.CloseConnection();//Stenger databasetilgangen
+                // Stenger MySqlDataReader-objektet
+                reader.Close();
+                // Stenger databasetilgangen
+                db.CloseConnection();
             }
             catch (MySqlException DBException)
             {
+                /*
+                 * Under testing og debugging av prototypen skriver vi til konsollen.
+                 * Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
+                */
                 Console.WriteLine(DBException.ToString());
-                //Under testing og debugging skriver vi til konsollen.
-                //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
+
             }
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            //IF-setningen ser har litt ekstra i scopet nå fordi watermark er lagt til. Mulig vi finner en bedre løsning på det
+            // IF-setningen sjekker om både brukernavn og passord er fylt ut.
             if (Username.Text == "Brukernavn" || Password.Text == "Passord" || Username.Text == String.Empty || Password.Text == String.Empty)
             {
                 HelpText.Text = "Brukernavn og passord må fylles ut!";
@@ -92,7 +93,7 @@ namespace adminPanel
             Application.Exit();
         }
 
-        //Watermark - Cue banner
+        // Placeholder - Cue banner
         private void Username_Enter(object sender, EventArgs e)
         {
             if(Username.Text == "Brukernavn")
@@ -102,7 +103,7 @@ namespace adminPanel
             }
         }
 
-        //Watermark - Cue banner
+        // Placeholder - Cue banner
         private void Username_Leave(object sender, EventArgs e)
         {
             if (Username.Text.Length == 0)
@@ -112,40 +113,43 @@ namespace adminPanel
             }
         }
 
-        //Watermark - Cue banner
+        // Placeholder - Cue banner
         private void Password_Enter(object sender, EventArgs e)
         {
             if(Password.Text == "Passord")
             {
                 Password.Text = "";
                 Password.ForeColor = SystemColors.Window;
-                Password.PasswordChar = '*';//Setter egenskapen til PasswordChar til å maskere passordet med *
+                // Setter egenskapen til PasswordChar til å maskere passordet med '*'.
+                Password.PasswordChar = '*';
             }
         }
 
-        //Watermark - Cue banner
+        // Placeholder - Cue banner
         private void Password_Leave(object sender, EventArgs e)
         {
             if (Password.Text.Length == 0)
             {
                 Password.Text = "Passord";
                 Password.ForeColor = Color.FromArgb(52, 52, 52);
-                Password.PasswordChar = '\0';//Skrur av maskering av passord for å kunne vise watermark
+                // Skrur av maskering av passord for å kunne vise placeholder
+                Password.PasswordChar = '\0';
             }
         }
 
         private void LoginBoarder_MouseDown(object sender, MouseEventArgs e)
         {
             mouseDown = true;
-            lastLocation = e.Location; //Setter koordinatene til lastLocation i det brukeren holder museknappen nede
+            // Setter koordinatene til lastLocation i det brukeren holder museknappen nede.
+            lastLocation = e.Location;
         }
 
         private void LoginBoarder_MouseMove(object sender, MouseEventArgs e)
         {
-            //Så lenge museknappen er nede skal man kunne flytte på vinduet
+            // Så lenge museknappen er nede skal man kunne flytte på vinduet
             if (mouseDown)
             {
-                //Kunne flytte på vinduet ved å klikke og dra i LoginBoarder
+                // Kunne flytte på vinduet ved å klikke og dra i LoginBoarder
                 this.Location = new Point((this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
                 FormPosition.Pos = this.Location;
                 this.Update();
@@ -159,12 +163,14 @@ namespace adminPanel
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit();//Avslutter applikasjonen
+            // Avslutter applikasjonen
+            Application.Exit();
         }
 
         private void MinimizeBtn_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;//Minimerer vinduet
+            // Minimerer vinduet
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void LoginBtn_MouseEnter(object sender, EventArgs e)
@@ -207,34 +213,37 @@ namespace adminPanel
             nyBrukerBtn.ForeColor = Color.SteelBlue;
         }
 
-        //Bruker Multithreading
+        // Bruker Multithreading
         private void nyBrukerBtn_Click(object sender, EventArgs e)
         {
-            //Sjekker om det allerede finnes en nyBrukerForm
-            //Hvis ikke starter vi en ny thread
+            /*
+             * Sjekker om det allerede finnes en nyBrukerForm,
+             * hvis ikke starter vi en ny thread.
+            */
+
             if (!SjekkForm())
             {
                 new Multithread().StartThread();
             }
         }
 
-        //En sjekker som går igjennom alle åpne form
+        // En sjekker som går igjennom alle åpne form
         private bool SjekkForm()
         {
-            //Går igjennom alle åpne forms
+            // Går igjennom alle åpne forms
             foreach (Form form in Application.OpenForms)
             {
-                //Hvis nyBrukerForm er en av disse betyr det at den er åpen
+                // Hvis nyBrukerForm er en av disse betyr det at den er åpen
                 if (typeof(nyBrukerForm).Name == form.Name)
                 {
                     return true;
                 }
             }
-            //Returnerer false om den ikke finner formen
+            // Returnerer false om den ikke finner formen
             return false;
         }
 
-        //Kjører nyBrukerForm
+        // Kjører nyBrukerForm
         public void nyThread()
         {
             Application.Run(new nyBrukerForm());
