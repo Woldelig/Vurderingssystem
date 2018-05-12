@@ -175,7 +175,7 @@ namespace adminPanel
             /*
              * Her har vi lagt inn alle prosedyrenavnene som et tekstarray fordi
              * vi skal ha ut verdiene til alle de 5 første spørsmålene i en vurdering.
-             * For loopen vil deretter kalle på metoden ProsedyreUtører som vil legge 
+             * For loopen vil deretter kalle på metoden ProsedyreUtfører som vil legge 
              * inn alle spørsmålsverdiene som hver sin linje i dette linjediagrammet.
              */
 
