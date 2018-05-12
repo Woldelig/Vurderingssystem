@@ -43,14 +43,14 @@
             this.FagkodeNr2Lbl = new System.Windows.Forms.Label();
             this.FagkodeNr2 = new System.Windows.Forms.TextBox();
             this.FagkodeNr1 = new System.Windows.Forms.TextBox();
-            this.ChartFeilmldLbl = new System.Windows.Forms.Label();
+            this.DiagramFeilmldLbl = new System.Windows.Forms.Label();
             this.FagkodeDiagram1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.SkrivUtDiagram1Btn = new System.Windows.Forms.Button();
             this.LagreDiagram1Btn = new System.Windows.Forms.Button();
             this.FagkodeDiagram2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.LagreDiagram2Btn = new System.Windows.Forms.Button();
             this.SkrivUtDiagram2Btn = new System.Windows.Forms.Button();
-            this.ChartFeilmld2Lbl = new System.Windows.Forms.Label();
+            this.DiagramFeilmld2Lbl = new System.Windows.Forms.Label();
             this.MyCoursesHeader = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FagkodeDiagram1)).BeginInit();
@@ -146,12 +146,12 @@
             // 
             // ChartFeilmldLbl
             // 
-            this.ChartFeilmldLbl.AutoSize = true;
-            this.ChartFeilmldLbl.Location = new System.Drawing.Point(212, 252);
-            this.ChartFeilmldLbl.Name = "ChartFeilmldLbl";
-            this.ChartFeilmldLbl.Size = new System.Drawing.Size(83, 13);
-            this.ChartFeilmldLbl.TabIndex = 3;
-            this.ChartFeilmldLbl.Text = "chart feilmelding";
+            this.DiagramFeilmldLbl.AutoSize = true;
+            this.DiagramFeilmldLbl.Location = new System.Drawing.Point(212, 252);
+            this.DiagramFeilmldLbl.Name = "ChartFeilmldLbl";
+            this.DiagramFeilmldLbl.Size = new System.Drawing.Size(83, 13);
+            this.DiagramFeilmldLbl.TabIndex = 3;
+            this.DiagramFeilmldLbl.Text = "chart feilmelding";
             // 
             // FagkodeDiagram1
             // 
@@ -231,12 +231,12 @@
             // 
             // ChartFeilmld2Lbl
             // 
-            this.ChartFeilmld2Lbl.AutoSize = true;
-            this.ChartFeilmld2Lbl.Location = new System.Drawing.Point(567, 255);
-            this.ChartFeilmld2Lbl.Name = "ChartFeilmld2Lbl";
-            this.ChartFeilmld2Lbl.Size = new System.Drawing.Size(83, 13);
-            this.ChartFeilmld2Lbl.TabIndex = 14;
-            this.ChartFeilmld2Lbl.Text = "chart feilmelding";
+            this.DiagramFeilmld2Lbl.AutoSize = true;
+            this.DiagramFeilmld2Lbl.Location = new System.Drawing.Point(567, 255);
+            this.DiagramFeilmld2Lbl.Name = "ChartFeilmld2Lbl";
+            this.DiagramFeilmld2Lbl.Size = new System.Drawing.Size(83, 13);
+            this.DiagramFeilmld2Lbl.TabIndex = 14;
+            this.DiagramFeilmld2Lbl.Text = "chart feilmelding";
             // 
             // MyCoursesHeader
             // 
@@ -253,14 +253,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.ChartFeilmld2Lbl);
+            this.Controls.Add(this.DiagramFeilmld2Lbl);
             this.Controls.Add(this.SkrivUtDiagram2Btn);
             this.Controls.Add(this.LagreDiagram2Btn);
             this.Controls.Add(this.FagkodeDiagram2);
             this.Controls.Add(this.LagreDiagram1Btn);
             this.Controls.Add(this.SkrivUtDiagram1Btn);
             this.Controls.Add(this.FagkodeDiagram1);
-            this.Controls.Add(this.ChartFeilmldLbl);
+            this.Controls.Add(this.DiagramFeilmldLbl);
             this.Controls.Add(this.InfoPanel);
             this.Controls.Add(this.MyCoursesPanel);
             this.Controls.Add(this.MyCoursesHeader);
@@ -279,7 +279,7 @@
         #endregion
         private System.Windows.Forms.Panel MyCoursesPanel;
         private System.Windows.Forms.Panel InfoPanel;
-        private System.Windows.Forms.Label ChartFeilmldLbl;
+        private System.Windows.Forms.Label DiagramFeilmldLbl;
         private System.Windows.Forms.Label SammenlignLbl;
         private System.Windows.Forms.Label Fagkode1lbl;
         private System.Windows.Forms.Label FagkodeNr2Lbl;
@@ -293,7 +293,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart FagkodeDiagram2;
         private System.Windows.Forms.Button LagreDiagram2Btn;
         private System.Windows.Forms.Button SkrivUtDiagram2Btn;
-        private System.Windows.Forms.Label ChartFeilmld2Lbl;
+        private System.Windows.Forms.Label DiagramFeilmld2Lbl;
         private System.Windows.Forms.Label MyCoursesHeader;
     }
 }

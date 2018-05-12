@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -45,7 +40,7 @@ namespace adminPanel
             //Gjemmer listeboksene og knapper til de har et bruksområde
             spmListeboks.Hide();    
             diagramListeboks.Hide();
-            chart1.Hide();
+            diagram.Hide();
             spmLbl.Hide();
             diagramLbl.Hide();
             clearListeboxBtn.Hide();
@@ -57,7 +52,8 @@ namespace adminPanel
         {
             /*
              * Denne sjekken gjør at brukeren må trykke på en verdi for å få programmet til å fortsette
-             * hvis denne sjekken ikke er der kan han bare trykke på det hvite området
+             * hvis denne sjekken ikke er der kan han bare trykke på det hvite området noe som skaper
+             * en exception
              */
 
             if (fagkodeListeboks.SelectedItem == null)
@@ -69,6 +65,7 @@ namespace adminPanel
              * Fjerner elementer i listeboks. Dette må gjøres brukeren endrer fagkoden.
              * Listeboksen blir populert med en for loop.
              */
+
             spmListeboks.Items.Clear();
             for (int i = 1; i < 11; i++)
             {
@@ -78,7 +75,7 @@ namespace adminPanel
             spmLbl.Show();
         }
 
-        private void spmListeboks_SelectedIndexChanged(object sender, EventArgs e)
+        private void SpmListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (spmListeboks.SelectedItem == null)
             {
@@ -98,7 +95,7 @@ namespace adminPanel
             }
         }
 
-        private void diagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
+        private void DiagramListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (diagramListeboks.SelectedItem == null)
             {
@@ -190,14 +187,14 @@ namespace adminPanel
                 {
                     FeilmeldingsLbl.ForeColor = Color.Red;
                     FeilmeldingsLbl.Text = "Denne fagkoden eller spørsmålet har ikke fått inn nok vurderinger til å lage et diagram.";
-                    chart1.Hide();
+                    diagram.Hide();
                     return;
                 }
                 FeilmeldingsLbl.Text = "";
                 //Hvis forrige diagram hadde en feilmelding blir den fjernet på her.
 
-                chart1.Series.Clear();
-                chart1.Titles.Clear();
+                diagram.Series.Clear();
+                diagram.Titles.Clear();
                 string seriesname = "seriesName";
                 try
                 {
@@ -208,85 +205,85 @@ namespace adminPanel
                         case "Kakediagram":
                             //De to første linjene "tømmer" chart1 sin Series og Legends,
                             //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
-                            chart1.Series.Clear();
-                            chart1.Legends.Clear();
-                            chart1.Series.Add(seriesname);
-                            chart1.Series[seriesname].ChartType = SeriesChartType.Pie;
-                            chart1.Legends.Add("Legende");
+                            diagram.Series.Clear();
+                            diagram.Legends.Clear();
+                            diagram.Series.Add(seriesname);
+                            diagram.Series[seriesname].ChartType = SeriesChartType.Pie;
+                            diagram.Legends.Add("Legende");
 
                             //Legger legends på bunnen av diagramet
-                            chart1.Legends[0].Docking = Docking.Bottom;
+                            diagram.Legends[0].Docking = Docking.Bottom;
 
                             //midtstiller strings som er i legend
-                            chart1.Legends[0].Alignment = StringAlignment.Center;
-                            chart1.Legends[0].BorderColor = Color.Black;
+                            diagram.Legends[0].Alignment = StringAlignment.Center;
+                            diagram.Legends[0].BorderColor = Color.Black;
                             diagramSkalHaFarger = true;
                             break;
 
                         case "Stolpediagram":
-                            chart1.Series.Clear();
-                            chart1.Legends.Clear();
-                            chart1.ChartAreas.Clear();
-                            chart1.Series.Add(seriesname);
-                            chart1.Series[seriesname].ChartType = SeriesChartType.Column;
-                            chart1.ChartAreas.Add("ChartArea");
-                            chart1.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
+                            diagram.Series.Clear();
+                            diagram.Legends.Clear();
+                            diagram.ChartAreas.Clear();
+                            diagram.Series.Add(seriesname);
+                            diagram.Series[seriesname].ChartType = SeriesChartType.Column;
+                            diagram.ChartAreas.Add("ChartArea");
+                            diagram.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
                             diagramSkalHaFarger = true;
                             break;
 
                         case "Linjediagram":
-                            chart1.Series.Clear();
-                            chart1.Legends.Clear();
-                            chart1.ChartAreas.Clear();
-                            chart1.Series.Add(seriesname);
+                            diagram.Series.Clear();
+                            diagram.Legends.Clear();
+                            diagram.ChartAreas.Clear();
+                            diagram.Series.Add(seriesname);
 
                             //Setter tykkelsen på linjen
-                            chart1.Series[seriesname].BorderWidth = 3;
-                            chart1.Series[seriesname].ChartType = SeriesChartType.Line;
-                            chart1.ChartAreas.Add("ChartArea");
-                            chart1.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
+                            diagram.Series[seriesname].BorderWidth = 3;
+                            diagram.Series[seriesname].ChartType = SeriesChartType.Line;
+                            diagram.ChartAreas.Add("ChartArea");
+                            diagram.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
                             break;
 
                         case "Radardiagram":
-                            chart1.Series.Clear();
-                            chart1.Legends.Clear();
-                            chart1.Series.Add(seriesname);
-                            chart1.Series[seriesname].ChartType = SeriesChartType.Radar;
+                            diagram.Series.Clear();
+                            diagram.Legends.Clear();
+                            diagram.Series.Add(seriesname);
+                            diagram.Series[seriesname].ChartType = SeriesChartType.Radar;
                             break;
 
                         default:
                             break;
                     }
                     //Setter en tittel på diagrammet
-                    Title tittel = chart1.Titles.Add(fagkode + ": " + spmListeboks.SelectedItem);
+                    Title tittel = diagram.Titles.Add(fagkode + ": " + spmListeboks.SelectedItem);
                     tittel.Font = new Font("Verdana", 16, FontStyle.Bold);
-                    chart1.Series[seriesname].Points.AddXY("1 Stjerne", stjerne1);
-                    chart1.Series[seriesname].Points.AddXY("2 Stjerner", stjerne2);
-                    chart1.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
-                    chart1.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
-                    chart1.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
+                    diagram.Series[seriesname].Points.AddXY("1 Stjerne", stjerne1);
+                    diagram.Series[seriesname].Points.AddXY("2 Stjerner", stjerne2);
+                    diagram.Series[seriesname].Points.AddXY("3 Stjerner", stjerne3);
+                    diagram.Series[seriesname].Points.AddXY("4 Stjerner", stjerne4);
+                    diagram.Series[seriesname].Points.AddXY("5 Stjerner", stjerne5);
 
                     
                     if (diagramSkalHaFarger)
                     {
                         //Under blir det satt at det vises prosenter i figuren i tillegg til at farger velges
-                        chart1.Series[seriesname].Label = "#PERCENT{P0}";
-                        chart1.Series[seriesname].Points[0].Color = Color.Green;
-                        chart1.Series[seriesname].Points[1].Color = Color.Red;
-                        chart1.Series[seriesname].Points[2].Color = Color.LightBlue;
-                        chart1.Series[seriesname].Points[3].Color = Color.Peru;
-                        chart1.Series[seriesname].Points[4].Color = Color.Yellow;
+                        diagram.Series[seriesname].Label = "#PERCENT{P0}";
+                        diagram.Series[seriesname].Points[0].Color = Color.Green;
+                        diagram.Series[seriesname].Points[1].Color = Color.Red;
+                        diagram.Series[seriesname].Points[2].Color = Color.LightBlue;
+                        diagram.Series[seriesname].Points[3].Color = Color.Peru;
+                        diagram.Series[seriesname].Points[4].Color = Color.Yellow;
 
 
                         //Her legges overskrifter manuelt til i legend, dette må gjøres hvis vi skal ha prosenter
-                        chart1.Series[seriesname].Points[0].LegendText = "1 Stjerne";
-                        chart1.Series[seriesname].Points[1].LegendText = "2 Stjerner";
-                        chart1.Series[seriesname].Points[2].LegendText = "3 Stjerner";
-                        chart1.Series[seriesname].Points[3].LegendText = "4 Stjerner";
-                        chart1.Series[seriesname].Points[4].LegendText = "5 Stjerner";
+                        diagram.Series[seriesname].Points[0].LegendText = "1 Stjerne";
+                        diagram.Series[seriesname].Points[1].LegendText = "2 Stjerner";
+                        diagram.Series[seriesname].Points[2].LegendText = "3 Stjerner";
+                        diagram.Series[seriesname].Points[3].LegendText = "4 Stjerner";
+                        diagram.Series[seriesname].Points[4].LegendText = "5 Stjerner";
 
                     }
-                    chart1.Show();
+                    diagram.Show();
                 }
                 catch (Exception ex)
                 {
@@ -299,19 +296,19 @@ namespace adminPanel
             }
         }
 
-        private void clearListeboxBtn_Click(object sender, EventArgs e)
+        private void ClearListeboxBtn_Click(object sender, EventArgs e)
         {
             diagramListeboks.ClearSelected();
             spmListeboks.ClearSelected();
         }
 
-        private void printBtn_Click(object sender, EventArgs e)
+        private void PrintBtn_Click(object sender, EventArgs e)
         {
-            this.chart1.Printing.PrintPreview();
+            this.diagram.Printing.PrintPreview();
             //Åpner en dialog som lar deg printe ut diagrammet med en liten forhåndsvisning
         }
 
-        private void lagreChartBtn_Click(object sender, EventArgs e)
+        private void LagreChartBtn_Click(object sender, EventArgs e)
         {
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
@@ -329,11 +326,11 @@ namespace adminPanel
                     {
                         if (lagreFilDialog.FilterIndex == 1)    //Indexen starter på 1
                         {
-                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
+                            diagram.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
                         }
                         else if (lagreFilDialog.FilterIndex == 2)
                         {
-                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
+                            diagram.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
                         }
                     }
                     else

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -14,11 +9,13 @@ namespace adminPanel
 {
     public partial class SammenlignFlereFagkoder : UserControl
     {
+
         /*
          * Her har vi mulighet til å sammenligne et av de 5
-         * standardiserte spørsmålene mot hverandre i så mange
-         * fagkoder som det finnes.
+         * standardiserte spørsmålene mot hverandre på tvers
+         * av alle fagkoder som har utført en evaluering.
          */
+
         public SammenlignFlereFagkoder()
         {
             InitializeComponent();
@@ -29,9 +26,9 @@ namespace adminPanel
         private void SammenlignFlereFagkoder_Load(object sender, EventArgs e)
         {
             //Gjemmer knapper til diagrammet er tegnet
-            chart1.Hide();
+            diagram.Hide();
             printBtn.Hide();
-            lagreChartBtn.Hide();
+            lagreDiagramBtn.Hide();
             ClearDiagramBtn.Hide();
             UpdateDiagramBtn.Hide();
             FeilmldLbl.Text = "";
@@ -92,11 +89,13 @@ namespace adminPanel
         }
         private int[] ProsedyreUtfører(String fagkode, String prosedyrenavn)
         {
+
             /*
-             * Metoden utfører en prosedyre basert på parameter. Og returnerer et in array
+             * Metoden utfører en prosedyre basert på parameter. Og returnerer et int array
              * prosedyrenavn blir valgt fra en switch mens fagkoden kommer fra en listeboks
              * som henter disse ut fra DB
              */
+
             var cmdForFagkode = db.SqlCommand("");
             cmdForFagkode.CommandText = prosedyrenavn;
             cmdForFagkode.CommandType = CommandType.StoredProcedure;
@@ -129,7 +128,7 @@ namespace adminPanel
             try
             {
                 printBtn.Show();
-                lagreChartBtn.Show();
+                lagreDiagramBtn.Show();
                 ClearDiagramBtn.Show();
                 UpdateDiagramBtn.Show();
                 String seriesname;
@@ -159,37 +158,38 @@ namespace adminPanel
                         break;
                 }
 
-                chart1.Legends.Clear();
-                chart1.Series.Clear();
-                chart1.Titles.Clear();
-                chart1.ChartAreas.Clear();
-                chart1.Legends.Add("Legende");
-                Title tittel = chart1.Titles.Add(SpmListeboks.SelectedItem.ToString());
+                diagram.Legends.Clear();
+                diagram.Series.Clear();
+                diagram.Titles.Clear();
+                diagram.ChartAreas.Clear();
+                diagram.Legends.Add("Legende");
+                Title tittel = diagram.Titles.Add(SpmListeboks.SelectedItem.ToString());
                 tittel.Font = new Font("Verdana", 16, FontStyle.Bold);
-                chart1.ChartAreas.Add("ChartArea");
-                chart1.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
+                diagram.ChartAreas.Add("ChartArea");
+                diagram.ChartAreas["ChartArea"].AxisY.Title = "Antall forekomster";
 
 
                 /* 
                  * Loopen går for så mange fagkoder det er i listeboksen
                  * og legger til nye linjer på diagrammet og fagkoden til i legenden
                  */
+
                 foreach (String fagkode in FagkodeSammenlignesListebox.Items)
                 {
                     int[] prosedyreSvar = ProsedyreUtfører(fagkode, prosedyrenavn);
                     seriesname = fagkode;
 
-                    chart1.Series.Add(seriesname);
-                    chart1.Series[seriesname].BorderWidth = 3;
-                    chart1.Series[seriesname].ChartType = SeriesChartType.Line;
-                    chart1.Series[seriesname].Points.AddXY("1 Stjerne", prosedyreSvar[0]);
-                    chart1.Series[seriesname].Points.AddXY("2 Stjerner", prosedyreSvar[1]);
-                    chart1.Series[seriesname].Points.AddXY("3 Stjerner", prosedyreSvar[2]);
-                    chart1.Series[seriesname].Points.AddXY("4 Stjerner", prosedyreSvar[3]);
-                    chart1.Series[seriesname].Points.AddXY("5 Stjerner", prosedyreSvar[4]);
-                    chart1.DataBind();
+                    diagram.Series.Add(seriesname);
+                    diagram.Series[seriesname].BorderWidth = 3;
+                    diagram.Series[seriesname].ChartType = SeriesChartType.Line;
+                    diagram.Series[seriesname].Points.AddXY("1 Stjerne", prosedyreSvar[0]);
+                    diagram.Series[seriesname].Points.AddXY("2 Stjerner", prosedyreSvar[1]);
+                    diagram.Series[seriesname].Points.AddXY("3 Stjerner", prosedyreSvar[2]);
+                    diagram.Series[seriesname].Points.AddXY("4 Stjerner", prosedyreSvar[3]);
+                    diagram.Series[seriesname].Points.AddXY("5 Stjerner", prosedyreSvar[4]);
+                    diagram.DataBind();
 
-                    chart1.Show();
+                    diagram.Show();
                 }
                 //for (int i = 0; i < FagkodeSammenlignesListebox.Items.Count; i++){} Alternativ til foreach                    
 
@@ -200,7 +200,7 @@ namespace adminPanel
             }
         }
 
-        private void lagreChartBtn_Click(object sender, EventArgs e)
+        private void LagreChartBtn_Click(object sender, EventArgs e)
         {
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
@@ -218,11 +218,11 @@ namespace adminPanel
                     {
                         if (lagreFilDialog.FilterIndex == 1)    //Indexen starter på 1
                         {
-                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
+                            diagram.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Png);
                         }
                         else if (lagreFilDialog.FilterIndex == 2)
                         {
-                            chart1.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
+                            diagram.SaveImage(lagreFilDialog.FileName, ChartImageFormat.Jpeg);
                         }
                     }
                     else
@@ -237,15 +237,15 @@ namespace adminPanel
             }
         }
 
-        private void printBtn_Click(object sender, EventArgs e)
+        private void PrintBtn_Click(object sender, EventArgs e)
         {
-            this.chart1.Printing.PrintPreview();
+            this.diagram.Printing.PrintPreview();
         }
 
         private void ClearDiagramBtn_Click(object sender, EventArgs e)
         {
-            chart1.Legends.Clear();
-            chart1.Series.Clear();
+            diagram.Legends.Clear();
+            diagram.Series.Clear();
         }
 
         private void UpdateDiagramBtn_Click(object sender, EventArgs e)
@@ -255,10 +255,12 @@ namespace adminPanel
 
         private void ResetListboxBtn_Click(object sender, EventArgs e)
         {
+
             /*
              * Denne knappen fjerner alle elementer i FagkodeSammenlignesListebox
              * og legger dem tilbake i FagkodeListbox
              */
+
             ListBox.ObjectCollection elementer = FagkodeSammenlignesListebox.Items;
 
             foreach (var item in elementer)
@@ -274,10 +276,12 @@ namespace adminPanel
 
         private void LeggTilAlleBtn_Click(object sender, EventArgs e)
         {
+
             /*
              * Denne knappen fjerner alle elementer i FagkodeListebox
              * og legger dem i FagkodeSammenlignesListebox
              */
+
             ListBox.ObjectCollection elementer = FagkodeListbox.Items;
 
             foreach (var item in elementer)

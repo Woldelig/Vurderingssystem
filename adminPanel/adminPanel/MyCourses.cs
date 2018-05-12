@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -26,18 +21,20 @@ namespace adminPanel
         {
             String sql = "SELECT DISTINCT fagkode FROM vurderingshistorikk;";
             var mySqlCommand = db.SqlCommand(sql);
+           
             /*
              * Her defineres variabler som brukes til
              * å holde styr på hvor mange knapper 
              * vi skal ha per rad
              */
+
             int row = 0; //10
             int column = 0; //3
             String fagkode = "";
 
             //Her gjemmer vi bort elementer som ikke trenger å være synlig
-            ChartFeilmld2Lbl.Text = "";
-            ChartFeilmldLbl.Text = "";
+            DiagramFeilmld2Lbl.Text = "";
+            DiagramFeilmldLbl.Text = "";
             SammenlignFeilmldLbl.Text = "";
             FagkodeDiagram1.Hide();
             FagkodeDiagram2.Hide();
@@ -48,10 +45,11 @@ namespace adminPanel
 
 
             /*
-             * Under blir det generert en knapp til vær unike
+             * Under blir det generert en knapp til hver unike
              * fagkode som er i databasen. Brukeren kan da trykke på to
              * uliker fagkoder som da blir sammenlignet.
              */
+
             try
             {
                 db.OpenConnection();
@@ -102,12 +100,13 @@ namespace adminPanel
             Button button = sender as Button;
 
             /*
-             * Hvis det ikke er trykket på noen knapper vil fagkoden legges inn i den første tekstboksen og variabelen
+             * Hvis det ikke er trykket på noen knapper tidligere vil fagkoden legges inn i den første tekstboksen og variabelen
              * antallGangerKnappenErtrykket vil øke med en, dette gjør at neste gang en knapp trykkes vil denne
              * fagkoden legges i neste tekstboks. Når en fagkode legges i tekstboks nummer 2 vil variabelen bli
              * satt tilbake til 0. Dette gir en flytt i programmet så man bare trenger å trykke på fagkodene for å 
              * fylle på tekstboksene for sammenligning.
              */
+
             if (antallGangerKnappenErTrykket == 0)
             {
                 FagkodeNr1.Text = button.Text;
@@ -151,10 +150,10 @@ namespace adminPanel
             }
             catch (Exception)
             {
-                ChartFeilmld2Lbl.ForeColor = Color.Red;
-                ChartFeilmldLbl.ForeColor = Color.Red;
-                ChartFeilmld2Lbl.Text = "Noe gikk galt, prøv igjen senere.";
-                ChartFeilmldLbl.Text = "Noe gikk galt, prøv igjen senere.";
+                DiagramFeilmld2Lbl.ForeColor = Color.Red;
+                DiagramFeilmldLbl.ForeColor = Color.Red;
+                DiagramFeilmld2Lbl.Text = "Noe gikk galt, prøv igjen senere.";
+                DiagramFeilmldLbl.Text = "Noe gikk galt, prøv igjen senere.";
             }
            
 
@@ -177,8 +176,9 @@ namespace adminPanel
              * Her har vi lagt inn alle prosedyrenavnene som et tekstarray fordi
              * vi skal ha ut verdiene til alle de 5 første spørsmålene i en vurdering.
              * For loopen vil deretter kalle på metoden ProsedyreUtører som vil legge 
-             * inn alle spørsmålsverdiene som vær sin linje i dette linjediagrammet.
+             * inn alle spørsmålsverdiene som hver sin linje i dette linjediagrammet.
              */
+
             String seriesname = "";
             String[] ProsedyreNavnArray = new String[] { "hent_spm1_verdier", "hent_spm2_verdier", "hent_spm3_verdier", "hent_spm4_verdier", "hent_spm5_verdier" };
             String[] SpørsmålNr = new String[] { "Spørsmål 1", "Spørsmål 2", "Spørsmål 3", "Spørsmål 4", "Spørsmål 5" };
@@ -215,6 +215,7 @@ namespace adminPanel
              * Metoden utfører en prosedyre basert på parameter. Og returnerer et int array
              * prosedyrenavn og fagkode blir sendt inn som parameter
              */
+
             var cmdForFagkode = db.SqlCommand("");
             cmdForFagkode.CommandText = prosedyrenavn;
             cmdForFagkode.CommandType = CommandType.StoredProcedure;
@@ -244,6 +245,7 @@ namespace adminPanel
             /*
              * Denne metoden lagrer diagrammet som blir sendt inn som parameter
              */
+
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "PNG Bilde|*.png|Jpeg Bilde|*.jpg"; //Hvilke filtyper som vi kan lagre i
             lagreFilDialog.Title = "Lagre diagram som bilde fil";
@@ -283,6 +285,7 @@ namespace adminPanel
             /*
              * Denne metoden skriver ut det diagrammet som blir sendt inn som parameter
              */
+
             diagramSomSkalSkrivesUt.Printing.PrintPreview();
         }
      

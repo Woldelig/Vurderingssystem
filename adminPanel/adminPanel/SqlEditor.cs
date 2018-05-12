@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.IO;
@@ -22,11 +17,12 @@ namespace adminPanel
             LagreCsvBtn.Hide();
         }
 
-        private void sqlBtn_Click(object sender, EventArgs e)
+        private void SqlBtn_Click(object sender, EventArgs e)
         {
             Database db = new Database();
             String sql = sqlTxt.Text;
             String[] fyOrd = { "DELETE", "TRUNCATE", "DROP", "INSERT", "UPDATE", "ALTER", "--", "FORMLOGIN", "GRANT", "REVOKE", "CALL" };
+
             /*
              * Dette arrayet inneholder ord som ikke kan godtas i SQL spørringer pga av sikkerhet.
              * 
@@ -34,6 +30,7 @@ namespace adminPanel
              * mot array med fyOrd ved hjelp av Contains() metoden. Vi har også brukt 
              * toUpper for at ordene som sammenlignes begge er i store bokstaver
              */
+
             foreach (string ord in fyOrd) 
             {
                 if (sql.ToUpperInvariant().Contains(ord.ToString()))
@@ -65,11 +62,13 @@ namespace adminPanel
 
         private void LagreXmlBtn_Click(object sender, EventArgs e)
         {
+
             /*
              * Datagridview objektet blir castet over til et datatable objekt
              * deretter lager vi et fildialog objekt
              * helt til slutt skriver vi ut datatable som xml og angir filnavnet brukeren taster i fildialogen
              */
+
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "XML | *.xml";
@@ -88,10 +87,12 @@ namespace adminPanel
 
         private void LagreCsvBtn_Click(object sender, EventArgs e)
         {
+
             /*
              * Denne metoden lar oss lagre SQL spørringen til brukeren
              * som en CSV fil
              */
+
             DataTable dt = (DataTable)sqlDatagrid.DataSource;
             SaveFileDialog lagreFilDialog = new SaveFileDialog();
             lagreFilDialog.Filter = "CSV | *.csv";
@@ -126,9 +127,11 @@ namespace adminPanel
                             sw.Write(",");
                             //sw.Write(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator);
 
-                            //Denne linjen ville gitt oss et semikolon siden dette er seperatoren vi bruker i europa.
-                            //den finnger ut hvilken seperator den skal sette basert på "kulturen" til din datamaskin
-                            //linjen er bare med for å vise at dette er en mulighet
+                            /*
+                             * Denne linjen ville gitt oss et semikolon siden dette er seperatoren vi bruker i europa.
+                             * den finnger ut hvilken seperator den skal sette basert på "kulturen" til din datamaskin
+                             * linjen er bare med for å vise at dette er en mulighet
+                             */
                         }
                     }
                     sw.Write(sw.NewLine);

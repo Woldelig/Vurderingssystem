@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -23,6 +18,7 @@ namespace adminPanel
              * Her legges vi inn eventhandlere med kode, dette kan også gjøres i designdelen.
              * Når man legges inn drag and drop som kode, må man huske på å sette AllowDrop til true
              */
+
             NyTabellGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(NyTabellGodkjennNyttSemesterLbl_MouseDown);
             NyTabellIkkeGodkjennNyttSemesterLbl.MouseDown += new MouseEventHandler(NyTabellIkkeGodkjennNyttSemesterLbl_MouseDown);
             GodkjennAvsluttVurderingLbl.MouseDown += new MouseEventHandler(GodkjennAvsluttVurderingLbl_MouseDown);
@@ -54,6 +50,7 @@ namespace adminPanel
          * Disse metodene heter MouseDown, DragEnter og DragDrop.
          * Innenfor disse metodene må man legge til effekter og logikk
          */
+
         private void NyTabellGodkjennNyttSemesterLbl_MouseDown(object sender,MouseEventArgs e)
         {
             DoDragDrop(NyTabellGodkjennNyttSemesterLbl.Text, DragDropEffects.Copy);
@@ -100,10 +97,15 @@ namespace adminPanel
              * på, men vi endte opp og bruke drag and drop metoden fordi dette sto i teksten 
              * til semesteroppgaven
              */
-            String hjelpetekst = "En ny vurdering vil plassere eldre vurderingshistorikk i en ny tabell." +
-                "Tabellnavnet velger du i tekstboksen nedenfor." +
-                "For å godkjenne handlingen om å starte en ny semestervurdering må du dra ordet godkjenn over i godkjenningstekstboksen.";
-            //plus symbolene gir linjeskift i messagebox
+
+            String hjelpetekst = "På høyresiden har du muligheten til å lagre nåværende resultater " +
+                "i en egendefinert tabell. Denne tabellen kan du finne igjen ved å bruke SQL-editoren." +
+                "\n" +
+                "\n" +
+                "På venstre siden har du mulighet til å avslutte nåværende vurdering. Dette er en handling som ikke " +
+                "kan angres, all data fra nåværende evaluering vil da bli plassert i vurderingshistorikken og kan da " +
+                "bli visualisert ved hjelp av diagramer i applikasjonen.";
+
             MessageBox.Show(hjelpetekst,"Hjelp", MessageBoxButtons.OK);
         }
 
@@ -117,6 +119,7 @@ namespace adminPanel
              * til en egen tabell. Dette gir mulighet for å sammenligne semestere direkte
              * opp mot hverandre
              */
+
             FeilmeldingLbl.ForeColor = Color.Red;
             //Under sjekker vi først at tekstboksen ikke er tom eller bare har whitespace, deretter sjekker vi valideringstekstboksen
             if (String.IsNullOrWhiteSpace(TabellNavnTextbox.Text))
@@ -131,10 +134,12 @@ namespace adminPanel
             {
                 Database db = new Database();
                 var cmd = db.SqlCommand("SELECT * FROM information_schema.tables WHERE table_schema = 'vurderingssystem' AND table_name = @tabell LIMIT 1;");
+                
                 /*
                  * Setningen over sjekker om tabellen eksisterer. Man kan ikke bruke en vanlig select * from tabellnavn
                  * grunnen til dette er at hvis tabellen ikke eksisterer vil mysql gi en feilmelding.
                  */
+
                 cmd.Parameters.AddWithValue("@tabell", TabellNavnTextbox.Text);
                 db.OpenConnection();
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -167,6 +172,7 @@ namespace adminPanel
 
         private void AvsluttVurderingBtn_Click(object sender, EventArgs e)
         {
+
             /*
              * Her kaller vi på en prosedyre som avslutter nåværende vurdering.
              * Dette skjer ved hjelp av en prosedyre som henter ut alle radene i tabellen
@@ -177,6 +183,7 @@ namespace adminPanel
              * i denne perioden bli lagt inn sammen med resten av dataene så den kan vises med diagramer
              * enten i adminpanelet her eller på nettsiden
              */
+
             AvsluttVurderingFeilmeldingLbl.ForeColor = Color.Red;
             if (GodkjennAvsluttVurderingTextbox.Text != "Godkjenn")
             {

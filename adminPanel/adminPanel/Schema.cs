@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -31,11 +26,13 @@ namespace adminPanel
 
         private void LagSkjemaBtn_Click(object sender, EventArgs e)
         {
+
             /*
              * Denne foreachen sjekker om samtlige tekstbokser er fylt ut. 
              * Hvis det er en tekstboks som ikke er fyllt ut, vil koden
              * avbrytes med return;
              */
+
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox)
@@ -51,11 +48,13 @@ namespace adminPanel
             }
 
             String query = "";
+
             /*
              * Her sjekkes det om det er et helt nytt vurderingsskjema ved hjelp av 
              * bool variabelen som ble deklarert tidligere. Hvis det ikke er et nytt skjema
              * må vi ha en UPDATE setning istedenfor INSERT setning
              */
+
             if (nyttSkjema)
             {
                 query = "INSERT INTO vurderingsskjema VALUES (NULL, @Fagkode, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
@@ -66,7 +65,9 @@ namespace adminPanel
             }
              
             var mySqlCommand = db.SqlCommand(query);
-            if (!nyttSkjema) //Hvis skjema endres må jeg ha valgtSkjemaId som parameter i tillegg
+
+            //Hvis skjema endres må jeg ha valgtSkjemaId som parameter i tillegg
+            if (!nyttSkjema) 
             {
                 mySqlCommand.Parameters.AddWithValue("@Skjemaid", valgtSkjemaId);
             }
@@ -104,7 +105,6 @@ namespace adminPanel
                 Console.WriteLine(ex);
 
             }
-            //Console.WriteLine(query); //Denne linjen kan brukes til å sjekke queryen som blir sendt ut
             db.CloseConnection();
 
         }
@@ -209,13 +209,16 @@ namespace adminPanel
             }
             
         }
-        private void GjemController() {
+        private void GjemController()
+        {
+            
             /*
              * Denne metoden vil gjemme vekk alle
              * labels og textbokser ved å foreach alle 
              * Controls som er enten textboks eller label
              * til å bruke sin Hide() metode
              */
+
             foreach (var c in Controls) 
             {
                 if (c is TextBox)
@@ -231,6 +234,7 @@ namespace adminPanel
 
         private void HvisController()
         {
+            
             /*
              * Denne metoden vil vise alle
              * labels og textbokser som er gjemt
@@ -238,6 +242,7 @@ namespace adminPanel
              * textboks eller label til å bruke
              * sin Show() metode
              */
+
             foreach (var c in Controls)
             {
                 if (c is TextBox)
@@ -252,9 +257,11 @@ namespace adminPanel
         }
         private void ClearTextbox()
         {
+            
             /*
              * Denne foreachen vil tømme alle tekstbokser for tekst
              */
+
             foreach (var c in Controls)
             {
                 if (c is TextBox)
