@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace VMS
 {
@@ -14,6 +12,7 @@ namespace VMS
          * som for eksempel bytter om tegnene %C3%A6 til æ. 
          * Dette er noe vi må gjøre for at  vi skal kunne sende korrekte database spørringer.
          */
+
         private static Dictionary<String, String> ugyldigeTegn = new Dictionary<string, string>()
         {
             {"?", String.Empty },
@@ -33,6 +32,7 @@ namespace VMS
              * Her sjekkes hvert par opp mot tekststrengen.
              * Hvis en nøkkel matcher blir verdien byttet om mot verdien
              */
+
             foreach (KeyValuePair<String, String> byttOm in ugyldigeTegn)
             {
                 streng = streng.Replace(byttOm.Key, byttOm.Value);

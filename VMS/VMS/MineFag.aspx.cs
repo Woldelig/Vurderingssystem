@@ -1,12 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace VMS
 {
@@ -46,7 +40,9 @@ namespace VMS
             db.OpenConnection();
             leser = cmd.ExecuteReader();
             String[,] faginfo = new String[antallRader, 3];
-            /* Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
+
+            /* 
+             * Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
              * siden vi er usikre på hvor mange rader vi skal ha blir dette definert ved hjelp av en egen spørring som teller
              * resultatet. Kolonner er definert som 3 fordi det er kun 3 kolonner vi bruker. Vi selecter egentlig 4 kolonner
              * men vi bruker concat-funksjonen i mysql for å slå sammen fornavn og etternavnet til foreleseren.
@@ -64,7 +60,7 @@ namespace VMS
             leser.Close();
             db.CloseConnection();
 
-            //Vi bruker stringbuilder til å bygge vår html
+            //Vi bruker stringbuilder til å bygge vår html representasjon
             StringBuilder sb = new StringBuilder();
             int spanNr = 1;
             

@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="navbar-header">
-                        <asp:button type="button" class="btn btn-success pull-right" ID="loggutBtn" runat="server" Text="Logg ut" OnClick="loggutBtn_Click" />
+                        <asp:button type="button" class="btn btn-success pull-right" ID="LoggutBtn" runat="server" Text="Logg ut" OnClick="LoggutBtn_Click" />
                         <asp:button type="button" class="btn btn-success pull-right" ID="LoggInnNavbarBtn" runat="server" Text="Logg inn" PostBackUrl="~/velkomstside.aspx" />
                         
                     </div>

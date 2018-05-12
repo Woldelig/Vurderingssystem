@@ -1,11 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace VMS
 {
@@ -24,8 +20,9 @@ namespace VMS
              * Under henter vi ut en string query. Denne inneholder
              * fagkoden siden skal vise. Denne kommer enten fra søk eller en lenke.
              * Denne blir formatert ved hjelp av formaterQueryString metoden deretter
-             * brukes den i en SQL spørring
+             * brukes den i en SQL spørring mot databasen.
              */
+
             String uformatertQueryString = Request.Url.Query;
             String formatertQueryString = FormaterQueryString.FormaterString(uformatertQueryString);
             
@@ -51,6 +48,7 @@ namespace VMS
              * hentet ut fra databasen i StudieInfo objekter som legges
              * i en liste.
              */
+
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
                 if (!leser.HasRows)
@@ -84,6 +82,7 @@ namespace VMS
             * Html-formateringen under er for å legge dataene inn i en tabell og gjøre de til linker
             * så man enkelt kan navigere på nettsiden
             */
+
             StringBuilder sb = new StringBuilder();
             foreach (var info in studieInfoListe)
             {
@@ -106,6 +105,7 @@ namespace VMS
              * Alle strenger som er definert er vil tilsvare en 
              * verdi som blir plukket ut av databasen
              */
+
             public String Fagnavn { get; set; }
             public String Fagkode { get; set; }
             public String Fakultet { get; set; }

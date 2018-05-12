@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
 
 namespace VMS
 {
-    public partial class vurderingsskjema : System.Web.UI.Page
+    public partial class Vurderingsskjema : System.Web.UI.Page
     {
         private Database db = new Database();
         private String sidensFagkode = "";
@@ -27,8 +22,9 @@ namespace VMS
              * Under henter vi ut en string query. Denne inneholder
              * fagkoden siden skal vise. Denne kommer enten fra søk eller en lenke.
              * Denne blir formatert ved hjelp av formaterQueryString metoden deretter
-             * brukes den i en SQL spørring
+             * brukes den i en SQL spørring mot databasen
              */
+
             String uformatertQueryString = Request.Url.Query;
             String formatertQueryString = FormaterQueryString.FormaterString(uformatertQueryString);
 
@@ -70,6 +66,7 @@ namespace VMS
              * Her bruker vi foreach loop for å fylle på spørsmålsteksten til
              * labelene på asp.net siden.
              */
+
             Label[] spmLabel = new Label[10] { spm1Lbl, spm2Lbl, spm3Lbl, spm4Lbl, spm5Lbl, spm6Lbl, spm7Lbl, spm8Lbl, spm9Lbl, spm10Lbl };
             int spmIndex = 0;
             foreach (Label lbl in spmLabel)
@@ -128,6 +125,7 @@ namespace VMS
              * som sier at testen er fullført. Og etter ca 4 sekunder blir studenten sendt
              * tilbake til MineVurderinger.aspx
              */
+
             sql = "INSERT INTO pågåendevurdering(skjemaid, studentid, fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10) VALUES (@Skjemaid, @Studentid, @Fagkode, @Spm1rating, @Spm2rating, @Spm3rating, @Spm4rating, @Spm5rating, @Spm6rating, @Spm7rating, @Spm8rating, @Spm9rating, @Spm10rating);";
             cmd = db.SqlCommand(sql);
             cmd.Parameters.AddWithValue("@Skjemaid", skjemaid);

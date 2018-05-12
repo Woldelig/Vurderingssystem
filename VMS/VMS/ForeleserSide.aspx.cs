@@ -1,11 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace VMS
 {
@@ -14,7 +10,7 @@ namespace VMS
         private Database db = new Database();
         private List<ForeleserInfo> foreleserInfoListe = new List<ForeleserInfo>();
         private String sidensForeleser = "Steve Jobs";
-        //Setter en standard foreleserId så det alltid vil vises noe informasjon
+        //Setter en standard foreleserId så det alltid vil vises noe informasjon på nettsiden
          
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +20,7 @@ namespace VMS
              * Denne blir formatert ved hjelp av formaterQueryString-metoden, deretter
              * brukes den i en SQL-spørring mot databasen.
              */
+
             String uformatertQueryString = Request.Url.Query;
             String formatertQueryString = FormaterQueryString.FormaterString(uformatertQueryString);
 
@@ -50,6 +47,7 @@ namespace VMS
              * hentet ut fra databasen i ForeleserInfo objekter som legges
              * i en liste.
              */
+
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
                 if (!leser.HasRows)
@@ -86,6 +84,7 @@ namespace VMS
              * Html-formateringen under er for å legge dataene inn i en tabell og gjøre de til linker
              * så man enkelt kan navigere på nettsiden
              */
+
             StringBuilder sb = new StringBuilder();
             foreach (var info in foreleserInfoListe)
             {
@@ -110,6 +109,7 @@ namespace VMS
            * Alle strenger som er definert er tilsvarer en 
            * verdi som blir hentet ut fra databasen.
            */
+
             public String Fagkode { get; set; }
             public String Fagnavn { get; set; }
             public String Studieretning { get; set; }

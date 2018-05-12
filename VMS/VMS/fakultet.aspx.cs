@@ -1,20 +1,16 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace VMS
 {
-    public partial class fakultet : System.Web.UI.Page
+    public partial class Fakultet : System.Web.UI.Page
     {
         private Database db = new Database();
         private List<FakultetInfo> fakultetInfoListe = new List<FakultetInfo>();
         private String sidensFakultet = "Handelshøyskolen";
-        //Setter et standard fakultet for nettsiden
+        //Setter et standard fakultet så nettsiden alltid viser noe
       
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,8 +18,9 @@ namespace VMS
              * Under henter vi ut en string query. Denne inneholder
              * fagkoden siden skal vise. Denne kommer enten fra søk eller en lenke.
              * Denne blir formatert ved hjelp av formaterQueryString metoden deretter
-             * brukes den i en SQL spørring
+             * brukes den i en SQL spørring mot databasen
              */
+
             String uformatertQueryString = Request.Url.Query;
             String formatertString = FormaterQueryString.FormaterString(uformatertQueryString);
 
@@ -49,6 +46,7 @@ namespace VMS
              * hentet ut fra databasen i FakultetInfo objekter som legges
              * i en liste.
              */
+
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
                 if (!leser.HasRows)
@@ -82,6 +80,7 @@ namespace VMS
              * Html formateringen under er for å legge dataene inn i en tabell og gjøre de til linker
              * så man enkelt kan navigere på nettsiden
              */
+
             StringBuilder sb = new StringBuilder();
             foreach (var info in fakultetInfoListe)
             {
@@ -104,6 +103,7 @@ namespace VMS
              * Alle String's som er definert er vil tilsvare en 
              * verdi som blir plukket ut av databasen
              */
+
             public String Fagnavn { get; set; }
             public String Fagkode { get; set; }
             public String Studielinje { get; set; }

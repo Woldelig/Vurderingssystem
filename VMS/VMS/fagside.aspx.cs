@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 using System.Web.UI.DataVisualization.Charting;
 using System.Drawing;
@@ -15,17 +11,20 @@ namespace VMS
     {
         private Database db = new Database();
         private String sidensFagkode = "obj2100";
+
         /*
          * Dette er bare en statisk variabel så fagsiden alltid viser et resultat
          */
+
         protected void Page_Load(object sender, EventArgs e)
         {
             /*
              * Under henter vi ut en string query. Denne inneholder
              * fagkoden siden skal vise. Denne kommer enten fra søk eller en lenke.
              * Denne blir formatert ved hjelp av formaterQueryString metoden deretter
-             * brukes den i en SQL spørring
+             * brukes den i en SQL spørring mot databasen.
              */
+
             String uformatertQueryString = Request.Url.Query;
             String formatertQueryString = FormaterQueryString.FormaterString(uformatertQueryString);
 
@@ -51,13 +50,15 @@ namespace VMS
                 Server.Transfer("Default.aspx");
             }
             leser.Read();
+
             /*
-             * Her blir databaseresultatet lest rett inn i labels,
-             * noen av labels inneholder html kode, dette er for å gjøre de om 
+             * Her blir databaseresultatet skrevet rett inn i labels,
+             * noen av labels inneholder htmlformatering, dette er for å gjøre de 
              * til linker så man lettere kan navigere siden.
              * ForeleserId blir castet til int fordi den brukes til en sql 
              * spørring lenger nede
              */
+
             foreleserId = (int)leser[2];
             fagkodeLbl.Text = "Fagkode: " + leser[0].ToString();
             fagnavnLbl.Text = "Fagnavn: " + leser[1].ToString();
@@ -65,7 +66,7 @@ namespace VMS
             String forkurs = leser[4].ToString();
             fakultetLbl.Text = "Fakultet: <a href = 'fakultet.aspx?" + leser[5].ToString() + "'>" + leser[5].ToString() + "</a>";
 
-            //Her sjekkes det om forkurs finnes, hvis det gjør det skrives det til label som en link til forkurset
+            //Her sjekkes det om forkurs finnes, og skriver ut et forkurs label hvis det eksisterer
             if (forkurs != "")
             {
                 forkursLbl.Text = "Forkurs: <a href = 'fagside.aspx?" + forkurs + "'>" + forkurs + "</a>";
@@ -84,7 +85,9 @@ namespace VMS
             db.OpenConnection();
             leser = cmd.ExecuteReader();
             leser.Read();
-            String foreleserNavn = leser[0].ToString() + " " + leser[1].ToString(); //Setter sammen fornavn og etternavn fra databasen
+
+            //Setter sammen fornavn og etternavn fra databasen
+            String foreleserNavn = leser[0].ToString() + " " + leser[1].ToString(); 
             leser.Close();
             db.CloseConnection();
             foreleserLbl.Text = "Foreleser: <a href = 'foreleserside.aspx?" + foreleserNavn + "'>" + foreleserNavn + "</a>";
@@ -94,14 +97,19 @@ namespace VMS
              * Under bruker vi en metode for å kalle på database prosedyrene våre
              * de blir deretter lagt inn i et int array
              */
+
             int[] prosedyreSvarSpm1 = ProsedyreKaller("hent_spm1_verdier", sidensFagkode, 1);
             int[] prosedyreSvarSpm2 = ProsedyreKaller("hent_spm2_verdier", sidensFagkode, 2);
             int[] prosedyreSvarSpm3 = ProsedyreKaller("hent_spm3_verdier", sidensFagkode, 3);
             int[] prosedyreSvarSpm4 = ProsedyreKaller("hent_spm4_verdier", sidensFagkode, 4);
             int[] prosedyreSvarSpm5 = ProsedyreKaller("hent_spm5_verdier", sidensFagkode, 5);
 
-            //Under sjekker vi om et eller flere av spørsmålene ikke har data
-            //de uten data blir deretter skjult fra nettsiden
+            /*
+             * Under sjekker vi om et eller flere av spørsmålene ikke har data
+             * de uten data blir deretter skjult fra nettsiden, da de mest sannsynlig
+             * ikke er valide.
+             */
+
             int sumSpm1 = prosedyreSvarSpm1.Sum();
             int sumSpm2 = prosedyreSvarSpm2.Sum();
             int sumSpm3 = prosedyreSvarSpm3.Sum();
@@ -127,6 +135,7 @@ namespace VMS
                  * komma med punktum. Fordi i noen land bruker de punktum 
                  * til å vise tall med desimaler
                  */
+
                 String gjennomsnittSpm1 = BeregnGjennomsnittsRating(prosedyreSvarSpm1);
                 String gjennomsnittSpm2 = BeregnGjennomsnittsRating(prosedyreSvarSpm2);
                 String gjennomsnittSpm3 = BeregnGjennomsnittsRating(prosedyreSvarSpm3);
@@ -153,7 +162,8 @@ namespace VMS
                 diagram.Series.Add(seriesname);
                 diagram.Series[seriesname].ChartType = SeriesChartType.Pie;
                 Title tittel = diagram.Titles.Add(diagramTittel);
-                //Her forandrer vi på skrifttypen til diagramtittelen
+
+                //Her forandreres skrifttypen til diagramtittelen
                 tittel.Font = new System.Drawing.Font("Verdana", 16, System.Drawing.FontStyle.Bold);
 
                 diagram.Legends.Add("Legende");
@@ -161,13 +171,14 @@ namespace VMS
                 diagram.Legends[0].BorderColor = Color.Black;
 
                 /*
-                 * #PERCENT{P0} Gjør at vi får prosenter på diagramet.
-                 * og points vil tilsvare verdiene våre. De første parameterne
+                 * #PERCENT{P0} Gjør at man får prosenter på diagramet.
+                 * og points vil tilsvarer verdiene. De første parameterne
                  * som går fra 1-5 er for å gi punktene en Id så vi kan sette vår egen
                  * forklaring til dem i Legend. Under vil du se at vi vi setter vår egen
                  * tekst i legende ved å gjøre slik:
                  * diagram.Series[seriesname].Points[0].LegendText = "Svært misfornøyd";
                  */
+
                 diagram.Series[seriesname].Label = "#PERCENT{P0}";
                 diagram.Series[seriesname].Points.AddXY(0, prosedyreSvarSpm1[1]);
                 diagram.Series[seriesname].Points.AddXY(1, prosedyreSvarSpm1[2]);
@@ -182,7 +193,6 @@ namespace VMS
                 diagram.Series[seriesname].Points[3].LegendText = "Litt fornøyd";
                 diagram.Series[seriesname].Points[4].LegendText = "Meget fornøyd";
 
-
             }
             else
             {
@@ -191,6 +201,7 @@ namespace VMS
                  * vil det si at det ikke er foretatt en fagvurdering i faget
                  * og siden vil kun vise foreleser, fagkode osv.
                  */
+
                 pensumLbl.ForeColor = System.Drawing.Color.Red;
                 pensumLbl.Text = "Det er ikke foretatt en fagvurdering i dette faget. Prøv igjen senere.";
 
@@ -214,10 +225,14 @@ namespace VMS
             //Arrayet som sendes inn her må tilhøre det spørsmålet du ønsker å gjøre en gjennomsnittsberegning på
 
             int totalSpmRating = prosedyreSvar[1] * 1 + prosedyreSvar[2] * 2 + prosedyreSvar[3] * 3 + prosedyreSvar[4] * 4 + prosedyreSvar[5] * 5;
-            //Grunnen til at prosedyre svar må ganges opp er fordi den kun teller antall forekomster, så for å få den korrekte gjennomsnittsverdien
-            //må vi gange opp verdiene så vi for den riktige totalsummen så vi kan få gjennomsnittet
 
-            //under må vi ha en try catch fordi det er en mulighet for DivideByZeroException
+            /*
+             * Grunnen til at prosedyre svar må ganges opp er fordi den kun teller antall forekomster, så for å få den korrekte gjennomsnittsverdien
+             * må vi gange opp verdiene så vi for den riktige totalsummen så vi kan få gjennomsnittet
+             * 
+             * Under må det brukes en try catch fordi det er en mulighet for DivideByZeroException
+             */
+
             try
             {
                 spmGjennomsnittsRating = (double)totalSpmRating / (double)prosedyreSvar[0];
@@ -236,13 +251,15 @@ namespace VMS
         {
             /*
              * Denne metoden kaller på prosedyrer så vi får telling over alle verdier
-             * derfor trenger vi fagkode, prosedyrenr og spmnr som et parameter, man
+             * derfor trenger vi fagkoden, prosedyrenr og spmnr som inn parameter, man
              * vil få tilbake et int array som resultat etter å ha kalt på metoden
              * Posisjon 0 i arrayet vil innehold antall svar per spm
              */
 
             var cmd = db.SqlCommand("");
-            cmd.CommandText = prosedyreNavn; //prosedyrenavn må være helt likt som i db
+
+            //prosedyrenavn må være helt likt som i db
+            cmd.CommandText = prosedyreNavn; 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@in_fagkode", fagkode).Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@out_verdi1", MySqlDbType.Int32).Direction = ParameterDirection.Output;
@@ -263,9 +280,12 @@ namespace VMS
 
 
             String telleProsedyreNavn = "telle_svar_skjemaer";
-            //Denne prosedyren teller opp antall svar som har kommet per fagkode og spm
-            //dette tallet kan vi dele på den totale summen vi får senere for å finne ut
-            //gjennomsnittsverdien til vært enkelt spm
+
+            /*
+             * Denne prosedyren teller opp antall svar som har kommet per fagkode og spm
+             * dette tallet kan vi dele på den totale summen vi får senere for å finne ut
+             * gjennomsnittsverdien til vært enkelt spm
+             */
 
             cmd = db.SqlCommand(telleProsedyreNavn);
             cmd.CommandType = CommandType.StoredProcedure;

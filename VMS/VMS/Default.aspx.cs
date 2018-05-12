@@ -20,6 +20,7 @@ namespace VMS
              * Htmlen som står i minefagDiv og minevurderingDiv
              * står skrevet i Default.aspx
              */
+
             if (Session["studentID"] == null)
             {
                 StudIDLabel.Text = "";
