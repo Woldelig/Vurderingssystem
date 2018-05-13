@@ -12,7 +12,7 @@ namespace adminPanel
             InitializeComponent();
         }
 
-        private void home_Load(object sender, EventArgs e)
+        private void Home_Load(object sender, EventArgs e)
         {
             // Oppretter en databaseobjekt.
             Database db = new Database();

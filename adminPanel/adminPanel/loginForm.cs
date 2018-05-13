@@ -234,7 +234,7 @@ namespace adminPanel
             foreach (Form form in Application.OpenForms)
             {
                 // Hvis nyBrukerForm er en av disse betyr det at den er åpen
-                if (typeof(nyBrukerForm).Name == form.Name)
+                if (typeof(NyBrukerForm).Name == form.Name)
                 {
                     return true;
                 }
@@ -246,7 +246,7 @@ namespace adminPanel
         // Kjører nyBrukerForm
         public void nyThread()
         {
-            Application.Run(new nyBrukerForm());
+            Application.Run(new NyBrukerForm());
         }
 
         private void LoginForm_Activated(object sender, EventArgs e)

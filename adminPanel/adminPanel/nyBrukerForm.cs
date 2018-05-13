@@ -8,9 +8,9 @@ namespace adminPanel
 {
     // Oppretter en egen form for å lage ny bruker.
 
-    public partial class nyBrukerForm : Form
+    public partial class NyBrukerForm : Form
     {
-        public nyBrukerForm()
+        public NyBrukerForm()
         {
             InitializeComponent();
             Feilmelding.Hide();
@@ -139,7 +139,7 @@ namespace adminPanel
             }
         }
 
-        private void nyBrukerLogginn_Click(object sender, EventArgs e)
+        private void NyBrukerLogginn_Click(object sender, EventArgs e)
         {
             UserInfo.Username = Brukernavn.Text;
             this.Dispose();
@@ -160,12 +160,12 @@ namespace adminPanel
             Brukernavn.BackColor = SystemColors.Window;
         }
 
-        private void fornavn_MouseDown(object sender, MouseEventArgs e)
+        private void Fornavn_MouseDown(object sender, MouseEventArgs e)
         {
             fornavn.BackColor = SystemColors.Window;
         }
 
-        private void etternavn_MouseDown(object sender, MouseEventArgs e)
+        private void Etternavn_MouseDown(object sender, MouseEventArgs e)
         {
             etternavn.BackColor = SystemColors.Window;
         }
