@@ -1,17 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace adminPanel
 {
+    // Lager og tenger hele skallet for applikasjonen.
     public partial class MainForm : Form
     {
         private bool mouseDown;
@@ -22,6 +16,7 @@ namespace adminPanel
             InitializeComponent();
         }
 
+        // Setter "Hjem" til å være startsiden.
         private void MainForm_Load(object sender, EventArgs e)
         {
             HomeBtn.PerformClick();
@@ -37,7 +32,7 @@ namespace adminPanel
         {
             if (mouseDown)
             {
-                //Kunne flytte på vinduet ved å klikke og dra i LogoPanel
+                // Kunne flytte på vinduet ved å klikke og dra i LogoPanel
                 this.Location = new Point((this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
                 this.Update();
             }
@@ -48,36 +43,50 @@ namespace adminPanel
             mouseDown = false;
         }
 
+        // Avslutter applikasjonen.
         private void ExitBtn_Click(object sender, EventArgs e)
         {
             UpdateLastLogin();
-            Application.Exit();//Avslutter
+            Application.Exit();
         }
 
+        // Minimerer vinduet
         private void MinimizeBtn_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;//Minimerer vinduet
+            this.WindowState = FormWindowState.Minimized;
         }
 
+        // Endrer fargen til teksten på knappen når musa er over.
         private void HomeBtn_MouseEnter(object sender, EventArgs e)
         {
-            HomeBtn.ForeColor = Color.FromArgb(70, 130, 180);//Endrer fargen på teksten til knappen
+            // Hjem-knappen får en ny farge
+            HomeBtn.ForeColor = Color.FromArgb(70, 130, 180);
         }
 
+        // Setter fagen tilbake når musa forlater knappen
         private void HomeBtn_MouseLeave(object sender, EventArgs e)
         {
-            HomeBtn.ForeColor = Color.Black;//Setter knappen tilbake til svart
+            // Setter fargen tilbake til svart
+            HomeBtn.ForeColor = Color.Black;
         }
 
+        // Når knappen trykkes
         private void HomeBtn_Click(object sender, EventArgs e)
         {
-            ButtonToggle(sender);//Sender knappen til metoden ButtonToggel for å kunne vise brukeren hvor hen befinner seg i applikasjonen
+            /* 
+             * Sender knappen til metoden ButtonToggel.
+             * Her vil knappen bli markert for å letter visualisere hvilken
+             * undersiden brukeren befinner seg på i applikasjonen.
+            */
+            ButtonToggle(sender);
 
             foreach(Control ctrl in ContainerPanel.Controls)
             {
-                ctrl.Dispose();//Fjerner alle de componentene fra tidligere valgt side
+                // Fjerner alle de componentene fra tidligere valgt side, altså oppdaterer viewen.
+                ctrl.Dispose();
             }
-            ContainerPanel.Controls.Add(new Home());//Setter ny UserControl - Her settes Hjem til å vises i ContainerPanel
+            // Setter ny UserControl - Her settes Hjem til å vises i ContainerPanel
+            ContainerPanel.Controls.Add(new Home());
         }
 
         private void CoursesBtn_Click(object sender, EventArgs e)
@@ -163,8 +172,11 @@ namespace adminPanel
             }
             ContainerPanel.Controls.Add(new SqlEditor());
         }
-
-        private void ButtonToggle(object sender) //Setter hvilken knapp som skal ha focus. Ikke den beste løsningen
+        /*
+         * Metoden enderer fargen på valgt underside slik at brukeren enklere
+         * kan finne ut av hvor i applikasjonen man befinner seg.
+        */
+        private void ButtonToggle(object sender) 
         {
             HomeBtn.BackColor = Color.LightSlateGray;
             CoursesBtn.BackColor = Color.LightSlateGray;
@@ -209,19 +221,19 @@ namespace adminPanel
             ShutdownBtn.ForeColor = Color.Black;
         }
 
-        //Oppdatere tidsstempelet i databasen
+        // Oppdatere tidsstempelet på sist innlogget i databasen
         private void UpdateLastLogin()
         {
             Database db = new Database();
             db.OpenConnection();
 
-            //Sjekker først om brukeren har en rad i tabellen innloggingshistorikk
+            // Sjekker først om brukeren har en rad i tabellen innloggingshistorikk
             String sql = "SELECT bruker FROM innloggingshistorikk WHERE bruker = @Brukernavn;";
             var mySqlCommand = db.SqlCommand(sql);
             mySqlCommand.Parameters.AddWithValue("@Brukernavn", UserInfo.Username);
             MySqlDataReader reader = mySqlCommand.ExecuteReader();
 
-            //Hvis brukeren finnes gjør vi bare en enkel update med sqlfunksjonen now()
+            // Hvis brukeren finnes gjør vi bare en enkel update med sqlfunksjonen now()
             if (reader.HasRows)
             {
                 reader.Close();
@@ -231,7 +243,7 @@ namespace adminPanel
                 mySqlCommand.ExecuteNonQuery();
             }
 
-            //Hvis brukeren ikke finnes gjør vi en insert, samme her så bruker vi funksjonen now()
+            // Hvis brukeren ikke finnes gjør vi en insert, samme her så bruker vi funksjonen now()
             else
             {
                 reader.Close();
