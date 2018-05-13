@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace adminPanel
 {
+    // En aksessor og mutator for å kunne hente ut brukernavnet i andre klasser.
     class UserInfo
     {
        static private String username;
 
         static public String Username
         {
+            // Get-metoden
             get
             {
                 return username;
             }
-
+            // Set-metoden
             set
             {
                 username = value;
