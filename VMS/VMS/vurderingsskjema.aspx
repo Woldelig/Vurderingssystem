@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Vurderingsskjema" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Vurderingsskjema.aspx.cs" Inherits="VMS.vurderingsskjema" %>
+﻿<%@ Page Title="Vurderingsskjema" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Vurderingsskjema.aspx.cs" Inherits="VMS.Vurderingsskjema" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="Row">

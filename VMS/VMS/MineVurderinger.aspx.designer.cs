@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class About {
+    public partial class MineVurderinger {
         
         /// <summary>
         /// panel1 control.

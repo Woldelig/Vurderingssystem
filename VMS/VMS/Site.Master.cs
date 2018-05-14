@@ -16,6 +16,7 @@ namespace VMS
              * Denne klassen brukes for å holde styr på hvilke fagkoder som tilhører hvilke forelesere og fagnavn.
              * Vi bruker en liste for dette så vi slipper å sende flere spørringer mot databasen
              */
+
             public String Fagkode { get; set; }
             public String Fagnavn { get; set; }
             public String ForeleserNavn { get; set; }
@@ -29,12 +30,17 @@ namespace VMS
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Hvis man ikke er logget inn blir knapper skjult
+            /*
+             * Her sjekkes det om en bruker er innlogget.
+             * hvis en bruker ikke er innlogget, vil noen knapper på
+             * navbaren skjules siden disse er til brukerfunksjoner
+             */
+
             if (Session["studentID"] == null)
             {
                 minefag.Style["visibility"] = "hidden";
                 minevurderinger.Style["visibility"] = "hidden";
-                loggutBtn.Style["visibility"] = "hidden";
+                LoggutBtn.Style["visibility"] = "hidden";
             }
             else
             {
@@ -45,13 +51,28 @@ namespace VMS
             String query = "SELECT s.studieretning, s.fakultet, fag.fagkode, fag.fagnavn, CONCAT(f.fornavn, ' ', f.etternavn) as navn FROM fag, foreleser as f, studier as s WHERE f.foreleserid = fag.foreleserid AND fag.studieretning = s.studieretning";
             var cmd = db.SqlCommand(query);
             db.OpenConnection();
+
+            /*
+            * Using passer på at objektet som blir definert inne i 
+            * parantesene i blir "destroyed" eller tatt hånd om av 
+            * garbage collector så fort krøllparantesene tar slutt
+            * 
+            * Innenfor while løkken legger vi inn informasjonen som er
+            * hentet ut fra databasen i Faginfo objekter som legges
+            * i en liste.
+            */
+
             using (MySqlDataReader leser = cmd.ExecuteReader())
             {
                 /*
-                 * Siden DataReader objektet kun kan leses en gang må det mellomlagres i string a,b,c,d
-                 * Dette er fordi vi trenger 2 typer lister. En liste som inneholder alt uten rekkefølge som
-                 * skal brukes i autocomplete funksjonen. Og en egendefinert liste klasse som vi trenger struktur på.
+                 * Siden DataReader objektet kun kan leses en gang må det mellomlagres i string a,b,c,d,f.
+                 * e blir ikke brukt som variabel da dette er standard variabel for Events.
+                 * 
+                 * De leses inn til egne variabler fordi en leser kan kun lese en verdi engang, og vi trenger
+                 * veridene til 2 lister. En liste som inneholder alt uten rekkefølge som skal brukes i autocomplete funksjonen.
+                 * Og en liste som inneholder objekter med all informasjon som det kan søkes om.
                  */
+
                 String a, b, c, d, f;
                 while (leser.Read())
                 {
@@ -72,15 +93,16 @@ namespace VMS
             }
             db.CloseConnection();
 
-            //Må lage en ny liste uten duplikater. Ellers vil foreleser med flere fag kommer flere ganger i søkefeltet
+            //Her blir duplikater fjernet. Dette gjør vi så vi slipper å få opp duplikater i søkeforslag
             søkeResultatlisteUtenDuplikat = søkeResultatListe.Distinct().ToList();
 
 
             /*
              * Clienscriptmanager gjør at vi kan lage et script server side,
              * dette gjør det enkelt å bruke variabler på kryss av C# og js.
-             * RegisterStartupScript gjør at scriptet vil bli startet mens siden blir åpnet
+             * RegisterStartupScript gjør at scriptet vil bli startet når siden blir åpnet
              */
+
             ClientScriptManager cs = Page.ClientScript;
             StringBuilder sb = new StringBuilder();
             sb.Append("<script>");
@@ -95,19 +117,19 @@ namespace VMS
             cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
         }
 
-        public Boolean loggutBtnShow
+        public Boolean LoggutBtnShow
         {
             get
             {
-                return loggutBtn.Visible = true;
+                return LoggutBtn.Visible = true;
             }
             set
             {
-                loggutBtn.Visible = value;
+                LoggutBtn.Visible = value;
             }
         }
 
-        protected void loggutBtn_Click(object sender, EventArgs e)
+        protected void LoggutBtn_Click(object sender, EventArgs e)
         {
             Session.Abandon();
             Response.Redirect("velkomstside.aspx", true);
@@ -121,6 +143,7 @@ namespace VMS
              * og i dette objektet kan vi hente ut fagkoden (selv om brukeren søker på forelesernavn/fagnavn
              * Brukeren blir deretter sendt til fagsiden med fagkoden til faget han søkte på
              */
+
             String søkestreng = SearchTxt.Text;
 
             //fagkode og fagnavn leder til samme side, derfor den godtar enten fagkode eller fagnavn

@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class velkomstside {
+    public partial class Velkomstside {
         
         /// <summary>
         /// LoginBtn control.

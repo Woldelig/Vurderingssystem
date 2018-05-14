@@ -132,8 +132,8 @@
     <Content Include="Content\delete.gif" />
     <Content Include="Content\rateit.css" />
     <Content Include="Content\star.gif" />
-    <Content Include="fagside.aspx" />
-    <Content Include="fakultet.aspx" />
+    <Content Include="Fagside.aspx" />
+    <Content Include="Fakultet.aspx" />
     <Content Include="ForeleserSide.aspx" />
     <Content Include="innlogging.aspx" />
     <Content Include="LinjeSide.aspx" />
@@ -195,19 +195,19 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="fagside.aspx.cs">
-      <DependentUpon>fagside.aspx</DependentUpon>
+    <Compile Include="Fagside.aspx.cs">
+      <DependentUpon>Fagside.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="fagside.aspx.designer.cs">
-      <DependentUpon>fagside.aspx</DependentUpon>
+    <Compile Include="Fagside.aspx.designer.cs">
+      <DependentUpon>Fagside.aspx</DependentUpon>
     </Compile>
-    <Compile Include="fakultet.aspx.cs">
-      <DependentUpon>fakultet.aspx</DependentUpon>
+    <Compile Include="Fakultet.aspx.cs">
+      <DependentUpon>Fakultet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="fakultet.aspx.designer.cs">
-      <DependentUpon>fakultet.aspx</DependentUpon>
+    <Compile Include="Fakultet.aspx.designer.cs">
+      <DependentUpon>Fakultet.aspx</DependentUpon>
     </Compile>
     <Compile Include="ForeleserSide.aspx.cs">
       <DependentUpon>ForeleserSide.aspx</DependentUpon>
