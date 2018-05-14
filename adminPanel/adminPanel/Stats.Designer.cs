@@ -34,7 +34,7 @@
             this.fagkodeListeboks = new System.Windows.Forms.ListBox();
             this.spmListeboks = new System.Windows.Forms.ListBox();
             this.diagramListeboks = new System.Windows.Forms.ListBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.diagram = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.fagkodeLbl = new System.Windows.Forms.Label();
             this.spmLbl = new System.Windows.Forms.Label();
             this.diagramLbl = new System.Windows.Forms.Label();
@@ -42,7 +42,7 @@
             this.printBtn = new System.Windows.Forms.Button();
             this.lagreChartBtn = new System.Windows.Forms.Button();
             this.FeilmeldingsLbl = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagram)).BeginInit();
             this.SuspendLayout();
             // 
             // fagkodeListeboks
@@ -61,7 +61,7 @@
             this.spmListeboks.Name = "spmListeboks";
             this.spmListeboks.Size = new System.Drawing.Size(120, 108);
             this.spmListeboks.TabIndex = 1;
-            this.spmListeboks.SelectedIndexChanged += new System.EventHandler(this.spmListeboks_SelectedIndexChanged);
+            this.spmListeboks.SelectedIndexChanged += new System.EventHandler(this.SpmListeboks_SelectedIndexChanged);
             // 
             // diagramListeboks
             // 
@@ -70,23 +70,23 @@
             this.diagramListeboks.Name = "diagramListeboks";
             this.diagramListeboks.Size = new System.Drawing.Size(120, 108);
             this.diagramListeboks.TabIndex = 2;
-            this.diagramListeboks.SelectedIndexChanged += new System.EventHandler(this.diagramListeboks_SelectedIndexChanged);
+            this.diagramListeboks.SelectedIndexChanged += new System.EventHandler(this.DiagramListeboks_SelectedIndexChanged);
             // 
             // chart1
             // 
             chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            this.diagram.ChartAreas.Add(chartArea2);
             legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
-            this.chart1.Location = new System.Drawing.Point(67, 192);
-            this.chart1.Name = "chart1";
+            this.diagram.Legends.Add(legend2);
+            this.diagram.Location = new System.Drawing.Point(67, 192);
+            this.diagram.Name = "chart1";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(852, 378);
-            this.chart1.TabIndex = 3;
-            this.chart1.Text = "chart1";
+            this.diagram.Series.Add(series2);
+            this.diagram.Size = new System.Drawing.Size(852, 378);
+            this.diagram.TabIndex = 3;
+            this.diagram.Text = "chart1";
             // 
             // fagkodeLbl
             // 
@@ -124,7 +124,7 @@
             this.clearListeboxBtn.TabIndex = 7;
             this.clearListeboxBtn.Text = "Tøm filtere";
             this.clearListeboxBtn.UseVisualStyleBackColor = false;
-            this.clearListeboxBtn.Click += new System.EventHandler(this.clearListeboxBtn_Click);
+            this.clearListeboxBtn.Click += new System.EventHandler(this.ClearListeboxBtn_Click);
             // 
             // printBtn
             // 
@@ -135,7 +135,7 @@
             this.printBtn.TabIndex = 8;
             this.printBtn.Text = "Skriv ut diagram";
             this.printBtn.UseVisualStyleBackColor = false;
-            this.printBtn.Click += new System.EventHandler(this.printBtn_Click);
+            this.printBtn.Click += new System.EventHandler(this.PrintBtn_Click);
             // 
             // lagreChartBtn
             // 
@@ -146,7 +146,7 @@
             this.lagreChartBtn.TabIndex = 9;
             this.lagreChartBtn.Text = "Lagre diagram";
             this.lagreChartBtn.UseVisualStyleBackColor = false;
-            this.lagreChartBtn.Click += new System.EventHandler(this.lagreChartBtn_Click);
+            this.lagreChartBtn.Click += new System.EventHandler(this.LagreChartBtn_Click);
             // 
             // FeilmeldingsLbl
             // 
@@ -168,14 +168,14 @@
             this.Controls.Add(this.diagramLbl);
             this.Controls.Add(this.spmLbl);
             this.Controls.Add(this.fagkodeLbl);
-            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.diagram);
             this.Controls.Add(this.diagramListeboks);
             this.Controls.Add(this.spmListeboks);
             this.Controls.Add(this.fagkodeListeboks);
             this.Name = "Stats";
             this.Size = new System.Drawing.Size(1008, 627);
             this.Load += new System.EventHandler(this.Stats_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.diagram)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,7 +186,7 @@
         private System.Windows.Forms.ListBox fagkodeListeboks;
         private System.Windows.Forms.ListBox spmListeboks;
         private System.Windows.Forms.ListBox diagramListeboks;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart diagram;
         private System.Windows.Forms.Label fagkodeLbl;
         private System.Windows.Forms.Label spmLbl;
         private System.Windows.Forms.Label diagramLbl;
