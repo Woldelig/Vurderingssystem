@@ -3,7 +3,7 @@ using System.Web.UI.WebControls;
 
 namespace VMS
 {
-    public partial class velkomstside : System.Web.UI.Page
+    public partial class Velkomstside : System.Web.UI.Page
     {
         
         protected void Page_Load(object sender, EventArgs e)

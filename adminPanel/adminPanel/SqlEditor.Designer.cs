@@ -58,7 +58,7 @@
             this.sqlBtn.TabIndex = 1;
             this.sqlBtn.Text = "Kjør SQL";
             this.sqlBtn.UseVisualStyleBackColor = false;
-            this.sqlBtn.Click += new System.EventHandler(this.sqlBtn_Click);
+            this.sqlBtn.Click += new System.EventHandler(this.SqlBtn_Click);
             // 
             // sqlDatagrid
             // 

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace VMS
 {
-    public partial class innlogging : System.Web.UI.Page
+    public partial class Innlogging : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -15,7 +15,7 @@ namespace VMS
             {
                 StudentID.Text = "00000";
             }
-            this.Master.loggutBtnShow = false;
+            this.Master.LoggutBtnShow = false;
         }
         
         protected void Login_Click(object sender, EventArgs e)

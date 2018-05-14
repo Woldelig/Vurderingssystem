@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Mine vurderinger" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MineVurderinger.aspx.cs" Inherits="VMS.About" %>
+﻿<%@ Page Title="Mine vurderinger" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MineVurderinger.aspx.cs" Inherits="VMS.MineVurderinger" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Mine vurderinger</h1>
