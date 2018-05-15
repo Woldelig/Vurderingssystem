@@ -38,7 +38,7 @@ namespace adminPanel
 
             //Her setter vi tekstverdiene. Vi kan bruke tooltip objektet for all kontrollene
             tooltip1.SetToolTip(this.TabellNavnLbl, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
-            tooltip1.SetToolTip(this.StartNyttSemesterBtn, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
+            tooltip1.SetToolTip(this.LagreVurderingBtn, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
             tooltip1.SetToolTip(this.TabellNavnTextbox, "Skriv inn hva du vil navngi tabellen med vurderingshistorikk fra dette semesteret.");
             tooltip1.SetToolTip(this.NyTabellGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne handlingen.");
             tooltip1.SetToolTip(this.NyTabellIkkeGodkjennNyttSemesterLbl, "Dra meg over til valideringsboksen for å godkjenne ikke handlingen.");
@@ -109,67 +109,6 @@ namespace adminPanel
             MessageBox.Show(hjelpetekst,"Hjelp", MessageBoxButtons.OK);
         }
 
-        private void StartNyttSemesterBtn_Click(object sender, EventArgs e)
-        {
-            /*
-             * Navnet til denne knappen er misvisende, da den ikke gjør dette lenger
-             * 
-             * Denne metoden lar deg mellomlagre vurderinger uten og avslutte den.
-             * Dette vil gi en administrator mulighet til å lagre vurdering_høst_2018 
-             * til en egen tabell. Dette gir mulighet for å sammenligne semestere direkte
-             * opp mot hverandre
-             */
-
-            FeilmeldingLbl.ForeColor = Color.Red;
-            //Under sjekker vi først at tekstboksen ikke er tom eller bare har whitespace, deretter sjekker vi valideringstekstboksen
-            if (String.IsNullOrWhiteSpace(TabellNavnTextbox.Text))
-            {
-                FeilmeldingLbl.Text = "Tekstboksen må ha et navn";
-            }
-            else if (NyTabellValideringsTextBox.Text != "Godkjenn")
-            {
-                FeilmeldingLbl.Text = "Du må godkjenne handlingen med valideringsteksboksen!";
-            }
-            else
-            {
-                Database db = new Database();
-                var cmd = db.SqlCommand("SELECT * FROM information_schema.tables WHERE table_schema = 'vurderingssystem' AND table_name = @tabell LIMIT 1;");
-                
-                /*
-                 * Setningen over sjekker om tabellen eksisterer. Man kan ikke bruke en vanlig select * from tabellnavn
-                 * grunnen til dette er at hvis tabellen ikke eksisterer vil mysql gi en feilmelding.
-                 */
-
-                cmd.Parameters.AddWithValue("@tabell", TabellNavnTextbox.Text);
-                db.OpenConnection();
-                MySqlDataReader reader = cmd.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    FeilmeldingLbl.Text = "Tabellnavnet finnes fra før!";
-                    db.CloseConnection();
-                    return;
-                }
-                db.CloseConnection();
-
-                //Her setter vi inn navnet på prosedyren
-                cmd = db.SqlCommand("lagre_pågående_evaluerings_resultater");
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ny_tabell", TabellNavnTextbox.Text).Direction = ParameterDirection.Input;
-                db.OpenConnection();
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    FeilmeldingLbl.ForeColor = Color.Black;
-                    FeilmeldingLbl.Text = "Prosedyren er utført.";
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                }
-                db.CloseConnection();
-            }
-        }
-
         private void AvsluttVurderingBtn_Click(object sender, EventArgs e)
         {
 
@@ -205,6 +144,67 @@ namespace adminPanel
                 Console.WriteLine(ex.ToString());
             }
             db.CloseConnection();
+        }
+
+        private void LagreVurderingBtn_Click(object sender, EventArgs e)
+        {
+            /*
+             * Navnet til denne knappen er misvisende, da den ikke gjør dette lenger
+             * 
+             * Denne metoden lar deg mellomlagre vurderinger uten og avslutte den.
+             * Dette vil gi en administrator mulighet til å lagre vurdering_høst_2018 
+             * til en egen tabell. Dette gir mulighet for å sammenligne semestere direkte
+             * opp mot hverandre
+             */
+
+            FeilmeldingLbl.ForeColor = Color.Red;
+            //Under sjekker vi først at tekstboksen ikke er tom eller bare har whitespace, deretter sjekker vi valideringstekstboksen
+            if (String.IsNullOrWhiteSpace(TabellNavnTextbox.Text))
+            {
+                FeilmeldingLbl.Text = "Tekstboksen må ha et navn";
+            }
+            else if (NyTabellValideringsTextBox.Text != "Godkjenn")
+            {
+                FeilmeldingLbl.Text = "Du må godkjenne handlingen med valideringsteksboksen!";
+            }
+            else
+            {
+                Database db = new Database();
+                var cmd = db.SqlCommand("SELECT * FROM information_schema.tables WHERE table_schema = 'vurderingssystem' AND table_name = @tabell LIMIT 1;");
+
+                /*
+                 * Setningen over sjekker om tabellen eksisterer. Man kan ikke bruke en vanlig select * from tabellnavn
+                 * grunnen til dette er at hvis tabellen ikke eksisterer vil mysql gi en feilmelding.
+                 */
+
+                cmd.Parameters.AddWithValue("@tabell", TabellNavnTextbox.Text);
+                db.OpenConnection();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    FeilmeldingLbl.Text = "Tabellnavnet finnes fra før!";
+                    db.CloseConnection();
+                    return;
+                }
+                db.CloseConnection();
+
+                //Her setter vi inn navnet på prosedyren
+                cmd = db.SqlCommand("lagre_pågående_evaluerings_resultater");
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ny_tabell", TabellNavnTextbox.Text).Direction = ParameterDirection.Input;
+                db.OpenConnection();
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    FeilmeldingLbl.ForeColor = Color.Black;
+                    FeilmeldingLbl.Text = "Prosedyren er utført.";
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                db.CloseConnection();
+            }
         }
     }
 }

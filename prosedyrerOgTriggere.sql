@@ -24,7 +24,7 @@ CREATE PROCEDURE lagre_pågående_evaluerings_resultater
     IN ny_tabell VARCHAR(64)
 )
 BEGIN
-    SET @Sql = CONCAT("CREATE TABLE ",ny_tabell," AS SELECT * FROM vurderingshistorikk;");
+    SET @Sql = CONCAT("CREATE TABLE ",ny_tabell," AS SELECT * FROM pågåendevurdering;");
     PREPARE stmt FROM @Sql;
     EXECUTE stmt;
     DEALLOCATE PREPARE stmt;

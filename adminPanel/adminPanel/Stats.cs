@@ -48,7 +48,7 @@ namespace adminPanel
             lagreChartBtn.Hide();
         }
 
-        private void fagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
+        private void FagkodeListeboks_SelectedIndexChanged(object sender, EventArgs e)
         {
             /*
              * Denne sjekken gjør at brukeren må trykke på en verdi for å få programmet til å fortsette
@@ -207,6 +207,7 @@ namespace adminPanel
                             //ved å gjøre dette kan man switche frem og tilbake uten at applikasjonen feiler
                             diagram.Series.Clear();
                             diagram.Legends.Clear();
+                            diagram.ChartAreas.Clear();
                             diagram.Series.Add(seriesname);
                             diagram.Series[seriesname].ChartType = SeriesChartType.Pie;
                             diagram.Legends.Add("Legende");
@@ -247,8 +248,11 @@ namespace adminPanel
                         case "Radardiagram":
                             diagram.Series.Clear();
                             diagram.Legends.Clear();
+                            diagram.ChartAreas.Clear();
                             diagram.Series.Add(seriesname);
                             diagram.Series[seriesname].ChartType = SeriesChartType.Radar;
+                            diagram.ChartAreas.Add("ChartArea");
+
                             break;
 
                         default:
@@ -300,6 +304,10 @@ namespace adminPanel
         {
             diagramListeboks.ClearSelected();
             spmListeboks.ClearSelected();
+            diagram.Series.Clear();
+            diagram.Legends.Clear();
+            diagram.ChartAreas.Clear();
+            diagram.Titles.Clear();
         }
 
         private void PrintBtn_Click(object sender, EventArgs e)

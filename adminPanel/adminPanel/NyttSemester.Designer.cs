@@ -35,7 +35,7 @@
             this.HjelpBtn = new System.Windows.Forms.Button();
             this.NyTabellIkkeGodkjennNyttSemesterLbl = new System.Windows.Forms.Label();
             this.TabellNavnLbl = new System.Windows.Forms.Label();
-            this.StartNyttSemesterBtn = new System.Windows.Forms.Button();
+            this.LagreVurderingBtn = new System.Windows.Forms.Button();
             this.FeilmeldingLbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.PanelValideringsLbl = new System.Windows.Forms.Label();
@@ -124,15 +124,15 @@
             this.TabellNavnLbl.TabIndex = 8;
             this.TabellNavnLbl.Text = "Tabellnavn:";
             // 
-            // StartNyttSemesterBtn
+            // LagreVurderingBtn
             // 
-            this.StartNyttSemesterBtn.Location = new System.Drawing.Point(130, 361);
-            this.StartNyttSemesterBtn.Name = "StartNyttSemesterBtn";
-            this.StartNyttSemesterBtn.Size = new System.Drawing.Size(75, 23);
-            this.StartNyttSemesterBtn.TabIndex = 9;
-            this.StartNyttSemesterBtn.Text = "Start";
-            this.StartNyttSemesterBtn.UseVisualStyleBackColor = true;
-            this.StartNyttSemesterBtn.Click += new System.EventHandler(this.StartNyttSemesterBtn_Click);
+            this.LagreVurderingBtn.Location = new System.Drawing.Point(130, 361);
+            this.LagreVurderingBtn.Name = "LagreVurderingBtn";
+            this.LagreVurderingBtn.Size = new System.Drawing.Size(75, 23);
+            this.LagreVurderingBtn.TabIndex = 9;
+            this.LagreVurderingBtn.Text = "Start";
+            this.LagreVurderingBtn.UseVisualStyleBackColor = true;
+            this.LagreVurderingBtn.Click += new System.EventHandler(this.LagreVurderingBtn_Click);
             // 
             // FeilmeldingLbl
             // 
@@ -277,7 +277,7 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.panel3.Controls.Add(this.Panel2overskriftLbl);
-            this.panel3.Controls.Add(this.StartNyttSemesterBtn);
+            this.panel3.Controls.Add(this.LagreVurderingBtn);
             this.panel3.Controls.Add(this.TabellNavnTextbox);
             this.panel3.Controls.Add(this.PanelValideringsLbl);
             this.panel3.Controls.Add(this.TabellNavnLbl);
@@ -327,7 +327,7 @@
         private System.Windows.Forms.Button HjelpBtn;
         private System.Windows.Forms.Label NyTabellIkkeGodkjennNyttSemesterLbl;
         private System.Windows.Forms.Label TabellNavnLbl;
-        private System.Windows.Forms.Button StartNyttSemesterBtn;
+        private System.Windows.Forms.Button LagreVurderingBtn;
         private System.Windows.Forms.Label FeilmeldingLbl;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label PanelValideringsLbl;

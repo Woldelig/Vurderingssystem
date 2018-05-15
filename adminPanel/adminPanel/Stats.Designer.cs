@@ -52,7 +52,7 @@
             this.fagkodeListeboks.Name = "fagkodeListeboks";
             this.fagkodeListeboks.Size = new System.Drawing.Size(120, 108);
             this.fagkodeListeboks.TabIndex = 0;
-            this.fagkodeListeboks.SelectedIndexChanged += new System.EventHandler(this.fagkodeListeboks_SelectedIndexChanged);
+            this.fagkodeListeboks.SelectedIndexChanged += new System.EventHandler(this.FagkodeListeboks_SelectedIndexChanged);
             // 
             // spmListeboks
             // 
