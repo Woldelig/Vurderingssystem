@@ -1,6 +1,6 @@
 ﻿namespace adminPanel
 {
-    partial class nyBrukerForm
+    partial class NyBrukerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -167,7 +167,7 @@
             this.fornavn.Name = "fornavn";
             this.fornavn.Size = new System.Drawing.Size(167, 27);
             this.fornavn.TabIndex = 2;
-            this.fornavn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.fornavn_MouseDown);
+            this.fornavn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Fornavn_MouseDown);
             // 
             // etternavn
             // 
@@ -176,7 +176,7 @@
             this.etternavn.Name = "etternavn";
             this.etternavn.Size = new System.Drawing.Size(167, 27);
             this.etternavn.TabIndex = 3;
-            this.etternavn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.etternavn_MouseDown);
+            this.etternavn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Etternavn_MouseDown);
             // 
             // fornavnLbl
             // 
@@ -224,7 +224,7 @@
             this.nyBrukerLogginn.TabIndex = 15;
             this.nyBrukerLogginn.Text = "Logg Inn";
             this.nyBrukerLogginn.UseVisualStyleBackColor = false;
-            this.nyBrukerLogginn.Click += new System.EventHandler(this.nyBrukerLogginn_Click);
+            this.nyBrukerLogginn.Click += new System.EventHandler(this.NyBrukerLogginn_Click);
             // 
             // nyBrukerForm
             // 

@@ -1,12 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Text;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace VMS
 {
@@ -18,11 +12,14 @@ namespace VMS
             {
                 Response.Redirect("velkomstside.aspx", true);
             }
+
             /*
-             * Vi må kjøre to spørringer her. Vi må vite antall rader som kommer ut for å lage arrayet
-             * Problemet er blitt stilt før på stack uten løsninger. Og klone datareader objektet er jo en mulighet
-             * men da er det mye mer hensiktmessig og kun kjøre en ekstra spørring
-                https://stackoverflow.com/questions/37726983/clone-sqldatareader-to-get-number-of-rows
+             * Her starter vi må å kjøre en SQL spørring med COUNT.
+             * Vi trenger denne tellingen for å instansiere vårt
+             * multidimensjonelle array. Dette arrayet kommer til å 
+             * tilsvare en tabell. Vi bruker array istedenfor DataTable,
+             * dette er fordi vi kommer til å utføre en del operasjoner på arrayet
+             * som hadde vært veldig vanskelig på DataTable og array er generelt raskere
              */
 
             Database db = new Database();
@@ -43,13 +40,15 @@ namespace VMS
             db.OpenConnection();
             leser = cmd.ExecuteReader();
             String[,] faginfo = new String[antallRader, 3];
-            /*Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
+
+            /* 
+             * Her lages et jagged array, første parameter representerer rader og andre parameter representerer kolonner
              * siden vi er usikre på hvor mange rader vi skal ha blir dette definert ved hjelp av en egen spørring som teller
              * resultatet. Kolonner er definert som 3 fordi det er kun 3 kolonner vi bruker. Vi selecter egentlig 4 kolonner
-             * men vi bruker concat funksjonen i mysql for å slå sammen fornavn og etternavnet til foreleseren
+             * men vi bruker concat-funksjonen i mysql for å slå sammen fornavn og etternavnet til foreleseren.
              */
 
-            //Her leses verdiene i et jagged array
+            //Her leses verdiene inn i et jagged array
             int arrayIndexTilsvarerRadIdb = 0;
             while (leser.Read())
             {
@@ -61,11 +60,11 @@ namespace VMS
             leser.Close();
             db.CloseConnection();
 
-            //Vi bruker stringbuilder til å bygge vår html
+            //Vi bruker stringbuilder til å bygge vår html representasjon
             StringBuilder sb = new StringBuilder();
             int spanNr = 1;
             
-            //I denne for loopen blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
+            //I denne for løkken blir det laget rader med klikkbare bokser som inneholder fagkode, fagnavn og foreleser navn
             for (int i = 0; i < antallRader; i++)
             {
                 String span1 = "FagkodeLbl" + spanNr;
@@ -94,10 +93,15 @@ namespace VMS
                     , span1, span2, span3, "Fagkode: " + faginfo[i, 0], "Fagnavn: " + faginfo[i, 1], "Foreleser: " + faginfo[i, 2], faginfo[i,0]);
                 //span1-3 angir span navn, de får et høyere nr per loop. [i,0] er fagkode for første rad [i,1] er fagnavn og [i,2] er foreleser navn
 
-
-                //testsomething.InnerHtml = sb.ToString();
-                //PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
-                //Ovenfor er to andre metoder vi kunne ha brukt
+                /*
+                 * testsomething.InnerHtml = sb.ToString();
+                 * PlaceHolder1.Controls.Add(new Literal() { Text = sb.ToString() });
+                 * 
+                 * De to linjene ovenfor er to andre tilnærminger vi forsøkte å bruke. Begge fungerer, men vi
+                 * valgte og bruke Literal. I html koden ville linjene ovenfor kunne ha skrevet ut til disse:
+                 * <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
+                 * <div id="testsomething" runat="server"></div>
+                 */
 
                 //lit er forkortelsen for literal kontroll vi skriver ut stringbuilderen sin tekst til
                 lit.Text = sb.ToString();

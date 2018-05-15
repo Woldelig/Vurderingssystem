@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class vurderingsskjema {
+    public partial class Vurderingsskjema {
         
         /// <summary>
         /// spmLbl control.

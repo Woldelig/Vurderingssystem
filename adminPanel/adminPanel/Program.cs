@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace adminPanel
@@ -16,10 +13,13 @@ namespace adminPanel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            // Starter en instans av LoginForm
             LoginForm lf = new LoginForm();
-            if(lf.ShowDialog() == DialogResult.OK) //Sjekker om innlogging var vellykket
+            // Sjekker om innlogging var vellykket
+            if (lf.ShowDialog() == DialogResult.OK)
             {
-                Application.Run(new MainForm());//Starter MainForm
+                // Starter MainForm
+                Application.Run(new MainForm());
             }
             else
             {

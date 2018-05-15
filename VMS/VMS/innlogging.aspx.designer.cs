@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class innlogging {
+    public partial class Innlogging {
         
         /// <summary>
         /// Melding control.

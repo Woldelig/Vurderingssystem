@@ -67,17 +67,11 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="loginForm.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="loginForm.Designer.cs">
-      <DependentUpon>loginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MalForm.Designer.cs">
-      <DependentUpon>MalForm.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Multithread.cs" />
     <Compile Include="MyCourses.cs">
@@ -86,11 +80,11 @@
     <Compile Include="MyCourses.Designer.cs">
       <DependentUpon>MyCourses.cs</DependentUpon>
     </Compile>
-    <Compile Include="nyBrukerForm.cs">
+    <Compile Include="NyBrukerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="nyBrukerForm.Designer.cs">
-      <DependentUpon>nyBrukerForm.cs</DependentUpon>
+    <Compile Include="NyBrukerForm.Designer.cs">
+      <DependentUpon>NyBrukerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NyttSemester.cs">
       <SubType>UserControl</SubType>
@@ -131,26 +125,17 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs" />
-    <Compile Include="VelkomstForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VelkomstForm.Designer.cs">
-      <DependentUpon>VelkomstForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="loginForm.resx">
-      <DependentUpon>loginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MalForm.resx">
-      <DependentUpon>MalForm.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyCourses.resx">
       <DependentUpon>MyCourses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="nyBrukerForm.resx">
-      <DependentUpon>nyBrukerForm.cs</DependentUpon>
+    <EmbeddedResource Include="NyBrukerForm.resx">
+      <DependentUpon>NyBrukerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NyttSemester.resx">
       <DependentUpon>NyttSemester.cs</DependentUpon>
@@ -178,9 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VelkomstForm.resx">
-      <DependentUpon>VelkomstForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -10,7 +10,7 @@
 namespace VMS {
     
     
-    public partial class fakultet {
+    public partial class Fakultet {
         
         /// <summary>
         /// fakultetLbl control.

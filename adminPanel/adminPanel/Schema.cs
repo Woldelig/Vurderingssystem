@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -18,7 +13,8 @@ namespace adminPanel
             InitializeComponent();
         }
         Database db = new Database();
-        bool nyttSkjema = false; //bool variabel jeg bruker i forgrenningssjekk for å se om det er et nytt skjema eller et som endres
+        //bool variabel jeg bruker i forgrenningssjekk for å se om det er et nytt skjema eller et som endres
+        bool nyttSkjema = false;
         String valgtSkjemaId = "";
 
         private void Schema_Load(object sender, EventArgs e)
@@ -30,7 +26,13 @@ namespace adminPanel
 
         private void LagSkjemaBtn_Click(object sender, EventArgs e)
         {
-            //Denne foreachen sjekker om samtlige tekstbokser er fylt ut. Og avbryter koden hvis ikke
+
+            /*
+             * Denne foreachen sjekker om samtlige tekstbokser er fylt ut. 
+             * Hvis det er en tekstboks som ikke er fyllt ut, vil koden
+             * avbrytes med return;
+             */
+
             foreach (Control c in this.Controls)
             {
                 if (c is TextBox)
@@ -46,6 +48,13 @@ namespace adminPanel
             }
 
             String query = "";
+
+            /*
+             * Her sjekkes det om det er et helt nytt vurderingsskjema ved hjelp av 
+             * bool variabelen som ble deklarert tidligere. Hvis det ikke er et nytt skjema
+             * må vi ha en UPDATE setning istedenfor INSERT setning
+             */
+
             if (nyttSkjema)
             {
                 query = "INSERT INTO vurderingsskjema VALUES (NULL, @Fagkode, @Spm1, @Spm2, @Spm3, @Spm4, @Spm5, @Spm6, @Spm7, @Spm8, @Spm9, @Spm10);";
@@ -56,9 +65,10 @@ namespace adminPanel
             }
              
             var mySqlCommand = db.SqlCommand(query);
-            if (!nyttSkjema) //Hvis skjema endres må jeg ha valgtSkjemaId som parameter i tillegg
+
+            //Hvis skjema endres må jeg ha valgtSkjemaId som parameter i tillegg
+            if (!nyttSkjema) 
             {
-                Console.WriteLine(valgtSkjemaId);
                 mySqlCommand.Parameters.AddWithValue("@Skjemaid", valgtSkjemaId);
             }
             mySqlCommand.Parameters.AddWithValue("@Fagkode", fagkodeTxt.Text);
@@ -87,14 +97,14 @@ namespace adminPanel
                     resultatLbl.Text = "Spørreskjema er endret.";
 
                 }
-                ClearTextbox();//tømmer textbokser
+                //en metode som tømmer textbokser
+                ClearTextbox();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
 
             }
-            //Console.WriteLine(query); //Denne linjen kan brukes til å sjekke queryen som blir sendt ut
             db.CloseConnection();
 
         }
@@ -170,20 +180,21 @@ namespace adminPanel
                 while (skjemaIdleser.Read())
                 {
                     valgtSkjemaId = skjemaIdleser[0].ToString();
-
                 }
-                Console.WriteLine(valgtSkjemaId);
+
                 db.CloseConnection();
 
                 String query = "SELECT fagkode, spm1, spm2, spm3, spm4, spm5, spm6, spm7, spm8, spm9, spm10 FROM vurderingsskjema WHERE fagkode = @Fagkode";
                 var cmd = db.SqlCommand(query);
                 cmd.Parameters.AddWithValue("@Fagkode", SkjemaListeboks.SelectedItem.ToString());
+
                 db.OpenConnection();
                 MySqlDataReader leser = cmd.ExecuteReader();
-                Console.WriteLine(valgtSkjemaId);
-                int j = 10;
                 //Må sette j til 10 og ha j-- fordi foreach fylte opp boksene omvendt av hva man forventer
-                foreach (TextBox c in this.Controls.OfType<TextBox>()) //this.Controls.OfType vil gjøre at vi kun foreacher textboksene innenfor THIS
+                int j = 10;
+
+                //this.Controls.OfType vil gjøre at vi kun foreacher textboksene innenfor THIS
+                foreach (TextBox c in this.Controls.OfType<TextBox>()) 
                 {
                     leser.Read();
                     ((TextBox)c).Text = leser[j].ToString();
@@ -198,8 +209,17 @@ namespace adminPanel
             }
             
         }
-        private void GjemController() {
-            foreach (var c in Controls) //denne foreachen vil gjemme all labels og textbokser for brukeren
+        private void GjemController()
+        {
+            
+            /*
+             * Denne metoden vil gjemme vekk alle
+             * labels og textbokser ved å foreach alle 
+             * Controls som er enten textboks eller label
+             * til å bruke sin Hide() metode
+             */
+
+            foreach (var c in Controls) 
             {
                 if (c is TextBox)
                 {
@@ -214,7 +234,16 @@ namespace adminPanel
 
         private void HvisController()
         {
-            foreach (var c in Controls) //denne foreachen vil vise alle kontrollerne
+            
+            /*
+             * Denne metoden vil vise alle
+             * labels og textbokser som er gjemt
+             * ved å foreach alle Controls som er enten
+             * textboks eller label til å bruke
+             * sin Show() metode
+             */
+
+            foreach (var c in Controls)
             {
                 if (c is TextBox)
                 {
@@ -228,7 +257,12 @@ namespace adminPanel
         }
         private void ClearTextbox()
         {
-            foreach (var c in Controls) //denne foreachen vil tømme alle textboksene i formen
+            
+            /*
+             * Denne foreachen vil tømme alle tekstbokser for tekst
+             */
+
+            foreach (var c in Controls)
             {
                 if (c is TextBox)
                 {
