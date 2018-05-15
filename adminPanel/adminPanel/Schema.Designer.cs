@@ -79,6 +79,7 @@
             // fagkodeTxt
             // 
             this.fagkodeTxt.Location = new System.Drawing.Point(43, 77);
+            this.fagkodeTxt.MaxLength = 8;
             this.fagkodeTxt.Multiline = true;
             this.fagkodeTxt.Name = "fagkodeTxt";
             this.fagkodeTxt.Size = new System.Drawing.Size(170, 20);

@@ -89,11 +89,13 @@ namespace adminPanel
                 mySqlCommand.ExecuteNonQuery();
                 if (nyttSkjema)
                 {
+                    resultatLbl.ForeColor = Color.Black;
                     resultatLbl.Text = "Spørreskjema er laget.";
 
                 }
                 else
                 {
+                    resultatLbl.ForeColor = Color.Black;
                     resultatLbl.Text = "Spørreskjema er endret.";
 
                 }
