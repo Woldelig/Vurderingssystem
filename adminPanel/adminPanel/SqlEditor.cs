@@ -40,6 +40,9 @@ namespace adminPanel
                 }
             }
 
+            //Fjerner feilmelding hvis det finnes
+            feilmeldingTxt.Text = "";
+
             try
             {
                 db.OpenConnection();
