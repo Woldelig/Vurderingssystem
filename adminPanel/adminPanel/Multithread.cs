@@ -5,7 +5,7 @@ namespace adminPanel
     class Multithread
     {
         // Initaliserer en ThreadStart som kjører nyThread-metoden fra LoginForm.
-        ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().nyThread);
+        ThreadStart nyBrukerThread = new ThreadStart(new LoginForm().NyThread);
         Thread thread;
 
         public Multithread()
