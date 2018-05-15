@@ -67,11 +67,11 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="loginForm.cs">
+    <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="loginForm.Designer.cs">
-      <DependentUpon>loginForm.cs</DependentUpon>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MalForm.cs">
       <SubType>Form</SubType>
@@ -86,11 +86,11 @@
     <Compile Include="MyCourses.Designer.cs">
       <DependentUpon>MyCourses.cs</DependentUpon>
     </Compile>
-    <Compile Include="nyBrukerForm.cs">
+    <Compile Include="NyBrukerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="nyBrukerForm.Designer.cs">
-      <DependentUpon>nyBrukerForm.cs</DependentUpon>
+    <Compile Include="NyBrukerForm.Designer.cs">
+      <DependentUpon>NyBrukerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NyttSemester.cs">
       <SubType>UserControl</SubType>
@@ -140,8 +140,8 @@
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="loginForm.resx">
-      <DependentUpon>loginForm.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MalForm.resx">
       <DependentUpon>MalForm.cs</DependentUpon>
@@ -149,8 +149,8 @@
     <EmbeddedResource Include="MyCourses.resx">
       <DependentUpon>MyCourses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="nyBrukerForm.resx">
-      <DependentUpon>nyBrukerForm.cs</DependentUpon>
+    <EmbeddedResource Include="NyBrukerForm.resx">
+      <DependentUpon>NyBrukerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NyttSemester.resx">
       <DependentUpon>NyttSemester.cs</DependentUpon>

@@ -14,7 +14,7 @@ namespace adminPanel
         {
             InitializeComponent();
             // Setter feilmeldingene på loginForm til rød
-            HelpText.ForeColor = System.Drawing.Color.Red;
+            HelpText.ForeColor = Color.Red;
             Username.Text = "Brukernavn";
             Password.Text = "Passord";
             Username.ForeColor = Color.FromArgb(52, 52, 52);
@@ -193,28 +193,28 @@ namespace adminPanel
             ShutdownBtn.ForeColor = Color.Black;
         }
 
-        private void nyBrukerBtn_MouseLeave(object sender, EventArgs e)
+        private void NyBrukerBtn_MouseLeave(object sender, EventArgs e)
         {
             nyBrukerBtn.ForeColor = Color.SteelBlue;
         }
 
-        private void nyBrukerBtn_MouseEnter(object sender, EventArgs e)
+        private void NyBrukerBtn_MouseEnter(object sender, EventArgs e)
         {
             nyBrukerBtn.ForeColor = Color.FromArgb(37, 69, 95);
         }
 
-        private void nyBrukerBtn_MouseDown(object sender, MouseEventArgs e)
+        private void NyBrukerBtn_MouseDown(object sender, MouseEventArgs e)
         {
             nyBrukerBtn.ForeColor = Color.FromArgb(120, 163, 201);
         }
 
-        private void nyBrukerBtn_MouseUp(object sender, MouseEventArgs e)
+        private void NyBrukerBtn_MouseUp(object sender, MouseEventArgs e)
         {
             nyBrukerBtn.ForeColor = Color.SteelBlue;
         }
 
         // Bruker Multithreading
-        private void nyBrukerBtn_Click(object sender, EventArgs e)
+        private void NyBrukerBtn_Click(object sender, EventArgs e)
         {
             /*
              * Sjekker om det allerede finnes en nyBrukerForm,
@@ -244,7 +244,7 @@ namespace adminPanel
         }
 
         // Kjører nyBrukerForm
-        public void nyThread()
+        public void NyThread()
         {
             Application.Run(new NyBrukerForm());
         }
