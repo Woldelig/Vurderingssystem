@@ -170,7 +170,7 @@
             this.Controls.Add(this.HomeHeaderLbl);
             this.Name = "Home";
             this.Size = new System.Drawing.Size(1008, 627);
-            this.Load += new System.EventHandler(this.home_Load);
+            this.Load += new System.EventHandler(this.Home_Load);
             this.LastLoginPanel.ResumeLayout(false);
             this.LastLoginPanel.PerformLayout();
             this.UserInfoPanel.ResumeLayout(false);

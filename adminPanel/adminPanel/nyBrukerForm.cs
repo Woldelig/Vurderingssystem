@@ -1,25 +1,23 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
 namespace adminPanel
 {
-    public partial class nyBrukerForm : Form
+    // Oppretter en egen form for å lage ny bruker.
+
+    public partial class NyBrukerForm : Form
     {
-        public nyBrukerForm()
+        public NyBrukerForm()
         {
             InitializeComponent();
             Feilmelding.Hide();
             nyBrukerLogginn.Hide();
             opprettetLbl.Hide();
+            
+            // Plasserer formen oppå loginForm
             if (FormPosition.Pos == new Point(0,0))
             {
                this.StartPosition = FormStartPosition.CenterScreen;
@@ -42,10 +40,12 @@ namespace adminPanel
             Database db = new Database();
             if (Brukernavn.Text == "" || fornavn.Text == "" || etternavn.Text == "" || Passord.Text == "" || Passord2.Text == "")
             {
+                // Setter rød farge på de boksene som ikke oppflyer kravene
                 foreach (Control c in Controls)
                 {
                     if (c is TextBox)
                     {
+                        //Sjekker om en eller flere tekstboker er tomme.
                         if (c.Text == "")
                         {
                             c.BackColor = Color.Red;
@@ -55,6 +55,7 @@ namespace adminPanel
                     }
                 }
             }
+            // Sjekker om passordene er like
             else if (Passord.Text != Passord2.Text)
             {
                 Feilmelding.Text = "Passordene må være like!";
@@ -72,6 +73,7 @@ namespace adminPanel
                     mySqlCommand.Parameters.AddWithValue("@Brukernavn", Brukernavn.Text);
                     MySqlDataReader reader = mySqlCommand.ExecuteReader();
 
+                    // Sjekker om brukeren finnes i databasen fra før av.
                     if (reader.HasRows)
                     {
                         Feilmelding.Text = "Brukeren finnes allerede!";
@@ -79,16 +81,22 @@ namespace adminPanel
                         Brukernavn.BackColor = Color.Red;
                         db.CloseConnection();
                     }
+
+                    // Hvis ikke skal dataen lagres og opprette en ny bruker.
                     else
                     {
+                        // Objekt for hashing av passord.
                         Hasher hasher = new Hasher();
+
+                        // Hasher passordet og lagrer det i en streng.
                         string hash = hasher.PassordHasher(Passord.Text);
 
                         db.OpenConnection();
                         query = "INSERT INTO formlogin (bruker, passord, fornavn, etternavn, brukertype) VALUES (@Brukernavn, @Passord, @Fornavn, @Etternavn, 2);";
 
                         var mySqlCommandInsert = db.SqlCommand(query);
-
+                        
+                        // Hinderer SQL-injection.
                         mySqlCommandInsert.Parameters.AddWithValue("@Brukernavn", Brukernavn.Text);
                         mySqlCommandInsert.Parameters.AddWithValue("@Passord", hash);
                         mySqlCommandInsert.Parameters.AddWithValue("@Fornavn", fornavn.Text);
@@ -100,7 +108,7 @@ namespace adminPanel
                             Console.WriteLine("Noe gikk galt! Kunne ikke legge til data i databasen!");
                         }
                         db.CloseConnection();
-
+                        // Oppdaterer formen med å gjemme bort unødvendige labels og tekstbokser.
                         nyBrukerLbl.Hide();
                         BrukernavnLbl.Hide();
                         Brukernavn.Hide();
@@ -122,14 +130,16 @@ namespace adminPanel
                 }
                 catch (MySqlException DBException)
                 {
+                    /*
+                     * Under testing og debugging av prototypen skriver vi til konsollen.
+                     * Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
+                    */
                     Console.WriteLine(DBException.ToString());
-                    //Under testing og debugging skriver vi til konsollen.
-                    //Kan bytte til å skrive til feilmelding label når vi nærmer oss et produkt
                 }
             }
         }
 
-        private void nyBrukerLogginn_Click(object sender, EventArgs e)
+        private void NyBrukerLogginn_Click(object sender, EventArgs e)
         {
             UserInfo.Username = Brukernavn.Text;
             this.Dispose();
@@ -150,12 +160,12 @@ namespace adminPanel
             Brukernavn.BackColor = SystemColors.Window;
         }
 
-        private void fornavn_MouseDown(object sender, MouseEventArgs e)
+        private void Fornavn_MouseDown(object sender, MouseEventArgs e)
         {
             fornavn.BackColor = SystemColors.Window;
         }
 
-        private void etternavn_MouseDown(object sender, MouseEventArgs e)
+        private void Etternavn_MouseDown(object sender, MouseEventArgs e)
         {
             etternavn.BackColor = SystemColors.Window;
         }
