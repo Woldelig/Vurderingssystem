@@ -302,9 +302,9 @@
             this.LogoLbl.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogoLbl.Location = new System.Drawing.Point(7, 11);
             this.LogoLbl.Name = "LogoLbl";
-            this.LogoLbl.Size = new System.Drawing.Size(182, 25);
+            this.LogoLbl.Size = new System.Drawing.Size(191, 25);
             this.LogoLbl.TabIndex = 2;
-            this.LogoLbl.Text = "Vurderingssytem";
+            this.LogoLbl.Text = "Vurderingssystem";
             // 
             // ContainerPanel
             // 
