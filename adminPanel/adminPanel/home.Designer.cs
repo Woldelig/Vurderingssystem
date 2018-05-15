@@ -40,7 +40,7 @@
             this.AvatarPanel = new System.Windows.Forms.Panel();
             this.AvatarImage = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.VelkomstLbl = new System.Windows.Forms.Label();
             this.LastLoginPanel.SuspendLayout();
             this.UserInfoPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -141,23 +141,23 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(78)))), ((int)(((byte)(203)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.VelkomstLbl);
             this.panel1.Location = new System.Drawing.Point(169, 273);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(658, 325);
             this.panel1.TabIndex = 4;
             // 
-            // label1
+            // VelkomstLbl
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(658, 325);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Aner ikke hva jeg skal skrive her eller hva som skal legges til. Bare å komme med" +
-    " ideer!";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.VelkomstLbl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VelkomstLbl.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VelkomstLbl.Location = new System.Drawing.Point(0, 0);
+            this.VelkomstLbl.Name = "VelkomstLbl";
+            this.VelkomstLbl.Size = new System.Drawing.Size(658, 325);
+            this.VelkomstLbl.TabIndex = 0;
+            this.VelkomstLbl.Text = "Panel for velkomstmelding: Her vil det bli lagt til statistikk for den spesifkke " +
+    "brukeren om evalueringer i brukerens fag.\r\n";
+            this.VelkomstLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Home
             // 
@@ -192,6 +192,6 @@
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Label UsertypeLbl;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label VelkomstLbl;
     }
 }

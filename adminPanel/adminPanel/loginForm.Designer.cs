@@ -209,11 +209,11 @@
             this.nyBrukerBtn.Size = new System.Drawing.Size(101, 24);
             this.nyBrukerBtn.TabIndex = 10;
             this.nyBrukerBtn.Text = "Ny Bruker";
-            this.nyBrukerBtn.Click += new System.EventHandler(this.nyBrukerBtn_Click);
-            this.nyBrukerBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.nyBrukerBtn_MouseDown);
-            this.nyBrukerBtn.MouseEnter += new System.EventHandler(this.nyBrukerBtn_MouseEnter);
-            this.nyBrukerBtn.MouseLeave += new System.EventHandler(this.nyBrukerBtn_MouseLeave);
-            this.nyBrukerBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.nyBrukerBtn_MouseUp);
+            this.nyBrukerBtn.Click += new System.EventHandler(this.NyBrukerBtn_Click);
+            this.nyBrukerBtn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NyBrukerBtn_MouseDown);
+            this.nyBrukerBtn.MouseEnter += new System.EventHandler(this.NyBrukerBtn_MouseEnter);
+            this.nyBrukerBtn.MouseLeave += new System.EventHandler(this.NyBrukerBtn_MouseLeave);
+            this.nyBrukerBtn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.NyBrukerBtn_MouseUp);
             // 
             // LoginForm
             // 
