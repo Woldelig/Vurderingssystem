@@ -107,12 +107,12 @@ namespace VMS
             StringBuilder sb = new StringBuilder();
             sb.Append("<script>");
             sb.Append("$(function () {");
-            sb.Append("var availableTags = new Array;");
+            sb.Append("var søkeArray = new Array;");
             foreach (String resultat in søkeResultatlisteUtenDuplikat)
             {
-                sb.Append("availableTags.push('" + resultat + "');");
+                sb.Append("søkeArray.push('" + resultat + "');");
             }
-            sb.Append("$('#SearchTxt').autocomplete({ source: availableTags });});");
+            sb.Append("$('#SearchTxt').autocomplete({ source: søkeArray });});");
             sb.Append("</script>");
             cs.RegisterStartupScript(this.GetType(), "AutoCompleteArrayScript", sb.ToString());
         }
