@@ -21,6 +21,7 @@ namespace adminPanel
              * Henter ut tidsstempel fra databasen og setter den inn i LasLogin-panelet
              * slik at brukeren kan se sist innlogging.
             */
+
             try
             {
                 
@@ -59,6 +60,7 @@ namespace adminPanel
              * Henter ut brukertype og navnet på brukeren som logget inn for så å
              * vise det i hjempanelet.
             */
+
             try
             {
                 db.OpenConnection();

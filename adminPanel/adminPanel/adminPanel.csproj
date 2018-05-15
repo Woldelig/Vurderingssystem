@@ -73,12 +73,6 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MalForm.Designer.cs">
-      <DependentUpon>MalForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Multithread.cs" />
     <Compile Include="MyCourses.cs">
       <SubType>UserControl</SubType>
@@ -131,20 +125,11 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.cs" />
-    <Compile Include="VelkomstForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VelkomstForm.Designer.cs">
-      <DependentUpon>VelkomstForm.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MalForm.resx">
-      <DependentUpon>MalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyCourses.resx">
       <DependentUpon>MyCourses.cs</DependentUpon>
@@ -178,9 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="VelkomstForm.resx">
-      <DependentUpon>VelkomstForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

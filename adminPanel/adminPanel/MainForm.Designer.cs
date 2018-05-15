@@ -93,6 +93,8 @@
             this.SammenlignFlereFagBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.SammenlignFlereFagBtn.UseVisualStyleBackColor = false;
             this.SammenlignFlereFagBtn.Click += new System.EventHandler(this.SammenlignFlereFagBtn_Click_1);
+            this.SammenlignFlereFagBtn.MouseEnter += new System.EventHandler(this.SammenlignFlereFagBtn_MouseEnter);
+            this.SammenlignFlereFagBtn.MouseLeave += new System.EventHandler(this.SammenlignFlereFagBtn_MouseLeave);
             // 
             // NyttSemesterBtn
             // 
@@ -102,7 +104,7 @@
             this.NyttSemesterBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.NyttSemesterBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NyttSemesterBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.NyttSemesterBtn.Location = new System.Drawing.Point(0, 214);
+            this.NyttSemesterBtn.Location = new System.Drawing.Point(0, 205);
             this.NyttSemesterBtn.Name = "NyttSemesterBtn";
             this.NyttSemesterBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.NyttSemesterBtn.Size = new System.Drawing.Size(191, 52);
@@ -111,6 +113,8 @@
             this.NyttSemesterBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.NyttSemesterBtn.UseVisualStyleBackColor = false;
             this.NyttSemesterBtn.Click += new System.EventHandler(this.NyttSemesterBtn_Click);
+            this.NyttSemesterBtn.MouseEnter += new System.EventHandler(this.NyttSemesterBtn_MouseEnter);
+            this.NyttSemesterBtn.MouseLeave += new System.EventHandler(this.NyttSemesterBtn_MouseLeave);
             // 
             // ShutdownBtn
             // 
@@ -139,7 +143,7 @@
             this.SqlBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.SqlBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SqlBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.SqlBtn.Location = new System.Drawing.Point(0, 162);
+            this.SqlBtn.Location = new System.Drawing.Point(0, 153);
             this.SqlBtn.Name = "SqlBtn";
             this.SqlBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.SqlBtn.Size = new System.Drawing.Size(191, 52);
@@ -178,7 +182,7 @@
             this.StatsBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.StatsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatsBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.StatsBtn.Location = new System.Drawing.Point(0, 58);
+            this.StatsBtn.Location = new System.Drawing.Point(0, 49);
             this.StatsBtn.Name = "StatsBtn";
             this.StatsBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.StatsBtn.Size = new System.Drawing.Size(191, 52);
@@ -198,7 +202,7 @@
             this.SchemaBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(99)))), ((int)(((byte)(112)))));
             this.SchemaBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SchemaBtn.Font = new System.Drawing.Font("Century Gothic", 14.25F);
-            this.SchemaBtn.Location = new System.Drawing.Point(0, 110);
+            this.SchemaBtn.Location = new System.Drawing.Point(0, 101);
             this.SchemaBtn.Name = "SchemaBtn";
             this.SchemaBtn.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.SchemaBtn.Size = new System.Drawing.Size(191, 52);
