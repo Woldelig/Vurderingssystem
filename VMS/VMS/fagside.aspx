@@ -6,6 +6,10 @@
     <br />
     <br />
     <br />
+    <!-- Koden under brukes for å samle inn svaret fra brukerne. De skal svare ved hjelp av et stjernesystem.
+        Brukerne skal kunne svare fra 1 til 5 stjerner, og det skal ikke være lov til å svare blankt. Denne sjekken er ikke implementert enda.
+        Det brukes et inputfelt for å hente inn verdien. Vi bruker et eksternt rammeverk som heter RateIt som gjør det enkelt for oss tilpasse utsenet slik vi vil ha det.
+     -->
     <div class="Row">
         <div class="col-md-4">
             <asp:Label ID="fagnavnLbl" runat="server" Text="fagnavn: eks Markedsføringsledelse"></asp:Label>
