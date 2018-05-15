@@ -3,7 +3,7 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="jumbotron">
-        <h2>Vurderingssystem for Universitet i Sørøst-Norge</h2>
+        <h2>Vurderingssystem for Høgskolen i Sørøst-Norge</h2>
         <br />
         <asp:Label ID="StudIDLabel" runat="server" Text="StudentID"></asp:Label>
     </div>

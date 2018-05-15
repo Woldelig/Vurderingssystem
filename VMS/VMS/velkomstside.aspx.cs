@@ -8,7 +8,7 @@ namespace VMS
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.Master.LoggutBtnShow = false;
+            this.Master.loggutBtnShow = false;
             // Gjør logginnknappen usynlig på logginnsiden så vi ikke får dobbelt med logginnknapper
             ((Button)this.Master.FindControl("LoggInnNavbarBtn")).Visible = false;
         }
